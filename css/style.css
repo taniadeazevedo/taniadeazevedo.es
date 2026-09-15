@@ -1011,8 +1011,7 @@
       font-size: 0.82rem;
       color: #111827;
       opacity: 0.9;
-      text-decoration: underline;
-      text-underline-offset: 2px;
+      text-decoration: none;
     }
 
     .testimonial-cta-link:hover { opacity: 1; }
