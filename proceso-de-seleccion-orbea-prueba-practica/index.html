@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Back to the Pool — Propuesta resumida</title>
+<style>
+
+@font-face {
+  font-family: 'Tomato Grotesk';
+  font-weight: 400;
+  font-style: normal;
+  src: url('fonts/TomatoGrotesk-Regular.otf') format('opentype');
+}
+
+#orca-propuesta {
+  all: initial;
+  display: block;
+  font-family: 'Tomato Grotesk', sans-serif;
+  color: #212529;
+  background: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+#orca-propuesta *, #orca-propuesta *::before, #orca-propuesta *::after {
+  box-sizing: border-box;
+}
+
+
+
+
+#orca-propuesta *, #orca-propuesta *::before, #orca-propuesta *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+#orca-propuesta {
+  --black: #161616; --dark: #212529; --mid: #4d4d4d; --grey: #616161;
+  --light: #f4f4f4; --line: #e8e8e8; --white: #ffffff;
+  --font: 'Tomato Grotesk', sans-serif;
+}
+
+#orca-propuesta { scroll-behavior: smooth; }
+
+#orca-propuesta { font-family: var(--font); color: var(--dark); background: var(--white); -webkit-font-smoothing: antialiased; }
+
+
+
+#orca-propuesta .page { max-width: 1160px; margin: 0 auto; padding: 64px 64px 120px; } #orca-propuesta /* Cover — no bottom border; the block-header provides the single dividing line */
+.cover { padding-bottom: 0; margin-bottom: 0; }
+
+#orca-propuesta .cover-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--grey); margin-bottom: 24px; }
+
+#orca-propuesta .cover h1 { font-size: clamp(40px, 5vw, 64px); font-weight: 900; color: var(--black); letter-spacing: -.03em; line-height: 1.05; margin-bottom: 20px; }
+
+#orca-propuesta .cover-sub { font-size: 17px; color: var(--mid); line-height: 1.65; max-width: 560px; }
+
+#orca-propuesta .cover-meta { display: flex; gap: 32px; margin-top: 40px; flex-wrap: wrap; }
+
+#orca-propuesta .cover-meta-item { font-size: 13px; color: var(--grey); }
+
+#orca-propuesta .cover-meta-item strong { display: block; font-size: 14px; font-weight: 700; color: var(--dark); margin-bottom: 2px; }
+
+
+#orca-propuesta /* Block header — the single dividing line via border-top */
+.block-header {
+  display: flex; align-items: baseline; gap: 16px;
+  border-top: 2px solid var(--black); padding-top: 32px; margin: 56px 0 48px;
+}
+
+#orca-propuesta .block-num { font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--grey); white-space: nowrap; }
+
+#orca-propuesta .block-title { font-size: clamp(22px, 3vw, 30px); font-weight: 900; color: var(--black); letter-spacing: -.02em; line-height: 1.1; }
+
+
+#orca-propuesta .q { margin-bottom: 56px; padding-bottom: 56px; border-bottom: 1px solid var(--line); }
+
+#orca-propuesta .q:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; } #orca-propuesta .q-last { border-bottom: none !important; margin-bottom: 0 !important; padding-bottom: 0 !important; }
+
+#orca-propuesta .q-label { font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--grey); margin-bottom: 10px; }
+
+#orca-propuesta .q-title { font-size: 19px; font-weight: 700; color: var(--black); letter-spacing: -.01em; line-height: 1.3; margin-bottom: 20px; }
+
+#orca-propuesta .q-body { font-size: 15px; line-height: 1.75; color: var(--mid); }
+
+#orca-propuesta .q-body p { margin-bottom: 14px; }
+
+#orca-propuesta .q-body p:last-child { margin-bottom: 0; }
+
+#orca-propuesta .q-body strong { font-weight: 700; color: var(--dark); }
+
+
+#orca-propuesta /* Segmentation grid */
+.seg-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 2px; margin: 28px 0; background: var(--line); }
+
+#orca-propuesta .seg-cell { background: var(--white); padding: 18px 20px; font-size: 13px; color: var(--mid); line-height: 1.6; }
+
+#orca-propuesta .seg-cell.hd { background: var(--black); color: var(--white); font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: 14px 20px; }
+
+#orca-propuesta .seg-tag { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--grey); margin-bottom: 5px; }
+
+#orca-propuesta .seg-name { font-size: 14px; font-weight: 700; color: var(--dark); }
+#orca-propuesta /* Mensaje diferencial — styled like email fields */
+.seg-msg-field { background: var(--light); padding: 8px 12px; margin-bottom: 4px; }
+
+#orca-propuesta .seg-msg-field:last-child { margin-bottom: 0; }
+
+#orca-propuesta .seg-msg-label { font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--grey); margin-bottom: 3px; }
+
+#orca-propuesta .seg-msg-val { font-size: 12px; color: var(--dark); line-height: 1.5; }
+
+
+#orca-propuesta /* Copy block */
+.copy-block { background: var(--light); padding: 4px 0; margin: 28px 0; }
+
+#orca-propuesta .copy-row { display: grid; grid-template-columns: 150px 1fr; gap: 16px; align-items: baseline; padding: 14px 24px; border-bottom: 1px solid var(--line); }
+
+#orca-propuesta .copy-row:last-child { border-bottom: none; }
+
+#orca-propuesta .copy-label { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--grey); padding-top: 2px; }
+
+#orca-propuesta .copy-value { font-size: 15px; color: var(--dark); line-height: 1.55; }
+
+#orca-propuesta .copy-value em { font-style: italic; color: var(--mid); font-size: 13px; }
+ #orca-propuesta /* Pillars */
+.pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--line); margin: 28px 0; }
+
+#orca-propuesta .pillar { background: var(--light); padding: 24px 22px; }
+
+#orca-propuesta .pillar-name { font-size: 14px; font-weight: 700; color: var(--dark); margin-bottom: 8px; }
+
+#orca-propuesta .pillar-desc { font-size: 13px; color: var(--mid); line-height: 1.65; }
+
+
+#orca-propuesta /* Sub-label */
+.sub-label { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--grey); margin: 32px 0 14px; }
+
+
+#orca-propuesta /* Landing link box — dark button style */
+.link-box {
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--black); padding: 20px 28px; margin: 0 0 32px;
+  text-decoration: none; color: var(--white); transition: opacity .15s;
+}
+
+#orca-propuesta .link-box:hover { opacity: 0.85; }
+
+#orca-propuesta .link-box-title { font-size: 15px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+
+#orca-propuesta .link-box-desc { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.5; }
+
+#orca-propuesta .link-box-cta { font-size: 13px; font-weight: 700; color: var(--white); white-space: nowrap; margin-left: 24px; }
+
+
+#orca-propuesta /* Home grid */
+.home-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; background: var(--line); }  #orca-propuesta .home-card { background: var(--white); padding: 24px; }
+
+#orca-propuesta .home-card-name { font-size: 14px; font-weight: 700; color: var(--dark); margin-bottom: 8px; }
+
+#orca-propuesta .home-card-desc { font-size: 13px; color: var(--mid); line-height: 1.65; }
+
+
+#orca-propuesta /* Email cards */
+.email-seq { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--line); margin: 28px 0; }
+
+#orca-propuesta .email-card { background: var(--white); padding: 24px; display: flex; flex-direction: column; }
+
+#orca-propuesta .email-card-num { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--grey); margin-bottom: 4px; }
+
+#orca-propuesta .email-card-name { font-size: 16px; font-weight: 900; color: var(--black); letter-spacing: -.01em; margin-bottom: 4px; }
+
+#orca-propuesta .email-card-seg { font-size: 12px; color: var(--grey); margin-bottom: 4px; line-height: 1.5; }
+
+#orca-propuesta .email-card-date { font-size: 12px; color: var(--grey); margin-bottom: 14px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+
+#orca-propuesta .email-field { margin-bottom: 2px; }
+
+#orca-propuesta .email-field-label { font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--grey); margin-bottom: 3px; margin-top: 10px; }
+
+#orca-propuesta .email-field-val { font-size: 13px; color: var(--dark); line-height: 1.5; }
+ #orca-propuesta /* Email CTA — dark button */
+.email-link {
+  display: inline-block; margin-top: auto; padding-top: 16px;
+  font-size: 12px; font-weight: 700; color: var(--white);
+  background: var(--black); text-decoration: none;
+  padding: 10px 16px; margin-top: 16px; text-align: center;
+  transition: opacity .15s;
+}
+
+#orca-propuesta .email-link:hover { opacity: 0.75; }
+
+
+#orca-propuesta /* Other channels */
+.ch-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--line); margin: 28px 0; }
+
+#orca-propuesta .ch-card { background: var(--white); padding: 28px; }
+
+#orca-propuesta .ch-name { font-size: 15px; font-weight: 700; color: var(--black); margin-bottom: 8px; letter-spacing: -.01em; }
+
+#orca-propuesta .ch-desc { font-size: 13px; color: var(--mid); line-height: 1.65; }
+
+
+
+#orca-propuesta /* Flow grid — secuencia de emails */
+.flow-grid { display: flex; align-items: stretch; gap: 0; margin: 0; }
+
+#orca-propuesta .flow-card { flex: 1; background: var(--light); padding: 22px 24px; }
+
+#orca-propuesta .flow-arrow { display: flex; align-items: center; justify-content: center; padding: 0 12px; font-size: 18px; color: var(--grey); flex-shrink: 0; }
+
+#orca-propuesta .flow-num { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--grey); margin-bottom: 6px; } #orca-propuesta .flow-who { font-size: 14px; font-weight: 700; color: var(--dark); margin-bottom: 8px; line-height: 1.3; }
+
+#orca-propuesta .flow-logic { font-size: 13px; color: var(--mid); line-height: 1.6; }
+
+
+@media (max-width: 768px) {
+  #orca-propuesta .flow-grid { flex-direction: column; }
+
+  #orca-propuesta .flow-arrow { transform: rotate(90deg); padding: 8px 0; }
+
+}
+
+@media (max-width: 768px) {
+  #orca-propuesta .page { padding: 40px 24px 80px; }
+
+  #orca-propuesta nav { padding: 0 24px; }
+
+  #orca-propuesta .seg-grid { grid-template-columns: 1fr; }
+
+  #orca-propuesta .seg-grid, #orca-propuesta .email-seq, #orca-propuesta .ch-grid, #orca-propuesta .pillars, #orca-propuesta .home-grid { grid-template-columns: 1fr; }
+
+  #orca-propuesta .copy-row { grid-template-columns: 1fr; gap: 4px; }
+
+  #orca-propuesta .cover-meta { flex-direction: column; gap: 16px; }
+
+  #orca-propuesta .link-box { flex-direction: column; align-items: flex-start; gap: 12px; }
+
+}
+ </style>
+</head>
+<body>
+<div id="orca-propuesta">
+
+
+
+<div class="page">
+
+  <!-- COVER -->
+  <div class="cover">
+    <p class="cover-eyebrow">Prueba técnica · Gestora de Campañas E-commerce</p>
+    <h1>Back to the Pool</h1>
+    <p class="cover-sub">Propuesta de campaña para septiembre 2026: segmentación, concepto creativo y despliegue en canales digitales.</p>
+    <div class="cover-meta">
+      <div class="cover-meta-item"><strong>Candidata</strong>Tania de Azevedo</div>
+      <div class="cover-meta-item"><strong>Campaña</strong>Back to the Pool · Septiembre 2026</div>
+      <div class="cover-meta-item"><strong>Canales</strong>Web · Email · RRSS · Paid</div>
+    </div>
+  </div>
+
+  <!-- ═══ BLOQUE 1 ═══ -->
+  <div class="block-header">
+    <span class="block-num">Bloque 01</span>
+    <span class="block-title">Diseño Estratégico y Concepto</span>
+  </div>
+
+  <!-- 1. Segmentación -->
+  <div class="q">
+    <p class="q-label">1 · Segmentación de clientes</p>
+    <p class="q-title">Tres segmentos para priorizar envíos y medir resultados por separado.</p>
+    <div class="q-body">
+      <p>Los tres segmentos reciben la misma secuencia de emails, pero identificarlos por separado en la BBDD tiene dos utilidades concretas: <strong>priorizar</strong> el orden de envío según potencial de conversión, y <strong>medir</strong> el rendimiento de cada grupo al final del mes para informar futuras campañas.</p>  <p>Si hubiera limitación de envíos o presupuesto, el orden sería A → B → C. Y al cierre de septiembre, comparar las tasas de conversión por segmento permite saber dónde está el volumen real y ajustar la estrategia siguiente: ¿el segmento B convierte bien? ¿Vale la pena activar C en septiembre o reservarlo para otra campaña?</p>
+    </div>
+
+    <div class="seg-grid" style="margin-top:28px;">
+      <div class="seg-cell hd">Segmento</div>
+      <div class="seg-cell hd">Criterio de selección en BBDD</div>
+
+      <div class="seg-cell">
+        <div class="seg-tag">A · Prioritario</div>
+        <div class="seg-name">Compradores activos de natación</div>
+      </div>
+      <div class="seg-cell">Compra en los últimos 12 meses en categoría Natación (bañadores, gafas, accesorios de piscina). Mayor probabilidad de conversión directa.</div>
+
+      <div class="seg-cell">
+        <div class="seg-tag">B · Expansión</div>
+        <div class="seg-name">Compradores activos sin compra en natación</div>
+      </div>
+      <div class="seg-cell">Historial de compra en otras categorías + sin compra en Natación en 18 meses. Ya confían en Orca; el objetivo es llevarlos al carril.</div>
+
+      <div class="seg-cell">
+        <div class="seg-tag">C · Reactivación</div>
+        <div class="seg-name">Base reactivable con perfil deportivo</div> </div>
+      <div class="seg-cell">Open rate en campañas sport &gt; 20% en 6 meses + sin compra en 18 meses. Excluir inactivos totales. El interés existe; la compra se ha enfriado.</div>
+    </div>
+  </div>
+
+  <!-- 2. Propuesta Promocional -->
+  <div class="q">
+    <p class="q-label">2 · Propuesta promocional</p>
+    <p class="q-title">Sin descuentos. El valor está en la selección, no en el precio.</p>
+    <div class="q-body">
+      <p><strong>Septiembre tiene un cliente que ya sabe lo que quiere. No necesita descuento. Necesita encontrarlo.</strong></p>
+      <p>La propuesta no compite en precio: compite en momento. La equipación Back to the Pool llega exactamente cuando el nadador ya está pensando en volver al carril. Septiembre tiene una ventana corta y un cliente con la decisión casi tomada. El trabajo de la campaña es no perderlo. Los beneficios estándar —envío gratuito, devolución fácil— actúan como reductor de fricción en ese último paso, no como reclamo principal.</p>
+    </div>
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-name">Selección curada</div>
+        <div class="pillar-desc">Bañadores, gafas, accesorios de entrenamiento y afterswim agrupados bajo un mismo concepto de campaña. El cliente no busca: encuentra.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Envío gratuito</div>
+        <div class="pillar-desc">En todos los pedidos de septiembre. Elimina la fricción del último momento sin tocar ni un euro del precio de producto.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-name">Devolución sin coste</div>
+        <div class="pillar-desc">14 días. La garantía que convierte a un cliente indeciso en comprador. Sin descuento, sin urgencia forzada.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Concepto Creativo -->
+  <div class="q q-last">
+    <p class="q-label">3 · Lema, línea comunicativa y gancho comercial</p>
+    <p class="q-title">Un concepto construido sobre el ritual de volver, no sobre el producto.</p>
+    <div class="q-body">
+      <p>Septiembre activa un patrón de comportamiento muy concreto en el deportista habitual: la vuelta a la rutina, al carril, al ritmo. Back to the Pool nombra ese momento de forma directa. La línea comunicativa lo hace suyo —no una vuelta a la obligación, sino un reencuentro con algo que se echa de menos.</p>
+    </div>
+    <div class="copy-block">
+      <div class="copy-row">
+        <span class="copy-label">Lema</span>
+        <span class="copy-value">Back to the Pool</span>
+      </div>
+      <div class="copy-row">
+        <span class="copy-label">Línea</span>
+        <span class="copy-value">Septiembre no es volver a la rutina. Es volver a ti.<br><em>El carril, el ritmo, lo que te equilibra cuando el trabajo termina.</em></span>
+      </div>
+      <div class="copy-row">
+        <span class="copy-label">Gancho comercial</span>
+        <span class="copy-value">La selección Back to the Pool. Todo lo que necesitas para volver al carril, en septiembre.</span>
+      </div>
+      <div class="copy-row">
+        <span class="copy-label">Tono</span>
+        <span class="copy-value">Directo, cercano. Sensaciones concretas: el agua, el carril, la serie. Sin sobreproducción ni exceso de adjetivos.</span>
+      </div>
+    </div>
+  </div> <!-- ═══ BLOQUE 2 ═══ -->
+  <div class="block-header">
+    <span class="block-num">Bloque 02</span>
+    <span class="block-title">Diseño y Despliegue en Canales Digitales</span>
+  </div>
+
+  <!-- 1. Canal Web -->
+  <div class="q">
+    <p class="q-label">1 · Canal Web / E-commerce</p>
+    <p class="q-title">Landing de campaña + integración en home y navegación.</p>
+
+    <p class="sub-label">Landing page</p>
+    <a class="link-box" href="https://taniadeazevedo.es/back-to-the-pool/" target="_blank">
+      <div class="link-box-left">
+        <div class="link-box-title">Back to the Pool — Landing de campaña</div>
+        <div class="link-box-desc">Arquitectura completa: hero +  selección de productos.</div>
+      </div>
+      <span class="link-box-cta">Ver landing →</span>
+    </a>
+
+    <p class="sub-label">Home y Navegación</p>
+    <p style="font-size:15px;line-height:1.75;color:var(--mid);margin-bottom:16px;">Define la integración de la campaña en la página principal: banners, destacados de producto y cómo se adapta el menú y la navegación durante septiembre.</p>
+    <div class="home-grid">
+      <div class="home-card">
+        <div class="home-card-name">Hero de home</div>
+        <div class="home-card-desc">Banner Back to the Pool durante todo septiembre. Imagen de campaña + claim + CTA directo a la selección.</div>  </div>
+      <div class="home-card">
+        <div class="home-card-name">Menú de navegación</div>
+        <div class="home-card-desc">Entrada "Back to the Pool" en el menú principal con color de acento, diferenciada del resto de categorías durante el mes de campaña.</div>
+      </div>
+      <div class="home-card">
+        <div class="home-card-name">Promo bar</div>
+        <div class="home-card-desc">"Envío gratuito" · "Devolución en 14 días" · "Septiembre no es volver a la rutina. Es volver a ti." Rotación en todas las páginas durante el mes.</div>
+      </div>
+      <div class="home-card">
+        <div class="home-card-name">Destacados en categoría</div>
+        <div class="home-card-desc">Los productos de la selección aparecen primeros en los listados de Natación durante septiembre, sin alterar la arquitectura de categorías permanente.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Canal Email -->
+  <div class="q">
+    <p class="q-label">2 · Canal Email Marketing / CRM</p>
+    <p class="q-title">Lanzamiento, reactivación y cierre.</p>
+    <div class="q-body">
+      <p>Secuencia de tres emails segmentados por comportamiento. El primero activa a toda la base; el segundo reactiva a quienes no respondieron; el tercero cierra el mes con urgencia suave entre quienes no han comprado.</p>
+    </div>
+
+    <div class="email-seq">
+      <div class="email-card">
+        <div class="email-card-num">Email 01</div>
+        <div class="email-card-name">Lanzamiento</div>
+        <div class="email-card-seg">BBDD completa — todos los contactos activos</div>
+        <div class="email-card-date">1 de septiembre · 8:00h</div>
+        <div class="email-field"> <div class="email-field-label">Asunto</div>
+          <div class="email-field-val">Back to the Pool. Tu nueva temporada empieza hoy.</div>
+          <div class="email-field-label">Preheader</div>
+          <div class="email-field-val">Todo lo que necesitas para volver al carril. Septiembre es tuyo.</div>
+        </div>
+        <a class="email-link" href="https://us8.campaign-archive.com/?u=85d1050adb81696b0dc52c101&id=e806dcf0b0" target="_blank">Ver email →</a>
+      </div>
+
+      <div class="email-card">
+        <div class="email-card-num">Email 02</div>
+        <div class="email-card-name">Reactivación</div>
+        <div class="email-card-seg">No abrieron email 1 + abrieron pero no compraron</div>
+        <div class="email-card-date">10 de septiembre · 10:00h</div>
+        <div class="email-field">
+          <div class="email-field-label">Asunto</div>
+          <div class="email-field-val">¿Ya tienes todo para septiembre?</div>
+          <div class="email-field-label">Preheader</div>
+          <div class="email-field-val">Todavía estás a tiempo. La mochila que lo cambia todo.</div>
+        </div>
+        <a class="email-link" href="https://us8.campaign-archive.com/?u=85d1050adb81696b0dc52c101&id=17cefe619e" target="_blank">Ver email →</a>
+      </div>
+
+      <div class="email-card">
+        <div class="email-card-num">Email 03</div>
+        <div class="email-card-name">Cierre</div>
+        <div class="email-card-seg">Activos sin compra + abandono de carrito</div>
+        <div class="email-card-date">24 de septiembre · 9:00h</div>
+        <div class="email-field">
+          <div class="email-field-label">Asunto</div>
+          <div class="email-field-val">Back to the Pool. Septiembre termina, el carril no.</div>
+          <div class="email-field-label">Preheader</div>
+          <div class="email-field-val">El carril no espera. Septiembre, tampoco.</div>
+        </div>
+        <a class="email-link" href="https://us8.campaign-archive.com/?u=85d1050adb81696b0dc52c101&id=45215f0481" target="_blank">Ver email →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Otros Canales -->
+  <div class="q">
+    <p class="q-label">3 · Otros Canales Digitales</p>
+    <p class="q-title">Consistencia de campaña en redes, paid y contenido orgánico.</p>
+    <div class="q-body">
+      <p>Los canales complementan la campaña sin duplicar esfuerzo: cada uno tiene un rol concreto dentro del mes y se alimenta del mismo concepto y activos visuales que la landing y los emails.</p>
+    </div>
+    <div class="ch-grid">
+      <div class="ch-card">
+        <div class="ch-name">Instagram + Facebook</div>
+        <div class="ch-desc">Reels y stories orgánicos con la selección integrada, sin sobreproducción. Consistencia visual con la campaña. Frecuencia: 2–3 publicaciones semanales durante septiembre.</div>
+      </div>
+      <div class="ch-card">
+        <div class="ch-name">Paid Social — Meta Ads</div>
+        <div class="ch-desc">Retargeting a visitantes de la landing sin compra. Carousel con la selección de producto, presupuesto fijo, configuración única al inicio del mes.</div>
+      </div>
+      <div class="ch-card">
+        <div class="ch-name">Blog / SEO</div>
+        <div class="ch-desc">Artículo de temporada con la selección integrada. Tráfico orgánico a medio plazo + contenido reutilizable en redes y email. Publicación: primera semana de septiembre.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+</body>
+</html>
