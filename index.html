@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Tania de Azevedo – Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <div class="custom-cursor"></div>
+  <div class="copy-toast" id="copyToast">Listo para pegarlo donde quieras.</div>
+
+  <header class="site-header">
+    <div class="nav-wrapper">
+      <div class="nav-shell">
+        <div class="nav-avatar">
+          <img src="imgs/Yo.jpg" alt="Tania de Azevedo" />
+        </div>
+        <div class="nav-main">
+          <nav class="nav-links">
+            <a href="#work">Proyectos</a>
+            <a href="#experience">Experiencia</a>
+            <a href="#contact">Contacto</a>
+          </nav>
+        </div>
+        <a href="mailto:taniadeazevedoribeiro@gmail.com" class="nav-cta">
+          <span class="nav-cta-dot"></span>
+          <span>Available for work</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-halo"></div>
+      <div class="container">
+        <div class="hero-inner">
+          <h1>
+            <span class="hero-intro">Hola, soy Tania de Azevedo,</span><br />
+            <span class="gradient-word">Diseñadora de branding y web</span> enfocada<br />
+            en experiencias digitales con <span class="gradient-word">código e IA</span>.
+          </h1>
+
+          <p class="hero-subtitle">
+            Más de siete años diseñando para marcas y grandes eventos. En los últimos años he profundizado en diseño web para entender mejor cómo se construyen y se viven las experiencias en pantalla, poniendo especial cuidado en la claridad, la interacción y el uso real de cada proyecto.
+          </p>
+
+          <div class="hero-actions">
+            <div class="hero-cv-wrapper">
+              <a
+                href="files/CV-Tania-de-Azevedo-Ribeiro.pdf"
+                class="btn-primary hero-cv"
+                target="_blank"
+                rel="noopener noreferrer"
+                download
+              >
+                Descargar CV
+              </a>
+              <div class="cv-tooltip">¡Prometo mantenerlo actualizado!</div>
+            </div>
+
+            <p class="hero-shortcut">
+              Pulsa <span class="shortcut-key">C</span> para copiar mi email
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLIENTES -->
+    <section class="brands-section">
+      <div class="container">
+        <div class="brands-strip">
+          <div class="brands-track">
+            <!-- PRIMER BLOQUE -->
+            <span class="brand-logo brand-bmw"><img src="imgs/logos-07.svg" alt="BMW" /></span>
+            <span class="brand-logo brand-estrella"><img src="imgs/logos-08.svg" alt="Estrella Damm" /></span>
+            <span class="brand-logo brand-dp"><img src="imgs/logos-01.svg" alt="DP World Tour" /></span>
+            <span class="brand-logo brand-liv"><img src="imgs/logos-04.svg" alt="LIV Golf" /></span>
+            <span class="brand-logo brand-ayto"><img src="imgs/logos-11.svg" alt="Ayuntamiento de Madrid" /></span>
+            <span class="brand-logo brand-junta"><img src="imgs/logos-10.svg" alt="Junta de Andalucía" /></span>
+            <span class="brand-logo brand-gasol"><img src="imgs/logos-06.svg" alt="Gasol Foundation" /></span>
+            <span class="brand-logo brand-openhouse"><img src="imgs/logos-05.svg" alt="Open House Worldwide" /></span>
+            <span class="brand-logo brand-stihl"><img src="imgs/logos-03.svg" alt="STIHL" /></span>
+            <span class="brand-logo brand-gts"><img src="imgs/logos-09.svg" alt="GTS Global Talent Services" /></span>
+            <span class="brand-logo brand-vivo"><img src="imgs/logos-02.svg" alt="vivo" /></span>
+
+            <!-- SEGUNDO BLOQUE (duplicado para loop) -->
+            <span class="brand-logo brand-bmw"><img src="imgs/logos-07.svg" alt="BMW" /></span>
+            <span class="brand-logo brand-estrella"><img src="imgs/logos-08.svg" alt="Estrella Damm" /></span>
+            <span class="brand-logo brand-dp"><img src="imgs/logos-01.svg" alt="DP World Tour" /></span>
+            <span class="brand-logo brand-liv"><img src="imgs/logos-04.svg" alt="LIV Golf" /></span>
+            <span class="brand-logo brand-ayto"><img src="imgs/logos-11.svg" alt="Ayuntamiento de Madrid" /></span>
+            <span class="brand-logo brand-junta"><img src="imgs/logos-10.svg" alt="Junta de Andalucía" /></span>
+            <span class="brand-logo brand-gasol"><img src="imgs/logos-06.svg" alt="Gasol Foundation" /></span>
+            <span class="brand-logo brand-openhouse"><img src="imgs/logos-05.svg" alt="Open House Worldwide" /></span>
+            <span class="brand-logo brand-stihl"><img src="imgs/logos-03.svg" alt="STIHL" /></span>
+            <span class="brand-logo brand-gts"><img src="imgs/logos-09.svg" alt="GTS Global Talent Services" /></span>
+            <span class="brand-logo brand-vivo"><img src="imgs/logos-02.svg" alt="vivo" /></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROYECTOS -->
+    <section id="work" class="work-section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-label">PROYECTOS</div>
+          <p class="work-intro">
+            Una pequeña muestra de algunos de los proyectos en los que he trabajado.
+            Si te apetece saber más, estaré encantada de contarte detalles.
+          </p>
+        </div>
+
+        <div class="work-controls">
+<div class="work-filters">
+    <button class="filter-btn is-active" data-filter="graphic" type="button">Diseño gráfico</button>
+<button class="filter-btn" data-filter="digital" type="button">Diseño web</button>
+
+
+</div>
+
+
+          <button class="eg-eyes-float" id="egEyesBtn" type="button" aria-label="Abrir cartel del concurso">
+            <svg class="eg-eyes-svg" viewBox="0 0 128 88" aria-hidden="true">
+              <ellipse cx="40" cy="46" rx="34" ry="30" fill="rgba(15,23,42,0.05)"/>
+              <ellipse cx="88" cy="46" rx="34" ry="30" fill="rgba(15,23,42,0.05)"/>
+              <ellipse cx="40" cy="42" rx="30" ry="26" fill="#ffffff" stroke="rgba(15,23,42,0.18)" stroke-width="2"/>
+              <ellipse cx="40" cy="44" rx="10.5" ry="10.5" fill="#9ca3af"/>
+              <ellipse cx="43" cy="46" rx="5.8" ry="5.8" fill="#111827"/>
+              <circle cx="45" cy="44" r="2.2" fill="#ffffff" opacity="0.9"/>
+              <ellipse cx="88" cy="42" rx="30" ry="26" fill="#ffffff" stroke="rgba(15,23,42,0.18)" stroke-width="2"/>
+              <ellipse cx="88" cy="44" rx="10.5" ry="10.5" fill="#9ca3af"/>
+              <ellipse cx="91" cy="46" rx="5.8" ry="5.8" fill="#111827"/>
+              <circle cx="93" cy="44" r="2.2" fill="#ffffff" opacity="0.9"/>
+            </svg>
+          </button>
+        </div>
+
+        <div class="work-grid">
+          <article class="work-card" data-type="graphic">
+            <span class="work-tag">FESTIVAL DE ARQUITECTURA</span>
+            <h3 class="work-title">Open House Madrid</h3>
+            <p class="work-desc">
+              Rebranding completo para la 10ª edición: sistema modular, piezas digitales,
+              señalética, materiales editoriales y diseño de la interfaz web.
+            </p>
+            <a href="https://taniadeazevedo.es/open-house-madrid/" class="work-link" target="_blank" rel="noopener noreferrer">
+              Ver proyecto <span>→</span>
+            </a>
+          </article>
+
+          <article class="work-card" data-type="graphic">
+            <span class="work-tag">TORNEO DE GOLF</span>
+            <h3 class="work-title">Estrella Damm N.A. Andalucía Masters</h3>
+            <p class="work-desc">
+              Identidad visual, cartelería, soportes exteriores y una campaña digital
+              de alto volumen con banners, robapáginas, newsletters y piezas impresas.
+            </p>
+            <a href="https://taniadeazevedo.es/estrella-damm-n-a-andalucia-masters/" class="work-link" target="_blank" rel="noopener noreferrer">
+              Ver proyecto <span>→</span>
+            </a>
+          </article>
+
+          <article class="work-card" data-type="graphic">
+            <span class="work-tag">Proyecto cultural</span>
+            <h3 class="work-title">La Nueva Línea</h3>
+            <p class="work-desc">
+              Identidad visual completa para el paraguas cultural y de ocio del municipio La Línea de la Concepción.
+              Sistema gráfico, materiales digitales y merchandising para el evento SUP.
+            </p>
+            <a href="https://taniadeazevedo.es/la-nueva-linea/" class="work-link" target="_blank" rel="noopener noreferrer">
+              Ver proyecto <span>→</span>
+            </a>
+            <a href="video/La-Nueva-Linea-propuesta.mp4" class="work-link" target="_blank" rel="noopener noreferrer">
+              Ver vídeo <span>→</span>
+            </a>
+          </article>
+
+          <article class="work-card" data-type="graphic">
+            <span class="work-tag">FESTIVAL DE ARQUITECTURA</span>
+            <h3 class="work-title">Open House Málaga</h3>
+            <p class="work-desc">
+           Identidad y piezas para el festival de Málaga: sistema gráfico aplicado a comunicación, piezas digitales, materiales del evento y página web.
+            </p>
+            <a href="https://taniadeazevedo.es/open-house-malaga/" class="work-link" target="_blank" rel="noopener noreferrer">
+              Ver proyecto <span>→</span>
+            </a>
+          </article>
+
+
+          <article class="work-card" data-type="digital">
+  <span class="work-tag">PROYECTO PERSONAL · MARKETING</span>
+  <h3 class="work-title">Escáner laboral</h3>
+  <p class="work-desc">
+   Acción interactiva para hacer más dinámica la búsqueda laboral: a partir de preguntas, se construye tu perfil y se conecta directamente a las vacantes de Infojobs.
+  </p>
+
+  <a href="https://escaner-infojobs.netlify.app" class="work-link" target="_blank" rel="noopener noreferrer">
+    Ver proyecto <span>→</span>
+  </a>
+</article>
+
+ <article class="work-card" data-type="digital">
+            <span class="work-tag">Coaching y comunicación</span>
+            <h3 class="work-title">Lidera hablando</h3>
+<p class="work-desc">
+Landing para captar leads mediante un test, pensada como puerta de entrada a futuros cursos. Diseño orientado a conversión, con estructura clara, mensajes directos y CTAs estratégicos.</p>
+
+
+            <a href="https://taniadeazevedo.es/estilo-de-comunicar/" class="work-link" target="_blank" rel="noopener noreferrer">
+              Ver landing <span>→</span>
+            </a>
+          </article>
+
+<article class="work-card" data-type="digital">
+  <span class="work-tag">PROYECTO PERSONAL · WEB APP</span>
+  <h3 class="work-title">Calcula lo tuyo</h3>
+  <p class="work-desc">
+      Aplicación web de calculadoras laborales para calcular y entender “lo tuyo” de forma rápida: interfaz clara, foco en usabilidad y una lógica de cálculo pensada para ser precisa y sencilla.
+  </p>
+
+  <a href="https://calculalotuyo.netlify.app/" class="work-link" target="_blank" rel="noopener noreferrer">
+    Ver proyecto <span>→</span>
+  </a>
+</article>
+
+
+
+
+
+
+
+
+
+
+ <article class="work-card" data-type="digital">
+            <span class="work-tag">Centro de estética</span>
+            <h3 class="work-title">Zen Abando</h3>
+            <p class="work-desc">
+  Rediseño web para un centro de estética en Bilbao, con foco en microblading y micropigmentación.
+  Arquitectura, jerarquía visual y textos orientados a SEO y conversión.
+</p>
+
+            <a href="https://www.zenabando.com/home-2/" class="work-link" target="_blank" rel="noopener noreferrer">
+              Ver página web<span>→</span>
+            </a>
+          </article>
+
+
+
+
+
+
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCIA -->
+    <section class="experience-section" id="experience">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-label">EXPERIENCIA</div>
+        </div>
+
+        <ul class="exp-list">
+          <li class="exp-item">
+            <div>
+              <div class="exp-item-date">2021 – 2026</div>
+              <span class="exp-location-pill">Remoto</span>
+            </div>
+
+            <div>
+              <p class="exp-item-role">
+                Diseñadora gráfica
+                <span class="exp-company-wrapper">
+                  en
+                  <a href="https://asgagencia.com/" class="exp-company-icon" target="_blank" rel="noreferrer">
+                    <img src="imgs/asg-icon.png" alt="ASG Marketing y Comunicación" />
+                  </a>
+                  <span class="exp-company-name">ASG Marketing y Comunicación</span>
+                </span>
+              </p>
+
+              <p class="exp-item-desc">
+                En ASG trabajo para marcas y eventos de gran impacto, creando identidades visuales y sistemas gráficos aplicados a campañas,
+                redes, webs de eventos y piezas editoriales. Tengo la suerte de participar en todo el proceso, desde el primer brief hasta el arte final,
+                asegurando coherencia en cada entrega. En esta etapa he ampliado mi práctica hacia diseño web para entender mejor las experiencias digitales.
+              </p>
+            </div>
+          </li>
+
+          <li class="exp-item">
+            <div>
+              <div class="exp-item-date">2017 – 2021</div>
+              <span class="exp-location-pill">Bilbao</span>
+            </div>
+
+            <div>
+              <p class="exp-item-role">
+                Diseñadora gráfica
+                <span class="exp-company-wrapper">
+                  en
+                  <a href="https://wexplorer.es/" class="exp-company-icon" target="_blank" rel="noreferrer">
+                    <img src="imgs/wexplorer-icon.png" alt="Viajes Premium Explorer" />
+                  </a>
+                  <span class="exp-company-name">Viajes Premium Explorer</span>
+                  <span class="exp-company-note">(ahora WeXplorer)</span>
+                </span>
+              </p>
+
+              <p class="exp-item-desc">
+                Fui parte del proceso de digitalización de la agencia, diseñando y participando en el e-commerce de venta de viajes y en su comunicación visual en digital.
+                Además, gestionaba campañas en Mailchimp, diseñaba contenidos para redes y creaba materiales promocionales y merchandising.
+              </p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- TESTIMONIOS + STACK -->
+    <section class="testimonials-section" id="testimonials">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-label">TESTIMONIOS</div>
+        </div>
+
+        <div class="testimonials-carousel">
+          <article class="testimonial-card is-active">
+            <p class="testimonial-quote">"Tania va siempre un paso más allá del briefing. Investiga, aporta criterio y construye marcas sólidas y bien pensadas. Ha creado proyectos desde cero y sabe afrontar encargos de gran envergadura con solvencia. Es una profesional fiable, con un estilo elegante y coherente. Un valor seguro para cualquier equipo creativo."</p>
+            <div class="testimonial-meta">
+              <div class="testimonial-avatar"><img src="imgs/Maria.jpg" alt="María Moreno" /></div>
+              <div>
+                <div class="testimonial-name">María Moreno</div>
+                <div>Directora de Marketing y Comunicación · ASG</div>
+              </div>
+            </div>
+            <div class="testimonial-footer">
+              <a href="mailto:mmorenoportillo@gmail.com" class="testimonial-cta-link">Pedir recomendación →</a>
+            </div>
+          </article>
+
+          <article class="testimonial-card">
+            <p class="testimonial-quote">“Tania suma desde el primer momento: aporta ideas, empuja el proyecto y cuida el trabajo en equipo. Tiene una mirada creativa muy afinada y una actitud siempre colaborativa, lo que hace que los procesos sean fluidos y agradables. Es una persona implicada y resolutiva. Da gusto trabajar con alguien así.”</p>
+            <div class="testimonial-meta">
+              <div class="testimonial-avatar"><img src="imgs/Ceci.png" alt="Cecilia Rivera" /></div>
+              <div>
+                <div class="testimonial-name">Cecilia Rivera</div>
+                <div>Responsable de Marketing y Comunicación · ASG</div>
+              </div>
+            </div>
+            <div class="testimonial-footer">
+              <a href="mailto:ceciliariveragomez@gmail.com" class="testimonial-cta-link">Pedir recomendación →</a>
+            </div>
+          </article>
+
+          <article class="testimonial-card">
+            <p class="testimonial-quote">“Conocí a Tania al inicio de su carrera y juntos nos apoyamos para superar muchos retos. Su curiosidad, su pasión y su manera de trabajar en equipo fueron clave para impulsar nuestra digitalización y sacar cada proyecto adelante. Siempre mostró una actitud abierta, resolutiva y con muchas ganas de aprender.”</p>
+            <div class="testimonial-meta">
+              <div class="testimonial-avatar"><img src="imgs/Rob.jpg" alt="Roberto Gallego" /></div>
+              <div>
+                <div class="testimonial-name">Roberto Gallego</div>
+                <div>CEO · WeXplorer</div>
+              </div>
+            </div>
+            <div class="testimonial-footer">
+              <a href="mailto:hola@wexplorer.es" class="testimonial-cta-link">Pedir recomendación →</a>
+            </div>
+          </article>
+        </div>
+
+        <div class="stack-block">
+          <div class="stack-badge">STACK</div>
+          <p class="stack-subtitle">Diseño gráfico → diseño digital → diseño web</p>
+
+          <div class="stack-row">
+            <div class="stack-icons-row">
+              <button class="stack-icon" data-label="Photoshop"><img src="imgs/Photoshop.svg" alt="Photoshop" /></button>
+              <button class="stack-icon" data-label="Illustrator"><img src="imgs/illustrator.svg" alt="Illustrator" /></button>
+              <button class="stack-icon" data-label="WordPress"><img src="imgs/Wordpress.svg" alt="WordPress" /></button>
+              <button class="stack-icon" data-label="HTML"><img src="imgs/HTML.svg" alt="HTML" /></button>
+              <button class="stack-icon" data-label="CSS"><img src="imgs/CSS.svg" alt="CSS" /></button>
+                <button class="stack-icon" data-label="JavaScript"><img src="imgs/javascript-icon.png" alt="JavaScript" /></button>
+               <button class="stack-icon" data-label="GitHub"><img src="imgs/github-icon.png" alt="GitHub" /></button>
+              <button class="stack-icon" data-label="Visual Studio Code"><img src="imgs/vscode-icon.png" alt="Visual Studio Code" /></button>
+              <button class="stack-icon" data-label="Mailchimp"><img src="imgs/Mailchimp.svg" alt="Mailchimp" /></button>
+
+              <button class="stack-icon" data-label="Claude"><img src="imgs/claude-icon.png" alt="Claude" /></button>
+            </div>
+
+            <div class="languages-stack">
+              <button class="lang-pill" data-langsays="De aquí, de toda la vida."><span class="flag">🇪🇸</span> Español</button>
+              <button class="lang-pill" data-langsays="É herança de família."><span class="flag">🇵🇹</span> Portugués</button>
+              <button class="lang-pill" data-langsays="Don’t let the accent fool you."><span class="flag">🇬🇧</span> Inglés</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FUERA DE LA PANTALLA -->
+    <section class="music-section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-label">FUERA DE LA PANTALLA</div>
+        </div>
+
+        <div class="music-spotify-card">
+  <div class="music-spotify-album">
+    <img src="imgs/spotify-album.webp" alt="Portada de Sugar for the Pill - Slowdive" />
+  </div>
+
+  <div class="music-spotify-meta">
+    <div class="music-spotify-title">Sugar for the Pill</div>
+    <div class="music-spotify-artist">Slowdive</div>
+    <div class="music-spotify-sub">Más escuchada este mes</div>
+  </div>
+
+  <a href="https://open.spotify.com/intl-es/track/0eVz3hV2xOXdneGpnWDFpb?si=5ede26d33cc34857" target="_blank" class="music-spotify-cta" rel="noreferrer">
+    Escuchar en Spotify
+  </a>
+</div>
+
+
+        <div class="polaroid-wrap">
+          <div class="polaroid polaroid-1"><img src="imgs/foto6.jpg" alt="Foto 1" /></div>
+          <div class="polaroid polaroid-2"><img src="imgs/foto1.jpg" alt="Foto 2" /></div>
+          <div class="polaroid polaroid-3"><img src="imgs/foto3.jpg" alt="Foto 3" /></div>
+          <div class="polaroid polaroid-4"><img src="imgs/foto2.jpg" alt="Foto 4" /></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="desktop-spacer"></div>
+
+    <!-- CONTACTO -->
+    <section id="contact" class="contact-section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-label">CONTACTO</div>
+        </div>
+
+        <form id="contactForm" class="contact-form" action="https://formsubmit.co/taniadeazevedoribeiro@gmail.com" method="POST">
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_subject" value="Nuevo mensaje desde el portfolio" />
+          <input type="hidden" name="_template" value="table" />
+
+          <div class="contact-row">
+            <div class="contact-field">
+              <input id="name" name="name" type="text" placeholder="Nombre" required />
+            </div>
+            <div class="contact-field">
+              <input id="email" name="email" type="email" placeholder="Email" required />
+            </div>
+          </div>
+
+          <div class="contact-field">
+            <textarea id="project" name="message" placeholder="Mensaje" required></textarea>
+          </div>
+
+          <div class="contact-actions">
+            <button type="submit" class="btn-primary contact-submit">Enviar mensaje</button>
+          </div>
+
+          <p id="contactStatus" class="contact-hint" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-list">
+          <div class="footer-row">
+            <div class="footer-left">
+              <span class="footer-icon">✉</span>
+              <span class="footer-label">Email</span>
+            </div>
+            <a href="mailto:taniadeazevedoribeiro@gmail.com" class="footer-link">
+              <span>taniadeazevedoribeiro@gmail.com</span>
+            </a>
+          </div>
+
+          <div class="footer-row">
+            <div class="footer-left">
+              <span class="footer-icon">in</span>
+              <span class="footer-label">LinkedIn</span>
+            </div>
+            <a href="https://www.linkedin.com/in/tania-de-azevedo-ribeiro" target="_blank" rel="noreferrer" class="footer-link">
+              <span>/in/tania-de-azevedo-ribeiro</span>
+            </a>
+          </div>
+        </div>
+
+        <span class="footer-credit">© Tania de Azevedo 2026 · Gracias por llegar hasta aquí ✦</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- BADGE AMOR + CÓDIGO -->
+  <div class="love-code-badge">
+    Diseñado con 🩵 · Montado con <span class="love-code-code">&lt;código/&gt;</span>
+  </div>
+
+  <!-- MODAL EASTER EGG -->
+  <div class="eg-modal" id="egModal" aria-hidden="true" role="dialog" aria-label="Cartel Carnaval Bilbao 2026">
+    <div class="eg-modal-card" role="document">
+      <button class="eg-modal-close" id="egClose" type="button" aria-label="Cerrar">
+        <span>×</span>
+      </button>
+
+      <div class="eg-modal-header">
+        <p class="eg-modal-sub">Propuesta de cartel · Carnaval Bilbao 2026. Just for fun.</p>
+      </div>
+
+      <div class="eg-modal-body">
+        <div class="eg-modal-poster">
+          <a
+            href="imgs/Concurso.jpg"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Abrir imagen del cartel"
+          >
+            <img
+              src="imgs/Concurso.jpg"
+              alt="Propuesta de cartel · Carnaval Bilbao 2026"
+              loading="lazy"
+              decoding="async"
+            />
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
