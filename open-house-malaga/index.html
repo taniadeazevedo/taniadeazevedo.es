@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Open House Málaga – Proyecto · Tania de Azevedo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+
+    :root{
+      --bg-body:#f5f5f7;
+      --bg-elevated:#ffffff;
+      --text-main:#111111;
+      --text-muted:#555555;
+      --text-soft:#8a8a8a;
+      --accent:#a3ff61;
+      --accent-strong:#22c55e;
+      --border-subtle:rgba(0,0,0,0.06);
+      --radius-lg:20px;
+      --radius-pill:999px;
+      --shadow-soft:0 18px 45px rgba(15, 23, 42, 0.08);
+      --font-sans:system-ui,-apple-system,BlinkMacSystemFont,"SF Pro Text","Inter","Segoe UI",sans-serif;
+    }
+    *{box-sizing:border-box;}
+    html,body{margin:0;padding:0;min-height:100vh;}
+    html{background-color:#f8f9fa;}
+    body{
+      font-family:var(--font-sans);
+      background:var(--bg-body);
+      color:var(--text-main);
+      -webkit-font-smoothing:antialiased;
+    }
+    img{max-width:100%;display:block;}
+    a{color:inherit;text-decoration:none;}
+    a:visited,a:hover,a:active{color:inherit;}
+    .container{width:100%;max-width:1120px;margin:0 auto;padding:0 20px;}
+    /* ---------------- HERO ---------------- */
+    .project-hero{padding:64px 0 40px;position:relative;overflow:visible;}
+    .project-hero-inner{position:relative;text-align:center;max-width:1120px;margin:0 auto;}
+    .project-kicker{font-size:.86rem;text-transform:uppercase;letter-spacing:.24em;color:var(--text-soft);margin-bottom:18px;}
+    .project-title{margin:0 0 20px;font-size:clamp(2.05rem,3.1vw,2.7rem);line-height:1.15;font-weight:600;}
+    .project-subtitle{
+      margin:0 0 36px;
+      font-size:1.05rem;
+      color:var(--text-muted);
+      max-width:720px;
+      margin-inline:auto;
+      line-height:1.6;
+    }
+    .project-hero-media{
+      margin-top:10px;
+      border-radius:28px;
+      overflow:hidden;
+      background:transparent;
+      box-shadow:none;
+      max-height:480px;
+    }
+    .project-hero-media img{height:100%;width:100%;object-fit:cover;object-position:50% 18%;}
+    /* ---------------- CUERPO TEXTO + META ---------------- */
+    .project-layout{padding:56px 0 56px;}
+    .project-layout-grid{
+      display:grid;
+      grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);
+      column-gap:72px;
+      row-gap:48px;
+      align-items:flex-start;
+    }
+    .project-copy h2{font-size:1.15rem;font-weight:600;margin:0 0 12px;color:#111827;}
+    .project-copy p{font-size:.95rem;color:var(--text-muted);line-height:1.7;margin:0 0 14px;}
+    .project-meta{font-size:.88rem;color:var(--text-soft);}
+    .project-meta-label{font-size:.78rem;text-transform:uppercase;letter-spacing:.18em;margin-bottom:8px;color:var(--text-soft);}
+    .project-meta-block + .project-meta-block{margin-top:28px;}
+    .project-meta-main{font-size:.95rem;font-weight:500;color:#111827;}
+    .project-meta-pills{display:flex;flex-wrap:wrap;gap:8px;}
+    /* ÁREAS DE TRABAJO (bounce como Madrid) */
+    .meta-pill{
+      padding:6px 12px;
+      border-radius:999px;
+      border:1px solid rgba(148,163,184,.7);
+      background:rgba(255,255,255,.9);
+      font-size:.78rem;
+      color:#111827;
+      box-shadow:none;
+      transition:
+        transform .18s cubic-bezier(.22,.61,.36,1),
+        background .18s ease;
+      cursor:default;
+    }
+    .meta-pill:hover{transform:translateY(-3px) scale(1.03);background:#ffffff;}
+    /* Link flecha meta (como Madrid) */
+    .project-link-arrow{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      font-size:.9rem;
+      font-weight:400;
+      letter-spacing:.01em;
+      color:#111111;
+      padding-bottom:2px;
+      border-bottom:1px solid transparent;
+      transition:border-color .18s ease, transform .18s ease, opacity .18s ease;
+    }
+    .project-link-arrow::after{content:"→";font-size:1rem;transform:translateY(1px);transition:transform .18s ease;}
+    .project-link-arrow:hover{border-color:rgba(0,0,0,.7);transform:translateX(2px);}
+    .project-link-arrow:hover::after{transform:translate(3px,1px);}
+    /* ---------------- “LEER MÁS” CON FADE (IGUAL QUE MADRID) ---------------- */
+    .text-collapse{position:relative;}
+    .text-collapse.is-collapsed{
+      max-height:240px;  /* desktop default */
+      overflow:hidden;
+    }
+    .text-collapse.is-collapsed::after{
+      content:"";
+      position:absolute;
+      left:0; right:0; bottom:0;
+      height:110px;
+      pointer-events:none;
+      background:linear-gradient(to bottom, rgba(245,245,247,0), rgba(245,245,247,1));
+    }
+    .read-more{
+      all:unset;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      margin-top:10px;
+      font-size:.9rem;
+      font-weight:500;
+      color:#111827;
+      cursor:pointer;
+      -webkit-tap-highlight-color:transparent;
+      user-select:none;
+      padding:2px 0;
+      border-bottom:1px solid rgba(17,24,39,.22);
+      transition:border-color .18s ease, transform .18s ease, opacity .18s ease;
+      opacity:.9;
+      background:transparent !important;
+    }
+    .read-more:hover{
+      border-bottom-color:rgba(17,24,39,.65);
+      transform:translateX(1px);
+      opacity:1;
+    }
+    .read-more:active{transform:translateX(1px) translateY(1px);}
+    .read-more:focus-visible{
+      outline:2px solid rgba(34,197,94,.55);
+      outline-offset:4px;
+      border-radius:10px;
+    }
+    /* ---------------- GALERÍA ---------------- */
+    .project-gallery{padding:32px 0 40px;}
+    .project-gallery-grid{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:14px;
+      align-items:start;
+    }
+    .gallery-item{
+      border-radius:24px;
+      overflow:hidden;
+      background:rgba(255,255,255,0.35);
+    }
+    .gallery-item img{width:100%;height:auto;object-fit:contain;display:block;}
+    /* ---------------- NAV ---------------- */
+    .project-bottom{padding:40px 0 70px;}
+    .project-bottom-nav{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:16px;
+      flex-wrap:wrap;
+    }
+    .nav-link-arrow{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      font-size:.9rem;
+      font-weight:400;
+      color:#111827;
+      padding-bottom:2px;
+      border-bottom:1px solid transparent;
+      transition:border-color .18s ease, transform .18s ease;
+    }
+    .nav-link-arrow::after{
+      content:"→";
+      font-size:1.1rem;
+      transform:translateY(1px);
+      transition:transform .18s ease;
+    }
+    .nav-link-back::before{
+      content:"←";
+      font-size:1.1rem;
+      transform:translateY(1px);
+      margin-right:6px;
+    }
+    .nav-link-back::after{content:"";}
+    .nav-link-arrow:hover{border-color:rgba(0,0,0,.6);}
+    .nav-link-arrow:hover::after{transform:translate(3px,1px);}
+    .nav-link-back:hover::before{transform:translate(-3px,1px);}
+    /* ---------------- RESPONSIVE ---------------- */
+    @media (max-width:960px){
+      .project-layout-grid,
+      .project-gallery-grid{grid-template-columns:1fr;}
+      .project-layout{padding:48px 0;}
+      .project-meta{border-top:1px solid rgba(148,163,184,.18);padding-top:28px;}
+      .project-bottom-nav{flex-direction:column;align-items:flex-start;}
+      /* ✅ móvil: “Leer más” sale antes (PERO mantiene fade) */
+      .text-collapse.is-collapsed{max-height:200px;}
+    }
+    @media (max-width:640px){
+      .project-hero{padding-top:52px;}
+      .project-hero-media{border-radius:22px;}
+      .gallery-item{border-radius:20px;}
+      .project-bottom-nav{align-items:stretch;}
+      .project-bottom-nav a{align-self:stretch;justify-content:center;}
+      .project-kicker{font-size:.8rem;margin-bottom:12px;}
+      .project-subtitle{margin:0 auto 26px;}
+      /* ✅ móvil pequeño: aún antes */
+      .text-collapse.is-collapsed{max-height:170px;}
+    }
+    /* FIX WP (botón) */
+    button.read-more,
+    button.read-more:hover,
+    button.read-more:active,
+    button.read-more:focus,
+    button.read-more:visited{
+      background:transparent !important;
+      background-color:transparent !important;
+      box-shadow:none !important;
+      border:0 !important;
+      outline:none !important;
+      -webkit-appearance:none !important;
+      appearance:none !important;
+    }
+  
+  </style>
+</head>
+<body>
+  <div class="custom-cursor"></div>
+  <main>
+    <!-- HERO -->
+    <section class="project-hero">
+      <div class="container project-hero-inner">
+        <p class="project-kicker">IDENTIDAD VISUAL</p>
+        <h1 class="project-title">Open House Málaga</h1>
+        <p class="project-subtitle">
+          Open House Málaga es un festival de arquitectura y ciudad que forma parte de la red internacional
+          <a href="https://openhouseworldwide.org" target="_blank" rel="noreferrer"><u>Open House Worldwide</u></a>.
+          <strong>Desde 2021 lidero su imagen</strong>, desarrollando la identidad visual desde la primera edición —adaptando el sistema gráfico a recorridos, espacios y mensajes del festival— y consolidando una marca reconocible para vivir Málaga desde dentro.
+        </p>
+        <figure class="project-hero-media">
+          <img src="imgs/Captura-de-pantalla-2026-01-15-a-las-17.05.28-2.png" alt="Open House Málaga" />
+        </figure>
+      </div>
+    </section>
+    <!-- TEXTO + META -->
+    <section class="project-layout">
+      <div class="container project-layout-grid">
+        <div class="project-copy">
+          <section>
+            <h2>El trabajo</h2>
+            <div class="text-collapse is-collapsed" id="workText">
+              <p>
+                Formo parte del proyecto de Open House Málaga desde su creación y me encargo del desarrollo de su
+                <strong>identidad visual</strong>. Desde la primera edición, el festival ha contado con un sistema
+                gráfico propio, diseñado para adaptarse a los recorridos, espacios y mensajes de cada año.
+              </p>
+              <p>
+                La identidad se construye a partir de la estructura icónica del
+                <strong>Centro Pompidou de Málaga</strong>, cuya lógica modular dio lugar a un lenguaje visual
+                coherente pero flexible, aplicado de forma continuada a campañas, piezas digitales, publicaciones
+                y señalética del festival.
+              </p>
+              <p>
+                Este sistema permitió desarrollar una comunicación consistente en todos los formatos: desde
+                soportes digitales y publicidad online y offline, hasta identidad digital, merchandising y
+                <strong>web oficial</strong>. Además de diseñar la estructura y la interfaz web, me encargué de
+                mantener y actualizar la gráfica, asegurando coherencia visual en toda la experiencia.
+              </p>
+            </div>
+            <button id="readMoreBtn" class="read-more" aria-expanded="false" aria-controls="workText" type="button">+ Leer más</button>
+          </section>
+        </div>
+        <aside class="project-meta">
+          <div class="project-meta-block">
+            <p class="project-meta-label">ROL</p>
+            <p class="project-meta-main">Dirección de arte, identidad corporativa y diseño web del festival.</p>
+          </div>
+          <div class="project-meta-block">
+            <p class="project-meta-label">ÁREAS DE TRABAJO</p>
+            <div class="project-meta-pills">
+              <span class="meta-pill">Identidad visual</span>
+              <span class="meta-pill">Sistema gráfico</span>
+              <span class="meta-pill">Diseño digital</span>
+              <span class="meta-pill">Redes sociales</span>
+              <span class="meta-pill">Publicidad online &amp; offline</span>
+              <span class="meta-pill">Diseño web</span>
+              <span class="meta-pill">Identidad digital</span>
+              <span class="meta-pill">Merchandising</span>
+            </div>
+          </div>
+          <a class="project-link-arrow" href="https://openhousemalaga.org" target="_blank" rel="noreferrer">Ver página web</a>
+        </aside>
+      </div>
+    </section>
+    <!-- GALERÍA -->
+    <section class="project-gallery">
+      <div class="container">
+        <div class="project-gallery-grid">
+          <figure class="gallery-item"><img src="imgs/Diseno-sin-titulo-2.png" alt="" loading="lazy" /></figure>
+          <figure class="gallery-item"><img src="imgs/1-1.jpg" alt="" loading="lazy" /></figure>
+          <figure class="gallery-item"><img src="imgs/2-1.jpg" alt="" loading="lazy" /></figure>
+          <figure class="gallery-item"><img src="imgs/Diseno-sin-titulo-2-1.jpg" alt="" loading="lazy" /></figure>
+          <figure class="gallery-item"><img src="imgs/3.jpg" alt="" loading="lazy" /></figure>
+          <figure class="gallery-item"><img src="imgs/4.jpg" alt="" loading="lazy" /></figure>
+          <figure class="gallery-item"><img src="imgs/ArquitecturaViva_Megabanner1260x125_OpenHouseMalaga25-1.gif" alt="" loading="lazy" /></figure>
+        </div>
+      </div>
+    </section>
+    <!-- NAV -->
+    <section class="project-bottom">
+      <div class="container project-bottom-nav">
+        <a class="nav-link-arrow nav-link-back" href="https://taniadeazevedo.es">Home</a>
+        <a class="nav-link-arrow" href="https://taniadeazevedo.es/open-house-madrid/">Ver otro proyecto</a>
+      </div>
+    </section>
+  </main>
+  <script src="js/project.js"></script>
+</body>
+</html>
