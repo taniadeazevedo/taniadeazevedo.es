@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>La Nueva Línea – Proyecto · Tania de Azevedo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg-body: #f5f5f7;
+      --bg-elevated: #ffffff;
+      --text-main: #111111;
+      --text-muted: #555555;
+      --text-soft: #8a8a8a;
+      --accent: #a3ff61;
+      --accent-strong: #22c55e;
+      --border-subtle: rgba(0, 0, 0, 0.06);
+      --radius-lg: 20px;
+      --radius-pill: 999px;
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.08);
+      --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Inter", "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+    }
+
+    html { background-color: #f8f9fa; }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg-body);
+      color: var(--text-main);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img, video { max-width: 100%; display: block; }
+    figure { margin: 0; }
+
+    a { color: inherit; text-decoration: none; }
+    a:visited, a:hover, a:active { color: inherit; }
+
+    .container {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* ---------------- HERO PROYECTO ---------------- */
+
+    .project-hero {
+      padding: 64px 0 40px;
+      position: relative;
+      overflow: visible;
+    }
+
+    .project-hero-inner {
+      position: relative;
+      text-align: center;
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    .project-kicker {
+      font-size: 0.86rem;
+      text-transform: uppercase;
+      letter-spacing: 0.24em;
+      color: var(--text-soft);
+      margin-bottom: 18px;
+    }
+
+    .project-title {
+      margin: 0 0 20px;
+      font-size: clamp(2.05rem, 3.1vw, 2.7rem);
+      line-height: 1.15;
+      font-weight: 600;
+      letter-spacing: 0;
+    }
+
+    .project-subtitle {
+      margin: 0 0 36px;
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 720px;
+      margin-inline: auto;
+      line-height: 1.6;
+    }
+
+    .project-hero-media {
+      margin-top: 10px;
+      border-radius: 28px;
+      overflow: hidden;
+      background: transparent;
+      box-shadow: none;
+    }
+
+    .hero-video {
+      width: 100%;
+      height: auto;
+      display: block;
+      opacity: 0;
+      filter: blur(8px);
+      transition: opacity 0.6s ease, filter 0.8s ease;
+    }
+
+    .hero-video.is-loaded {
+      opacity: 1;
+      filter: blur(0);
+    }
+
+    /* ---------------- CUERPO TEXTO + META ---------------- */
+
+    .project-layout { padding: 60px 0 52px; }
+
+    .project-layout-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+      column-gap: 72px;
+      row-gap: 48px;
+      align-items: flex-start;
+    }
+
+    .project-copy h2 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin: 0 0 12px;
+      color: #111827;
+    }
+
+    .project-copy p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin: 0 0 14px;
+    }
+
+    .project-meta {
+      font-size: 0.88rem;
+      color: var(--text-soft);
+    }
+
+    .project-meta-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      margin-bottom: 8px;
+      color: var(--text-soft);
+    }
+
+    .project-meta-block + .project-meta-block { margin-top: 28px; }
+
+    .project-meta-main {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #111827;
+    }
+
+    .project-meta-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .meta-pill {
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: rgba(255, 255, 255, 0.9);
+      font-size: 0.78rem;
+      color: #111827;
+      box-shadow: none;
+      transition: transform 0.18s cubic-bezier(0.22, 0.61, 0.36, 1), background 0.18s ease;
+      cursor: default;
+    }
+
+    .meta-pill:hover {
+      transform: translateY(-3px) scale(1.03);
+      background: #ffffff;
+    }
+
+    /* ---------------- “LEER MÁS” CON FADE ---------------- */
+
+    .text-collapse { position: relative; }
+
+    .text-collapse.is-collapsed {
+      max-height: 240px;
+      overflow: hidden;
+    }
+
+    .text-collapse.is-collapsed::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 110px;
+      pointer-events: none;
+      background: linear-gradient(to bottom, rgba(245,245,247,0), rgba(245,245,247,1));
+    }
+
+    .read-more {
+      all: unset;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 10px;
+
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #111827;
+
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+
+      padding: 2px 0;
+      border-bottom: 1px solid rgba(17, 24, 39, 0.22);
+      transition: border-color 0.18s ease, transform 0.18s ease, opacity 0.18s ease;
+      opacity: 0.9;
+      background: transparent !important;
+    }
+
+    .read-more:hover {
+      border-bottom-color: rgba(17, 24, 39, 0.65);
+      transform: translateX(1px);
+      opacity: 1;
+    }
+
+    .read-more:active { transform: translateX(1px) translateY(1px); }
+
+    .read-more:focus-visible {
+      outline: 2px solid rgba(34, 197, 94, 0.55);
+      outline-offset: 4px;
+      border-radius: 10px;
+    }
+
+    /* --------- LINKS DE NAVEGACIÓN FINAL --------- */
+
+    .nav-link-arrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: #111827;
+      padding-bottom: 2px;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.18s ease, transform 0.18s ease;
+    }
+
+    .nav-link-arrow::after {
+      content: "→";
+      font-size: 1.1rem;
+      transform: translateY(1px);
+      transition: transform 0.18s ease;
+    }
+
+    .nav-link-back::before {
+      content: "←";
+      font-size: 1.1rem;
+      transform: translateY(1px);
+      margin-right: 6px;
+    }
+
+    .nav-link-back::after { content: ""; }
+
+    .nav-link-arrow:hover { border-color: rgba(0, 0, 0, 0.6); }
+    .nav-link-arrow:hover::after { transform: translate(3px, 1px); }
+    .nav-link-back:hover::before { transform: translate(-3px, 1px); }
+
+    /* ---------------- CARRUSEL EVENTO SUP ---------------- */
+
+    .project-carousel { padding: 0 0 46px; }
+
+    .carousel-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 10px;
+    }
+
+    .carousel-title {
+      margin: 0;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-soft);
+    }
+
+    .carousel-controls {
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .carousel-btn {
+      all: unset;
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+
+      background: rgba(255,255,255,0.75);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      color: #111827;
+
+      transition: transform 0.18s ease, background 0.18s ease, opacity 0.18s ease;
+      opacity: 0.9;
+    }
+
+    .carousel-btn:hover {
+      background: rgba(255,255,255,0.95);
+      transform: translateY(-1px);
+      opacity: 1;
+    }
+
+    .carousel-btn:active { transform: translateY(0px); }
+
+    .carousel-btn:focus-visible {
+      outline: 2px solid rgba(34, 197, 94, 0.55);
+      outline-offset: 3px;
+    }
+
+    /* ✅ Texto descriptivo del carrusel */
+    .carousel-description {
+      margin: 0 0 14px;
+      max-width: 820px;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    /* ✅ CLAVE: cards más grandes para que se vean ~2.5 */
+    .carousel-track {
+      display: grid;
+      grid-auto-flow: column;
+      gap: 14px;
+
+      /* en 1120px se queda aprox. 2,5 visibles */
+      grid-auto-columns: clamp(360px, 42vw, 460px);
+
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 4px 2px 10px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+
+      scrollbar-width: none;
+    }
+
+    .carousel-track::-webkit-scrollbar { display: none; }
+
+    .carousel-item {
+      scroll-snap-align: start;
+      border-radius: 24px;
+      overflow: hidden;
+      background: transparent;
+      box-shadow: none;
+      position: relative;
+      aspect-ratio: 4 / 3;
+    }
+
+    .carousel-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ---------------- NAVEGACIÓN FINAL ---------------- */
+
+    .project-bottom { padding: 40px 0 70px; }
+
+    .project-bottom-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .project-bottom-nav a { flex: 0 0 auto; }
+
+    /* ---------------- CUSTOM CURSOR ---------------- */
+
+    .custom-cursor {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      transition: transform 0.16s ease, width 0.16s ease, height 0.16s ease, border-color 0.16s ease, background 0.16s ease;
+      z-index: 999;
+      mix-blend-mode: multiply;
+      border: 2px solid transparent;
+      background:
+        radial-gradient(circle, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.6) 100%),
+        conic-gradient(from 180deg, #ff6ac1, #ffb347, #6ee7b7, #60a5fa, #a855f7, #ff6ac1);
+      background-clip: padding-box, border-box;
+      background-origin: border-box;
+    }
+
+    .custom-cursor.is-hover {
+      width: 28px;
+      height: 28px;
+      transform: translate(-50%, -50%) scale(1.05);
+      border-color: transparent;
+      background:
+        radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.6) 100%),
+        conic-gradient(from 180deg, #ff6ac1, #ffb347, #6ee7b7, #60a5fa, #a855f7, #ff6ac1);
+    }
+
+    @media (max-width: 900px) {
+      .custom-cursor { display: none; }
+    }
+
+    /* ---------------- RESPONSIVE ---------------- */
+
+    @media (max-width: 960px) {
+      .project-layout-grid { grid-template-columns: minmax(0, 1fr); }
+
+      .project-meta {
+        border-top: 1px solid rgba(148, 163, 184, 0.18);
+        padding-top: 28px;
+      }
+
+      .project-bottom-nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .project-bottom-nav a { width: auto; }
+
+      .carousel-controls { display: none; }
+
+      /* ✅ en tablet/móvil, seguimos enseñando “2 y media” adaptado */
+      .carousel-track {
+        grid-auto-columns: clamp(280px, 78vw, 520px);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .project-hero { padding-top: 52px; }
+      .project-hero-media { border-radius: 22px; }
+
+      .project-bottom-nav { align-items: stretch; }
+      .project-bottom-nav a {
+        align-self: stretch;
+        justify-content: center;
+      }
+
+      .project-kicker { font-size: 0.8rem; margin-bottom: 12px; }
+      .project-subtitle { margin: 0 auto 26px; }
+
+      .text-collapse.is-collapsed { max-height: 220px; }
+
+      .carousel-item { border-radius: 20px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="custom-cursor"></div>
+
+  <main>
+    <!-- HERO PROYECTO -->
+    <section class="project-hero">
+      <div class="container">
+        <div class="project-hero-inner">
+          <div class="project-kicker">IDENTIDAD VISUAL</div>
+          <h1 class="project-title shine-title">La Nueva Línea</h1>
+
+          <p class="project-subtitle">
+            La Nueva Línea es la gran apuesta de La Línea de la Concepción por una nueva forma de vivir la ciudad.
+            Una marca que reúne lo mejor de su oferta cultural, natural y de ocio: conciertos, festivales,
+            rutas al aire libre y planes en familia para disfrutar del municipio todo el año.
+          </p>
+
+          <figure class="project-hero-media">
+            <video
+              class="hero-video"
+              src="video/Propuesta-2_Identidad-visual-La-Nueva-Linea-1-Compressed-with-FlexClip-1.mp4"
+              poster="imgs/la-nueva-linea-poster.jpg"
+              autoplay
+              muted
+              loop
+              playsinline
+              preload="auto"
+            ></video>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEXTO + META -->
+    <section class="project-layout">
+      <div class="container project-layout-grid">
+        <div class="project-copy">
+          <section>
+            <h2>El proyecto</h2>
+
+            <div class="text-collapse is-collapsed" id="projectText">
+              <p>
+                La Nueva Línea nace como marca propia dentro del Ayuntamiento de La Línea de la Concepción:
+                no sustituye a la identidad institucional, sino que la complementa como <strong>paraguas de todo el ocio</strong> del municipio.
+                El objetivo era crear una identidad capaz de conectar con vecinas, vecinos y visitantes, y al mismo tiempo funcionar
+                como sello reconocible en cualquier tipo de actividad.
+              </p>
+
+              <p>
+                A partir de este encargo desarrollé la <strong>identidad visual completa</strong> de La Nueva Línea:
+                logotipo, sistema de color y aplicaciones gráficas. El primer gran escenario para ponerla en marcha fue
+                un evento de SUP, donde trabajé una batería amplia de soportes y merchandising: cartelería, piezas promocionales,
+                materiales para redes y aplicaciones específicas para el evento.
+              </p>
+            </div>
+
+            <button class="read-more" id="readMoreBtn" aria-expanded="false" aria-controls="projectText" type="button">
+              <span class="read-more__icon" aria-hidden="true">+</span>
+              <span class="read-more__label">Leer más</span>
+            </button>
+          </section>
+        </div>
+
+        <aside class="project-meta">
+          <div class="project-meta-block">
+            <div class="project-meta-label">ROL</div>
+            <div class="project-meta-main">
+              Dirección de arte y diseño de identidad visual para la marca La Nueva Línea.
+            </div>
+          </div>
+
+          <div class="project-meta-block">
+            <div class="project-meta-label">ÁREAS DE TRABAJO</div>
+            <div class="project-meta-pills">
+              <span class="meta-pill">Identidad visual</span>
+              <span class="meta-pill">Branding</span>
+              <span class="meta-pill">Aplicaciones para eventos</span>
+              <span class="meta-pill">Campañas y soportes gráficos</span>
+              <span class="meta-pill">Merchandising</span>
+              <span class="meta-pill">Redes sociales</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- EVENTO SUP -->
+    <section class="project-carousel">
+      <div class="container">
+        <div class="carousel-header">
+          <p class="carousel-title">EVENTO SUP</p>
+
+          <div class="carousel-controls">
+            <button class="carousel-btn" type="button" id="carouselPrev" aria-label="Anterior">←</button>
+            <button class="carousel-btn" type="button" id="carouselNext" aria-label="Siguiente">→</button>
+          </div>
+        </div>
+
+        <p class="carousel-description">
+          Nuestro último proyecto ha sido SUP Challenge: un evento deportivo para dar visibilidad al paddle surf,
+          combinando competición, naturaleza y comunidad.
+        </p>
+
+        <div class="carousel-track" id="carouselTrack">
+          <figure class="carousel-item">
+            <img src="imgs/DSC_8635-min.jpeg" alt="Evento SUP – foto 1" loading="lazy" />
+          </figure>
+          <figure class="carousel-item">
+            <img src="imgs/DSC_8374-min.jpeg" alt="Evento SUP – foto 2" loading="lazy" />
+          </figure>
+          <figure class="carousel-item">
+            <img src="imgs/DSC_8639-min.jpeg" alt="Evento SUP – foto 3" loading="lazy" />
+          </figure>
+          <figure class="carousel-item">
+            <img src="imgs/DSC_7943-min.jpeg" alt="Evento SUP – foto 4" loading="lazy" />
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- NAVEGACIÓN FINAL -->
+    <section class="project-bottom">
+      <div class="container">
+        <div class="project-bottom-nav">
+          <a href="https://taniadeazevedo.es" class="nav-link-arrow nav-link-back">Home</a>
+          <a href="https://taniadeazevedo.es/open-house-malaga/" class="nav-link-arrow">
+            Ver otro proyecto
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Custom cursor
+    (function () {
+      const cursor = document.querySelector(".custom-cursor");
+      if (!cursor) return;
+
+      document.addEventListener("mousemove", (e) => {
+        cursor.style.top = e.clientY + "px";
+        cursor.style.left = e.clientX + "px";
+      });
+
+      const hoverables = document.querySelectorAll(
+        "a, button, .btn-primary, .btn-ghost, .read-more, .carousel-btn"
+      );
+
+      hoverables.forEach((el) => {
+        el.addEventListener("mouseenter", () => cursor.classList.add("is-hover"));
+        el.addEventListener("mouseleave", () => cursor.classList.remove("is-hover"));
+      });
+    })();
+
+    // Efecto de carga del vídeo (fade-in + blur)
+    (function () {
+      const heroVideo = document.querySelector(".hero-video");
+      if (!heroVideo) return;
+
+      const markAsLoaded = () => heroVideo.classList.add("is-loaded");
+
+      if (heroVideo.readyState >= 2) {
+        markAsLoaded();
+      } else {
+        heroVideo.addEventListener("loadeddata", markAsLoaded);
+      }
+    })();
+
+    // Leer más / Leer menos + fade
+    (function () {
+      const text = document.getElementById("projectText");
+      const btn = document.getElementById("readMoreBtn");
+      if (!text || !btn) return;
+
+      btn.addEventListener("click", () => {
+        const isCollapsed = text.classList.contains("is-collapsed");
+        const icon = btn.querySelector(".read-more__icon");
+        const label = btn.querySelector(".read-more__label");
+
+        if (isCollapsed) {
+          text.classList.remove("is-collapsed");
+          if (icon) icon.textContent = "–";
+          if (label) label.textContent = "Leer menos";
+          btn.setAttribute("aria-expanded", "true");
+        } else {
+          text.classList.add("is-collapsed");
+          if (icon) icon.textContent = "+";
+          if (label) label.textContent = "Leer más";
+          btn.setAttribute("aria-expanded", "false");
+          text.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
+    })();
+
+    // Carrusel: botones prev/next (scroll suave)
+    (function () {
+      const track = document.getElementById("carouselTrack");
+      const prev = document.getElementById("carouselPrev");
+      const next = document.getElementById("carouselNext");
+      if (!track || !prev || !next) return;
+
+      const getStep = () => {
+        const first = track.querySelector(".carousel-item");
+        if (!first) return 420;
+        const rect = first.getBoundingClientRect();
+        const gap = 14;
+        return rect.width + gap;
+      };
+
+      prev.addEventListener("click", () => {
+        track.scrollBy({ left: -getStep(), behavior: "smooth" });
+      });
+
+      next.addEventListener("click", () => {
+        track.scrollBy({ left: getStep(), behavior: "smooth" });
+      });
+    })();
+  </script>
+</body>
+</html>
