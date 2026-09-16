@@ -151,8 +151,8 @@ header.scrolled{background:rgba(248,246,247,.90);border-bottom-color:var(--ink-1
 .header-bar{display:flex;align-items:center;justify-content:space-between;padding-block:13px;width:100%;}
 header .qlp-wrap{margin-inline:auto;}
 .brand img{height:38px;width:auto;object-fit:contain;}
-.brand-text{font-family:var(--f-display);font-style:italic;font-size:1.32rem;letter-spacing:-.01em;color:var(--vino);line-height:1;white-space:nowrap;}
-@media(max-width:560px){.brand-text{font-size:1.05rem;}}
+.brand-text{font-family:var(--f-display);font-style:italic;font-weight:700;font-size:1.58rem;letter-spacing:-.01em;color:var(--vino);line-height:1;white-space:nowrap;-webkit-text-stroke:.5px var(--vino);}
+@media(max-width:560px){.brand-text{font-size:1.18rem;}}
 
 /* ═══════════════════════════════════════════════════
    HERO
