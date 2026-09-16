@@ -1,6 +1,5 @@
 # ¡Hola! Soy Tania de Azevedo 👋
 
-![Lagartija saludando](https://giphy.com/gifs/waving-lizard-hoppers-LPFNd1AJBoYcVUExmE)
 
 ### **Diseñadora de Branding y Web** enfocada en experiencias digitales con código e IA.
 
@@ -29,7 +28,7 @@ Me encanta colaborar con equipos donde el diseño y la tecnología se encuentran
 
 * 💼 Conectemos en [LinkedIn](https://linkedin.com/in/tania-de-azevedo-ribeiro)
 * 📧 Escríbeme a: [taniadeazevedoribeiro@gmail.com](mailto:taniadeazevedoribeiro@gmail.com)
-* 🌍 Explora más detalles en (https://taniadeazevedo.es)
+* 🌍 Explora más detalles en https://taniadeazevedo.es
 
 ---
 *Prototipado, diseñado y estructurado con código por Tania de Azevedo.*
