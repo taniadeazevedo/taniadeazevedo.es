@@ -1,7 +1,7 @@
 # ¡Hola! Soy Tania de Azevedo 👋
 
+### **Diseñadora de branding y entornos web** unidos a la lógica del código.
 
-### **Diseñadora de Branding y Web** enfocada en experiencias digitales con código e IA.
 
 A lo largo de más de siete años he diseñado identidades visuales y experiencias digitales para marcas globales y grandes eventos, cuidando con mimo tanto el concepto estratégico como la interacción final en pantalla.
 
