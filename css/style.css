@@ -280,20 +280,7 @@
 
     .hero-inner { max-width: 860px; }
 
-.hero-title {
-  font-size: 2.5rem;          /* Sube o baja este número para ajustar el tamaño */
-  font-weight: 700;           /* Le da grosor a las letras (negrita) */
-  line-height: 1.3;           /* Controla la separación entre las dos líneas */
-  margin-top: 10px;           /* Separa el título del texto de tu nombre */
-  color: inherit;             /* Mantiene el color base de tu web (blanco/gris) */
-}
 
-/* Optimización para que en móviles no se desborde el tamaño */
-@media (max-width: 768px) {
-  .hero-title {
-    font-size: 1.8rem;        /* Tamaño un poco más pequeño para pantallas de móvil */
-  }
-}
 
 
     h1 {
