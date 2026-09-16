@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Estrella Damm N.A. Andalucía Masters – Proyecto · Tania de Azevedo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <style>
+    :root {
+      --bg-body: #f5f5f7;
+      --bg-elevated: #ffffff;
+      --text-main: #111111;
+      --text-muted: #555555;
+      --text-soft: #8a8a8a;
+      --accent: #a3ff61;
+      --accent-strong: #22c55e;
+      --border-subtle: rgba(0, 0, 0, 0.06);
+      --radius-lg: 20px;
+      --radius-pill: 999px;
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.08);
+      --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Inter", "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+    }
+
+    html { background-color: #f8f9fa; }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg-body);
+      color: var(--text-main);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { max-width: 100%; display: block; }
+    figure { margin: 0; }
+
+    a { color: inherit; text-decoration: none; }
+    a:visited, a:hover, a:active { color: inherit; }
+
+    .container {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* ---------------- HERO PROYECTO ---------------- */
+
+    .project-hero {
+      padding: 64px 0 40px;
+      position: relative;
+      overflow: visible;
+    }
+
+    .project-hero-inner {
+      position: relative;
+      text-align: center;
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    .project-kicker {
+      font-size: 0.86rem;
+      text-transform: uppercase;
+      letter-spacing: 0.24em;
+      color: var(--text-soft);
+      margin-bottom: 18px;
+    }
+
+    .project-title {
+      margin: 0 0 20px;
+      font-size: clamp(2.05rem, 3.1vw, 2.7rem);
+      line-height: 1.15;
+      font-weight: 600;
+      letter-spacing: 0;
+    }
+
+    .project-subtitle {
+      margin: 0 0 36px;
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 720px;
+      margin-inline: auto;
+      line-height: 1.6;
+    }
+
+    .project-hero-media {
+      margin-top: 10px;
+      border-radius: 28px;
+      overflow: hidden;
+      background: transparent;
+      box-shadow: none;
+    }
+
+    .project-hero-media img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+
+    /* ---------------- CUERPO TEXTO + META ---------------- */
+
+    .project-layout { padding: 64px 0 40px; }
+
+    .project-layout-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+      column-gap: 72px;
+      row-gap: 48px;
+      align-items: flex-start;
+    }
+
+    .project-copy h2 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin: 0 0 12px;
+      color: #111827;
+    }
+
+    .project-copy h2 + p { margin-top: 0; }
+
+    .project-copy p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin: 0 0 14px;
+    }
+
+    .project-copy section + section { margin-top: 40px; }
+
+    .project-meta {
+      font-size: 0.88rem;
+      color: var(--text-soft);
+    }
+
+    .project-meta-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      margin-bottom: 8px;
+      color: var(--text-soft);
+    }
+
+    .project-meta-block + .project-meta-block { margin-top: 28px; }
+
+    .project-meta-main,
+    .project-meta-name {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #111827;
+    }
+
+    .project-meta-name { margin-bottom: 8px; }
+
+    .project-meta-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .meta-pill {
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: rgba(255, 255, 255, 0.9);
+      font-size: 0.78rem;
+      color: #111827;
+      box-shadow: none;
+      transition:
+        transform 0.18s cubic-bezier(0.22, 0.61, 0.36, 1),
+        background 0.18s ease;
+      cursor: default;
+    }
+
+    .meta-pill:hover {
+      transform: translateY(-3px) scale(1.03);
+      background: #ffffff;
+    }
+
+    .project-meta-button { margin-top: 26px; }
+
+    /* --------- LINK TIPO "VER PROYECTO →" EN META --------- */
+
+    .project-link-arrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.9rem;
+      font-weight: 400;
+      letter-spacing: 0.01em;
+      color: #111111;
+      padding-bottom: 2px;
+      border-bottom: 1px solid transparent;
+      transition:
+        border-color 0.18s ease,
+        transform 0.18s ease,
+        opacity 0.18s ease;
+    }
+
+    .project-link-arrow::after {
+      content: "→";
+      font-size: 1rem;
+      transform: translateY(1px);
+      transition: transform 0.18s ease;
+    }
+
+    .project-link-arrow:hover {
+      border-color: rgba(0, 0, 0, 0.7);
+      transform: translateX(2px);
+    }
+
+    .project-link-arrow:hover::after { transform: translate(3px, 1px); }
+
+    /* --------- LINKS DE NAVEGACIÓN FINAL (NO BOTÓN) --------- */
+
+    .nav-link-arrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: #111827;
+      padding-bottom: 2px;
+      border-bottom: 1px solid transparent;
+      transition:
+        border-color 0.18s ease,
+        transform 0.18s ease;
+    }
+
+    .nav-link-arrow::after {
+      content: "→";
+      font-size: 1.1rem;
+      transform: translateY(1px);
+      transition: transform 0.18s ease;
+    }
+
+    .nav-link-back::before {
+      content: "←";
+      font-size: 1.1rem;
+      transform: translateY(1px);
+      margin-right: 6px;
+    }
+
+    .nav-link-back::after { content: ""; }
+
+    .nav-link-arrow:hover { border-color: rgba(0, 0, 0, 0.6); }
+    .nav-link-arrow:hover::after { transform: translate(3px, 1px); }
+    .nav-link-back:hover::before { transform: translate(-3px, 1px); }
+
+    /* ---------------- “LEER MÁS” CON FADE (MISMO QUE OPEN HOUSE) ---------------- */
+
+    .text-collapse { position: relative; }
+
+    .text-collapse.is-collapsed {
+      max-height: 240px;
+      overflow: hidden;
+    }
+
+    .text-collapse.is-collapsed::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 110px;
+      pointer-events: none;
+      background: linear-gradient(to bottom, rgba(245,245,247,0), rgba(245,245,247,1));
+    }
+
+    .read-more {
+      all: unset;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 10px;
+
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #111827;
+
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+
+      padding: 2px 0;
+      border-bottom: 1px solid rgba(17, 24, 39, 0.22);
+      transition: border-color 0.18s ease, transform 0.18s ease, opacity 0.18s ease;
+      opacity: 0.9;
+      background: transparent !important;
+    }
+
+    .read-more:hover {
+      border-bottom-color: rgba(17, 24, 39, 0.65);
+      transform: translateX(1px);
+      opacity: 1;
+    }
+
+    .read-more:active { transform: translateX(1px) translateY(1px); }
+
+    .read-more:focus-visible {
+      outline: 2px solid rgba(34, 197, 94, 0.55);
+      outline-offset: 4px;
+      border-radius: 10px;
+    }
+
+    /* ---------------- GALERÍA ---------------- */
+
+    .project-gallery { padding: 32px 0 40px; }
+
+    .project-gallery-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .gallery-main-group {
+      display: grid;
+      grid-template-rows: auto auto;
+      gap: 16px;
+    }
+
+    .gallery-main-vertical,
+    .gallery-main-horizontal {
+      border-radius: 24px;
+      overflow: hidden;
+      background: transparent;
+      box-shadow: none;
+      position: relative;
+    }
+
+    .gallery-main-vertical img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .gallery-main-horizontal img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+
+    .gallery-column {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 16px;
+    }
+
+    .gallery-item {
+      border-radius: 24px;
+      overflow: hidden;
+      background: transparent;
+      box-shadow: none;
+      position: relative;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+
+    /* ✅ Última imagen a ancho completo dentro del grid principal */
+    .gallery-full {
+      grid-column: 1 / -1; /* ocupa las dos columnas del grid */
+    }
+
+    .gallery-full img {
+      width: 100%;
+      height: auto;
+      max-height: 520px;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ---------------- NAVEGACIÓN FINAL ---------------- */
+
+    .project-bottom { padding: 40px 0 70px; }
+
+    .project-bottom-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .project-bottom-nav a { flex: 0 0 auto; }
+
+    /* ---------------- CUSTOM CURSOR ---------------- */
+
+    .custom-cursor {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      transition:
+        transform 0.16s ease,
+        width 0.16s ease,
+        height 0.16s ease;
+      z-index: 999;
+      mix-blend-mode: multiply;
+      border: 2px solid transparent;
+      background:
+        radial-gradient(circle, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.6) 100%),
+        conic-gradient(from 180deg, #ff6ac1, #ffb347, #6ee7b7, #60a5fa, #a855f7, #ff6ac1);
+      background-clip: padding-box, border-box;
+      background-origin: border-box;
+    }
+
+    .custom-cursor.is-hover {
+      width: 28px;
+      height: 28px;
+      transform: translate(-50%, -50%) scale(1.05);
+    }
+
+    /* ---------------- RESPONSIVE ---------------- */
+
+    @media (max-width: 960px) {
+      .project-layout-grid,
+      .project-gallery-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .project-layout { padding-top: 48px; }
+
+      .project-meta {
+        border-top: 1px solid rgba(148, 163, 184, 0.18);
+        padding-top: 28px;
+      }
+
+      .project-bottom-nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .project-bottom-nav a { width: auto; }
+    }
+
+    @media (max-width: 900px) {
+      .custom-cursor { display: none; }
+    }
+
+    @media (max-width: 640px) {
+      .project-hero { padding-top: 52px; }
+      .project-hero-media { border-radius: 22px; }
+
+      .gallery-main-vertical,
+      .gallery-main-horizontal,
+      .gallery-item { border-radius: 20px; }
+
+      .project-bottom-nav { align-items: stretch; }
+
+      .project-bottom-nav a {
+        align-self: stretch;
+        justify-content: center;
+      }
+
+      .project-kicker { font-size: 0.8rem; margin-bottom: 12px; }
+      .project-subtitle { margin: 0 auto 26px; }
+
+      .text-collapse.is-collapsed { max-height: 220px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="custom-cursor"></div>
+
+  <main>
+    <!-- HERO PROYECTO -->
+    <section class="project-hero">
+      <div class="container">
+        <div class="project-hero-inner">
+          <div class="project-kicker">IDENTIDAD VISUAL</div>
+          <h1 class="project-title shine-title">Estrella Damm N.A. Andalucía Masters</h1>
+
+          <p class="project-subtitle">
+            Torneo de golf de élite que reúne a algunos de los mejores jugadores del circuito internacional
+            en uno de los campos más emblemáticos de España. Parte del <strong>DP World Tour</strong>, una
+            experiencia única para los aficionados al golf, tanto en el recorrido como a través de su presencia
+            en medios digitales y tradicionales.
+          </p>
+
+          <figure class="project-hero-media">
+            <img
+              src="imgs/imgi_73_CapturadePantalla2022-09-10alas14.14.56-1-min.png"
+              alt="Piezas de campaña del Estrella Damm N.A. Andalucía Masters en distintos formatos"
+            />
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEXTO + META -->
+    <section class="project-layout">
+      <div class="container project-layout-grid">
+        <div class="project-copy">
+          <section>
+            <h2>El trabajo</h2>
+
+            <div class="text-collapse is-collapsed" id="workText">
+              <p>
+                Para el Estrella Damm N.A. Andalucía Masters desarrollé la identidad visual del evento bajo el
+                paraguas de la marca principal y del circuito. El objetivo era estar a la altura de un torneo
+                de máximo nivel, reforzando la dimensión internacional del campeonato y creando una experiencia
+                reconocible para todo tipo de públicos: jugadores, patrocinadores y afición.
+              </p>
+
+              <p>
+                A partir de esta identidad diseñé la <strong>cartelería y los soportes clave del torneo</strong>,
+                tanto en el campo como en los canales de comunicación: campañas online de alto volumen,
+                publicidad en medios digitales e impresos, banners, robapáginas y formatos especiales.
+                También se trabajaron newsletters específicas y un sistema de <strong>merchandising</strong>
+                para el evento, desde pulseras acreditativas hasta vallas de 8&nbsp;metros y otros soportes físicos
+                de gran formato.
+              </p>
+
+              <!-- ✅ Aquí puedes añadir más párrafos si hace falta -->
+            </div>
+
+            <button class="read-more" id="readMoreBtn" aria-expanded="false" aria-controls="workText" type="button">
+              <span class="read-more__icon" aria-hidden="true">+</span>
+              <span class="read-more__label">Leer más</span>
+            </button>
+          </section>
+        </div>
+
+        <aside class="project-meta">
+          <div class="project-meta-block">
+            <div class="project-meta-label">ROL</div>
+            <div class="project-meta-main">Dirección de arte e identidad visual del evento.</div>
+          </div>
+
+          <div class="project-meta-block">
+            <div class="project-meta-label">ÁREAS DE TRABAJO</div>
+            <div class="project-meta-pills">
+              <span class="meta-pill">Identidad de evento</span>
+              <span class="meta-pill">Cartelería y soportes exteriores</span>
+              <span class="meta-pill">Campaña digital</span>
+              <span class="meta-pill">Publicidad en medios online</span>
+              <span class="meta-pill">Publicidad en medios impresos</span>
+              <span class="meta-pill">Banners y robapáginas</span>
+              <span class="meta-pill">Newsletters</span>
+              <span class="meta-pill">Merchandising y soportes físicos</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- GALERÍA BENTO -->
+    <section class="project-gallery">
+      <div class="container">
+        <div class="project-gallery-grid">
+
+          <div class="gallery-main-group">
+            <figure class="gallery-main-vertical">
+              <img
+                src="imgs/imgi_58_Diseno_EstrellaDammAndaluciaMasters_vertical-min-scaled.jpg"
+                alt="Cartel vertical del Estrella Damm N.A. Andalucía Masters"
+                loading="lazy"
+              />
+            </figure>
+
+            <figure class="gallery-main-horizontal">
+              <img
+                src="imgs/imgi_38_PHOTO-2021-10-26-11-25-53-min-1.jpg"
+                alt="Zona de público y señalética durante el Estrella Damm N.A. Andalucía Masters"
+                loading="lazy"
+              />
+            </figure>
+          </div>
+
+          <div class="gallery-column">
+            <figure class="gallery-item">
+              <img
+                src="imgs/imgi_63_2-min-scaled.png"
+                alt="Mockups de cartelería y soportes gráficos del torneo"
+                loading="lazy"
+              />
+            </figure>
+            <figure class="gallery-item">
+              <img
+                src="imgs/imgi_48_Captura2Bde2BPantalla2B2022-09-102Ba2Blas2B14.14.49-min.jpg"
+                alt="Formatos digitales y banners del Estrella Damm N.A. Andalucía Masters"
+                loading="lazy"
+              />
+            </figure>
+            <figure class="gallery-item">
+              <img
+                src="imgs/imgi_2_EDAM2021-SabadoII261de279-min.jpg"
+                alt="Vista del campo durante el Estrella Damm N.A. Andalucía Masters"
+                loading="lazy"
+              />
+            </figure>
+            <figure class="gallery-item">
+              <img
+                src="imgs/imgi_53_12-10EDAM21BOSCOMARTIN-002-min.jpg"
+                alt="Aplicación de la identidad del torneo en el recorrido y entorno"
+                loading="lazy"
+              />
+            </figure>
+          </div>
+
+          <!-- ✅ ÚLTIMA IMAGEN A ANCHO COMPLETO -->
+          <figure class="gallery-item gallery-full">
+            <img
+              src="imgs/1.png"
+              alt="Aplicación de la identidad del torneo en el recorrido y entorno"
+              loading="lazy"
+            />
+          </figure>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- NAVEGACIÓN FINAL (ENLACES TEXTO) -->
+    <section class="project-bottom">
+      <div class="container">
+        <div class="project-bottom-nav">
+          <a href="https://taniadeazevedo.es" class="nav-link-arrow nav-link-back">Home</a>
+          <a href="https://taniadeazevedo.es/la-nueva-linea/" class="nav-link-arrow">
+            Ver otro proyecto
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Custom cursor
+    (function () {
+      const cursor = document.querySelector(".custom-cursor");
+      if (!cursor) return;
+
+      document.addEventListener("mousemove", (e) => {
+        cursor.style.top = e.clientY + "px";
+        cursor.style.left = e.clientX + "px";
+      });
+
+      const hoverables = document.querySelectorAll("a, button, .read-more");
+      hoverables.forEach((el) => {
+        el.addEventListener("mouseenter", () => cursor.classList.add("is-hover"));
+        el.addEventListener("mouseleave", () => cursor.classList.remove("is-hover"));
+      });
+    })();
+
+    // Leer más / Leer menos + fade
+    (function () {
+      const text = document.getElementById("workText");
+      const btn = document.getElementById("readMoreBtn");
+      if (!text || !btn) return;
+
+      btn.addEventListener("click", () => {
+        const isCollapsed = text.classList.contains("is-collapsed");
+        const icon = btn.querySelector(".read-more__icon");
+        const label = btn.querySelector(".read-more__label");
+
+        if (isCollapsed) {
+          text.classList.remove("is-collapsed");
+          if (icon) icon.textContent = "–";
+          if (label) label.textContent = "Leer menos";
+          btn.setAttribute("aria-expanded", "true");
+        } else {
+          text.classList.add("is-collapsed");
+          if (icon) icon.textContent = "+";
+          if (label) label.textContent = "Leer más";
+          btn.setAttribute("aria-expanded", "false");
+          text.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
