@@ -5,7 +5,6 @@
   <title>Open House Málaga – Proyecto · Tania de Azevedo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-
     :root{
       --bg-body:#f5f5f7;
       --bg-elevated:#ffffff;
@@ -20,6 +19,7 @@
       --shadow-soft:0 18px 45px rgba(15, 23, 42, 0.08);
       --font-sans:system-ui,-apple-system,BlinkMacSystemFont,"SF Pro Text","Inter","Segoe UI",sans-serif;
     }
+
     *{box-sizing:border-box;}
     html,body{margin:0;padding:0;min-height:100vh;}
     html{background-color:#f8f9fa;}
@@ -30,9 +30,12 @@
       -webkit-font-smoothing:antialiased;
     }
     img{max-width:100%;display:block;}
+    figure{margin:0;}
     a{color:inherit;text-decoration:none;}
     a:visited,a:hover,a:active{color:inherit;}
+
     .container{width:100%;max-width:1120px;margin:0 auto;padding:0 20px;}
+
     /* ---------------- HERO ---------------- */
     .project-hero{padding:64px 0 40px;position:relative;overflow:visible;}
     .project-hero-inner{position:relative;text-align:center;max-width:1120px;margin:0 auto;}
@@ -55,6 +58,7 @@
       max-height:480px;
     }
     .project-hero-media img{height:100%;width:100%;object-fit:cover;object-position:50% 18%;}
+
     /* ---------------- CUERPO TEXTO + META ---------------- */
     .project-layout{padding:56px 0 56px;}
     .project-layout-grid{
@@ -66,11 +70,13 @@
     }
     .project-copy h2{font-size:1.15rem;font-weight:600;margin:0 0 12px;color:#111827;}
     .project-copy p{font-size:.95rem;color:var(--text-muted);line-height:1.7;margin:0 0 14px;}
+
     .project-meta{font-size:.88rem;color:var(--text-soft);}
     .project-meta-label{font-size:.78rem;text-transform:uppercase;letter-spacing:.18em;margin-bottom:8px;color:var(--text-soft);}
     .project-meta-block + .project-meta-block{margin-top:28px;}
     .project-meta-main{font-size:.95rem;font-weight:500;color:#111827;}
     .project-meta-pills{display:flex;flex-wrap:wrap;gap:8px;}
+
     /* ÁREAS DE TRABAJO (bounce como Madrid) */
     .meta-pill{
       padding:6px 12px;
@@ -86,6 +92,7 @@
       cursor:default;
     }
     .meta-pill:hover{transform:translateY(-3px) scale(1.03);background:#ffffff;}
+
     /* Link flecha meta (como Madrid) */
     .project-link-arrow{
       display:inline-flex;
@@ -102,6 +109,7 @@
     .project-link-arrow::after{content:"→";font-size:1rem;transform:translateY(1px);transition:transform .18s ease;}
     .project-link-arrow:hover{border-color:rgba(0,0,0,.7);transform:translateX(2px);}
     .project-link-arrow:hover::after{transform:translate(3px,1px);}
+
     /* ---------------- “LEER MÁS” CON FADE (IGUAL QUE MADRID) ---------------- */
     .text-collapse{position:relative;}
     .text-collapse.is-collapsed{
@@ -116,18 +124,22 @@
       pointer-events:none;
       background:linear-gradient(to bottom, rgba(245,245,247,0), rgba(245,245,247,1));
     }
+
     .read-more{
       all:unset;
       display:inline-flex;
       align-items:center;
       gap:8px;
       margin-top:10px;
+
       font-size:.9rem;
       font-weight:500;
       color:#111827;
+
       cursor:pointer;
       -webkit-tap-highlight-color:transparent;
       user-select:none;
+
       padding:2px 0;
       border-bottom:1px solid rgba(17,24,39,.22);
       transition:border-color .18s ease, transform .18s ease, opacity .18s ease;
@@ -145,6 +157,7 @@
       outline-offset:4px;
       border-radius:10px;
     }
+
     /* ---------------- GALERÍA ---------------- */
     .project-gallery{padding:32px 0 40px;}
     .project-gallery-grid{
@@ -159,6 +172,7 @@
       background:rgba(255,255,255,0.35);
     }
     .gallery-item img{width:100%;height:auto;object-fit:contain;display:block;}
+
     /* ---------------- NAV ---------------- */
     .project-bottom{padding:40px 0 70px;}
     .project-bottom-nav{
@@ -195,6 +209,7 @@
     .nav-link-arrow:hover{border-color:rgba(0,0,0,.6);}
     .nav-link-arrow:hover::after{transform:translate(3px,1px);}
     .nav-link-back:hover::before{transform:translate(-3px,1px);}
+
     /* ---------------- RESPONSIVE ---------------- */
     @media (max-width:960px){
       .project-layout-grid,
@@ -202,9 +217,11 @@
       .project-layout{padding:48px 0;}
       .project-meta{border-top:1px solid rgba(148,163,184,.18);padding-top:28px;}
       .project-bottom-nav{flex-direction:column;align-items:flex-start;}
+
       /* ✅ móvil: “Leer más” sale antes (PERO mantiene fade) */
       .text-collapse.is-collapsed{max-height:200px;}
     }
+
     @media (max-width:640px){
       .project-hero{padding-top:52px;}
       .project-hero-media{border-radius:22px;}
@@ -213,9 +230,11 @@
       .project-bottom-nav a{align-self:stretch;justify-content:center;}
       .project-kicker{font-size:.8rem;margin-bottom:12px;}
       .project-subtitle{margin:0 auto 26px;}
+
       /* ✅ móvil pequeño: aún antes */
       .text-collapse.is-collapsed{max-height:170px;}
     }
+
     /* FIX WP (botón) */
     button.read-more,
     button.read-more:hover,
@@ -230,99 +249,155 @@
       -webkit-appearance:none !important;
       appearance:none !important;
     }
-  
   </style>
 </head>
+
 <body>
-  <div class="custom-cursor"></div>
-  <main>
-    <!-- HERO -->
-    <section class="project-hero">
-      <div class="container project-hero-inner">
-        <p class="project-kicker">IDENTIDAD VISUAL</p>
+<main>
+
+  <!-- HERO -->
+  <section class="project-hero">
+    <div class="container">
+      <div class="project-hero-inner">
+        <div class="project-kicker">IDENTIDAD VISUAL</div>
         <h1 class="project-title">Open House Málaga</h1>
+
         <p class="project-subtitle">
           Open House Málaga es un festival de arquitectura y ciudad que forma parte de la red internacional
           <a href="https://openhouseworldwide.org" target="_blank" rel="noreferrer"><u>Open House Worldwide</u></a>.
           <strong>Desde 2021 lidero su imagen</strong>, desarrollando la identidad visual desde la primera edición —adaptando el sistema gráfico a recorridos, espacios y mensajes del festival— y consolidando una marca reconocible para vivir Málaga desde dentro.
         </p>
+
         <figure class="project-hero-media">
           <img src="imgs/Captura-de-pantalla-2026-01-15-a-las-17.05.28-2.png" alt="Open House Málaga" />
         </figure>
       </div>
-    </section>
-    <!-- TEXTO + META -->
-    <section class="project-layout">
-      <div class="container project-layout-grid">
-        <div class="project-copy">
-          <section>
-            <h2>El trabajo</h2>
-            <div class="text-collapse is-collapsed" id="workText">
-              <p>
-                Formo parte del proyecto de Open House Málaga desde su creación y me encargo del desarrollo de su
-                <strong>identidad visual</strong>. Desde la primera edición, el festival ha contado con un sistema
-                gráfico propio, diseñado para adaptarse a los recorridos, espacios y mensajes de cada año.
-              </p>
-              <p>
-                La identidad se construye a partir de la estructura icónica del
-                <strong>Centro Pompidou de Málaga</strong>, cuya lógica modular dio lugar a un lenguaje visual
-                coherente pero flexible, aplicado de forma continuada a campañas, piezas digitales, publicaciones
-                y señalética del festival.
-              </p>
-              <p>
-                Este sistema permitió desarrollar una comunicación consistente en todos los formatos: desde
-                soportes digitales y publicidad online y offline, hasta identidad digital, merchandising y
-                <strong>web oficial</strong>. Además de diseñar la estructura y la interfaz web, me encargué de
-                mantener y actualizar la gráfica, asegurando coherencia visual en toda la experiencia.
-              </p>
-            </div>
-            <button id="readMoreBtn" class="read-more" aria-expanded="false" aria-controls="workText" type="button">+ Leer más</button>
-          </section>
-        </div>
-        <aside class="project-meta">
-          <div class="project-meta-block">
-            <p class="project-meta-label">ROL</p>
-            <p class="project-meta-main">Dirección de arte, identidad corporativa y diseño web del festival.</p>
+    </div>
+  </section>
+
+  <!-- TEXTO + META -->
+  <section class="project-layout">
+    <div class="container project-layout-grid">
+
+      <div class="project-copy">
+        <section>
+          <h2>El trabajo</h2>
+
+          <div class="text-collapse is-collapsed" id="workText">
+            <p>
+              Formo parte del proyecto de Open House Málaga desde su creación y me encargo del desarrollo de su
+              <strong>identidad visual</strong>. Desde la primera edición, el festival ha contado con un sistema
+              gráfico propio, diseñado para adaptarse a los recorridos, espacios y mensajes de cada año.
+            </p>
+
+            <p class="p2">
+              La identidad se construye a partir de la estructura icónica del
+              <strong>Centro Pompidou de Málaga</strong>, cuya lógica modular dio lugar a un lenguaje visual
+              coherente pero flexible, aplicado de forma continuada a campañas, piezas digitales, publicaciones
+              y señalética del festival.
+            </p>
+
+            <p>
+              Este sistema permitió desarrollar una comunicación consistente en todos los formatos: desde
+              soportes digitales y publicidad online y offline, hasta identidad digital, merchandising y
+              <strong>web oficial</strong>. Además de diseñar la estructura y la interfaz web, me encargué de
+              mantener y actualizar la gráfica, asegurando coherencia visual en toda la experiencia.
+            </p>
           </div>
-          <div class="project-meta-block">
-            <p class="project-meta-label">ÁREAS DE TRABAJO</p>
-            <div class="project-meta-pills">
-              <span class="meta-pill">Identidad visual</span>
-              <span class="meta-pill">Sistema gráfico</span>
-              <span class="meta-pill">Diseño digital</span>
-              <span class="meta-pill">Redes sociales</span>
-              <span class="meta-pill">Publicidad online &amp; offline</span>
-              <span class="meta-pill">Diseño web</span>
-              <span class="meta-pill">Identidad digital</span>
-              <span class="meta-pill">Merchandising</span>
-            </div>
-          </div>
-          <a class="project-link-arrow" href="https://openhousemalaga.org" target="_blank" rel="noreferrer">Ver página web</a>
-        </aside>
+
+          <button class="read-more" id="readMoreBtn" aria-expanded="false" aria-controls="workText" type="button">
+            <span class="read-more__icon" aria-hidden="true">+</span>
+            <span class="read-more__label">Leer más</span>
+          </button>
+        </section>
       </div>
-    </section>
-    <!-- GALERÍA -->
-    <section class="project-gallery">
-      <div class="container">
-        <div class="project-gallery-grid">
-          <figure class="gallery-item"><img src="imgs/Diseno-sin-titulo-2.png" alt="" loading="lazy" /></figure>
-          <figure class="gallery-item"><img src="imgs/1-1.jpg" alt="" loading="lazy" /></figure>
-          <figure class="gallery-item"><img src="imgs/2-1.jpg" alt="" loading="lazy" /></figure>
-          <figure class="gallery-item"><img src="imgs/Diseno-sin-titulo-2-1.jpg" alt="" loading="lazy" /></figure>
-          <figure class="gallery-item"><img src="imgs/3.jpg" alt="" loading="lazy" /></figure>
-          <figure class="gallery-item"><img src="imgs/4.jpg" alt="" loading="lazy" /></figure>
-          <figure class="gallery-item"><img src="imgs/ArquitecturaViva_Megabanner1260x125_OpenHouseMalaga25-1.gif" alt="" loading="lazy" /></figure>
+
+      <aside class="project-meta">
+        <div class="project-meta-block">
+          <div class="project-meta-label">ROL</div>
+          <div class="project-meta-main">Dirección de arte, identidad corporativa y diseño web del festival.</div>
         </div>
+
+        <div class="project-meta-block">
+          <div class="project-meta-label">ÁREAS DE TRABAJO</div>
+          <div class="project-meta-pills">
+            <span class="meta-pill">Identidad visual</span>
+            <span class="meta-pill">Sistema gráfico</span>
+            <span class="meta-pill">Diseño digital</span>
+            <span class="meta-pill">Redes sociales</span>
+            <span class="meta-pill">Publicidad online &amp; offline</span>
+            <span class="meta-pill">Diseño web</span>
+            <span class="meta-pill">Identidad digital</span>
+            <span class="meta-pill">Merchandising</span>
+          </div>
+        </div>
+
+        <div class="project-meta-block">
+          <a href="https://openhousemalaga.org" target="_blank" rel="noreferrer" class="project-link-arrow">Ver página web</a>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+  <!-- GALERÍA -->
+  <section class="project-gallery">
+    <div class="container">
+      <figure class="gallery-item" style="margin-bottom:14px;">
+        <img src="imgs/Diseno-sin-titulo-2.png" alt="" loading="lazy" />
+      </figure>
+
+      <div class="project-gallery-grid">
+        <figure class="gallery-item"><img src="imgs/1-1.jpg" alt="" loading="lazy" /></figure>
+        <figure class="gallery-item"><img src="imgs/2-1.jpg" alt="" loading="lazy" /></figure>
+        <figure class="gallery-item"><img src="imgs/Diseno-sin-titulo.gif" alt="" loading="lazy" /></figure>
+        <figure class="gallery-item"><img src="imgs/Diseno-sin-titulo-2-1.jpg" alt="" loading="lazy" /></figure>
+        <figure class="gallery-item"><img src="imgs/3.jpg" alt="" loading="lazy" /></figure>
+        <figure class="gallery-item"><img src="imgs/4.jpg" alt="" loading="lazy" /></figure>
+        <figure class="gallery-item"><img src="imgs/ArquitecturaViva_Megabanner1260x125_OpenHouseMalaga25-1.gif" alt="" loading="lazy" /></figure>
       </div>
-    </section>
-    <!-- NAV -->
-    <section class="project-bottom">
-      <div class="container project-bottom-nav">
-        <a class="nav-link-arrow nav-link-back" href="https://taniadeazevedo.es">Home</a>
-        <a class="nav-link-arrow" href="https://taniadeazevedo.es/open-house-madrid/">Ver otro proyecto</a>
+    </div>
+  </section>
+
+  <!-- NAV -->
+  <section class="project-bottom">
+    <div class="container">
+      <div class="project-bottom-nav">
+        <a href="https://taniadeazevedo.es" class="nav-link-arrow nav-link-back">Home</a>
+        <a href="https://taniadeazevedo.es/open-house-madrid/" class="nav-link-arrow">Ver otro proyecto</a>
       </div>
-    </section>
-  </main>
-  <script src="js/project.js"></script>
+    </div>
+  </section>
+
+</main>
+
+<script>
+  // Leer más / Leer menos + fade (mismo JS que Madrid)
+  (function () {
+    const text = document.getElementById("workText");
+    const btn = document.getElementById("readMoreBtn");
+    if (!text || !btn) return;
+
+    btn.addEventListener("click", () => {
+      const isCollapsed = text.classList.contains("is-collapsed");
+      const icon = btn.querySelector(".read-more__icon");
+      const label = btn.querySelector(".read-more__label");
+
+      if (isCollapsed) {
+        text.classList.remove("is-collapsed");
+        if (icon) icon.textContent = "–";
+        if (label) label.textContent = "Leer menos";
+        btn.setAttribute("aria-expanded", "true");
+      } else {
+        text.classList.add("is-collapsed");
+        if (icon) icon.textContent = "+";
+        if (label) label.textContent = "Leer más";
+        btn.setAttribute("aria-expanded", "false");
+        text.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    });
+  })();
+</script>
+
 </body>
 </html>
