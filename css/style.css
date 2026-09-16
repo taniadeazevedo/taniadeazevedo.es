@@ -105,6 +105,16 @@
       padding-right: max(20px, env(safe-area-inset-right));
     }
 
+.code {
+  font-family: 'Courier New', Courier, monospace; /* Tipografía estilo programación */
+  background-color: rgba(255, 255, 255, 0.1);    /* Fondo oscuro muy sutil */
+  padding: 2px 6px;                             /* Espaciado para que parezca una pastilla */
+  border-radius: 4px;                           /* Bordes suavemente redondeados */
+  font-size: 0.9em;                             /* Un pelín más pequeña para equilibrar */
+}
+
+
+
     .nav-shell {
       width: 100%;
       display: flex;
@@ -199,6 +209,9 @@
       flex-shrink: 0;
       max-width: 100%;
     }
+
+
+
 
     .nav-cta::before {
       content: "";
