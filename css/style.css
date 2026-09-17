@@ -298,7 +298,7 @@
     }
 
 .code-hero {
-  font-family: 'JetBrains Mono', 'Courier New', Courier, monospace;
+  font-family: 'Fira Code', 'JetBrains Mono', 'Courier New', Courier, monospace;
   color: var(--text-main);
   font-weight: 700;
 }
@@ -309,7 +309,7 @@
 .code-cursor {
   display: inline-block;
   color: var(--text-soft);
-  font-family: 'JetBrains Mono', 'Courier New', Courier, monospace;
+  font-family: 'Fira Code', 'JetBrains Mono', 'Courier New', Courier, monospace;
   margin-left: 2px;
   animation: code-cursor-blink 1s steps(1) infinite;
 }
