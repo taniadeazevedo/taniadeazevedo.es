@@ -298,18 +298,18 @@
     }
 
 .code-hero {
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'JetBrains Mono', 'Courier New', Courier, monospace;
   color: var(--text-main);
   font-weight: 700;
 }
 .code-hero .code-bracket {
-  color: var(--accent-strong);
+  color: var(--text-soft);
   font-weight: 600;
 }
 .code-cursor {
   display: inline-block;
-  color: var(--accent-strong);
-  font-family: 'Courier New', Courier, monospace;
+  color: var(--text-soft);
+  font-family: 'JetBrains Mono', 'Courier New', Courier, monospace;
   margin-left: 2px;
   animation: code-cursor-blink 1s steps(1) infinite;
 }
@@ -339,7 +339,9 @@
 .hero-noline .gradient-word {
   font-family: 'Caveat', cursive;
   font-weight: 700;
-  font-size: 1.3em;
+  font-size: 1.05em;
+  line-height: 1;
+  vertical-align: baseline;
 }
 
 @keyframes shine {
