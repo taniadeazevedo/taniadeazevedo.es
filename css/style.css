@@ -76,7 +76,7 @@
       position: sticky;
       top: 0;
       z-index: 30;
-      padding-top: 10px;
+      padding-top: 20px;
 
       /* ✅ SIN 100vw / SIN márgenes negativos */
       width: 100%;
