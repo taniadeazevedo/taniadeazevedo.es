@@ -560,6 +560,15 @@
     /* CLIENTES */
     .brands-section { padding-top: 12px; }
 
+    @media (min-width: 901px) {
+      .hero-viewport {
+        min-height: calc(100vh - 78px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+    }
+
     .brands-strip {
       position: relative;
       overflow: hidden;
