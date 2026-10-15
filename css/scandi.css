@@ -163,3 +163,8 @@ h1 { font-size: clamp(2.25rem, 3.8vw, 3.25rem); }
 @media (prefers-reduced-motion: reduce) {
   .hero-noline .gradient-word { animation: none; }
 }
+
+/* ---------- Tarjetas de proyecto con la misma altura: enlace anclado abajo y título a dos líneas reservado ---------- */
+.work-card { justify-content: flex-start; }
+.work-desc { flex: 1; }
+.work-card[data-type="graphic"] .work-title { min-height: 2.5em; }
