@@ -15,7 +15,6 @@
 }
 html, body { background: #fff; }
 body { font-family: var(--font-sans); font-size: 17px; line-height: 1.6; color: var(--ink); }
-.custom-cursor { display: none !important; }
 .container { max-width: 1160px; padding-left: var(--gutter); padding-right: var(--gutter); }
 
 /* Hero: alineado a la izquierda, escala Stripe */
