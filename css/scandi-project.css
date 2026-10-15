@@ -90,3 +90,25 @@ body { font-size: 16px; }
   .project-bottom-nav { align-items: center; text-align: center; }
   .project-bottom-nav a { align-self: center; justify-content: center; }
 }
+
+/* ---------- Cursor morado igual que en la home (sustituye al arcoíris de las páginas de proyecto) ---------- */
+.custom-cursor {
+  width: 22px;
+  height: 22px;
+  border: 0;
+  z-index: 9999;
+  background: radial-gradient(circle, #a855f7 0%, #b886f7 100%);
+  background-clip: border-box;
+  background-origin: padding-box;
+  opacity: 0.8;
+  transition: transform 0.2s ease-out, width 0.3s ease, height 0.3s ease;
+  will-change: left, top;
+}
+.custom-cursor.is-hover {
+  width: 22px;
+  height: 22px;
+  transform: translate(-50%, -50%) scale(3);
+  opacity: 0.6;
+  border: 0;
+  background: radial-gradient(circle, #a855f7 0%, #b886f7 100%);
+}
