@@ -148,13 +148,17 @@ h1 { font-size: clamp(2.25rem, 3.8vw, 3.25rem); }
   .work-title { font-size: 20px; }
 }
 .hero-noline .gradient-word {
-  font-weight: 700;
+  font-family: "Londrina Sketch", cursive;
+  font-weight: 400;
+  font-size: 1.35em;
+  line-height: 1;
+  letter-spacing: 0.01em;
   display: inline-block;
-  animation: shine 12s ease-in-out infinite, type-word 1.1s steps(6, end) 0.5s both;
-}
-@keyframes type-word {
-  from { clip-path: inset(-25% 100% -25% 0); }
-  to   { clip-path: inset(-25% 0 -25% 0); }
+  background: none;
+  color: inherit;
+  -webkit-text-fill-color: currentColor;
+  -webkit-text-stroke: 0.018em currentColor;
+  animation: none;
 }
 @media (prefers-reduced-motion: reduce) {
   .hero-noline .gradient-word { animation: none; }
