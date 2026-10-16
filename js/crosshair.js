@@ -24,12 +24,32 @@
   var lockEl = null, active = false, raf = 0, last = 0, inside = false;
   var cur = null;
 
+  // Caja del texto visible: une los rectángulos de cada nodo de texto y deja fuera el carácter oculto de la barra
+  // (su ancho natural sobresale aunque esté recortado) añadiendo en su lugar la caja real de la barra.
+  function textBounds(el) {
+    var l = Infinity, t = Infinity, rr = -Infinity, b = -Infinity;
+    function add(q) {
+      if (!q.width || !q.height) return;
+      l = Math.min(l, q.left); t = Math.min(t, q.top); rr = Math.max(rr, q.right); b = Math.max(b, q.bottom);
+    }
+    var walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null);
+    var range = document.createRange();
+    while (walker.nextNode()) {
+      var n = walker.currentNode;
+      if (!n.nodeValue.trim()) continue;
+      if (n.parentElement && n.parentElement.closest('.code-cursor')) continue;
+      range.selectNodeContents(n);
+      [].forEach.call(range.getClientRects(), add);
+    }
+    var cur = el.querySelector('.code-cursor');
+    if (cur) add(cur.getBoundingClientRect());
+    return { left: l, top: t, right: rr, bottom: b };
+  }
+
   function measure(el, zr) {
     var r;
     if (el.matches(TEXT_BOUNDS)) {
-      var range = document.createRange();
-      range.selectNodeContents(el);
-      r = range.getBoundingClientRect();
+      r = textBounds(el);
     } else {
       r = el.getBoundingClientRect();
     }

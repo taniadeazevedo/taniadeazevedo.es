@@ -273,3 +273,9 @@ h1 { font-size: clamp(2.4rem, 5vw, 4.5rem); }
 
 /* "Pulsa C para copiar mi email" ahora vive junto al botón de contacto */
 .contact-actions .hero-shortcut { margin: 0; }
+
+/* Bloque del hero centrado de verdad: el saludo pasa a su propia línea (sin el hueco de la primera línea del titular) y el relleno es simétrico */
+.hero-intro { display: block; }
+.hero-intro + br { display: none; }
+.hero-actions { margin-bottom: 0; }
+@media (min-width: 901px) { .hero { padding: 56px 0; } }
