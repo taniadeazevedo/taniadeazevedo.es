@@ -157,7 +157,7 @@ h1 { font-size: clamp(2.25rem, 3.8vw, 3.25rem); }
   background: none;
   color: inherit;
   -webkit-text-fill-color: currentColor;
-  -webkit-text-stroke: 0.018em currentColor;
+  -webkit-text-stroke: 0.014em currentColor;
   animation: none;
 }
 @media (prefers-reduced-motion: reduce) {
@@ -214,4 +214,59 @@ h1 { font-size: clamp(2.25rem, 3.8vw, 3.25rem); }
 /* ---------- Las polaroids se montan ligeramente sobre la barra de Spotify (solo escritorio) ---------- */
 @media (min-width: 901px) {
   .polaroid-wrap { margin-top: -50px; }
+}
+
+/* ---------- Hero v2 (demo): centrado, una sola tipografía, franja inferior y retícula ---------- */
+.hero-viewport { position: relative; }
+@media (min-width: 901px) { .hero-viewport { transform: none; justify-content: flex-start; } }
+.hero { flex: 1; display: flex; align-items: center; justify-content: center; padding: 64px 0 40px; text-align: center; }
+.hero > .container { width: 100%; }
+.hero-inner { max-width: none; margin: 0 auto; text-align: center; }
+h1 { font-size: clamp(2.6rem, 6vw, 5.25rem); font-weight: 600; letter-spacing: -0.035em; line-height: 1.04; margin: 0 0 40px; }
+.hero-intro { display: inline-block; font-size: clamp(1.1rem, 1.6vw, 1.375rem); font-weight: 500; letter-spacing: -0.01em; margin-bottom: 22px; }
+.hero-noline .gradient-word { font-family: inherit; font-weight: inherit; font-size: inherit; line-height: inherit; letter-spacing: inherit; display: inline; color: inherit; background: none; -webkit-text-fill-color: currentColor; -webkit-text-stroke: 0; animation: none; }
+.code-hero, .code-hero .code-word, .code-hero .code-bracket { font-weight: inherit; }
+.hero-actions { justify-content: center; }
+.hero-band { border-top: 1px solid var(--line); padding-top: 44px; }
+.hero-band .hero-subtitle { margin: 0 auto; text-align: center; max-width: 62ch; }
+.hero-band .brands-section { padding-top: 28px; padding-bottom: 20px; }
+@media (max-width: 900px) { .hero { padding: 40px 0 28px; } .hero-band { padding-top: 32px; } }
+
+/* Retícula (js/crosshair.js) */
+.crosshair { position: absolute; inset: 0; pointer-events: none; z-index: 3; overflow: hidden; opacity: 0; transition: opacity .2s ease; }
+.crosshair.is-on { opacity: 1; }
+.ch-line { position: absolute; left: 0; top: 0; background: rgb(0 0 0 / 15%); transition: background-color .2s ease, opacity .2s ease; }
+.ch-v1, .ch-v2 { width: 1px; height: 100%; }
+.ch-h1, .ch-h2 { height: 1px; width: 100%; }
+.ch-v2, .ch-h2 { opacity: 0; }
+.crosshair.is-locked .ch-v2, .crosshair.is-locked .ch-h2 { opacity: 1; }
+.crosshair.is-locked .ch-line { background: rgb(168 85 247 / 70%); }
+.ch-box { position: absolute; left: 0; top: 0; border: 1px solid rgb(168 85 247 / 0); background: rgb(168 85 247 / 0); transition: background-color .2s ease, border-color .2s ease; }
+.crosshair.is-locked .ch-box { border-color: rgb(168 85 247 / 80%); background: rgb(168 85 247 / 7%); }
+.ch-tag { position: absolute; left: 0; top: 0; font: 500 11px/1 ui-monospace, "SF Mono", Menlo, monospace; color: rgb(0 0 0 / 56%); white-space: nowrap; padding: 4px 6px; border-radius: 4px; transition: background-color .2s ease, color .2s ease; }
+.crosshair.is-locked .ch-tag { background: #a855f7; color: #fff; }
+.crosshair-on .cursor-ring { opacity: 0 !important; }
+.hero > .container { max-width: 1320px; }
+h1 { font-size: clamp(2.4rem, 5vw, 4.5rem); }
+
+/* "diseño" del titular: vuelve la tipografía de dibujo (Londrina Sketch) con contorno fino */
+.hero-noline .gradient-word { font-family: "Londrina Sketch", cursive; font-weight: 400; font-size: 1.3em; line-height: 1; letter-spacing: 0.01em; display: inline-block; -webkit-text-stroke: 0.014em currentColor; }
+
+/* Tarjeta de Spotify optimizada para móvil y tablet: portada y texto en fila, botón a todo el ancho debajo */
+@media (max-width: 900px) {
+  .music-spotify-card { display: grid; grid-template-columns: 56px 1fr; column-gap: 14px; row-gap: 14px; align-items: center; padding: 16px; margin-bottom: 32px; }
+  .music-spotify-album { width: 56px; height: 56px; }
+  .music-spotify-title { font-size: 17px; }
+  .music-spotify-artist { font-size: 15px; margin-bottom: 2px; }
+  .music-spotify-sub { font-size: 14px; }
+  .music-spotify-cta { grid-column: 1 / -1; width: 100%; justify-content: center; margin: 0; align-self: stretch; padding: 12px 16px; }
+}
+
+/* Móvil: botón de CV centrado y titular con más aire */
+.hero-actions { align-items: center; }
+@media (max-width: 640px) {
+  .hero { padding: 48px 0 36px; }
+  h1 { font-size: clamp(2.15rem, 9.4vw, 2.7rem); line-height: 1.16; letter-spacing: -0.03em; margin-bottom: 36px; }
+  .hero-intro { font-size: 1.05rem; margin-bottom: 20px; }
+  .hero-noline .gradient-word { margin: 0.04em 0.02em; }
 }

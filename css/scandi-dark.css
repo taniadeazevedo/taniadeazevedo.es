@@ -1,0 +1,107 @@
+/* Modo oscuro escandinavo: lienzo casi negro, tinta blanca, bordes en blanco translúcido. Solo con html[data-theme="dark"]. */
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --ink: #fff;
+  --ink-2: rgb(255 255 255 / 64%);
+  --ink-3: rgb(255 255 255 / 50%);
+  --line: rgb(255 255 255 / 12%);
+  --line-2: rgb(255 255 255 / 20%);
+  --wash: rgb(255 255 255 / 5%);
+  --bg-body: #0a0a0a;
+  --text-main: #fff;
+  --text-muted: rgb(255 255 255 / 64%);
+  --text-soft: rgb(255 255 255 / 50%);
+  background: #0a0a0a;
+}
+html[data-theme="dark"] body { background: #0a0a0a; color: #fff; }
+
+/* Cabecera */
+html[data-theme="dark"] .site-header { background: rgb(10 10 10 / 82%); border-bottom-color: var(--line); }
+html[data-theme="dark"] .nav-avatar { background: #111; border-color: var(--line-2); }
+html[data-theme="dark"] .nav-links a:hover { color: #fff; }
+html[data-theme="dark"] .nav-cta { background: rgb(255 255 255 / 6%); color: #fff; border-color: rgba(190, 242, 100, 0.6); }
+html[data-theme="dark"] .nav-cta:hover { background: rgba(190, 242, 100, 0.14); }
+
+/* Botones: el principal se invierte (blanco con texto negro) */
+html[data-theme="dark"] .btn-primary,
+html[data-theme="dark"] .hero-cv { background: #fff; color: #000; }
+html[data-theme="dark"] .btn-primary:hover,
+html[data-theme="dark"] .hero-cv:hover { background: rgb(255 255 255 / 86%); color: #000; }
+html[data-theme="dark"] .shortcut-key { background: transparent; border-color: var(--line-2); color: var(--ink-2); }
+html[data-theme="dark"] .cv-tooltip { background: #1a1a1a; color: #fff; border: 1px solid var(--line-2); }
+
+/* Hero */
+html[data-theme="dark"] .code-hero .code-cursor { background: rgb(255 255 255 / 50%); }
+html[data-theme="dark"] .hero-band { border-top-color: var(--line); }
+html[data-theme="dark"] .brand-logo img { filter: grayscale(1) invert(1) brightness(1.15); opacity: .7; }
+
+/* Proyectos */
+html[data-theme="dark"] .filter-btn { background: transparent; border-color: var(--line-2); color: var(--ink-2); }
+html[data-theme="dark"] .filter-btn:hover { background: rgb(255 255 255 / 8%); }
+html[data-theme="dark"] .filter-btn.is-active { background: #fff; color: #000; border-color: #fff; }
+
+/* Experiencia, testimonios, stack */
+html[data-theme="dark"] .exp-location-pill { background: transparent; border-color: var(--line-2); color: var(--ink-2); }
+html[data-theme="dark"] .lang-pill { background: transparent; border-color: var(--line-2); color: var(--ink-2); }
+html[data-theme="dark"] .lang-pill:hover { background: rgb(255 255 255 / 8%); }
+
+/* Fuera de la pantalla */
+html[data-theme="dark"] .music-spotify-card { background: rgb(255 255 255 / 6%); border: 1px solid var(--line); }
+html[data-theme="dark"] .polaroid { border-color: transparent; }
+
+/* Contacto y pie */
+html[data-theme="dark"] .contact-field input,
+html[data-theme="dark"] .contact-field textarea { background: rgb(255 255 255 / 5%); border-color: var(--line-2); color: #fff; }
+html[data-theme="dark"] .contact-field input::placeholder,
+html[data-theme="dark"] .contact-field textarea::placeholder { color: var(--ink-3); }
+html[data-theme="dark"] .site-footer { background: #050505; border-top: 1px solid var(--line); }
+html[data-theme="dark"] .love-code-badge { background: rgb(20 20 20 / 88%); color: #fff; border: 1px solid var(--line-2); box-shadow: none; }
+
+/* Cursor y retícula */
+html[data-theme="dark"] .custom-cursor { mix-blend-mode: normal; opacity: 0.9; }
+html[data-theme="dark"] .ch-line { background: rgb(255 255 255 / 18%); }
+html[data-theme="dark"] .ch-tag { color: var(--ink-3); }
+html[data-theme="dark"] .crosshair.is-locked .ch-line { background: rgb(168 85 247 / 80%); }
+html[data-theme="dark"] .crosshair.is-locked .ch-tag { color: #fff; }
+
+/* Colores oscuros fijos de la hoja original que no se ven sobre negro */
+html[data-theme="dark"] .btn-primary,
+html[data-theme="dark"] .hero-cv { text-shadow: none; }
+html[data-theme="dark"] .testimonial-quote,
+html[data-theme="dark"] .testimonial-name,
+html[data-theme="dark"] .testimonial-cta-link,
+html[data-theme="dark"] .exp-company-name { color: #fff; }
+html[data-theme="dark"] .testimonial-meta { color: var(--ink-2); }
+html[data-theme="dark"] .filter-btn:hover { color: #fff; }
+html[data-theme="dark"] .filter-btn.is-active,
+html[data-theme="dark"] .filter-btn.is-active:hover { color: #000; background: #fff; }
+html[data-theme="dark"] .exp-location-pill:hover { background: rgb(255 255 255 / 8%); }
+html[data-theme="dark"] .lang-pill:hover { color: #fff !important; }
+
+/* Fotos y stack con bordes más finos */
+html[data-theme="dark"] .polaroid { padding: 2px; border: 0; border-radius: 12px; background: rgb(255 255 255 / 92%); }
+html[data-theme="dark"] .polaroid img { border-radius: 10px; }
+
+/* Páginas de proyecto */
+html[data-theme="dark"] .meta-pill { background: transparent; border-color: var(--line-2); color: var(--ink-2); }
+html[data-theme="dark"] .meta-pill:hover { background: rgb(255 255 255 / 8%); }
+html[data-theme="dark"] .text-collapse.is-collapsed::after { background: linear-gradient(to bottom, rgb(10 10 10 / 0%), #0a0a0a); }
+html[data-theme="dark"] .read-more { background: rgb(255 255 255 / 8%); color: #fff; }
+html[data-theme="dark"] .read-more:hover { background: rgb(255 255 255 / 14%); }
+html[data-theme="dark"] .project-bottom { border-top-color: var(--line); }
+html[data-theme="dark"] .gallery-main,
+html[data-theme="dark"] .gallery-item { background: var(--wash); }
+html[data-theme="dark"] .gallery-item--thin-border { border-color: var(--line-2); }
+html[data-theme="dark"] .project-subtitle a,
+html[data-theme="dark"] .project-subtitle u { color: #fff; }
+
+/* Modal del cartel en negro */
+html[data-theme="dark"] .eg-modal { background: rgba(0, 0, 0, 0.72); }
+html[data-theme="dark"] .eg-modal-card { background: #0f0f0f; border-color: var(--line-2); box-shadow: 0 18px 55px rgb(0 0 0 / 60%); }
+html[data-theme="dark"] .eg-modal-sub { color: var(--ink-2); }
+html[data-theme="dark"] .eg-modal-poster { background: transparent; border-color: var(--line-2); }
+html[data-theme="dark"] .eg-modal-close { color: #fff; background: rgb(255 255 255 / 8%); border-color: var(--line-2); }
+html[data-theme="dark"] .eg-modal-close:hover { background: rgb(255 255 255 / 14%); }
+
+/* Stack: el grosor del anillo arcoíris lo marca el hueco de ::before (1.5px: fino pero visible) */
+html[data-theme="dark"] .stack-icon::before { inset: 1.5px; }
