@@ -290,3 +290,11 @@ h1 { margin-bottom: 54px; }
 }
 @media (max-width: 640px) { .hero-band .hero-subtitle { font-size: 17px; } }
 .hero-subtitle .lead { font-weight: 500; }
+
+/* Cabecera en tres columnas: foto | enlaces centrados en la página | pastilla + tema.
+   Con espacio, los enlaces quedan en el centro exacto; si no cabe, solo se desplazan lo justo. */
+.nav-shell { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; }
+.nav-avatar { justify-self: start; }
+.nav-main { justify-self: center; align-items: center; flex: initial; }
+.nav-shell > .nav-actions { justify-self: end; }
+@media (max-width: 820px) { .nav-links { display: none; } }
