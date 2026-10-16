@@ -47,7 +47,9 @@
       };
 
       document.addEventListener("keydown", (e) => {
-        if (e.key.toLowerCase() === "c" && !e.metaKey && !e.ctrlKey && !e.altKey) {
+        const target = e.target;
+        const typing = target && (target.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(target.tagName));
+        if (!typing && e.key.toLowerCase() === "c" && !e.metaKey && !e.ctrlKey && !e.altKey) {
           if (navigator.clipboard && navigator.clipboard.writeText) {
             navigator.clipboard.writeText(email).then(showToast).catch(showToast);
           } else {

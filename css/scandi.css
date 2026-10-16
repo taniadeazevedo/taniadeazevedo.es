@@ -270,3 +270,6 @@ h1 { font-size: clamp(2.4rem, 5vw, 4.5rem); }
   .hero-intro { font-size: 1.05rem; margin-bottom: 20px; }
   .hero-noline .gradient-word { margin: 0.04em 0.02em; }
 }
+
+/* "Pulsa C para copiar mi email" ahora vive junto al botón de contacto */
+.contact-actions .hero-shortcut { margin: 0; }
