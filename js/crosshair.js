@@ -1,14 +1,15 @@
-// Retícula tipo herramienta de diseño sobre el hero: líneas y coordenadas que siguen al cursor,
-// y que se enganchan y miden titulares, botones, enlaces y logos. Inspirado en Crosshair de React Bits, en JS puro.
+// Retícula tipo herramienta de diseño sobre el bloque principal del hero (saludo, titular y botón de CV; acaba en la línea de debajo):
+// líneas y coordenadas que siguen al cursor y que se enganchan y miden esos elementos. Inspirado en Crosshair de React Bits, en JS puro.
 // Solo escritorio con ratón.
 (function () {
-  var zone = document.querySelector('.hero-viewport');
+  var zone = document.querySelector('.hero');
   if (!zone) return;
 
   var desktop = window.matchMedia('(min-width: 901px) and (hover: hover) and (pointer: fine)');
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var LOCKABLE = 'a, button, h1, .hero-subtitle, .brand-logo';
-  var TEXT_BOUNDS = 'h1, .hero-subtitle';
+  var LOCKABLE = 'a, button, .hero-intro, .hero-title';
+  var TEXT_BOUNDS = '.hero-intro, .hero-title';
+  var PAD = 10;
 
   var layer = document.createElement('div');
   layer.className = 'crosshair';
@@ -33,6 +34,19 @@
       r = el.getBoundingClientRect();
     }
     return { l: r.left - zr.left, t: r.top - zr.top, r: r.right - zr.left, b: r.bottom - zr.top };
+  }
+
+  // Elige el objetivo cuya caja (texto real o elemento) contiene al puntero; si coinciden varios, el más pequeño
+  function pickTarget(x, y, zr) {
+    var best = null, bestArea = Infinity;
+    [].forEach.call(zone.querySelectorAll(LOCKABLE), function (el) {
+      var m = measure(el, zr);
+      if (x >= m.l - PAD && x <= m.r + PAD && y >= m.t - PAD && y <= m.b + PAD) {
+        var area = (m.r - m.l) * (m.b - m.t);
+        if (area < bestArea) { bestArea = area; best = el; }
+      }
+    });
+    return best;
   }
 
   function frame(now) {
@@ -88,9 +102,7 @@
     layer.classList.toggle('is-on', inside);
     document.body.classList.toggle('crosshair-on', inside);
     if (inside) {
-      var el = document.elementFromPoint(e.clientX, e.clientY);
-      var hit = el && el.closest ? el.closest(LOCKABLE) : null;
-      lockEl = hit && zone.contains(hit) ? hit : null;
+      lockEl = pickTarget(e.clientX - zr.left, e.clientY - zr.top, zr);
       layer.classList.toggle('is-locked', !!lockEl);
       if (!cur) { cur = null; }
       wake();
