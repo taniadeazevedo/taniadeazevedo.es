@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="dark">
+<html lang="es">
 <head>
   <meta charset="UTF-8" />
   <title>La Nueva Línea – Proyecto · Tania de Azevedo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="../js/theme.js"></script>
   <style>
     :root {
       --bg-body: #f5f5f7;
@@ -474,6 +475,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/scandi-project.css" />
   <link rel="stylesheet" href="../css/cursor-ring.css" />
+  <link rel="stylesheet" href="../css/theme-toggle.css" />
   <link rel="stylesheet" href="../css/scandi-dark.css" />
 </head>
 
@@ -484,10 +486,16 @@
     <div class="nav-wrapper">
       <div class="nav-shell">
         <a class="nav-avatar" href="../" aria-label="Volver al inicio"><img src="../imgs/Yo.jpg" alt="Tania de Azevedo" /></a>
+        <div class="nav-actions">
         <a href="mailto:taniadeazevedoribeiro@gmail.com" class="nav-cta">
           <span class="nav-cta-dot"></span>
           <span>Available for work</span>
         </a>
+        <button class="theme-toggle" type="button" aria-label="Cambiar tema" aria-pressed="false">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </button>
+        </div>
       </div>
     </div>
   </header>

@@ -1,0 +1,16 @@
+/* Interruptor de tema (sol/luna) junto a la pastilla "Available for work" */
+.theme-toggle {
+  flex-shrink: 0; width: 36px; height: 36px; padding: 0; border-radius: 999px;
+  border: 1px solid var(--line-2); background: transparent; color: var(--ink);
+  display: inline-flex; align-items: center; justify-content: center; cursor: pointer;
+  transition: background-color .2s ease, transform .16s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.theme-toggle:hover { background: var(--wash); transform: translateY(-1px); }
+.theme-toggle:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+.theme-toggle svg { width: 18px; height: 18px; display: block; }
+.theme-toggle .icon-sun { display: none; }
+html[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+html[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+.nav-actions { display: flex; align-items: center; gap: 10px; }
+:root { color-scheme: light; }
