@@ -289,3 +289,4 @@ h1 { margin-bottom: 54px; }
   .hero-band .brands-section { padding-top: 20px; padding-bottom: 48px; }
 }
 @media (max-width: 640px) { .hero-band .hero-subtitle { font-size: 17px; } }
+.hero-subtitle .lead { font-weight: 500; }
