@@ -279,3 +279,13 @@ h1 { font-size: clamp(2.4rem, 5vw, 4.5rem); }
 .hero-intro + br { display: none; }
 .hero-actions { margin-bottom: 0; }
 @media (min-width: 901px) { .hero { padding: 56px 0; } }
+
+/* Ritmo del hero (huecos en múltiplos de 8): saludo y titular con más aire, franja inferior con más respiro */
+.hero-intro { margin-bottom: 32px; }
+h1 { margin-bottom: 54px; }
+.hero-band .hero-subtitle { font-size: 18px; max-width: 60ch; }
+@media (min-width: 901px) {
+  .hero-band { padding-top: 61px; }
+  .hero-band .brands-section { padding-top: 20px; padding-bottom: 48px; }
+}
+@media (max-width: 640px) { .hero-band .hero-subtitle { font-size: 17px; } }
