@@ -490,6 +490,49 @@
 }
 
 
+
+    /* ---------------- EL FESTIVAL EN CIFRAS ---------------- */
+    .ohm-stats { padding: 56px 0 16px; border-top: 1px solid var(--line); }
+    .ohm-head { text-align: center; max-width: 560px; margin: 0 auto 36px; }
+    .ohm-eyebrow { display: block; margin-bottom: 10px; font-size: 14px; font-weight: 500; color: var(--ink-3); }
+    .ohm-head h2 { margin: 0 0 10px; font-size: clamp(1.6rem, 2.8vw, 2.1rem); font-weight: 500; letter-spacing: -0.03em; line-height: 1.15; color: var(--ink); }
+    .ohm-head p { margin: 0; font-size: 16px; line-height: 1.55; color: var(--ink-2); }
+
+    /* cifras: planas, con borde fino */
+    .ohm-tiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-bottom: 16px; }
+    .ohm-tile { padding: 22px 22px 20px; border-radius: 12px; background: transparent; border: 1px solid var(--line-2); }
+    .ohm-tile b { display: block; font-size: clamp(1.9rem, 3vw, 2.5rem); font-weight: 400; letter-spacing: -0.04em; line-height: 1; color: var(--ink); }
+    .ohm-tile span { display: block; margin-top: 10px; font-size: 14px; line-height: 1.4; color: var(--ink-2); }
+
+    /* tarjetas: tres columnas, texto sobre fondo gris suave */
+    .ohm-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .ohm-card { display: flex; flex-direction: column; padding: 26px; border: 1px solid var(--line-2); border-radius: 12px; background: transparent; }
+    .ohm-label { margin-bottom: 12px; font-size: 14px; font-weight: 500; color: var(--ink-3); }
+    .ohm-card h3 { margin: 0 0 8px; font-size: 18px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.3; color: var(--ink); }
+    .ohm-card p { margin: 0; font-size: 14.5px; line-height: 1.6; color: var(--ink-2); }
+    .ohm-visual { margin-top: auto; padding-top: 22px; }
+    .ohm-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; padding-top: 16px; border-top: 1px solid var(--line); }
+    .ohm-pair b { display: block; font-size: 1.4rem; font-weight: 400; letter-spacing: -0.03em; line-height: 1.1; color: var(--ink); }
+    .ohm-pair span { display: block; margin-top: 4px; font-size: 13px; line-height: 1.35; color: var(--ink-2); }
+    .ohm-ring { display: flex; align-items: center; gap: 16px; padding-top: 16px; border-top: 1px solid var(--line); }
+    .ohm-ring svg { width: 72px; height: 72px; flex-shrink: 0; }
+    .ohm-ring .trk { fill: none; stroke: var(--line-2); stroke-width: 5; }
+    .ohm-ring .val { fill: none; stroke: var(--ink); stroke-width: 5; stroke-linecap: round; transform: rotate(-90deg); transform-origin: 40px 40px; }
+    .ohm-ring .num { font-size: 20px; font-weight: 400; fill: var(--ink); text-anchor: middle; font-family: var(--font-sans, system-ui, sans-serif); }
+    .ohm-ring p { font-size: 14px; }
+    .ohm-bars { display: grid; gap: 12px; padding-top: 16px; border-top: 1px solid var(--line); }
+    .ohm-bar-top { display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 13px; color: var(--ink-2); }
+    .ohm-bar-top b { font-weight: 500; color: var(--ink); }
+    .ohm-track { height: 6px; border-radius: 99px; background: var(--line); overflow: hidden; }
+    .ohm-track i { display: block; height: 100%; border-radius: 99px; background: var(--ink); }
+    .ohm-track i.dim { background: var(--ink-3); opacity: .35; }
+    .ohm-pair, .ohm-ring, .ohm-bars { box-sizing: border-box; min-height: 104px; }
+    .ohm-note { margin: 18px 0 0; text-align: center; font-size: 13px; color: var(--ink-3); }
+
+    @media (max-width: 960px) {
+      .ohm-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .ohm-cards { grid-template-columns: minmax(0, 1fr); }
+    }
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/scandi-project.css" />
@@ -570,7 +613,7 @@
               <p>
                 El nuevo sistema se construye sobre una <strong>retícula flexible y modular</strong> que unifica la comunicación y permite
                 generar piezas consistentes en todos los formatos: desde soportes digitales y señalética urbana, hasta campañas, redes sociales,
-                newsletters, web y merchandising. Además de definir la estructura y el diseño de la interfaz web, me ocupo de mantener la web viva,
+                newsletters, web y merchandising. Además de definir la estructura y el diseño de la interfaz web, me ocupé de mantener la web viva,
                 actualizando contenidos y adaptando la gráfica de cada edición.
               </p>
             </div>
@@ -683,6 +726,64 @@
     
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- EL FESTIVAL EN CIFRAS -->
+    <section class="ohm-stats" aria-label="El festival en cifras">
+      <div class="container">
+        <div class="ohm-head">
+          <h2>El festival en cifras</h2>
+          <p>Lo que mueve un sistema gráfico pensado para la web, las newsletters, la calle y las pantallas.</p>
+        </div>
+
+        <div class="ohm-tiles">
+          <div class="ohm-tile"><b>2,6 M</b><span>visitas a la web del festival</span></div>
+          <div class="ohm-tile"><b>+20.700</b><span>suscriptores a las newsletters</span></div>
+          <div class="ohm-tile"><b>316</b><span>pantallas de la campaña</span></div>
+          <div class="ohm-tile"><b>+50.000</b><span>visitantes al festival</span></div>
+        </div>
+
+        <div class="ohm-cards">
+
+          <article class="ohm-card">
+            <div class="ohm-label">La web</div>
+            <h3>Diseño de la interfaz web</h3>
+            <p>Estructura e interfaz de la web del festival.</p>
+            <div class="ohm-visual">
+              <div class="ohm-pair">
+                <div><b>1,2 M</b><span>páginas vistas</span></div>
+                <div><b>11 min</b><span>duración media de la visita</span></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="ohm-card">
+            <div class="ohm-label">Las newsletters</div>
+            <h3>20 envíos a lo largo de la edición</h3>
+            <p>Diseño de las piezas y envíos a más de 20.700 suscriptores.</p>
+            <div class="ohm-visual">
+              <div class="ohm-ring" role="img" aria-label="Tasa de apertura de las newsletters: 64 por ciento">
+                <svg viewBox="0 0 80 80" aria-hidden="true"><circle class="trk" cx="40" cy="40" r="34"/><circle class="val" cx="40" cy="40" r="34" stroke-dasharray="136.7 213.6"/><text class="num" x="40" y="47">64%</text></svg>
+                <p>de tasa de apertura</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="ohm-card">
+            <div class="ohm-label">Digital primero</div>
+            <h3>90 % menos impresión</h3>
+            <p>Programas y materiales en digital, con más de 2.000 descargas del programa online.</p>
+            <div class="ohm-visual">
+              <div class="ohm-bars">
+                <div><div class="ohm-bar-top"><span>Impresión tradicional</span><b>100 %</b></div><div class="ohm-track"><i class="dim" style="width:100%"></i></div></div>
+                <div><div class="ohm-bar-top"><span>Con el sistema digital</span><b>10 %</b></div><div class="ohm-track"><i style="width:10%"></i></div></div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
       </div>
     </section>
 
