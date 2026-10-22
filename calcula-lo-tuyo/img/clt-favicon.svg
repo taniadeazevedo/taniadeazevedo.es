@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Logo de CalculaLoTuyo: una «c» de línea (como los iconos de la web) y el punto verde del resultado -->
+  <rect width="64" height="64" rx="15" fill="#4F46E5"/>
+  <path d="M42.6 21.4A15 15 0 1 0 42.6 42.6" fill="none" stroke="#fff" stroke-width="7.5" stroke-linecap="round"/>
+  <circle cx="45" cy="32" r="4.6" fill="#34D399"/>
+</svg>

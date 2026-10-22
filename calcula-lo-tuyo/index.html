@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon.ico" sizes="48x48" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <title>Calcula lo tuyo – Caso de estudio · Tania de Azevedo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Caso de estudio de Calcula lo tuyo: diseño, desarrollo, SEO y visibilidad en buscadores de IA de una web de calculadoras laborales con 16 calculadoras y 13 guías." />
+  <link rel="canonical" href="https://taniadeazevedo.es/calcula-lo-tuyo/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Calcula lo tuyo – Caso de estudio" />
+  <meta property="og:description" content="Diseño, desarrollo, SEO y optimización de una web de calculadoras laborales, de la idea a las búsquedas." />
+  <meta property="og:image" content="https://taniadeazevedo.es/calcula-lo-tuyo/img/portada.jpg" />
+  <script src="../js/theme.js"></script>
+  <style>
+    :root {
+      --bg-body: #fff;
+      --text-main: #111;
+      --text-muted: #555;
+      --text-soft: #8a8a8a;
+      --radius-pill: 999px;
+      --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", "Segoe UI", sans-serif;
+      --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; min-height: 100vh; }
+    body { font-family: var(--font-sans); background: var(--bg-body); color: var(--text-main); -webkit-font-smoothing: antialiased; }
+    img { max-width: 100%; height: auto; display: block; }
+    figure { margin: 0; }
+    a { color: inherit; text-decoration: none; }
+    a:visited, a:hover, a:active { color: inherit; }
+    .container { width: 100%; max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+
+    /* ---------------- HERO ---------------- */
+    .project-hero { padding: 64px 0 56px; }
+    .project-hero-inner { text-align: center; }
+    .project-kicker { font-size: 0.86rem; color: var(--text-soft); margin-bottom: 18px; }
+    .project-title { margin: 0 0 20px; font-size: clamp(2.4rem, 5vw, 3.6rem); line-height: 1.08; font-weight: 600; }
+    .project-subtitle { margin: 0 auto 28px; font-size: 1.15rem; color: var(--text-muted); max-width: 640px; line-height: 1.55; }
+    .cs-cta { display: inline-flex; align-items: center; gap: 8px; margin: 0 auto 48px; padding: 12px 22px; border-radius: var(--radius-pill); background: var(--ink); color: var(--bg-body) !important; font-size: 15px; font-weight: 500; transition: transform .16s ease, opacity .16s ease; }
+    .cs-cta:hover { transform: translateY(-1px); opacity: .88; }
+    .project-hero-media { border-radius: 18px; overflow: hidden; border: 1px solid var(--line-2); box-shadow: 0 24px 56px -32px rgb(60 40 140 / 20%); }
+
+    /* ---------------- CIFRAS ---------------- */
+    .cs-stats { padding: 8px 0 72px; }
+    .cs-stats-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .cs-stat { padding: 32px 24px; border-left: 1px solid var(--line); }
+    .cs-stat:first-child { border-left: 0; padding-left: 0; }
+    .cs-stat b { display: block; font-size: clamp(2.4rem, 4.4vw, 3.6rem); font-weight: 500; letter-spacing: -0.04em; line-height: 1; color: var(--ink); }
+    .cs-stat span { display: block; margin-top: 10px; font-size: 15px; color: var(--ink-2); line-height: 1.4; }
+
+    /* ---------------- CABECERA DE SECCIÓN ---------------- */
+    .cs-section { padding: 40px 0 72px; }
+    .cs-center { text-align: center; max-width: 680px; margin: 0 auto 44px; }
+    .cs-eyebrow { display: block; margin-bottom: 12px; font-size: 14px; font-weight: 500; color: var(--ink-3); }
+    .cs-center h2 { margin: 0 0 14px; font-size: clamp(1.8rem, 3.4vw, 2.6rem); font-weight: 500; letter-spacing: -0.03em; line-height: 1.15; color: var(--ink); }
+    .cs-center p { margin: 0; font-size: 18px; line-height: 1.55; color: var(--ink-2); }
+    .cs-center strong { color: var(--ink); font-weight: 500; }
+
+    /* ---------------- META EN FILA ---------------- */
+    .cs-meta { display: grid; grid-template-columns: 1fr 1fr 2fr; gap: 40px; padding: 28px 0 0; margin-top: 8px; border-top: 1px solid var(--line); text-align: left; }
+    .cs-meta-label { margin-bottom: 8px; font-size: 14px; font-weight: 500; color: var(--ink-3); }
+    .cs-meta-main { font-size: 16px; font-weight: 500; color: var(--ink); line-height: 1.45; }
+    .project-meta-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+    .meta-pill { padding: 6px 12px; border-radius: 999px; border: 1px solid rgba(148, 163, 184, 0.7); cursor: default; }
+
+    /* ---------------- PANELES CON CAPTURAS ---------------- */
+    .cs-panel { position: relative; padding: 48px 48px 0; border-radius: 24px; overflow: hidden; margin-bottom: 24px; }
+    .cs-panel--lila { background: linear-gradient(135deg, #eef0ff 0%, #ddd9fb 100%); }
+    .cs-panel--menta { background: linear-gradient(135deg, #e2f8f2 0%, #c8ece3 100%); }
+    .cs-panel .shot { border-radius: 14px 14px 0 0; overflow: hidden; max-height: 520px; box-shadow: 0 24px 60px -18px rgb(30 20 90 / 38%); background: #fff; }
+    .cs-panel .shot img { width: 100%; }
+    .cs-float { position: absolute; right: 28px; bottom: 36px; width: 50%; max-width: 560px; border-radius: 16px; overflow: hidden; box-shadow: 0 26px 60px -12px rgb(30 20 90 / 55%); border: 1px solid rgb(255 255 255 / 70%); }
+    .cs-caption { margin: 0 0 24px; font-size: 14px; color: var(--ink-3); }
+
+    /* ---------------- TARJETAS (BENTO) ---------------- */
+    .cs-bento { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 20px; }
+    .card { display: flex; flex-direction: column; gap: 0; padding: 32px; border: 1px solid var(--line-2); border-radius: 22px; background: var(--wash); overflow: hidden; }
+    .card--5 { grid-column: span 5; }
+    .card--7 { grid-column: span 7; }
+    .card--12 { grid-column: span 12; }
+    .card-label { margin-bottom: 14px; font-size: 14px; font-weight: 500; color: var(--ink-3); }
+    .card h3 { margin: 0 0 10px; font-size: 26px; font-weight: 500; letter-spacing: -0.025em; line-height: 1.2; color: var(--ink); }
+    .card p { margin: 0; font-size: 16px; line-height: 1.6; color: var(--ink-2); }
+    .card p strong { color: var(--ink); font-weight: 500; }
+    .card-visual { margin-top: auto; padding-top: 26px; }
+    .card--wide { flex-direction: row; gap: 40px; align-items: stretch; }
+    .card--wide > div { flex: 1 1 0; min-width: 0; }
+    .card--wide .card-visual { margin-top: 0; padding-top: 0; }
+
+    /* consola y código */
+    .code { margin: 0; padding: 18px 20px; border-radius: 14px; background: #0d0b12; color: #d9d4ec; font-family: var(--font-mono); font-size: 12.5px; line-height: 1.65; white-space: pre-wrap; word-break: break-word; box-shadow: 0 16px 40px -16px rgb(0 0 0 / 45%); }
+    .code .dim { color: #8f89a8; }
+    .code .ok { color: #7ee2a8; }
+    .code .hl { color: #c9a8fb; }
+    .code-title { display: flex; align-items: center; gap: 6px; margin-bottom: 12px; font-size: 12px; color: #8f89a8; font-family: var(--font-mono); }
+    .code-title i { width: 9px; height: 9px; border-radius: 50%; background: #3a3550; }
+
+    /* resultado de buscador */
+    .serp { padding: 20px 22px; border-radius: 14px; background: #fff; border: 1px solid rgb(0 0 0 / 8%); box-shadow: 0 16px 40px -18px rgb(0 0 0 / 30%); color: #202124; }
+    .serp-site { display: flex; align-items: center; gap: 10px; font-size: 13px; color: #4d5156; }
+    .serp-site img { width: 26px; height: 26px; border-radius: 50%; border: 1px solid rgb(0 0 0 / 10%); }
+    .serp-title { margin: 10px 0 6px; font-size: 20px; line-height: 1.3; color: #1a0dab; }
+    .serp-desc { margin: 0 !important; font-size: 14px !important; line-height: 1.58 !important; color: #4d5156 !important; }
+
+    /* barras y anillos */
+    .bars { display: grid; gap: 14px; margin-bottom: 26px; }
+    .bar-top { display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 14px; color: var(--ink-2); }
+    .bar-top b { font-weight: 500; color: var(--ink); }
+    .bar-track { height: 12px; border-radius: 99px; background: var(--line); overflow: hidden; }
+    .bar-track i { display: block; height: 100%; border-radius: 99px; background: linear-gradient(90deg, #a855f7, #c9a8fb); }
+    .bar-track i.ext { background: var(--ink-3); opacity: .55; }
+    .rings { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+    .ring { text-align: center; }
+    .ring svg { width: 100%; max-width: 84px; height: auto; display: block; margin: 0 auto; }
+    .ring .trk { fill: none; stroke: var(--line-2); stroke-width: 6; }
+    .ring .val { fill: none; stroke-width: 6; stroke-linecap: round; transform: rotate(-90deg); transform-origin: 40px 40px; }
+    .ring text { font-size: 24px; font-weight: 500; fill: var(--ink); text-anchor: middle; font-family: var(--font-sans); }
+    .ring span { display: block; margin-top: 8px; font-size: 13px; color: var(--ink-2); line-height: 1.3; }
+    .cs-note { margin-top: 18px !important; font-size: 13px !important; color: var(--ink-3) !important; line-height: 1.5 !important; }
+
+    /* ---------------- CIERRE ---------------- */
+    .cs-end { padding: 24px 0 72px; }
+    .cs-end .cs-center { margin-bottom: 28px; }
+
+    /* ---------------- NAVEGACIÓN FINAL ---------------- */
+    .nav-link-arrow { display: inline-flex; align-items: center; gap: 6px; padding-bottom: 2px; border-bottom: 1px solid transparent; transition: border-color .18s ease, transform .18s ease; }
+    .nav-link-arrow::after { content: "→"; font-size: 1.1rem; transform: translateY(1px); transition: transform .18s ease; }
+    .nav-link-back::before { content: "←"; font-size: 1.1rem; transform: translateY(1px); margin-right: 6px; }
+    .nav-link-back::after { content: ""; }
+    .nav-link-arrow:hover { border-color: currentColor; }
+    .nav-link-arrow:hover::after { transform: translate(3px, 1px); }
+    .nav-link-back:hover::before { transform: translate(-3px, 1px); }
+    .project-bottom { padding: 40px 0 70px; }
+    .project-bottom-nav { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+    .project-bottom-nav a { flex: 0 0 auto; }
+
+    /* ---------------- CURSOR ---------------- */
+    .custom-cursor { position: fixed; top: 0; left: 0; border-radius: 999px; pointer-events: none; transform: translate(-50%, -50%); mix-blend-mode: multiply; }
+    @media (max-width: 900px) { .custom-cursor { display: none; } }
+
+    /* ---------------- RESPONSIVE ---------------- */
+    @media (max-width: 960px) {
+      .cs-bento { grid-template-columns: minmax(0, 1fr); }
+      .card--5, .card--7, .card--12 { grid-column: auto; }
+      .card--wide { flex-direction: column; gap: 24px; }
+      .cs-stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .cs-stat:nth-child(3) { border-left: 0; padding-left: 0; }
+      .cs-stat:nth-child(n+3) { border-top: 1px solid var(--line); }
+      .cs-meta { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+      .cs-panel { padding: 28px 24px 0; border-radius: 20px; }
+      .cs-float { position: static; width: 100%; max-width: none; margin: 18px 0 24px; }
+      .cs-panel .shot { max-height: 360px; }
+      .project-bottom-nav { flex-direction: column; align-items: flex-start; }
+    }
+    @media (max-width: 640px) {
+      .project-hero { padding-top: 52px; }
+      .project-kicker { margin-bottom: 12px; }
+      .card { padding: 24px; }
+      .cs-section { padding: 24px 0 56px; }
+      .project-bottom-nav { align-items: stretch; }
+      .project-bottom-nav a { align-self: stretch; justify-content: center; }
+    }
+
+    /* ---------------- MODO OSCURO ---------------- */
+    html[data-theme="dark"] .cs-panel--lila { background: linear-gradient(135deg, rgb(168 85 247 / 20%) 0%, rgb(99 102 241 / 14%) 100%); }
+    html[data-theme="dark"] .cs-panel--menta { background: linear-gradient(135deg, rgb(20 184 166 / 18%) 0%, rgb(16 120 110 / 12%) 100%); }
+    html[data-theme="dark"] .project-hero-media { box-shadow: 0 24px 56px -32px rgb(168 85 247 / 20%); }
+    html[data-theme="dark"] .code { border: 1px solid var(--line); }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/scandi-project.css" />
+  <link rel="stylesheet" href="../css/cursor-ring.css" />
+  <link rel="stylesheet" href="../css/theme-toggle.css" />
+  <link rel="stylesheet" href="../css/scandi-dark.css" />
+</head>
+
+<body>
+  <div class="custom-cursor"></div>
+
+  <header class="site-header">
+    <div class="nav-wrapper">
+      <div class="nav-shell">
+        <a class="nav-avatar" href="../" aria-label="Volver al inicio"><img src="../imgs/Yo.jpg" alt="Tania de Azevedo" /></a>
+        <div class="nav-actions">
+        <a href="mailto:taniadeazevedoribeiro@gmail.com" class="nav-cta" title="Escríbeme por email">
+          <span class="nav-cta-dot"></span>
+          <span>Open to work</span>
+        </a>
+        <button class="theme-toggle" type="button" aria-label="Cambiar tema" aria-pressed="false">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="project-hero">
+      <div class="container">
+        <div class="project-hero-inner">
+          <div class="project-kicker">Caso de estudio · Web app</div>
+          <h1 class="project-title shine-title">Calcula lo tuyo</h1>
+
+          <p class="project-subtitle">
+            Calculadoras laborales para entender tu despido, tu paro o tu nómina sin leer el BOE.
+            Diseñada, desarrollada y posicionada por mí, <strong>de la idea a las búsquedas</strong>.
+          </p>
+
+          <a class="cs-cta" href="https://calculalotuyo.es" target="_blank" rel="noopener noreferrer">Visitar calculalotuyo.es</a>
+
+          <figure class="project-hero-media">
+            <img src="img/portada.jpg" width="1440" height="1000" alt="Portada de Calcula lo tuyo: buscador y nueve situaciones laborales como «Me han despedido» o «Estoy de baja»" />
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- CIFRAS -->
+    <section class="cs-stats" aria-label="El proyecto en cifras">
+      <div class="container">
+        <div class="cs-stats-grid">
+          <div class="cs-stat"><b>16</b><span>calculadoras laborales</span></div>
+          <div class="cs-stat"><b>13</b><span>guías revisadas contra el BOE</span></div>
+          <div class="cs-stat"><b>155</b><span>páginas en el sitemap</span></div>
+          <div class="cs-stat"><b>27</b><span>pruebas automáticas de cálculo</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EL RETO -->
+    <section class="cs-section" style="padding-bottom: 56px;">
+      <div class="container">
+        <div class="cs-center" style="margin-bottom: 36px;">
+          <span class="cs-eyebrow">El reto</span>
+          <h2>Una sola pregunta: «¿cuánto me corresponde?»</h2>
+          <p>
+            La información laboral está repartida entre el BOE, la Seguridad Social y Hacienda, y escrita en lenguaje legal.
+            Calcula lo tuyo responde en segundos, sin registro y sin que los datos salgan del dispositivo.
+          </p>
+        </div>
+
+        <div class="cs-meta">
+          <div>
+            <div class="cs-meta-label">Rol</div>
+            <div class="cs-meta-main">Diseño, desarrollo y SEO. Proyecto propio.</div>
+          </div>
+          <div>
+            <div class="cs-meta-label">Año</div>
+            <div class="cs-meta-main">2026 · en marcha</div>
+          </div>
+          <div>
+            <div class="cs-meta-label">Herramientas</div>
+            <div class="project-meta-pills">
+              <span class="meta-pill">HTML</span>
+              <span class="meta-pill">CSS</span>
+              <span class="meta-pill">JavaScript</span>
+              <span class="meta-pill">Python</span>
+              <span class="meta-pill">GitHub Pages</span>
+              <span class="meta-pill">Search Console</span>
+              <span class="meta-pill">Schema.org</span>
+              <span class="meta-pill">Claude Code</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DISEÑO -->
+    <section class="cs-section">
+      <div class="container">
+        <div class="cs-center">
+          <span class="cs-eyebrow">Diseño y experiencia</span>
+          <h2>Pensada para quien tiene prisa</h2>
+          <p>
+            La portada se organiza por <strong>lo que te ha pasado</strong>, no por nombres técnicos. Cada calculadora
+            abre con una respuesta rápida y termina en un resultado que se lee de un vistazo, con opción de guardarlo en PDF, compartirlo como imagen o enviarlo por WhatsApp.
+          </p>
+        </div>
+
+        <div class="cs-panel cs-panel--lila">
+          <div class="shot">
+            <img src="img/calculadora.jpg" width="1440" height="1000" loading="lazy" alt="Calculadora de cuota de autónomos con respuesta rápida, formulario y botón de calcular" />
+          </div>
+          <figure class="cs-float">
+            <img src="img/resultado.jpg" width="1150" height="250" loading="lazy" alt="Resultado de la calculadora: 380,88 euros al mes de cuota y 4.571 euros al año" />
+          </figure>
+        </div>
+        <p class="cs-caption">Calculadora de autónomos: respuesta rápida arriba, formulario claro y un resultado grande.</p>
+
+        <div class="cs-panel cs-panel--menta">
+          <div class="shot" style="max-height:none;">
+            <img src="img/calendario.jpg" width="1440" height="1000" loading="lazy" alt="Calendario laboral 2027 con festivos en rojo, días puente en verde y filtro por comunidad" />
+          </div>
+        </div>
+        <p class="cs-caption">Calendario 2027 con identidad propia (verde azulado) para no mezclarse con las calculadoras.</p>
+      </div>
+    </section>
+
+    <!-- LO QUE HAY DETRÁS -->
+    <section class="cs-section">
+      <div class="container">
+        <div class="cs-center">
+          <span class="cs-eyebrow">Lo que no se ve</span>
+          <h2>Rigor, búsquedas y velocidad</h2>
+          <p>Una web de derechos y de dinero tiene que ser fiable, encontrarse fácil y cargar rápido. Esto es lo que hay detrás.</p>
+        </div>
+
+        <div class="cs-bento">
+
+          <!-- RIGOR -->
+          <article class="card card--5">
+            <div class="card-label">Rigor</div>
+            <h3>Cálculos contrastados</h3>
+            <p>
+              El motor de IRPF está contrastado con el algoritmo de retenciones de la <strong>Agencia Tributaria</strong>,
+              las cifras legales viven en un único archivo y cada guía muestra su fecha de revisión y su fuente oficial.
+            </p>
+            <div class="card-visual">
+              <div class="code" role="img" aria-label="Resultado de las pruebas automáticas de los cálculos"><div class="code-title"><i></i><i></i><i></i>&nbsp;pruebas automáticas</div><span class="ok">✅</span> Paro: 1.800 €/mes, 2 años, sin hijos → tope máximo 1.225 € y 8 meses
+<span class="ok">✅</span> Despido improcedente: 28.000 €/año, 5 años → 12.658 €
+<span class="ok">✅</span> Lotería: el Gordo (400.000 €) → te llegan 328.000 €
+<span class="ok">✅</span> Renta: 21.000 € de un pagador → no está obligado
+<span class="dim">… 27 pruebas</span>
+<span class="hl">Todo bien ✅</span></div>
+            </div>
+          </article>
+
+          <!-- VELOCIDAD -->
+          <article class="card card--7">
+            <div class="card-label">Velocidad</div>
+            <h3>42 KB propios y cero frameworks</h3>
+            <p>
+              HTML, CSS y JavaScript puros, tipografía del sistema, iconos en un único SVG y cálculos en el navegador:
+              no hay servidor ni esperas.
+            </p>
+            <div class="card-visual">
+              <div class="bars">
+                <div>
+                  <div class="bar-top"><span>Lo que carga mi web</span><b>42 KB</b></div>
+                  <div class="bar-track"><i style="width:12.5%"></i></div>
+                </div>
+                <div>
+                  <div class="bar-top"><span>Scripts de terceros de Google</span><b>294 KB</b></div>
+                  <div class="bar-track"><i class="ext" style="width:87.5%"></i></div>
+                </div>
+              </div>
+
+              <div class="rings" role="img" aria-label="Lighthouse en móvil: rendimiento 74, accesibilidad 95, buenas prácticas 100, SEO 100">
+                <div class="ring">
+                  <svg viewBox="0 0 80 80" aria-hidden="true"><circle class="trk" cx="40" cy="40" r="34"/><circle class="val" cx="40" cy="40" r="34" stroke="#f59e0b" stroke-dasharray="158.1 213.6"/><text x="40" y="49">74</text></svg>
+                  <span>Rendimiento</span>
+                </div>
+                <div class="ring">
+                  <svg viewBox="0 0 80 80" aria-hidden="true"><circle class="trk" cx="40" cy="40" r="34"/><circle class="val" cx="40" cy="40" r="34" stroke="#10b981" stroke-dasharray="203 213.6"/><text x="40" y="49">95</text></svg>
+                  <span>Accesibilidad</span>
+                </div>
+                <div class="ring">
+                  <svg viewBox="0 0 80 80" aria-hidden="true"><circle class="trk" cx="40" cy="40" r="34"/><circle class="val" cx="40" cy="40" r="34" stroke="#10b981" stroke-dasharray="213.6 213.6"/><text x="40" y="49">100</text></svg>
+                  <span>Buenas prácticas</span>
+                </div>
+                <div class="ring">
+                  <svg viewBox="0 0 80 80" aria-hidden="true"><circle class="trk" cx="40" cy="40" r="34"/><circle class="val" cx="40" cy="40" r="34" stroke="#10b981" stroke-dasharray="213.6 213.6"/><text x="40" y="49">100</text></svg>
+                  <span>SEO</span>
+                </div>
+              </div>
+              <p class="cs-note">
+                Lighthouse en móvil sobre la web publicada (22 oct. 2026, red 4G simulada). Lo que frena el 74 no es mi código,
+                sino los scripts de terceros: el siguiente paso es retrasar su carga.
+              </p>
+            </div>
+          </article>
+
+          <!-- SEO -->
+          <article class="card card--7">
+            <div class="card-label">SEO</div>
+            <h3>155 páginas pensadas para búsquedas reales</h3>
+            <p>
+              Partí de lo que la gente escribe de verdad en el buscador y creé grupos de páginas por intención
+              (bruto a neto, paro, despido) <strong>sin contenido duplicado</strong>: solo existe una página cuando aporta un resultado distinto.
+              Con sitemap, datos estructurados, Search Console, Bing e IndexNow.
+            </p>
+            <div class="card-visual">
+              <div class="serp">
+                <div class="serp-site"><img src="img/clt-favicon.svg" alt="" width="26" height="26" /><span>calculalotuyo.es</span></div>
+                <div class="serp-title">Calculadora Laboral 2026: despido, finiquito, paro y nómina</div>
+                <p class="serp-desc">Calcula gratis tu indemnización por despido, finiquito, paro, sueldo neto e IRPF con las cifras de 2026. 16 calculadoras y 13 guías basadas en el BOE.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- GEO -->
+          <article class="card card--5">
+            <div class="card-label">GEO · buscadores de IA</div>
+            <h3>Fácil de citar para una IA</h3>
+            <p>
+              Cada vez más gente pregunta a un asistente en vez de buscar en Google. Por eso hay un <strong>llms.txt</strong>,
+              la respuesta va al principio de cada página y existe un informe con sus datos en CSV.
+            </p>
+            <div class="card-visual">
+              <div class="code" role="img" aria-label="Fragmento del archivo llms.txt de la web"><div class="code-title"><i></i><i></i><i></i>&nbsp;llms.txt</div><span class="hl"># CalculaLoTuyo</span>
+
+<span class="dim">&gt; Calculadoras laborales gratuitas para España (2026): despido, finiquito, paro, sueldo neto, IRPF…</span>
+
+<span class="hl">## Cifras clave de 2026</span>
+- Salario mínimo (SMI): 1.221 € al mes en 14 pagas (17.094 € al año). IPREM: 600 € al mes.</div>
+            </div>
+          </article>
+
+          <!-- AUTOMATIZACIÓN -->
+          <article class="card card--12 card--wide">
+            <div>
+              <div class="card-label">Automatización</div>
+              <h3>Un comando regenera toda la web</h3>
+              <p>
+                Con 155 páginas, editar una a una es imposible. Scripts de Python generan cada familia de páginas
+                a partir de una plantilla y un archivo de datos. Para pasar de 2026 a 2027 se actualizan las cifras
+                y se vuelve a lanzar. Además, una <strong>revisión mensual programada</strong> vigila los cambios del BOE.
+              </p>
+            </div>
+            <div class="card-visual">
+              <div class="code" role="img" aria-label="Pasos que ejecuta el comando regenerar"><div class="code-title"><i></i><i></i><i></i>&nbsp;terminal</div><span class="hl">$</span> sh _herramientas/regenerar.sh
+<span class="dim">→</span> minifica el CSS
+<span class="dim">→</span> sueldos, paro y despido
+<span class="dim">→</span> calendario por ciudades
+<span class="dim">→</span> modelos, informe, jubilación y renta
+<span class="dim">→</span> SEO final, títulos y respuestas rápidas
+<span class="dim">→</span> menú, iconos y buscador
+<span class="dim">→</span> pruebas y sitemap</div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CIERRE -->
+    <section class="cs-end">
+      <div class="container">
+        <div class="cs-center">
+          <span class="cs-eyebrow">Qué he aprendido</span>
+          <h2>Pensar el producto entero</h2>
+          <p>
+            Que se vea bien no basta si no se encuentra, no carga rápido o no es fiable. La web lleva online desde
+            el 14 de octubre de 2026, así que aún es pronto para hablar de resultados: cuando Search Console tenga datos, los añadiré aquí.
+          </p>
+        </div>
+        <div style="text-align:center;">
+          <a class="cs-cta" style="margin-bottom:0" href="https://calculalotuyo.es" target="_blank" rel="noopener noreferrer">Visitar calculalotuyo.es</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- NAVEGACIÓN FINAL -->
+    <section class="project-bottom">
+      <div class="container">
+        <div class="project-bottom-nav">
+          <a href="https://taniadeazevedo.es" class="nav-link-arrow nav-link-back">Home</a>
+          <a href="https://taniadeazevedo.es/open-house-malaga/" class="nav-link-arrow">Ver otro proyecto</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Custom cursor
+    (function () {
+      const cursor = document.querySelector(".custom-cursor");
+      if (!cursor) return;
+      document.addEventListener("mousemove", (e) => {
+        cursor.style.top = e.clientY + "px";
+        cursor.style.left = e.clientX + "px";
+      });
+      document.querySelectorAll("a, button").forEach((el) => {
+        el.addEventListener("mouseenter", () => cursor.classList.add("is-hover"));
+        el.addEventListener("mouseleave", () => cursor.classList.remove("is-hover"));
+      });
+    })();
+  </script>
+  <script src="../js/cursor-ring.js" defer></script>
+</body>
+</html>
