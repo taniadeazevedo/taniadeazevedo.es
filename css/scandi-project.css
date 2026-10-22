@@ -47,8 +47,9 @@ body { font-family: var(--font-sans); font-size: 17px; line-height: 1.6; color: 
 
 /* Leer más */
 .text-collapse.is-collapsed::after { background: linear-gradient(to bottom, rgb(255 255 255 / 0%), #fff); }
-.read-more { font-size: 15px; font-weight: 500; color: var(--ink); background: var(--wash); border-radius: 999px; padding: 8px 14px; }
-.read-more:hover { background: rgb(0 0 0 / 8%); }
+/* "Leer más / Leer menos": solo texto, sin botón (subrayado al pasar el ratón) */
+.read-more { font-size: 15px; font-weight: 500; color: var(--ink); background: none !important; border: 0 !important; border-radius: 0; padding: 2px 0; transform: none !important; }
+.read-more:hover .read-more__label { text-decoration: underline; text-underline-offset: 3px; }
 .read-more:focus-visible { outline-color: var(--ink); }
 
 /* Carrusel y navegación inferior */
