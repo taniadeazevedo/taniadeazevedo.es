@@ -6,7 +6,7 @@
   <link rel="icon" href="/favicon.ico" sizes="48x48" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <title>LIV Golf Valderrama – Proyecto · Tania de Azevedo</title>
-  <meta name="description" content="Más de 200 adaptaciones de la campaña de LIV Golf Andalucía (Valderrama): banners, skins y robapáginas, prensa, vallas, mupis, marquesinas y rotulación de vehículos y un velero." />
+  <meta name="description" content="Más de 200 adaptaciones de la campaña de LIV Golf Andalucía (Valderrama): publicidad online y offline: banners, prensa, vallas, mupis, marquesinas y rotulación de vehículos y un velero." />
   <link rel="canonical" href="https://taniadeazevedo.es/liv-golf/" />
   <meta property="og:type" content="article" />
   <meta property="og:title" content="LIV Golf Valderrama – Adaptaciones de campaña" />
@@ -483,6 +483,24 @@
 
       .text-collapse.is-collapsed { max-height: 220px; }
     }
+
+    /* ---------------- GALERÍA LIV: filas ordenadas, solo imágenes nítidas ---------------- */
+    .liv-gallery { display: grid; gap: 20px; }
+    .liv-gallery .gallery-item img { width: 100%; height: auto; display: block; }
+    .liv-row { display: grid; gap: 20px; }
+    .liv-row--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .liv-row--2 .gallery-item img { aspect-ratio: 2 / 1; object-fit: cover; object-position: top; }
+    .liv-row--3 { grid-template-columns: 3fr 3fr 3.9fr; align-items: stretch; }
+    .liv-row--3 > .gallery-item img { height: 100%; object-fit: cover; }
+    .liv-stack { display: flex; flex-direction: column; gap: 20px; min-height: 0; }
+    .liv-stack .gallery-item { flex: 1; min-height: 0; }
+    .liv-stack .gallery-item img { height: 100%; object-fit: cover; }
+    @media (max-width: 960px) {
+      .liv-row--2, .liv-row--3 { grid-template-columns: minmax(0, 1fr); }
+      .liv-row--2 .gallery-item img { aspect-ratio: auto; }
+      .liv-row--3 > .gallery-item img, .liv-stack .gallery-item img { height: auto; }
+      .liv-stack { display: contents; }
+    }
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/scandi-project.css" />
@@ -545,14 +563,14 @@
             <div class="text-collapse is-collapsed" id="workText">
               <p>
                 LIV Golf Andalucía fue el primer evento del circuito en España y se celebró en el Real Club Valderrama
-                del 30 de junio al 2 de julio. Trabajé como <strong>diseñadora en España</strong> y me encargué
-                de todas las adaptaciones de marca del evento, en coordinación con el equipo de diseño americano:
+                del 30 de junio al 2 de julio. Me encargué de todas las adaptaciones de marca del evento,
+                en coordinación con el equipo de diseño americano:
                 <strong>más de 200 adaptaciones de campaña</strong>, entre banners y el resto de soportes.
               </p>
 
               <p>
                 El reto estaba en la escala: un mismo concepto tenía que funcionar igual de bien en
-                <strong>robapáginas y skins</strong> online, en prensa, en <strong>vallas, mupis y marquesinas</strong>,
+                <strong>publicidad online y offline</strong>: prensa, <strong>vallas, mupis y marquesinas</strong>,
                 y también en vehículos, autobuses y hasta un velero, que vinilamos con la campaña. Además propusimos
                 <strong>una bola gigante de golf</strong> en una localización para llamar la atención del público.
                 Todo respetando siempre las reglas de la marca y los tiempos de cada medio.
@@ -569,16 +587,15 @@
         <aside class="project-meta">
           <div class="project-meta-block">
             <div class="project-meta-label">Rol</div>
-            <div class="project-meta-main">Diseñadora en España: más de 200 adaptaciones de marca del evento, en coordinación con el equipo de diseño americano.</div>
+            <div class="project-meta-main">Todas las adaptaciones de marca del evento (más de 200), en coordinación con el equipo de diseño americano.</div>
           </div>
 
           <div class="project-meta-block">
             <div class="project-meta-label">Áreas de trabajo</div>
             <div class="project-meta-pills">
               <span class="meta-pill">Adaptación de campaña</span>
-              <span class="meta-pill">Publicidad online</span>
-              <span class="meta-pill">Skins y robapáginas</span>
-              <span class="meta-pill">Prensa offline</span>
+              <span class="meta-pill">Publicidad online y offline</span>
+              <span class="meta-pill">Prensa</span>
               <span class="meta-pill">Vallas, mupis y marquesinas</span>
               <span class="meta-pill">Vinilado de vehículos y velero</span>
               <span class="meta-pill">Propuestas de activación</span>
@@ -590,60 +607,26 @@
 
     <!-- GALERÍA BENTO -->
     <section class="project-gallery">
-      <div class="container">
-        <div class="project-gallery-grid">
+      <div class="container liv-gallery">
 
-          <div class="gallery-main-group">
-            <figure class="gallery-main-horizontal">
-              <img src="img/cincodias-skin.jpg" alt="Skin y robapáginas de LIV Golf Valderrama en la portada de Cinco Días" loading="lazy" />
-            </figure>
-            <figure class="gallery-main-horizontal">
-              <img src="img/marca-portada.jpg" alt="Skin, megabanner y robapáginas de LIV Golf Valderrama en la portada de Marca" loading="lazy" />
-            </figure>
-            <figure class="gallery-main-horizontal">
-              <img src="img/opengolf-noticia.jpg" alt="Banners laterales de LIV Golf Andalucía en una noticia de OpenGolf.es" loading="lazy" />
-            </figure>
-            <figure class="gallery-main-horizontal">
-              <img src="img/opengolf-cabecera.jpg" alt="Banner de cabecera de LIV Golf Andalucía en OpenGolf.es" loading="lazy" />
-            </figure>
-            <figure class="gallery-main-horizontal">
-              <img src="img/marquesina.jpg" alt="Marquesina de autobús en Málaga con la campaña de LIV Golf Valderrama" loading="lazy" />
-            </figure>
-          </div>
+        <figure class="gallery-item"><img src="img/marca-portada.jpg" alt="Publicidad online de LIV Golf Valderrama en la portada de Marca" loading="lazy" /></figure>
 
-          <div class="gallery-column">
-            <figure class="gallery-item">
-              <img src="img/cincodias-movil.jpg" alt="Formato vertical y banner de LIV Golf Valderrama en Cinco Días para móvil" loading="lazy" />
-            </figure>
-            <figure class="gallery-item">
-              <img src="img/marca-movil.jpg" alt="Formato vertical y banner de LIV Golf Valderrama en la portada de Marca para móvil" loading="lazy" />
-            </figure>
-            <figure class="gallery-item">
-              <img src="img/vehiculo.jpg" alt="Vehículo rotulado con la campaña de LIV Golf Valderrama junto al campo de golf" loading="lazy" />
-            </figure>
-          </div>
-
+        <div class="liv-row liv-row--2">
+          <figure class="gallery-item"><img src="img/cincodias-skin.jpg" alt="Publicidad online de LIV Golf Valderrama en la portada de Cinco Días" loading="lazy" /></figure>
+          <figure class="gallery-item"><img src="img/opengolf-noticia.jpg" alt="Banners laterales de LIV Golf Andalucía en una noticia de OpenGolf.es" loading="lazy" /></figure>
         </div>
 
-        <div class="project-gallery-grid" style="margin-top:20px; grid-template-columns: minmax(0,1fr) minmax(0,1fr);">
-
-          <div class="gallery-column">
-            <figure class="gallery-item">
-              <img src="img/autobus.jpg" alt="Trasera de un autobús rotulada con la campaña de LIV Golf Valderrama" loading="lazy" />
-            </figure>
-            <figure class="gallery-item">
-              <img src="img/prensa-sgplus.jpg" alt="Página de prensa de LIV Golf Valderrama en la revista SG Plus" loading="lazy" />
-            </figure>
+        <div class="liv-row liv-row--3">
+          <figure class="gallery-item"><img src="img/cincodias-movil.jpg" alt="Formato vertical y banner de LIV Golf Valderrama en Cinco Días para móvil" loading="lazy" /></figure>
+          <figure class="gallery-item"><img src="img/marca-movil.jpg" alt="Formato vertical y banner de LIV Golf Valderrama en la portada de Marca para móvil" loading="lazy" /></figure>
+          <div class="liv-stack">
+            <figure class="gallery-item"><img src="img/autobus.jpg" alt="Trasera de un autobús rotulada con la campaña de LIV Golf Valderrama" loading="lazy" /></figure>
+            <figure class="gallery-item"><img src="img/mupi.jpg" alt="Mupi y marquesina de autobús en Málaga con la campaña de LIV Golf Valderrama" loading="lazy" /></figure>
           </div>
-
-          <figure class="gallery-item">
-              <img src="img/mupi.jpg" alt="Mupi de LIV Golf Valderrama en la calle" loading="lazy" />
-            </figure>
-
-          <figure class="gallery-item gallery-full">
-            <img src="img/valla.jpg" alt="Valla publicitaria de LIV Golf Valderrama, del 30 de junio al 2 de julio" loading="lazy" />
-          </figure>
         </div>
+
+        <figure class="gallery-item"><img src="img/banner-largo.jpg" alt="Banner alargado de LIV Golf Andalucía: 30 de junio - 2 de julio, compra tus entradas" loading="lazy" /></figure>
+
       </div>
     </section>
 
