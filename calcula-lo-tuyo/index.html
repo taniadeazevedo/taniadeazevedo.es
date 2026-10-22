@@ -45,11 +45,19 @@
 
     /* ---------------- CIFRAS ---------------- */
     .cs-stats { padding: 8px 0 72px; }
-    .cs-stats-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-    .cs-stat { padding: 32px 24px; border-left: 1px solid var(--line); }
-    .cs-stat:first-child { border-left: 0; padding-left: 0; }
-    .cs-stat b { display: block; font-size: clamp(2.4rem, 4.4vw, 3.6rem); font-weight: 500; letter-spacing: -0.04em; line-height: 1; color: var(--ink); }
-    .cs-stat span { display: block; margin-top: 10px; font-size: 15px; color: var(--ink-2); line-height: 1.4; }
+    .cs-stats-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+    .cs-stat { padding: 28px 26px 26px; border-radius: 22px; border: 1px solid rgb(0 0 0 / 5%); transition: transform .18s cubic-bezier(0.22, 0.61, 0.36, 1); }
+    .cs-stat:hover { transform: translateY(-4px) scale(1.02); }
+    .cs-stat b { display: block; font-size: clamp(2.8rem, 5vw, 4.2rem); font-weight: 500; letter-spacing: -0.045em; line-height: 1; }
+    .cs-stat span { display: block; margin-top: 14px; font-size: 15px; line-height: 1.4; color: rgb(0 0 0 / 66%); }
+    .cs-stat--lila { background: linear-gradient(145deg, #eef0ff 0%, #ddd9fb 100%); }
+    .cs-stat--lila b { color: #4f46e5; }
+    .cs-stat--menta { background: linear-gradient(145deg, #e2f8f2 0%, #c8ece3 100%); }
+    .cs-stat--menta b { color: #0f766e; }
+    .cs-stat--rosa { background: linear-gradient(145deg, #fdeef4 0%, #f8d7e6 100%); }
+    .cs-stat--rosa b { color: #be185d; }
+    .cs-stat--azul { background: linear-gradient(145deg, #e8f1ff 0%, #cfe2ff 100%); }
+    .cs-stat--azul b { color: #1d4ed8; }
 
     /* ---------------- CABECERA DE SECCIÓN ---------------- */
     .cs-section { padding: 40px 0 72px; }
@@ -64,15 +72,16 @@
     .cs-meta-label { margin-bottom: 8px; font-size: 14px; font-weight: 500; color: var(--ink-3); }
     .cs-meta-main { font-size: 16px; font-weight: 500; color: var(--ink); line-height: 1.45; }
     .project-meta-pills { display: flex; flex-wrap: wrap; gap: 8px; }
-    .meta-pill { padding: 6px 12px; border-radius: 999px; border: 1px solid rgba(148, 163, 184, 0.7); cursor: default; }
+    .meta-pill { padding: 6px 12px; border-radius: 999px; border: 1px solid rgba(148, 163, 184, 0.7); cursor: default; transition: transform 0.18s cubic-bezier(0.22, 0.61, 0.36, 1), background 0.18s ease; }
+    .meta-pill:hover { transform: translateY(-3px) scale(1.03); background: #fff; }
 
     /* ---------------- PANELES CON CAPTURAS ---------------- */
     .cs-panel { position: relative; padding: 48px 48px 0; border-radius: 24px; overflow: hidden; margin-bottom: 24px; }
-    .cs-panel--lila { background: linear-gradient(135deg, #eef0ff 0%, #ddd9fb 100%); }
-    .cs-panel--menta { background: linear-gradient(135deg, #e2f8f2 0%, #c8ece3 100%); }
-    .cs-panel .shot { border-radius: 14px 14px 0 0; overflow: hidden; max-height: 520px; box-shadow: 0 24px 60px -18px rgb(30 20 90 / 38%); background: #fff; }
+    .cs-panel--lila { background: var(--wash); }
+    .cs-panel--menta { background: var(--wash); }
+    .cs-panel .shot { border-radius: 14px 14px 0 0; overflow: hidden; max-height: 520px; box-shadow: 0 24px 60px -24px rgb(0 0 0 / 30%); background: #fff; }
     .cs-panel .shot img { width: 100%; }
-    .cs-float { position: absolute; right: 28px; bottom: 36px; width: 50%; max-width: 560px; border-radius: 16px; overflow: hidden; box-shadow: 0 26px 60px -12px rgb(30 20 90 / 55%); border: 1px solid rgb(255 255 255 / 70%); }
+    .cs-float { position: absolute; right: 28px; bottom: 36px; width: 50%; max-width: 560px; border-radius: 12px; overflow: hidden; box-shadow: 0 26px 60px -14px rgb(0 0 0 / 45%); }
     .cs-caption { margin: 0 0 24px; font-size: 14px; color: var(--ink-3); }
 
     /* ---------------- TARJETAS (BENTO) ---------------- */
@@ -121,6 +130,26 @@
     .ring span { display: block; margin-top: 8px; font-size: 13px; color: var(--ink-2); line-height: 1.3; }
     .cs-note { margin-top: 18px !important; font-size: 13px !important; color: var(--ink-3) !important; line-height: 1.5 !important; }
 
+
+    /* ---------------- MÓVILES ---------------- */
+    .cs-phones { display: flex; justify-content: center; align-items: flex-end; gap: 28px; padding: 48px 32px 0; border-radius: 24px; overflow: hidden; background: var(--wash); margin-bottom: 24px; }
+    .cs-phone { width: min(260px, 30%); border: 7px solid #0d0b12; border-bottom: 0; border-radius: 0; overflow: hidden; background: #fff; box-shadow: 0 24px 60px -24px rgb(0 0 0 / 40%); }
+    .cs-phone img { width: 100%; }
+
+    /* ---------------- ANATOMÍA DE UNA PÁGINA ---------------- */
+    .cs-rows { display: grid; gap: 24px; }
+    .cs-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr); gap: 48px; align-items: center; padding: 40px; border-radius: 26px; }
+    .cs-row--lila { background: var(--wash); }
+    .cs-row--menta { background: var(--wash); }
+    .cs-row--rosa { background: var(--wash); }
+    .cs-row--azul { background: var(--wash); }
+    .cs-row-n { display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; margin-bottom: 16px; border-radius: 50%; background: var(--ink); color: var(--bg-body); font-size: 15px; font-weight: 500; }
+    .cs-row h3 { margin: 0 0 12px; font-size: clamp(1.4rem, 2.4vw, 1.8rem); font-weight: 500; letter-spacing: -0.025em; line-height: 1.2; color: var(--ink); }
+    .cs-row p { margin: 0; font-size: 16px; line-height: 1.6; color: var(--ink-2); }
+    .cs-row p strong { color: var(--ink); font-weight: 500; }
+    .cs-row-media { display: grid; gap: 14px; }
+    .cs-row-media img { width: 100%; border-radius: 14px; box-shadow: 0 20px 50px -22px rgb(0 0 0 / 35%); background: #fff; }
+
     /* ---------------- CIERRE ---------------- */
     .cs-end { padding: 24px 0 72px; }
     .cs-end .cs-center { margin-bottom: 28px; }
@@ -147,8 +176,9 @@
       .card--5, .card--7, .card--12 { grid-column: auto; }
       .card--wide { flex-direction: column; gap: 24px; }
       .cs-stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .cs-stat:nth-child(3) { border-left: 0; padding-left: 0; }
-      .cs-stat:nth-child(n+3) { border-top: 1px solid var(--line); }
+      .cs-row { grid-template-columns: minmax(0, 1fr); gap: 28px; padding: 28px; }
+      .cs-phones { gap: 14px; padding: 32px 20px 0; }
+      .cs-phone { border-width: 5px; }
       .cs-meta { grid-template-columns: minmax(0, 1fr); gap: 24px; }
       .cs-panel { padding: 28px 24px 0; border-radius: 20px; }
       .cs-float { position: static; width: 100%; max-width: none; margin: 18px 0 24px; }
@@ -165,10 +195,18 @@
     }
 
     /* ---------------- MODO OSCURO ---------------- */
-    html[data-theme="dark"] .cs-panel--lila { background: linear-gradient(135deg, rgb(168 85 247 / 20%) 0%, rgb(99 102 241 / 14%) 100%); }
-    html[data-theme="dark"] .cs-panel--menta { background: linear-gradient(135deg, rgb(20 184 166 / 18%) 0%, rgb(16 120 110 / 12%) 100%); }
     html[data-theme="dark"] .project-hero-media { box-shadow: 0 24px 56px -32px rgb(168 85 247 / 20%); }
     html[data-theme="dark"] .code { border: 1px solid var(--line); }
+    html[data-theme="dark"] .cs-stat--lila { background: linear-gradient(135deg, rgb(168 85 247 / 20%) 0%, rgb(99 102 241 / 14%) 100%); }
+    html[data-theme="dark"] .cs-stat--menta { background: linear-gradient(135deg, rgb(20 184 166 / 18%) 0%, rgb(16 120 110 / 12%) 100%); }
+    html[data-theme="dark"] .cs-stat--rosa { background: linear-gradient(135deg, rgb(236 72 153 / 18%) 0%, rgb(190 24 93 / 12%) 100%); }
+    html[data-theme="dark"] .cs-stat--azul { background: linear-gradient(135deg, rgb(59 130 246 / 18%) 0%, rgb(29 78 216 / 12%) 100%); }
+    html[data-theme="dark"] .cs-stat { border-color: var(--line); }
+    html[data-theme="dark"] .cs-stat span { color: var(--ink-2); }
+    html[data-theme="dark"] .cs-stat--lila b { color: #a5b4fc; }
+    html[data-theme="dark"] .cs-stat--menta b { color: #5eead4; }
+    html[data-theme="dark"] .cs-stat--rosa b { color: #f9a8d4; }
+    html[data-theme="dark"] .cs-stat--azul b { color: #93c5fd; }
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/scandi-project.css" />
@@ -224,10 +262,10 @@
     <section class="cs-stats" aria-label="El proyecto en cifras">
       <div class="container">
         <div class="cs-stats-grid">
-          <div class="cs-stat"><b>16</b><span>calculadoras laborales</span></div>
-          <div class="cs-stat"><b>13</b><span>guías revisadas contra el BOE</span></div>
-          <div class="cs-stat"><b>155</b><span>páginas en el sitemap</span></div>
-          <div class="cs-stat"><b>27</b><span>pruebas automáticas de cálculo</span></div>
+          <div class="cs-stat cs-stat--lila"><b>16</b><span>calculadoras laborales</span></div>
+          <div class="cs-stat cs-stat--menta"><b>13</b><span>guías revisadas contra el BOE</span></div>
+          <div class="cs-stat cs-stat--rosa"><b>155</b><span>páginas en el sitemap</span></div>
+          <div class="cs-stat cs-stat--azul"><b>27</b><span>pruebas automáticas de cálculo</span></div>
         </div>
       </div>
     </section>
@@ -287,7 +325,7 @@
             <img src="img/calculadora.jpg" width="1440" height="1000" loading="lazy" alt="Calculadora de cuota de autónomos con respuesta rápida, formulario y botón de calcular" />
           </div>
           <figure class="cs-float">
-            <img src="img/resultado.jpg" width="1150" height="250" loading="lazy" alt="Resultado de la calculadora: 380,88 euros al mes de cuota y 4.571 euros al año" />
+            <img src="img/resultado.jpg" width="1074" height="208" loading="lazy" alt="Resultado de la calculadora: 380,88 euros al mes de cuota y 4.571 euros al año" />
           </figure>
         </div>
         <p class="cs-caption">Calculadora de autónomos: respuesta rápida arriba, formulario claro y un resultado grande.</p>
@@ -298,6 +336,102 @@
           </div>
         </div>
         <p class="cs-caption">Calendario 2027 con identidad propia (verde azulado) para no mezclarse con las calculadoras.</p>
+
+        <div class="cs-phones">
+          <figure class="cs-phone"><img src="img/movil-portada.jpg" width="780" height="1688" loading="lazy" alt="Portada de Calcula lo tuyo en el móvil: buscador y situaciones laborales en dos columnas" /></figure>
+          <figure class="cs-phone"><img src="img/movil-resultado.jpg" width="780" height="1688" loading="lazy" alt="Resultado de la calculadora de autónomos en el móvil con el desglose" /></figure>
+          <figure class="cs-phone"><img src="img/movil-calendario.jpg" width="780" height="1688" loading="lazy" alt="Calendario laboral 2027 en el móvil con filtro por comunidad" /></figure>
+        </div>
+        <p class="cs-caption">Y en el móvil: el mismo diseño, pensado para pantallas pequeñas.</p>
+      </div>
+    </section>
+
+    <!-- ANATOMÍA DE UNA PÁGINA -->
+    <section class="cs-section">
+      <div class="container">
+        <div class="cs-center">
+          <span class="cs-eyebrow">Anatomía de una página</span>
+          <h2>Cada página sigue el mismo orden</h2>
+          <p>
+            Tomando «Pagas extra» como ejemplo: primero se entiende con un caso real, después se confirma con la ley,
+            se resuelven las dudas y se acompaña a la persona hacia lo siguiente que va a necesitar.
+          </p>
+        </div>
+
+        <div class="cs-rows">
+
+          <div class="cs-row cs-row--lila">
+            <div>
+              <span class="cs-row-n">1</span>
+              <h3>Un caso real, paso a paso</h3>
+              <p>
+                Antes que la teoría, <strong>simulamos un caso</strong>: Sergio, comercial en Sevilla, con su sueldo, sus pagas y
+                el cálculo línea a línea. Se entiende sin saber de nóminas y funciona como respuesta concreta para quien busca justo eso.
+              </p>
+            </div>
+            <div class="cs-row-media">
+              <img src="img/ejemplo-caso.jpg" width="1150" height="920" loading="lazy" alt="Caso de Sergio en la página de pagas extra: cálculo paso a paso con el total acumulado" />
+            </div>
+          </div>
+
+          <div class="cs-row cs-row--menta">
+            <div>
+              <span class="cs-row-n">2</span>
+              <h3>Lo que dice la ley y lo que dice tu convenio</h3>
+              <p>
+                Después, la <strong>norma</strong> explicada en llano: qué garantiza el Estatuto de los Trabajadores, qué decide el convenio
+                y cómo afectan la Seguridad Social, el IRPF y los casos especiales.
+              </p>
+            </div>
+            <div class="cs-row-media">
+              <img src="img/ejemplo-ley.jpg" width="1150" height="650" loading="lazy" alt="Sección sobre lo que dice la ley y el convenio en la página de pagas extra" />
+            </div>
+          </div>
+
+          <div class="cs-row cs-row--rosa">
+            <div>
+              <span class="cs-row-n">3</span>
+              <h3>Preguntas frecuentes</h3>
+              <p>
+                Las <strong>dudas reales</strong> de la gente, en formato pregunta y respuesta. Sirven a quien lee y también a los
+                buscadores y a las IA, que pueden citar la respuesta exacta.
+              </p>
+            </div>
+            <div class="cs-row-media">
+              <img src="img/ejemplo-faq.jpg" width="1150" height="375" loading="lazy" alt="Preguntas frecuentes desplegables sobre las pagas extra" />
+            </div>
+          </div>
+
+          <div class="cs-row cs-row--azul">
+            <div>
+              <span class="cs-row-n">4</span>
+              <h3>Calculadoras y guías relacionadas</h3>
+              <p>
+                Para no dejar a la persona en un callejón sin salida, cada página <strong>enlaza lo siguiente que va a necesitar</strong>
+                (el finiquito, el sueldo neto, el IRPF) y las guías para entender el porqué. Además refuerza la estructura interna de la web.
+              </p>
+            </div>
+            <div class="cs-row-media">
+              <img src="img/ejemplo-relacionadas.jpg" width="1150" height="290" loading="lazy" alt="Calculadoras relacionadas con las pagas extra: finiquito, sueldo neto e IRPF" />
+              <img src="img/ejemplo-guias.jpg" width="1150" height="330" loading="lazy" alt="Guías relacionadas: cómo leer tu nómina, guía del finiquito y de la baja voluntaria" />
+            </div>
+          </div>
+
+          <div class="cs-row cs-row--lila">
+            <div>
+              <span class="cs-row-n">5</span>
+              <h3>Algo de valor para llevarte</h3>
+              <p>
+                La web no solo calcula: ofrece <strong>14 modelos y plantillas gratis</strong> en Word, PDF y Excel (cartas de baja voluntaria,
+                solicitudes de reducción de jornada o vacaciones, facturas…), sin registro. Es lo que hace que merezca la pena volver.
+              </p>
+            </div>
+            <div class="cs-row-media">
+              <img src="img/modelos.jpg" width="1150" height="575" loading="lazy" alt="Página de modelos y plantillas laborales gratuitas en Word, PDF y Excel" />
+            </div>
+          </div>
+
+        </div>
       </div>
     </section>
 
@@ -333,26 +467,27 @@
           <!-- VELOCIDAD -->
           <article class="card card--7">
             <div class="card-label">Velocidad</div>
-            <h3>42 KB propios y cero frameworks</h3>
+            <h3>42 KB al entrar y cero frameworks</h3>
             <p>
               HTML, CSS y JavaScript puros, tipografía del sistema, iconos en un único SVG y cálculos en el navegador:
-              no hay servidor ni esperas.
+              no hay servidor ni esperas. Los scripts de terceros (publicidad y aviso de cookies) no cargan al entrar,
+              sino con el primer gesto de la persona o, como mucho, a los 10 segundos.
             </p>
             <div class="card-visual">
               <div class="bars">
                 <div>
-                  <div class="bar-top"><span>Lo que carga mi web</span><b>42 KB</b></div>
-                  <div class="bar-track"><i style="width:12.5%"></i></div>
+                  <div class="bar-top"><span>Tiempo hasta ver lo principal, antes</span><b>4,9 s</b></div>
+                  <div class="bar-track"><i class="ext" style="width:100%"></i></div>
                 </div>
                 <div>
-                  <div class="bar-top"><span>Scripts de terceros de Google</span><b>294 KB</b></div>
-                  <div class="bar-track"><i class="ext" style="width:87.5%"></i></div>
+                  <div class="bar-top"><span>Tiempo hasta ver lo principal, ahora</span><b>2,1 s</b></div>
+                  <div class="bar-track"><i style="width:43%"></i></div>
                 </div>
               </div>
 
-              <div class="rings" role="img" aria-label="Lighthouse en móvil: rendimiento 74, accesibilidad 95, buenas prácticas 100, SEO 100">
+              <div class="rings" role="img" aria-label="Lighthouse en móvil: rendimiento 97, accesibilidad 95, buenas prácticas 100, SEO 100">
                 <div class="ring">
-                  <svg viewBox="0 0 80 80" aria-hidden="true"><circle class="trk" cx="40" cy="40" r="34"/><circle class="val" cx="40" cy="40" r="34" stroke="#f59e0b" stroke-dasharray="158.1 213.6"/><text x="40" y="49">74</text></svg>
+                  <svg viewBox="0 0 80 80" aria-hidden="true"><circle class="trk" cx="40" cy="40" r="34"/><circle class="val" cx="40" cy="40" r="34" stroke="#10b981" stroke-dasharray="207.2 213.6"/><text x="40" y="49">97</text></svg>
                   <span>Rendimiento</span>
                 </div>
                 <div class="ring">
@@ -369,8 +504,7 @@
                 </div>
               </div>
               <p class="cs-note">
-                Lighthouse en móvil sobre la web publicada (22 oct. 2026, red 4G simulada). Lo que frena el 74 no es mi código,
-                sino los scripts de terceros: el siguiente paso es retrasar su carga.
+                Lighthouse en móvil sobre la web publicada (22 oct. 2026, red 4G simulada). Otras páginas: paro 99, lotería de Navidad 99 y sueldo neto 97.
               </p>
             </div>
           </article>
