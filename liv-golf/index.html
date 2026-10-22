@@ -501,6 +501,16 @@
       .liv-row--3 > .gallery-item img, .liv-stack .gallery-item img { height: auto; }
       .liv-stack { display: contents; }
     }
+
+    /* ---------------- EN CIFRAS ---------------- */
+    .liv-stats { padding: 8px 0 24px; }
+    .liv-stats-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px; padding: 32px 0; border-top: 1px solid var(--line); }
+    .liv-stat b { display: block; font-size: clamp(2.4rem, 4.4vw, 3.6rem); font-weight: 500; letter-spacing: -0.04em; line-height: 1; color: var(--ink); }
+    .liv-stat span { display: block; margin-top: 10px; font-size: 15px; line-height: 1.45; color: var(--ink-2); }
+    .liv-stat small { display: block; margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--ink-3); }
+    .liv-media { margin: 0; padding: 24px 0 0; border-top: 1px solid var(--line); font-size: 15px; line-height: 1.7; color: var(--ink-2); }
+    .liv-media strong { color: var(--ink); font-weight: 500; }
+    @media (max-width: 960px) { .liv-stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; } }
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/scandi-project.css" />
@@ -571,8 +581,7 @@
               <p>
                 El reto estaba en la escala: un mismo concepto tenía que funcionar igual de bien en
                 <strong>publicidad online y offline</strong>: prensa, <strong>vallas, mupis y marquesinas</strong>,
-                y también en vehículos, autobuses y hasta un velero, que vinilamos con la campaña. Además propusimos
-                <strong>una bola gigante de golf</strong> en una localización para llamar la atención del público.
+                y también en vehículos, autobuses y hasta un velero, que vinilamos con la campaña.
                 Todo respetando siempre las reglas de la marca y los tiempos de cada medio.
               </p>
             </div>
@@ -593,9 +602,7 @@
           <div class="project-meta-block">
             <div class="project-meta-label">Áreas de trabajo</div>
             <div class="project-meta-pills">
-              <span class="meta-pill">Adaptación de campaña</span>
               <span class="meta-pill">Publicidad online y offline</span>
-              <span class="meta-pill">Prensa</span>
               <span class="meta-pill">Vallas, mupis y marquesinas</span>
               <span class="meta-pill">Vinilado de vehículos y velero</span>
               <span class="meta-pill">Propuestas de activación</span>
@@ -605,16 +612,23 @@
       </div>
     </section>
 
+    <!-- EN CIFRAS -->
+    <section class="liv-stats" aria-label="El proyecto en cifras">
+      <div class="container">
+        <div class="liv-stats-grid">
+          <div class="liv-stat"><b>+200</b><span>adaptaciones de campaña</span></div>
+          <div class="liv-stat"><b>247</b><span>soportes de exterior</span><small>101 mupis digitales, 140 impresos, 1 valla, 2 pantallas LED en el aeropuerto de Madrid, 2 autobuses y 1 marquesina</small></div>
+          <div class="liv-stat"><b>50</b><span>inserciones en prensa</span><small>3 páginas completas, 3 publirreportajes, 3 contraportadas, 2 falsas portadas, 1 portada, 15 medias páginas y 23 faldones</small></div>
+          <div class="liv-stat"><b>10</b><span>medios de prensa</span><small>Presencia en medios regionales, deportivos y de golf</small></div>
+        </div>
+        <p class="liv-media"><strong>Presencia en:</strong> Marca, AS, ABC de Sevilla, Diario de Sevilla, SUR in English, Málaga Hoy, Europa Sur, Andalucía Golf España, SG Plus y El Periódico de Sotogrande.</p>
+      </div>
+    </section>
+
     <!-- GALERÍA BENTO -->
     <section class="project-gallery">
       <div class="container liv-gallery">
-
-        <figure class="gallery-item"><img src="img/marca-portada.jpg" alt="Publicidad online de LIV Golf Valderrama en la portada de Marca" loading="lazy" /></figure>
-
-        <div class="liv-row liv-row--2">
-          <figure class="gallery-item"><img src="img/cincodias-skin.jpg" alt="Publicidad online de LIV Golf Valderrama en la portada de Cinco Días" loading="lazy" /></figure>
-          <figure class="gallery-item"><img src="img/opengolf-noticia.jpg" alt="Banners laterales de LIV Golf Andalucía en una noticia de OpenGolf.es" loading="lazy" /></figure>
-        </div>
+        <figure class="gallery-item"><img src="img/cincodias-skin.jpg" alt="Publicidad online de LIV Golf Valderrama en la portada de Cinco Días" loading="lazy" /></figure>
 
         <div class="liv-row liv-row--3">
           <figure class="gallery-item"><img src="img/cincodias-movil.jpg" alt="Formato vertical y banner de LIV Golf Valderrama en Cinco Días para móvil" loading="lazy" /></figure>
