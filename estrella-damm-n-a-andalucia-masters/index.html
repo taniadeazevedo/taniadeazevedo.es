@@ -478,6 +478,76 @@
 
       .text-collapse.is-collapsed { max-height: 220px; }
     }
+    /* ---------------- EL TORNEO EN CIFRAS ---------------- */
+    .ed-stats { padding: 56px 0 57px; border-top: 1px solid var(--line); }
+    .ed-head { text-align: center; max-width: 600px; margin: 0 auto 36px; }
+    .ed-head h2 { margin: 0 0 10px; font-size: clamp(1.7rem, 3vw, 2.3rem); font-weight: 500; letter-spacing: -0.03em; line-height: 1.15; color: var(--ink); }
+    .ed-head p { margin: 0; font-size: 17px; line-height: 1.55; color: var(--ink-2); }
+
+    /* tarjetas grises con gráfico */
+    .ed-bento { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 20px; }
+    .ed-card { display: flex; flex-direction: column; padding: 28px; border: 1px solid var(--line-2); border-radius: 22px; background: var(--wash); overflow: hidden; }
+    .ed-7 { grid-column: span 7; } .ed-5 { grid-column: span 5; } .ed-12 { grid-column: span 12; }
+    .ed-label { margin-bottom: 12px; font-size: 14px; font-weight: 500; color: var(--ink-3); }
+    .ed-card h3 { margin: 0 0 8px; font-size: 24px; font-weight: 500; letter-spacing: -0.025em; line-height: 1.25; color: var(--ink); }
+    .ed-card p { margin: 0; font-size: 15px; line-height: 1.6; color: var(--ink-2); }
+    .ed-visual { margin-top: auto; padding-top: 24px; }
+    .ed-split { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 28px; align-items: center; }
+
+    .ed-bars { display: grid; gap: 14px; }
+    .ed-bar-top { display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 14px; color: var(--ink-2); }
+    .ed-bar-top b { font-weight: 500; color: var(--ink); }
+    .ed-track { height: 12px; border-radius: 99px; background: var(--line); overflow: hidden; }
+    .ed-track i { display: block; height: 100%; border-radius: 99px; background: linear-gradient(90deg, #a855f7, #c9a8fb); }
+    .ed-track i.blue { background: linear-gradient(90deg, #3b82f6, #93c5fd); }
+    .ed-track i.ext { background: var(--ink-3); opacity: .55; }
+
+    .ed-ring { text-align: center; }
+    .ed-ring svg { width: 100%; max-width: 96px; height: auto; display: block; margin: 0 auto; }
+    .ed-ring .trk { fill: none; stroke: var(--line-2); stroke-width: 6; }
+    .ed-ring .val { fill: none; stroke-width: 6; stroke-linecap: round; transform: rotate(-90deg); transform-origin: 40px 40px; }
+    .ed-ring text { font-size: 20px; font-weight: 500; fill: var(--ink); text-anchor: middle; font-family: var(--font-sans, system-ui, sans-serif); }
+    .ed-ring span { display: block; margin-top: 8px; font-size: 13px; line-height: 1.3; color: var(--ink-2); }
+
+    .ed-sends { display: flex; gap: 5px; align-items: flex-end; height: 36px; margin-bottom: 8px; }
+    .ed-sends i { flex: 1; height: 100%; border-radius: 4px; background: linear-gradient(180deg, #c9a8fb, #a855f7); }
+    .ed-cap { margin: 0; font-size: 13px; color: var(--ink-3); }
+    .ed-dots { display: block; width: 100%; height: auto; }
+    .ed-dots circle { fill: #a855f7; }
+    .ed-dots--pink circle { fill: #ec4899; }
+    .ed-card--wide { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 40px; align-items: center; }
+    .ed-card--wide .ed-visual { margin-top: 0; padding-top: 0; }
+    .ed-dl { display: inline-flex; align-items: baseline; gap: 8px; margin-top: 16px; padding: 8px 14px; border-radius: 999px; border: 1px solid var(--line-2); background: var(--bg-body); font-size: 14px; color: var(--ink-2); }
+    .ed-dl b { font-size: 16px; font-weight: 500; color: var(--ink); }
+
+    @media (max-width: 960px) {
+      .ed-bento { grid-template-columns: minmax(0, 1fr); }
+      .ed-7, .ed-5, .ed-12 { grid-column: auto; }
+      .ed-card { padding: 24px; }
+      .ed-split { grid-template-columns: minmax(0, 1fr); }
+      .ed-card--wide { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+    }
+    .ed-stack { display: flex; gap: 4px; height: 14px; }
+    .ed-stack i { display: block; height: 100%; border-radius: 99px; background: linear-gradient(90deg, #7c3aed, #a855f7); }
+    .ed-stack i.b { background: #c9a8fb; }
+    .ed-stack i.c { background: var(--line-2); }
+    .ed-legend { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 12px; }
+    .ed-legend span { font-size: 13.5px; color: var(--ink-2); }
+    .ed-legend b { font-weight: 500; color: var(--ink); }
+    .ed-timeline { position: relative; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; padding-top: 8px; }
+    .ed-timeline::before { content: ""; position: absolute; left: 0; right: 0; top: 14px; height: 2px; background: var(--line-2); }
+    .ed-step { position: relative; padding-top: 40px; }
+    .ed-step::before { content: ""; position: absolute; left: 0; top: 7px; width: 14px; height: 14px; border-radius: 50%; background: var(--bg-body); border: 3px solid #a855f7; }
+    .ed-step b { display: block; font-size: 1.5rem; font-weight: 500; letter-spacing: -0.03em; line-height: 1.1; color: var(--ink); }
+    .ed-step span { display: block; margin-top: 6px; font-size: 14px; line-height: 1.45; color: var(--ink-2); }
+    .ed-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .ed-chips span { padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line-2); background: var(--bg-body); font-size: 13px; color: var(--ink-2); }
+    @media (max-width: 960px) {
+      .ed-timeline { grid-template-columns: minmax(0, 1fr); gap: 18px; padding-left: 28px; }
+      .ed-timeline::before { left: 6px; right: auto; top: 14px; bottom: 14px; width: 2px; height: auto; }
+      .ed-step { padding-top: 0; }
+      .ed-step::before { left: -28px; top: 4px; }
+    }
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/scandi-project.css" />
@@ -577,10 +647,7 @@
             <div class="project-meta-pills">
               <span class="meta-pill">Identidad de evento</span>
               <span class="meta-pill">Cartelería y soportes exteriores</span>
-              <span class="meta-pill">Campaña digital</span>
-              <span class="meta-pill">Publicidad en medios online</span>
-              <span class="meta-pill">Publicidad en medios impresos</span>
-              <span class="meta-pill">Banners y robapáginas</span>
+              <span class="meta-pill">Publicidad online &amp; offline</span>
               <span class="meta-pill">Newsletters</span>
               <span class="meta-pill">Merchandising y soportes físicos</span>
             </div>
@@ -651,6 +718,57 @@
               loading="lazy"
             />
           </figure>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- EL TORNEO EN CIFRAS -->
+    <section class="ed-stats" aria-label="El torneo en cifras">
+      <div class="container">
+        <div class="ed-head">
+          <h2>El torneo en cifras</h2>
+          <p>Algunos datos públicos de un torneo del DP World Tour con raíces en Sotogrande.</p>
+        </div>
+
+        <div class="ed-bento">
+
+          <article class="ed-card ed-5">
+            <div class="ed-label">El público</div>
+            <h3>+36.000 espectadores en una sola edición</h3>
+            <p>Asistencia de una edición jugada en el Real Club Valderrama.</p>
+            <div class="ed-visual">
+              <div class="ed-chips"><span>Real Club Valderrama</span><span>DP World Tour</span></div>
+            </div>
+          </article>
+
+          <article class="ed-card ed-7">
+            <div class="ed-label">La bolsa de premios</div>
+            <h3>3,25 millones de dólares en premios</h3>
+            <p>La bolsa de la última edición, con 126 participantes y 5.000 puntos para la Race to Dubai.</p>
+            <div class="ed-visual">
+              <div class="ed-stack" role="img" aria-label="Reparto de la bolsa: campeón 17 por ciento, subcampeón 11 por ciento, resto del campo 72 por ciento">
+                <i style="width:17%"></i><i class="b" style="width:11%"></i><i class="c" style="width:72%"></i>
+              </div>
+              <div class="ed-legend">
+                <span><b>17 %</b> campeón</span><span><b>11 %</b> subcampeón</span><span><b>72 %</b> resto del campo</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="ed-card ed-12">
+            <div class="ed-label">El torneo</div>
+            <h3>De Valderrama a Sotogrande</h3>
+            <p>Declarado Evento de Excepcional Interés Público por el Gobierno de España.</p>
+            <div class="ed-visual">
+              <div class="ed-timeline">
+                <div class="ed-step"><b>2010</b><span>Primera edición, en el Real Club Valderrama (Sotogrande)</span></div>
+                <div class="ed-step"><b>2019</b><span>Estrella Damm, patrocinador principal, con un acuerdo de cinco años (2019–2023)</span></div>
+                <div class="ed-step"><b>2023</b><span>El torneo se traslada al Real Club de Golf Sotogrande</span></div>
+                <div class="ed-step"><b>2024</b><span>Décima y última edición, del 17 al 20 de octubre. Colaboré hasta esta edición.</span></div>
+              </div>
+            </div>
+          </article>
 
         </div>
       </div>
