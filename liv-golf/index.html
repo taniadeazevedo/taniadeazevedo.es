@@ -6,13 +6,12 @@
   <link rel="icon" href="/favicon.ico" sizes="48x48" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <title>LIV Golf Valderrama – Proyecto · Tania de Azevedo</title>
-  <meta name="description" content="Más de 200 adaptaciones de la campaña de LIV Golf Andalucía (Valderrama): publicidad online y offline: banners, prensa, vallas, mupis, marquesinas y rotulación de vehículos y un velero." />
+  <meta name="description" content="Más de 200 adaptaciones de la campaña de LIV Golf Andalucía (Valderrama): publicidad online y offline: banners, prensa, vallas, mupis, marquesinas y rotulación de vehículos." />
   <link rel="canonical" href="https://taniadeazevedo.es/liv-golf/" />
   <meta property="og:type" content="article" />
   <meta property="og:title" content="LIV Golf Valderrama – Adaptaciones de campaña" />
   <meta property="og:image" content="https://taniadeazevedo.es/liv-golf/img/portada.jpg" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="robots" content="noindex, nofollow" />
   <script src="../js/theme.js"></script>
 
   <style>
@@ -485,33 +484,80 @@
       .text-collapse.is-collapsed { max-height: 220px; }
     }
 
-    /* ---------------- GALERÍA LIV: filas ordenadas, solo imágenes nítidas ---------------- */
+    /* ---------------- GALERÍA LIV ---------------- */
     .liv-gallery { display: grid; gap: 20px; }
-    .liv-gallery .gallery-item img { width: 100%; height: auto; display: block; }
-    .liv-row { display: grid; gap: 20px; }
-    .liv-row--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .liv-row--2 .gallery-item img { aspect-ratio: 2 / 1; object-fit: cover; object-position: top; }
-    .liv-row--3 { grid-template-columns: 3fr 3fr 3.9fr; align-items: stretch; }
-    .liv-row--3 > .gallery-item img { height: 100%; object-fit: cover; }
-    .liv-stack { display: flex; flex-direction: column; gap: 20px; min-height: 0; }
-    .liv-stack .gallery-item { flex: 1; min-height: 0; }
-    .liv-stack .gallery-item img { height: 100%; object-fit: cover; }
+    .liv-gallery img { width: 100%; display: block; }
+    .liv-split { display: grid; gap: 20px; align-items: stretch; }
+    .liv-split--a { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); }
+    .liv-split--b { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+    .liv-col { display: flex; flex-direction: column; gap: 20px; min-height: 0; }
+    .liv-col > .gallery-item { flex: 1 1 auto; min-height: 0; }
+    .liv-split > .gallery-item img, .liv-col.fill > .gallery-item img { height: 100%; object-fit: cover; }
+    .liv-split--b .liv-col > .gallery-item { flex: 1 1 0; }
+    .liv-split--b .liv-col > .gallery-item img { height: 100%; object-fit: cover; object-position: top; }
     @media (max-width: 960px) {
-      .liv-row--2, .liv-row--3 { grid-template-columns: minmax(0, 1fr); }
-      .liv-row--2 .gallery-item img { aspect-ratio: auto; }
-      .liv-row--3 > .gallery-item img, .liv-stack .gallery-item img { height: auto; }
-      .liv-stack { display: contents; }
+      .liv-split--a, .liv-split--b { grid-template-columns: minmax(0, 1fr); }
+      .liv-split > .gallery-item img, .liv-col.fill > .gallery-item img, .liv-split--b .liv-col > .gallery-item img { height: auto; }
+      .liv-col > .gallery-item { flex: none !important; }
     }
 
-    /* ---------------- EN CIFRAS ---------------- */
-    .liv-stats { padding: 8px 0 24px; }
-    .liv-stats-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px; padding: 32px 0; border-top: 1px solid var(--line); }
-    .liv-stat b { display: block; font-size: clamp(2.4rem, 4.4vw, 3.6rem); font-weight: 500; letter-spacing: -0.04em; line-height: 1; color: var(--ink); }
-    .liv-stat span { display: block; margin-top: 10px; font-size: 15px; line-height: 1.45; color: var(--ink-2); }
-    .liv-stat small { display: block; margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--ink-3); }
-    .liv-media { margin: 0; padding: 24px 0 0; border-top: 1px solid var(--line); font-size: 15px; line-height: 1.7; color: var(--ink-2); }
-    .liv-media strong { color: var(--ink); font-weight: 500; }
-    @media (max-width: 960px) { .liv-stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; } }
+    /* ---------------- LIV GOLF EN CIFRAS ---------------- */
+    .lv { --lime: #98fa5f; --lime-2: #c5fca4; padding: 56px 0 57px; border-top: 1px solid var(--line); }
+    .lv-head { text-align: center; max-width: 620px; margin: 0 auto 36px; }
+    .lv-head h2 { margin: 0 0 10px; font-size: clamp(1.7rem, 3vw, 2.3rem); font-weight: 500; letter-spacing: -0.03em; line-height: 1.15; color: var(--ink); }
+    .lv-head p { margin: 0; font-size: 17px; line-height: 1.55; color: var(--ink-2); }
+    .lv-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 20px; }
+    .lv-card { display: flex; flex-direction: column; padding: 28px; border: 1px solid var(--line-2); border-radius: 22px; background: var(--wash); overflow: hidden; }
+    .lv-a { grid-column: span 4; } .lv-b { grid-column: span 8; } .lv-c { grid-column: span 7; } .lv-d { grid-column: span 5; }
+    .lv-label { margin-bottom: 12px; font-size: 14px; font-weight: 500; color: var(--ink-3); }
+    .lv-card h3 { margin: 0 0 8px; font-size: 24px; font-weight: 500; letter-spacing: -0.025em; line-height: 1.25; color: var(--ink); }
+    .lv-card p { margin: 0; font-size: 15px; line-height: 1.6; color: var(--ink-2); }
+    .lv-visual { margin-top: auto; padding-top: 24px; }
+
+    /* adaptaciones: número grande con un marcador de lima */
+    .lv-hl { padding: 1px 8px; margin-left: -8px; border-radius: 8px; background: var(--lime); color: #000; }
+    .lv-formats { display: flex; flex-wrap: wrap; gap: 8px; }
+    .lv-formats span, .lv-chips span { padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line-2); background: var(--bg-body); font-size: 13.5px; color: var(--ink-2); }
+
+    /* exterior: barra repartida */
+    .lv-seg { display: flex; gap: 4px; height: 92px; }
+    .lv-seg i { display: block; min-width: 8px; border-radius: 10px; }
+    .lv-c1 { background: #000; } html[data-theme="dark"] .lv-c1 { background: #fff; }
+    .lv-c2 { background: var(--lime); }
+    .lv-c3 { background: #8a8a8a; }
+    .lv-c4 { background: var(--lime-2); }
+    .lv-c5 { background: #b5b5b5; }
+    .lv-c6 { background: #d6d6d6; }
+    .lv-legend { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px 18px; margin-top: 16px; }
+    .lv-legend span { display: flex; align-items: baseline; font-size: 13.5px; line-height: 1.3; color: var(--ink-2); }
+    .lv-legend span::before { content: ""; width: 9px; height: 9px; margin-right: 8px; border-radius: 50%; align-self: center; flex-shrink: 0; }
+    .lv-legend .k1::before { background: #000; } html[data-theme="dark"] .lv-legend .k1::before { background: #fff; }
+    .lv-legend .k2::before { background: var(--lime); } .lv-legend .k3::before { background: #8a8a8a; }
+    .lv-legend .k4::before { background: var(--lime-2); } .lv-legend .k5::before { background: #b5b5b5; } .lv-legend .k6::before { background: #d6d6d6; }
+    .lv-legend b { margin-right: 6px; font-size: 18px; font-weight: 500; letter-spacing: -0.02em; color: var(--ink); }
+
+    /* prensa: barras horizontales */
+    .lv-bars { display: grid; gap: 21px; }
+    .lv-bar-top { display: flex; justify-content: space-between; margin-bottom: 7px; font-size: 14.5px; color: var(--ink-2); }
+    .lv-bar-top b { font-weight: 500; color: var(--ink); }
+    .lv-track { height: 12px; border-radius: 99px; background: var(--line); overflow: hidden; }
+    .lv-track i { display: block; height: 100%; border-radius: 99px; background: var(--ink); }
+    .lv-track i.l { background: var(--lime); }
+
+    .lv-list { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line); }
+    .lv-list li { display: flex; align-items: center; gap: 14px; padding: 9px 0; border-bottom: 1px solid var(--line); font-size: 14.5px; color: var(--ink); }
+    .lv-list li:last-child { border-bottom: 0; }
+    .lv-list i { min-width: 24px; font-style: normal; font-size: 12.5px; font-weight: 500; color: var(--ink-3); }
+    .lv-list li::after { content: ""; margin-left: auto; width: 8px; height: 8px; border-radius: 50%; background: var(--lime); }
+    /* medios */
+    .lv-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+
+    @media (max-width: 960px) {
+      .lv-grid { grid-template-columns: minmax(0, 1fr); }
+      .lv-a, .lv-b, .lv-c, .lv-d { grid-column: auto; }
+      .lv-card { padding: 24px; }
+      .lv-legend { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/scandi-project.css" />
@@ -551,7 +597,7 @@
 
           <p class="project-subtitle">
             La llegada de LIV Golf a España, en el Real Club Valderrama (Cádiz). Más de
-            <strong>200 adaptaciones de una misma campaña</strong>: de los banners a las vallas, los mupis y hasta un velero rotulado.
+            <strong>200 adaptaciones de una misma campaña</strong>: de los banners a las vallas, los mupis y los vehículos rotulados.
           </p>
 
           <figure class="project-hero-media">
@@ -582,7 +628,7 @@
               <p>
                 El reto estaba en la escala: un mismo concepto tenía que funcionar igual de bien en
                 <strong>publicidad online y offline</strong>: prensa, <strong>vallas, mupis y marquesinas</strong>,
-                y también en vehículos, autobuses y hasta un velero, que vinilamos con la campaña.
+                y también en vehículos y autobuses, que vinilamos con la campaña.
                 Todo respetando siempre las reglas de la marca y los tiempos de cada medio.
               </p>
             </div>
@@ -605,7 +651,7 @@
             <div class="project-meta-pills">
               <span class="meta-pill">Publicidad online y offline</span>
               <span class="meta-pill">Vallas, mupis y marquesinas</span>
-              <span class="meta-pill">Vinilado de vehículos y velero</span>
+              <span class="meta-pill">Vinilado de vehículos</span>
               <span class="meta-pill">Propuestas de activación</span>
             </div>
           </div>
@@ -613,30 +659,26 @@
       </div>
     </section>
 
-    <!-- EN CIFRAS -->
-    <section class="liv-stats" aria-label="El proyecto en cifras">
-      <div class="container">
-        <div class="liv-stats-grid">
-          <div class="liv-stat"><b>+200</b><span>adaptaciones de campaña</span></div>
-          <div class="liv-stat"><b>247</b><span>soportes de exterior</span><small>101 mupis digitales, 140 impresos, 1 valla, 2 pantallas LED en el aeropuerto de Madrid, 2 autobuses y 1 marquesina</small></div>
-          <div class="liv-stat"><b>50</b><span>inserciones en prensa</span><small>3 páginas completas, 3 publirreportajes, 3 contraportadas, 2 falsas portadas, 1 portada, 15 medias páginas y 23 faldones</small></div>
-          <div class="liv-stat"><b>10</b><span>medios de prensa</span><small>Presencia en medios regionales, deportivos y de golf</small></div>
-        </div>
-        <p class="liv-media"><strong>Presencia en:</strong> Marca, AS, ABC de Sevilla, Diario de Sevilla, SUR in English, Málaga Hoy, Europa Sur, Andalucía Golf España, SG Plus y El Periódico de Sotogrande.</p>
-      </div>
-    </section>
-
-    <!-- GALERÍA BENTO -->
+    <!-- GALERÍA -->
     <section class="project-gallery">
       <div class="container liv-gallery">
+
         <figure class="gallery-item"><img src="img/cincodias-skin.jpg" alt="Publicidad online de LIV Golf Valderrama en la portada de Cinco Días" loading="lazy" /></figure>
 
-        <div class="liv-row liv-row--3">
-          <figure class="gallery-item"><img src="img/cincodias-movil.jpg" alt="Formato vertical y banner de LIV Golf Valderrama en Cinco Días para móvil" loading="lazy" /></figure>
-          <figure class="gallery-item"><img src="img/marca-movil.jpg" alt="Formato vertical y banner de LIV Golf Valderrama en la portada de Marca para móvil" loading="lazy" /></figure>
-          <div class="liv-stack">
+        <div class="liv-split liv-split--a">
+          <div class="liv-col fill">
+            <figure class="gallery-item"><img src="img/marca-portada.jpg" alt="Publicidad online de LIV Golf Valderrama en la portada de Marca" loading="lazy" /></figure>
+            <figure class="gallery-item"><img src="img/vehiculo.jpg" alt="Vehículo rotulado con la campaña de LIV Golf Valderrama junto al campo de golf" loading="lazy" /></figure>
             <figure class="gallery-item"><img src="img/autobus.jpg" alt="Trasera de un autobús rotulada con la campaña de LIV Golf Valderrama" loading="lazy" /></figure>
-            <figure class="gallery-item"><img src="img/mupi.jpg" alt="Mupi y marquesina de autobús en Málaga con la campaña de LIV Golf Valderrama" loading="lazy" /></figure>
+          </div>
+          <figure class="gallery-item"><img src="img/marca-movil.jpg" alt="Formato vertical y banner de LIV Golf Valderrama en la portada de Marca para móvil" loading="lazy" /></figure>
+        </div>
+
+        <div class="liv-split liv-split--b">
+          <figure class="gallery-item"><img src="img/mupi-clearchannel.jpg" alt="Mupi de LIV Golf Valderrama en la calle" loading="lazy" /></figure>
+          <div class="liv-col">
+            <figure class="gallery-item"><img src="img/marquesina.jpg" alt="Marquesina de autobús en Málaga con la campaña de LIV Golf Valderrama" loading="lazy" /></figure>
+            <figure class="gallery-item"><img src="img/valla.jpg" alt="Valla publicitaria de LIV Golf Valderrama, del 30 de junio al 2 de julio" loading="lazy" /></figure>
           </div>
         </div>
 
@@ -645,12 +687,57 @@
       </div>
     </section>
 
+    <!-- LIV GOLF EN CIFRAS -->
+    <section class="lv" aria-label="La campaña en cifras">
+      <div class="container">
+        <div class="lv-head">
+          <h2>La campaña en cifras</h2>
+          <p>Una misma identidad llevada a pantallas, calles y periódicos.</p>
+        </div>
+
+        <div class="lv-grid">
+
+          <article class="lv-card lv-a">
+            <div class="lv-label">Adaptaciones</div>
+            <h3><span class="lv-hl">+200</span> adaptaciones de campaña</h3>
+            <p>Todas las adaptaciones de marca del evento, en coordinación con el equipo de diseño americano.</p>
+            <div class="lv-visual"><div class="lv-formats"><span>Online</span><span>Prensa</span><span>Exterior</span><span>Vehículos</span></div></div>
+          </article>
+
+          <article class="lv-card lv-b">
+            <div class="lv-label">Exterior</div>
+            <h3>247 soportes de exterior</h3>
+            <p>De los mupis digitales a las pantallas LED del aeropuerto.</p>
+            <div class="lv-visual">
+              <div class="lv-seg" role="img" aria-label="Reparto de los 247 soportes de exterior"><i class="lv-c1" style="flex:101"></i><i class="lv-c2" style="flex:140"></i><i class="lv-c3" style="flex:2"></i><i class="lv-c4" style="flex:2"></i><i class="lv-c5" style="flex:1"></i><i class="lv-c6" style="flex:1"></i></div>
+              <div class="lv-legend"><span class="k1"><b>101</b>mupis digitales</span><span class="k2"><b>140</b>mupis impresos</span><span class="k3"><b>2</b>pantallas LED en el aeropuerto de Madrid</span><span class="k4"><b>2</b>autobuses</span><span class="k5"><b>1</b>valla</span><span class="k6"><b>1</b>marquesina</span></div>
+            </div>
+          </article>
+
+          <article class="lv-card lv-c">
+            <div class="lv-label">Prensa</div>
+            <h3>50 inserciones en prensa</h3>
+            <p>Del faldón a la portada, en distintos formatos de papel.</p>
+            <div class="lv-visual"><div class="lv-bars"><div><div class="lv-bar-top"><span>Faldones</span><b>23</b></div><div class="lv-track"><i class="" style="width:100%"></i></div></div><div><div class="lv-bar-top"><span>Medias páginas</span><b>15</b></div><div class="lv-track"><i class="l" style="width:65.2%"></i></div></div><div><div class="lv-bar-top"><span>Páginas completas</span><b>3</b></div><div class="lv-track"><i class="" style="width:13%"></i></div></div><div><div class="lv-bar-top"><span>Publirreportajes</span><b>3</b></div><div class="lv-track"><i class="l" style="width:13%"></i></div></div><div><div class="lv-bar-top"><span>Contraportadas</span><b>3</b></div><div class="lv-track"><i class="" style="width:13%"></i></div></div><div><div class="lv-bar-top"><span>Falsas portadas</span><b>2</b></div><div class="lv-track"><i class="l" style="width:8.7%"></i></div></div><div><div class="lv-bar-top"><span>Portada</span><b>1</b></div><div class="lv-track"><i class="" style="width:4.3%"></i></div></div></div></div>
+          </article>
+
+          <article class="lv-card lv-d">
+            <div class="lv-label">Medios</div>
+            <h3>10 medios de prensa</h3>
+            <p>Presencia en medios regionales, deportivos y de golf.</p>
+            <div class="lv-visual" style="padding-top:20px"><ul class="lv-list"><li><i>01</i>Marca</li><li><i>02</i>AS</li><li><i>03</i>ABC de Sevilla</li><li><i>04</i>Diario de Sevilla</li><li><i>05</i>SUR in English</li><li><i>06</i>Málaga Hoy</li><li><i>07</i>Europa Sur</li><li><i>08</i>Andalucía Golf España</li><li><i>09</i>SG Plus</li><li><i>10</i>El Periódico de Sotogrande</li></ul></div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
     <!-- NAVEGACIÓN FINAL (ENLACES TEXTO) -->
     <section class="project-bottom">
       <div class="container">
         <div class="project-bottom-nav">
           <a href="https://taniadeazevedo.es" class="nav-link-arrow nav-link-back">Home</a>
-          <a href="https://taniadeazevedo.es/estrella-damm-n-a-andalucia-masters/" class="nav-link-arrow">
+          <a href="https://taniadeazevedo.es/open-house-malaga/" class="nav-link-arrow">
             Ver otro proyecto
           </a>
         </div>
@@ -703,5 +790,6 @@
     })();
   </script>
   <script src="../js/cursor-ring.js" defer></script>
+  <script src="../js/chart-anim.js" defer></script>
 </body>
 </html>

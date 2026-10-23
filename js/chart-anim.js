@@ -6,7 +6,7 @@
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduce || !('IntersectionObserver' in window)) return;
 
-  var cards = document.querySelectorAll('.ohm-card, .om-card, .ed-card, .card');
+  var cards = document.querySelectorAll('.ohm-card, .om-card, .ed-card, .lv-card, .card');
   if (!cards.length) return;
 
   var EASE = 'cubic-bezier(0.22, 0.61, 0.36, 1)';
@@ -24,13 +24,13 @@
     }
 
     // Barras horizontales: crecen desde la izquierda hasta su ancho
-    card.querySelectorAll('.ohm-track i, .ed-track i, .bar-track i').forEach(function (el, i) {
+    card.querySelectorAll('.ohm-track i, .ed-track i, .bar-track i, .lv-track i').forEach(function (el, i) {
       var w = el.style.width;
       if (w) prep(el, { width: '0' }, { width: w }, ['width'], 1100, i * 120);
     });
 
     // Barras partidas (reparto de premios, actividades): se despliegan de izquierda a derecha
-    card.querySelectorAll('.ed-stack i, .om-seg i').forEach(function (el, i) {
+    card.querySelectorAll('.ed-stack i, .om-seg i, .lv-seg i').forEach(function (el, i) {
       prep(el, { transform: 'scaleX(0)', transformOrigin: 'left center' }, { transform: 'scaleX(1)' }, ['transform'], 800, i * 140);
     });
 
