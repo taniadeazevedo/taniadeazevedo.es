@@ -511,23 +511,27 @@
     .ohm-bar-top { display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 14px; color: var(--ink-2); }
     .ohm-bar-top b { font-weight: 500; color: var(--ink); }
     .ohm-track { height: 12px; border-radius: 99px; background: var(--line); overflow: hidden; }
-    .ohm-track i { display: block; height: 100%; border-radius: 99px; background: linear-gradient(90deg, #a855f7, #c9a8fb); }
-    .ohm-track i.blue { background: linear-gradient(90deg, #3b82f6, #93c5fd); }
+    .ohm-track i { display: block; height: 100%; border-radius: 99px; background: linear-gradient(90deg, #d9302b, #ee7f7a); }
+    .ohm-track i.blue { background: var(--ink); }
     .ohm-track i.ext { background: var(--ink-3); opacity: .55; }
 
+    .ohm-bento > article:nth-child(4) .ohm-bars > div:nth-child(1) .ohm-track i { background: linear-gradient(90deg, #d9302b, #ee7f7a); }
+    .ohm-bento > article:nth-child(4) .ohm-bars > div:nth-child(2) .ohm-track i { background: var(--ink); }
+    .ohm-bento > article:nth-child(4) .ohm-bars > div:nth-child(3) .ohm-track i { background: var(--ink-3); }
+    .ohm-bento > article:nth-child(4) .ohm-bars > div:nth-child(4) .ohm-track i { background: var(--line-2); }
     .ohm-ring { text-align: center; }
     .ohm-ring svg { width: 100%; max-width: 96px; height: auto; display: block; margin: 0 auto; }
     .ohm-ring .trk { fill: none; stroke: var(--line-2); stroke-width: 6; }
-    .ohm-ring .val { fill: none; stroke-width: 6; stroke-linecap: round; transform: rotate(-90deg); transform-origin: 40px 40px; }
+    .ohm-ring .val { fill: none; stroke-width: 6; stroke-linecap: round; color: var(--ink); transform: rotate(-90deg); transform-origin: 40px 40px; }
     .ohm-ring text { font-size: 20px; font-weight: 500; fill: var(--ink); text-anchor: middle; font-family: var(--font-sans, system-ui, sans-serif); }
     .ohm-ring span { display: block; margin-top: 8px; font-size: 13px; line-height: 1.3; color: var(--ink-2); }
 
     .ohm-sends { display: flex; gap: 5px; align-items: flex-end; height: 36px; margin-bottom: 8px; }
-    .ohm-sends i { flex: 1; height: 100%; border-radius: 4px; background: linear-gradient(180deg, #c9a8fb, #a855f7); }
+    .ohm-sends i { flex: 1; height: 100%; border-radius: 4px; background: linear-gradient(180deg, var(--ink-3), var(--ink)); }
     .ohm-cap { margin: 0; font-size: 13px; color: var(--ink-3); }
     .ohm-dots { display: block; width: 100%; height: auto; }
-    .ohm-dots circle { fill: #a855f7; }
-    .ohm-dots--pink circle { fill: #ec4899; }
+    .ohm-dots circle { fill: var(--ink-2); }
+    .ohm-dots--pink circle { fill: var(--ink-2); }
     .ohm-card--wide { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 40px; align-items: center; }
     .ohm-card--wide .ohm-visual { margin-top: 0; padding-top: 0; }
     .ohm-dl { display: inline-flex; align-items: baseline; gap: 8px; margin-top: 16px; padding: 8px 14px; border-radius: 999px; border: 1px solid var(--line-2); background: var(--bg-body); font-size: 14px; color: var(--ink-2); }
@@ -757,7 +761,7 @@
                   <div><div class="ohm-bar-top"><span>Páginas vistas</span><b>1,2 M</b></div><div class="ohm-track"><i style="width:46%"></i></div></div>
                 </div>
                 <div class="ohm-ring" role="img" aria-label="Duración media de la visita: 11 minutos">
-                  <svg viewBox="0 0 80 80" aria-hidden="true"><circle class="trk" cx="40" cy="40" r="34"/><circle class="val" cx="40" cy="40" r="34" stroke="#a855f7" stroke-dasharray="39.2 213.6"/><text x="40" y="47">11 min</text></svg>
+                  <svg viewBox="0 0 80 80" aria-hidden="true"><circle class="trk" cx="40" cy="40" r="34"/><circle class="val" cx="40" cy="40" r="34" stroke="currentColor" stroke-dasharray="39.2 213.6"/><text x="40" y="47">11 min</text></svg>
                   <span>duración media de la visita</span>
                 </div>
               </div>
@@ -775,7 +779,7 @@
                   <p class="ohm-cap">20 envíos</p>
                 </div>
                 <div class="ohm-ring" role="img" aria-label="Tasa de apertura de las newsletters: 64 por ciento">
-                  <svg viewBox="0 0 80 80" aria-hidden="true"><circle class="trk" cx="40" cy="40" r="34"/><circle class="val" cx="40" cy="40" r="34" stroke="#10b981" stroke-dasharray="136.7 213.6"/><text x="40" y="47">64%</text></svg>
+                  <svg viewBox="0 0 80 80" aria-hidden="true"><circle class="trk" cx="40" cy="40" r="34"/><circle class="val" cx="40" cy="40" r="34" stroke="#d9302b" stroke-dasharray="136.7 213.6"/><text x="40" y="47">64%</text></svg>
                   <span>de tasa de apertura</span>
                 </div>
               </div>
@@ -883,5 +887,6 @@
     })();
   </script>
   <script src="../js/cursor-ring.js" defer></script>
+  <script src="../js/chart-anim.js" defer></script>
 </body>
 </html>
