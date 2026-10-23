@@ -253,6 +253,72 @@
       -webkit-appearance:none !important;
       appearance:none !important;
     }
+    /* ---------------- MÁLAGA EN CIFRAS ---------------- */
+    .om { padding: 56px 0 57px; border-top: 1px solid var(--line); }
+    .om-head { text-align: center; max-width: 600px; margin: 0 auto 36px; }
+    .om-head h2 { margin: 0 0 10px; font-size: clamp(1.7rem, 3vw, 2.3rem); font-weight: 500; letter-spacing: -0.03em; line-height: 1.15; color: var(--ink); }
+    .om-head p { margin: 0; font-size: 17px; line-height: 1.55; color: var(--ink-2); }
+    .om-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 20px; }
+    .om-card { display: flex; flex-direction: column; padding: 28px; border: 1px solid var(--line-2); border-radius: 22px; background: var(--wash); overflow: hidden; }
+    .om-fest { grid-column: 1 / 6; }
+    .om-web { grid-column: 6 / 13; }
+    .om-news { grid-column: 1 / 5; }
+    .om-camp { grid-column: 5 / 9; }
+    .om-prog { grid-column: 9 / 13; }
+    .om-label { margin-bottom: 12px; font-size: 14px; font-weight: 500; color: var(--ink-3); }
+    .om-card h3 { margin: 0 0 8px; font-size: 24px; font-weight: 500; letter-spacing: -0.025em; line-height: 1.25; color: var(--ink); }
+    .om-card p { margin: 0; font-size: 15px; line-height: 1.6; color: var(--ink-2); }
+    .om-visual { margin-top: auto; padding-top: 24px; }
+    .om-cap { margin: 10px 0 0 !important; font-size: 13px !important; color: var(--ink-3) !important; }
+
+    /* festival: barra con las 64 actividades repartidas */
+    .om-seg { display: flex; gap: 4px; height: 56px; }
+    .om-seg i { display: block; border-radius: 12px; min-width: 10px; }
+    .om-seg i:nth-child(1), .om-legend .c1::before { background: #3b82f6; }
+    .om-seg i:nth-child(2), .om-legend .c2::before { background: #14b8a6; }
+    .om-seg i:nth-child(3), .om-legend .c3::before { background: #ec4899; }
+    .om-legend { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 14px; }
+    .om-legend span { display: inline-flex; align-items: baseline; font-size: 14px; color: var(--ink-2); }
+    .om-legend span::before { content: ""; width: 10px; height: 10px; margin-right: 8px; border-radius: 50%; align-self: center; flex-shrink: 0; }
+    .om-legend b { margin-right: 4px; font-size: 20px; font-weight: 500; letter-spacing: -0.02em; color: var(--ink); }
+
+    /* web: tres datos con su mini gráfico */
+    .om-trio { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border-top: 1px solid var(--line); padding-top: 20px; }
+    .om-trio > div { display: flex; align-items: center; gap: 12px; padding: 0 14px; border-left: 1px solid var(--line); }
+    .om-trio > div:first-child { padding-left: 0; border-left: 0; }
+    .om-trio svg { width: 52px; height: 52px; flex-shrink: 0; }
+    .om-trio .trk { fill: none; stroke: var(--line-2); stroke-width: 7; }
+    .om-trio .val { fill: none; stroke-width: 7; stroke-linecap: round; transform: rotate(-90deg); transform-origin: 32px 32px; }
+    .om-trio b { display: block; font-size: 22px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.1; color: var(--ink); }
+    .om-trio span { display: block; margin-top: 4px; font-size: 13px; line-height: 1.3; color: var(--ink-2); }
+
+    /* newsletters: medio anillo */
+    .om-gauge { text-align: center; }
+    .om-gauge svg { width: 100%; max-width: 250px; height: auto; display: block; margin: 0 auto; }
+    .om-gauge .trk { fill: none; stroke: var(--line-2); stroke-width: 9; stroke-linecap: round; }
+    .om-gauge .val { fill: none; stroke: #10b981; stroke-width: 9; stroke-linecap: round; }
+    .om-gauge text { font-size: 22px; font-weight: 500; fill: var(--ink); text-anchor: middle; font-family: var(--font-sans, system-ui, sans-serif); }
+    .om-gauge span { display: block; margin-top: 6px; font-size: 13px; color: var(--ink-2); }
+
+    /* campaña: 74 pantallas */
+    .om-screens { display: block; width: 100%; height: auto; }
+    .om-screens rect { fill: #ec4899; }
+
+    /* programa: columnas verticales */
+    .om-cols { display: flex; align-items: flex-end; justify-content: center; gap: 22px; height: 150px; }
+    .om-cols div { display: flex; flex-direction: column; justify-content: flex-end; align-items: center; height: 100%; width: 96px; font-size: 13px; text-align: center; color: var(--ink-2); }
+    .om-cols b { margin-bottom: 6px; font-size: 18px; font-weight: 500; letter-spacing: -0.02em; color: var(--ink); }
+    .om-cols i { display: block; width: 100%; border-radius: 12px 12px 4px 4px; background: linear-gradient(180deg, #a855f7, #c9a8fb); }
+    .om-cols i.g { background: var(--ink-3); opacity: .45; }
+    .om-cols em { display: block; margin-top: 8px; min-height: 34px; font-style: normal; line-height: 1.3; }
+
+    @media (max-width: 960px) {
+      .om-grid { grid-template-columns: minmax(0, 1fr); }
+      .om-fest, .om-web, .om-news, .om-camp, .om-prog { grid-column: auto; }
+      .om-card { padding: 24px; }
+      .om-trio { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+      .om-trio > div { padding: 0; border-left: 0; }
+    }
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/scandi-project.css" />
@@ -292,7 +358,7 @@
         <p class="project-subtitle">
           Open House Málaga es un festival de arquitectura y ciudad que forma parte de la red internacional
           <a href="https://openhouseworldwide.org" target="_blank" rel="noreferrer"><u>Open House Worldwide</u></a>.
-          <strong>Desde 2021 lidero su imagen</strong>, desarrollando la identidad visual desde la primera edición —adaptando el sistema gráfico a recorridos, espacios y mensajes del festival— y consolidando una marca reconocible para vivir Málaga desde dentro.
+          <strong>Desde 2021 lideré su imagen</strong>, desarrollando la identidad visual desde la primera edición —adaptando el sistema gráfico a recorridos, espacios y mensajes del festival— y consolidando una marca reconocible para vivir Málaga desde dentro.
         </p>
 
         <figure class="project-hero-media">
@@ -312,7 +378,7 @@
 
           <div class="text-collapse is-collapsed" id="workText">
             <p>
-              Formo parte del proyecto de Open House Málaga desde su creación y me encargo del desarrollo de su
+              Formé parte del proyecto de Open House Málaga desde su creación y me encargué del desarrollo de su
               <strong>identidad visual</strong>. Desde la primera edición, el festival ha contado con un sistema
               gráfico propio, diseñado para adaptarse a los recorridos, espacios y mensajes de cada año.
             </p>
@@ -354,7 +420,7 @@
             <span class="meta-pill">Redes sociales</span>
             <span class="meta-pill">Publicidad online &amp; offline</span>
             <span class="meta-pill">Diseño web</span>
-            <span class="meta-pill">Identidad digital</span>
+            <span class="meta-pill">Newsletters</span>
             <span class="meta-pill">Merchandising</span>
           </div>
         </div>
@@ -382,6 +448,86 @@
         <figure class="gallery-item"><img src="imgs/3.jpg" alt="" loading="lazy" /></figure>
         <figure class="gallery-item"><img src="imgs/4.jpg" alt="" loading="lazy" /></figure>
         <figure class="gallery-item"><img src="imgs/ArquitecturaViva_Megabanner1260x125_OpenHouseMalaga25-1.gif" alt="" loading="lazy" /></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- MÁLAGA EN CIFRAS -->
+  <section class="om" aria-label="El festival en cifras">
+    <div class="container">
+      <div class="om-head">
+        <h2>El festival en cifras</h2>
+        <p>Lo que mueve un sistema gráfico pensado para la web, las newsletters, la calle y las pantallas.</p>
+      </div>
+
+      <div class="om-grid">
+
+        <article class="om-card om-fest">
+          <div class="om-label">El festival</div>
+          <h3>64 actividades gratuitas</h3>
+          <p>La identidad, en la calle y en las pantallas, para todo el público.</p>
+          <div class="om-visual">
+            <div class="om-seg" role="img" aria-label="Las 64 actividades: 34 edificios, 26 rutas y 4 experiencias"><i style="flex:34"></i><i style="flex:26"></i><i style="flex:4"></i></div>
+            <div class="om-legend"><span class="c1"><b>34</b>edificios</span><span class="c2"><b>26</b>rutas</span><span class="c3"><b>4</b>experiencias</span></div>
+          </div>
+        </article>
+
+        <article class="om-card om-web">
+          <div class="om-label">La web</div>
+          <h3>102.000 visitas a la web del festival</h3>
+          <p>Estructura e interfaz de la web del festival.</p>
+          <div class="om-visual">
+            <div class="om-trio">
+              <div>
+                <svg viewBox="0 0 64 64" role="img" aria-label="17.000 usuarios únicos, un 17 por ciento de las visitas"><circle class="trk" cx="32" cy="32" r="26"/><circle class="val" cx="32" cy="32" r="26" stroke="#a855f7" stroke-dasharray="27.3 163.4"/></svg>
+                <div><b>17.000</b><span>usuarios únicos</span></div>
+              </div>
+              <div>
+                <svg viewBox="0 0 64 64" role="img" aria-label="Subida del 42 por ciento respecto a 2024" fill="none" stroke="#10b981" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 48 L26 30 L36 40 L56 16"/><path d="M42 16 H56 V30"/></svg>
+                <div><b>+42 %</b><span>más que en 2024</span></div>
+              </div>
+              <div>
+                <svg viewBox="0 0 64 64" role="img" aria-label="5 minutos de duración media"><circle class="trk" cx="32" cy="32" r="26"/><circle class="val" cx="32" cy="32" r="26" stroke="#c9a8fb" stroke-dasharray="13.6 163.4"/></svg>
+                <div><b>5 min</b><span>por visita, de media</span></div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="om-card om-news">
+          <div class="om-label">Las newsletters</div>
+          <h3>+6.300 suscriptores</h3>
+          <p>13 envíos a lo largo de la edición.</p>
+          <div class="om-visual">
+            <div class="om-gauge" role="img" aria-label="Tasa de apertura de las newsletters: 48 por ciento">
+              <svg viewBox="0 0 100 58" aria-hidden="true"><path class="trk" d="M10 50 A40 40 0 0 1 90 50" pathLength="100"/><path class="val" d="M10 50 A40 40 0 0 1 90 50" pathLength="100" stroke-dasharray="48 100"/><text x="50" y="48">48%</text></svg>
+              <span>de tasa de apertura</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="om-card om-camp">
+          <div class="om-label">La campaña</div>
+          <h3>74 pantallas digitales</h3>
+          <p>En centros comerciales.</p>
+          <div class="om-visual">
+            <svg class="om-screens" viewBox="0 0 168 108" role="img" aria-label="74 pantallas digitales"><rect x="2" y="2" width="7" height="13" rx="1.6"/><rect x="14" y="2" width="7" height="13" rx="1.6"/><rect x="26" y="2" width="7" height="13" rx="1.6"/><rect x="38" y="2" width="7" height="13" rx="1.6"/><rect x="50" y="2" width="7" height="13" rx="1.6"/><rect x="62" y="2" width="7" height="13" rx="1.6"/><rect x="74" y="2" width="7" height="13" rx="1.6"/><rect x="86" y="2" width="7" height="13" rx="1.6"/><rect x="98" y="2" width="7" height="13" rx="1.6"/><rect x="110" y="2" width="7" height="13" rx="1.6"/><rect x="122" y="2" width="7" height="13" rx="1.6"/><rect x="134" y="2" width="7" height="13" rx="1.6"/><rect x="146" y="2" width="7" height="13" rx="1.6"/><rect x="158" y="2" width="7" height="13" rx="1.6"/><rect x="2" y="20" width="7" height="13" rx="1.6"/><rect x="14" y="20" width="7" height="13" rx="1.6"/><rect x="26" y="20" width="7" height="13" rx="1.6"/><rect x="38" y="20" width="7" height="13" rx="1.6"/><rect x="50" y="20" width="7" height="13" rx="1.6"/><rect x="62" y="20" width="7" height="13" rx="1.6"/><rect x="74" y="20" width="7" height="13" rx="1.6"/><rect x="86" y="20" width="7" height="13" rx="1.6"/><rect x="98" y="20" width="7" height="13" rx="1.6"/><rect x="110" y="20" width="7" height="13" rx="1.6"/><rect x="122" y="20" width="7" height="13" rx="1.6"/><rect x="134" y="20" width="7" height="13" rx="1.6"/><rect x="146" y="20" width="7" height="13" rx="1.6"/><rect x="158" y="20" width="7" height="13" rx="1.6"/><rect x="2" y="38" width="7" height="13" rx="1.6"/><rect x="14" y="38" width="7" height="13" rx="1.6"/><rect x="26" y="38" width="7" height="13" rx="1.6"/><rect x="38" y="38" width="7" height="13" rx="1.6"/><rect x="50" y="38" width="7" height="13" rx="1.6"/><rect x="62" y="38" width="7" height="13" rx="1.6"/><rect x="74" y="38" width="7" height="13" rx="1.6"/><rect x="86" y="38" width="7" height="13" rx="1.6"/><rect x="98" y="38" width="7" height="13" rx="1.6"/><rect x="110" y="38" width="7" height="13" rx="1.6"/><rect x="122" y="38" width="7" height="13" rx="1.6"/><rect x="134" y="38" width="7" height="13" rx="1.6"/><rect x="146" y="38" width="7" height="13" rx="1.6"/><rect x="158" y="38" width="7" height="13" rx="1.6"/><rect x="2" y="56" width="7" height="13" rx="1.6"/><rect x="14" y="56" width="7" height="13" rx="1.6"/><rect x="26" y="56" width="7" height="13" rx="1.6"/><rect x="38" y="56" width="7" height="13" rx="1.6"/><rect x="50" y="56" width="7" height="13" rx="1.6"/><rect x="62" y="56" width="7" height="13" rx="1.6"/><rect x="74" y="56" width="7" height="13" rx="1.6"/><rect x="86" y="56" width="7" height="13" rx="1.6"/><rect x="98" y="56" width="7" height="13" rx="1.6"/><rect x="110" y="56" width="7" height="13" rx="1.6"/><rect x="122" y="56" width="7" height="13" rx="1.6"/><rect x="134" y="56" width="7" height="13" rx="1.6"/><rect x="146" y="56" width="7" height="13" rx="1.6"/><rect x="158" y="56" width="7" height="13" rx="1.6"/><rect x="2" y="74" width="7" height="13" rx="1.6"/><rect x="14" y="74" width="7" height="13" rx="1.6"/><rect x="26" y="74" width="7" height="13" rx="1.6"/><rect x="38" y="74" width="7" height="13" rx="1.6"/><rect x="50" y="74" width="7" height="13" rx="1.6"/><rect x="62" y="74" width="7" height="13" rx="1.6"/><rect x="74" y="74" width="7" height="13" rx="1.6"/><rect x="86" y="74" width="7" height="13" rx="1.6"/><rect x="98" y="74" width="7" height="13" rx="1.6"/><rect x="110" y="74" width="7" height="13" rx="1.6"/><rect x="122" y="74" width="7" height="13" rx="1.6"/><rect x="134" y="74" width="7" height="13" rx="1.6"/><rect x="146" y="74" width="7" height="13" rx="1.6"/><rect x="158" y="74" width="7" height="13" rx="1.6"/><rect x="2" y="92" width="7" height="13" rx="1.6"/><rect x="14" y="92" width="7" height="13" rx="1.6"/><rect x="26" y="92" width="7" height="13" rx="1.6"/><rect x="38" y="92" width="7" height="13" rx="1.6"/></svg>
+            <p class="om-cap">Cada pantalla, una pieza</p>
+          </div>
+        </article>
+
+        <article class="om-card om-prog">
+          <div class="om-label">El programa</div>
+          <h3>10.000 programas en el diario Sur</h3>
+          <p>El programa del festival, en papel y en digital.</p>
+          <div class="om-visual">
+            <div class="om-cols" role="img" aria-label="10.000 programas encartados frente a más de 2.800 descargas online">
+              <div><b>10.000</b><i class="g" style="height:100%"></i><em>encartados</em></div>
+              <div><b>+2.800</b><i style="height:28%"></i><em>descargas online</em></div>
+            </div>
+          </div>
+        </article>
+
       </div>
     </div>
   </section>
