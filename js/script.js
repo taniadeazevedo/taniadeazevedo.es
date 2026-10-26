@@ -84,34 +84,49 @@
       });
     })();
 
-    // ✅ Filtros de proyectos (con modo NO-PEEK en digital para que 3 ocupen todo el ancho)
+    // Filtros de proyectos: por defecto se ve la mezcla (diseño gráfico y web); al pulsar un botón se filtra y al volver a pulsarlo se vuelve a la mezcla
     (function () {
       const buttons = document.querySelectorAll(".filter-btn");
       const cards = document.querySelectorAll(".work-card");
       const grid = document.querySelector(".work-grid");
       if (!buttons.length || !cards.length || !grid) return;
 
+      // Iguala la altura de los títulos y de las descripciones visibles para que todas las tarjetas tengan las mismas líneas y todo quede alineado
+      const equalizeDescriptions = () => {
+        ["work-title", "work-desc"].forEach((cls) => {
+          const els = [...cards].filter((c) => c.style.display !== "none").map((c) => c.querySelector("." + cls)).filter(Boolean);
+          els.forEach((el) => { el.style.minHeight = ""; });
+          const tallest = Math.max(0, ...els.map((el) => el.getBoundingClientRect().height));
+          if (tallest) els.forEach((el) => { el.style.minHeight = tallest + "px"; });
+        });
+      };
+
+      // type = "graphic" | "digital" | null (null = todos, en el orden en que están en el HTML)
       const applyFilter = (type) => {
         cards.forEach((card) => {
-          const matches = card.dataset.type === type;
+          const matches = !type || card.dataset.type === type;
           card.style.display = matches ? "flex" : "none";
         });
-
-
-
-        // opcional: al cambiar filtro vuelve al inicio
+        equalizeDescriptions();
+        // al cambiar de filtro vuelve al inicio del carrusel
         grid.scrollTo({ left: 0, behavior: "smooth" });
       };
 
-     applyFilter("graphic");
-
-
+      applyFilter(null);
+      window.addEventListener("resize", equalizeDescriptions);
+      window.addEventListener("load", equalizeDescriptions);
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(equalizeDescriptions);
 
       buttons.forEach((btn) => {
         btn.addEventListener("click", () => {
+          const wasActive = btn.classList.contains("is-active");
           buttons.forEach((b) => b.classList.remove("is-active"));
-          btn.classList.add("is-active");
-          applyFilter(btn.dataset.filter);
+          if (wasActive) {
+            applyFilter(null);
+          } else {
+            btn.classList.add("is-active");
+            applyFilter(btn.dataset.filter);
+          }
         });
       });
     })();
