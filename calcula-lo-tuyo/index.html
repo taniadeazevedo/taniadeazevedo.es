@@ -122,6 +122,12 @@
     .cs-phones { display: flex; justify-content: center; align-items: flex-end; gap: 28px; padding: 48px 32px 0; border-radius: 24px; overflow: hidden; background: var(--wash); margin-bottom: 24px; }
     .cs-phone { width: min(260px, 30%); border: 1.5px solid #8b929d; border-bottom: 0; border-radius: 12px 12px 0 0; overflow: hidden; background: #fff; box-shadow: 0 24px 60px -24px rgb(0 0 0 / 40%); }
     .cs-phone img { width: 100%; }
+    /* Reels de Instagram: el vídeo entero dentro de un móvil con contorno fino negro */
+    .cs-phones--reels { align-items: center; padding: 48px 32px; }
+    .cs-phone--reel { border: 1.5px solid #111; border-radius: 22px; aspect-ratio: 9 / 16; background: #111; }
+    .cs-phone--reel video { display: block; width: 100%; height: 100%; object-fit: cover; }
+    @media (max-width: 700px) { .cs-phones.cs-phones--reels { padding: 28px 16px; } }   /* en el móvil, los reels enteros (sin cortar abajo) */
+    .cs-caption a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
 
     /* ---------------- ANATOMÍA DE UNA PÁGINA ---------------- */
     .cs-rows { display: grid; gap: 24px; }
@@ -316,6 +322,7 @@
         <p class="cs-caption">Y en el móvil: el mismo diseño, pensado para pantallas pequeñas.</p>
       </div>
     </section>
+
 
     <!-- ANATOMÍA DE UNA PÁGINA -->
     <section class="cs-section">
@@ -581,6 +588,26 @@
       </div>
     </section>
 
+    <!-- CONTENIDO PARA REDES: reels de Instagram en movimiento (se reproducen solo cuando se ven) -->
+    <section class="cs-section">
+      <div class="container">
+        <div class="cs-center">
+          <span class="cs-eyebrow">Contenido para redes</span>
+          <h2>La web, también en Instagram</h2>
+          <p>
+            Reels y carruseles con la misma identidad que la web: colores, tipografía y cifras oficiales.
+            Cada pieza responde a una duda laboral concreta en pocos segundos y lleva a su calculadora.
+          </p>
+        </div>
+        <div class="cs-phones cs-phones--reels">
+          <figure class="cs-phone cs-phone--reel"><video src="video/reel-pov-45000.mp4" poster="video/reel-pov-45000.jpg" width="1080" height="1920" muted loop playsinline preload="none" data-reel aria-label="Reel: POV, te contratan por 45.000 euros al año y ya estás mirando pisos; lo que te llega de verdad cada mes"></video></figure>
+          <figure class="cs-phone cs-phone--reel"><video src="video/reel-te-lo-calculo.mp4" poster="video/reel-te-lo-calculo.jpg" width="1080" height="1920" muted loop playsinline preload="none" data-reel aria-label="Reel: te lo calculo; una seguidora pregunta cuánto le llega al mes con 22.000 euros brutos al año"></video></figure>
+          <figure class="cs-phone cs-phone--reel"><video src="video/reel-paga-extra.mp4" poster="video/reel-paga-extra.jpg" width="1080" height="1920" muted loop playsinline preload="none" data-reel aria-label="Reel: tu paga extra es más grande que tu nómina, y por qué"></video></figure>
+        </div>
+        <p class="cs-caption">Reels de <a href="https://www.instagram.com/calculalotuyo/" target="_blank" rel="noopener noreferrer">@calculalotuyo</a>, animados con código (React + Remotion).</p>
+      </div>
+    </section>
+
     <!-- CIERRE -->
     <section class="cs-end">
       <div class="container">
@@ -622,6 +649,21 @@
         el.addEventListener("mouseenter", () => cursor.classList.add("is-hover"));
         el.addEventListener("mouseleave", () => cursor.classList.remove("is-hover"));
       });
+    })();
+  </script>
+  <script>
+    // Reels: se cargan y se reproducen solo mientras están a la vista (ahorra datos en el móvil)
+    (function () {
+      var reels = document.querySelectorAll('video[data-reel]');                       // los tres vídeos
+      var quieto = window.matchMedia('(prefers-reduced-motion: reduce)').matches;        // ¿pide menos movimiento?
+      if (!('IntersectionObserver' in window) || quieto) return;                        // entonces se queda la imagen fija
+      var obs = new IntersectionObserver(function (entradas) {
+        entradas.forEach(function (e) {
+          if (e.isIntersecting) { e.target.play().catch(function () {}); }              // a la vista: play
+          else { e.target.pause(); }                                                    // fuera de la vista: pausa
+        });
+      }, { threshold: 0.35 });
+      reels.forEach(function (v) { obs.observe(v); });
     })();
   </script>
   <script src="../js/cursor-ring.js" defer></script>
