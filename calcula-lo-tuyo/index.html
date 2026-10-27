@@ -41,23 +41,9 @@
     .project-subtitle { margin: 0 auto 28px; font-size: 1.15rem; color: var(--text-muted); max-width: 640px; line-height: 1.55; }
     .cs-cta { display: inline-flex; align-items: center; gap: 8px; margin: 0 auto 48px; padding: 12px 22px; border-radius: var(--radius-pill); background: var(--ink); color: var(--bg-body) !important; font-size: 15px; font-weight: 500; transition: transform .16s ease, opacity .16s ease; }
     .cs-cta:hover { transform: translateY(-1px); opacity: .88; }
-    .project-hero-media { border-radius: 18px; overflow: hidden; border: 1px solid var(--line-2); box-shadow: 0 24px 56px -32px rgb(60 40 140 / 20%); }
+    .project-hero-media { border-radius: 18px; overflow: hidden; border: 1px solid var(--line-2); box-shadow: 0 24px 56px -32px rgb(60 40 140 / 20%); max-height: none; }
+    .project-hero-media video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; }   /* el vídeo promo, entero y sin recortar */
 
-    /* ---------------- CIFRAS ---------------- */
-    .cs-stats { padding: 8px 0 72px; }
-    .cs-stats-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
-    .cs-stat { padding: 28px 26px 26px; border-radius: 22px; border: 1px solid rgb(0 0 0 / 5%); transition: transform .18s cubic-bezier(0.22, 0.61, 0.36, 1); }
-    .cs-stat:hover { transform: translateY(-4px) scale(1.02); }
-    .cs-stat b { display: block; font-size: clamp(2.8rem, 5vw, 4.2rem); font-weight: 500; letter-spacing: -0.045em; line-height: 1; }
-    .cs-stat span { display: block; margin-top: 14px; font-size: 15px; line-height: 1.4; color: rgb(0 0 0 / 66%); }
-    .cs-stat--lila { background: linear-gradient(145deg, #eef0ff 0%, #ddd9fb 100%); }
-    .cs-stat--lila b { color: #4f46e5; }
-    .cs-stat--menta { background: linear-gradient(145deg, #e2f8f2 0%, #c8ece3 100%); }
-    .cs-stat--menta b { color: #0f766e; }
-    .cs-stat--rosa { background: linear-gradient(145deg, #fdeef4 0%, #f8d7e6 100%); }
-    .cs-stat--rosa b { color: #be185d; }
-    .cs-stat--azul { background: linear-gradient(145deg, #e8f1ff 0%, #cfe2ff 100%); }
-    .cs-stat--azul b { color: #1d4ed8; }
 
     /* ---------------- CABECERA DE SECCIÓN ---------------- */
     .cs-section { padding: 40px 0 72px; }
@@ -175,7 +161,6 @@
       .cs-bento { grid-template-columns: minmax(0, 1fr); }
       .card--5, .card--7, .card--12 { grid-column: auto; }
       .card--wide { flex-direction: column; gap: 24px; }
-      .cs-stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .cs-row { grid-template-columns: minmax(0, 1fr); gap: 28px; padding: 28px; }
       .cs-phones { gap: 14px; padding: 32px 20px 0; }
       .cs-phone { border-width: 1px; border-radius: 10px 10px 0 0; }
@@ -197,16 +182,6 @@
     /* ---------------- MODO OSCURO ---------------- */
     html[data-theme="dark"] .project-hero-media { box-shadow: 0 24px 56px -32px rgb(168 85 247 / 20%); }
     html[data-theme="dark"] .code { border: 1px solid var(--line); }
-    html[data-theme="dark"] .cs-stat--lila { background: linear-gradient(135deg, rgb(168 85 247 / 20%) 0%, rgb(99 102 241 / 14%) 100%); }
-    html[data-theme="dark"] .cs-stat--menta { background: linear-gradient(135deg, rgb(20 184 166 / 18%) 0%, rgb(16 120 110 / 12%) 100%); }
-    html[data-theme="dark"] .cs-stat--rosa { background: linear-gradient(135deg, rgb(236 72 153 / 18%) 0%, rgb(190 24 93 / 12%) 100%); }
-    html[data-theme="dark"] .cs-stat--azul { background: linear-gradient(135deg, rgb(59 130 246 / 18%) 0%, rgb(29 78 216 / 12%) 100%); }
-    html[data-theme="dark"] .cs-stat { border-color: var(--line); }
-    html[data-theme="dark"] .cs-stat span { color: var(--ink-2); }
-    html[data-theme="dark"] .cs-stat--lila b { color: #a5b4fc; }
-    html[data-theme="dark"] .cs-stat--menta b { color: #5eead4; }
-    html[data-theme="dark"] .cs-stat--rosa b { color: #f9a8d4; }
-    html[data-theme="dark"] .cs-stat--azul b { color: #93c5fd; }
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/scandi-project.css" />
@@ -252,20 +227,20 @@
           <a class="cs-cta" href="https://calculalotuyo.es" target="_blank" rel="noopener noreferrer">Visitar calculalotuyo.es</a>
 
           <figure class="project-hero-media">
-            <img src="img/portada.jpg" width="1440" height="1000" alt="Portada de Calcula lo tuyo: buscador y nueve situaciones laborales como «Me han despedido» o «Estoy de baja»" />
+            <!-- Vídeo promo hecho con código (Remotion + React): se reproduce solo, sin sonido y en bucle -->
+            <video
+              class="hero-video"
+              src="video/calculalotuyo-promo.mp4"
+              poster="img/video-poster.jpg"
+              width="1920" height="1080"
+              autoplay
+              muted
+              loop
+              playsinline
+              preload="auto"
+              aria-label="Vídeo promocional de Calcula lo tuyo: de la portada al buscador, el cálculo del sueldo neto, el desglose, el PDF y las más de 20 calculadoras"
+            ></video>
           </figure>
-        </div>
-      </div>
-    </section>
-
-    <!-- CIFRAS -->
-    <section class="cs-stats" aria-label="El proyecto en cifras">
-      <div class="container">
-        <div class="cs-stats-grid">
-          <div class="cs-stat cs-stat--lila"><b>+20</b><span>calculadoras laborales</span></div>
-          <div class="cs-stat cs-stat--menta"><b>+15</b><span>guías revisadas contra el BOE</span></div>
-          <div class="cs-stat cs-stat--rosa"><b>+130</b><span>páginas en el sitemap</span></div>
-          <div class="cs-stat cs-stat--azul"><b>+30</b><span>pruebas automáticas en cada cambio</span></div>
         </div>
       </div>
     </section>
