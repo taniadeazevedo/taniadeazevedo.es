@@ -62,6 +62,9 @@
       max-height:480px;
     }
     .project-hero-media img{height:100%;width:100%;object-fit:cover;object-position:50% 18%;}
+    .project-hero-media.con-video{max-height:none;}                                  /* con vídeo: sin límite de alto, para que se vea entero */
+    .project-hero-media video{width:100%;height:auto;aspect-ratio:16 / 9;display:block;} /* el vídeo ocupa todo el ancho, en 16:9 */
+    .video-nota{margin:14px 0 0;font-size:14px;color:var(--text-muted);}             /* leyenda bajo el vídeo: discreta */
 
     /* ---------------- CUERPO TEXTO + META ---------------- */
     .project-layout{padding:56px 0 56px;}
@@ -364,9 +367,22 @@
           <strong>Desde 2021 lideré su imagen</strong>, desarrollando la identidad visual desde la primera edición —adaptando el sistema gráfico a recorridos, espacios y mensajes del festival— y consolidando una marca reconocible para vivir Málaga desde dentro.
         </p>
 
-        <figure class="project-hero-media">
-          <img src="imgs/Captura-de-pantalla-2026-01-15-a-las-17.05.28-2.png" alt="Open House Málaga" />
+        <figure class="project-hero-media con-video">
+          <!-- Vídeo hecho con código (Remotion + React): se reproduce solo, sin sonido y en bucle -->
+          <video
+            src="video/open-house-malaga-promo.mp4"
+            poster="imgs/video-poster.jpg"
+            width="1920" height="1080"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="auto"
+            aria-label="Vídeo de la identidad de Open House Málaga: la fachada del Centro Pompidou de Málaga se simplifica hasta formar el logo y sus tres versiones"
+          ></video>
         </figure>
+        <!-- Leyenda del vídeo: cómo se hizo -->
+        <p class="video-nota">Vídeo animado con código (React + Remotion) y desarrollo asistido por IA.</p>
       </div>
     </div>
   </section>
@@ -446,7 +462,7 @@
         <figure class="gallery-item"><img src="imgs/cartel-2025.jpg" alt="Cartel de Open House Málaga 2025, 5ª edición: festival internacional de arquitectura, del 23 al 25 de mayo" loading="lazy" /></figure>
         <div class="poster-stack">
           <figure class="gallery-item"><img src="imgs/1-1.jpg" alt="" loading="lazy" /></figure>
-          <figure class="gallery-item"><img src="imgs/2-1.jpg" alt="" loading="lazy" /></figure>
+          <figure class="gallery-item"><img src="imgs/mupi-centro-comercial.jpg" alt="Mupi digital de Open House Málaga 2025 en un centro comercial" loading="lazy" /></figure>
         </div>
       </div>
 
