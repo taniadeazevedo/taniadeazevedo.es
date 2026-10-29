@@ -73,6 +73,9 @@ h1 { font-size: clamp(2.4rem, 4.2vw, 3.5rem); line-height: 1.1; letter-spacing: 
 .exp-location-pill { font-size: 14px; letter-spacing: 0; text-transform: none; background: #fff; border: 1px solid var(--line-2); color: var(--ink-2); border-radius: 999px; }
 .exp-item-role { font-size: 20px; letter-spacing: -0.015em; font-weight: 500; }
 .exp-item-desc { font-size: 17px; line-height: 1.6; color: var(--ink-2); max-width: 64ch; }
+/* Experiencia: dos párrafos, uno debajo del otro, a todo el ancho del bloque de texto */
+.exp-item-cols { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; margin-top: 8px; }
+.exp-item-cols .exp-item-desc { max-width: none; margin: 0; }
 .exp-company-icon { border-radius: 6px; box-shadow: none; }
 
 /* ---------- Testimonios ---------- */
