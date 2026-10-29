@@ -109,6 +109,12 @@
       width: 100%;
       object-fit: cover;
     }
+    .project-hero-media.con-video { max-height: none; }                                   /* con vídeo: sin límite de alto, para que se vea entero */
+    .project-hero-media video { width: 100%; height: auto; aspect-ratio: 16 / 9; display: block; } /* el vídeo ocupa todo el ancho, en 16:9 */
+    .video-nota { margin: 14px 0 0; font-size: 14px; color: var(--text-muted); }          /* leyenda bajo el vídeo: discreta */
+    .gallery-destacada { grid-column: 1 / -1; }                                           /* vídeo protagonista: ocupa las dos columnas */
+    .gallery-item video { width: 100%; height: auto; aspect-ratio: 16 / 9; display: block; } /* el vídeo de la galería, en 16:9 */
+    .gallery-destacada .video-nota { text-align: center; margin-bottom: 6px; }            /* leyenda centrada bajo el vídeo */
 
     /* ---------------- CUERPO TEXTO + META ---------------- */
 
@@ -592,7 +598,7 @@
           <figure class="project-hero-media">
             <img
               src="imgs/1.webp"
-              alt="Señalética y accesos con la nueva identidad visual de Open House Madrid"
+              alt="Voluntarias de Open House Madrid con camisetas y bolsas de la identidad visual de la edición 2022"
             />
           </figure>
         </div>
@@ -679,6 +685,25 @@
       <div class="container">
         <div class="project-gallery-section">
           <div class="project-gallery-grid">
+            <!-- Vídeo protagonista: el manual de marca animado (hecho con código, Remotion + React), a todo el ancho -->
+            <div class="gallery-destacada">
+              <figure class="gallery-item">
+                <video
+                  src="video/open-house-madrid-manual.mp4"
+                  poster="imgs/video-poster.jpg"
+                  width="1920" height="1080"
+                  autoplay
+                  muted
+                  loop
+                  playsinline
+                  preload="metadata"
+                  aria-label="Vídeo del manual de marca de Open House Madrid: logotipo, misión, visión y valores, versiones del logo, colores, tipografía e iconografía"
+                ></video>
+              </figure>
+              <!-- Leyenda del vídeo -->
+              <p class="video-nota">Rediseño por el décimo aniversario, animado con código (React + Remotion).</p>
+            </div>
+
             <figure class="gallery-main">
               <img
                 src="imgs/visitassabados-62.webp"
