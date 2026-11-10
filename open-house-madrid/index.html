@@ -1,13 +1,22 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="dark" data-root="../">
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="icon" href="/favicon.ico" sizes="48x48" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <title>Open House Madrid – Proyecto · Tania de Azevedo</title>
+  <meta name="description" content="Identidad visual de cada edición del festival de arquitectura desde 2021 y rebranding del décimo aniversario en 2025." />
+  <link rel="canonical" href="https://taniadeazevedo.es/open-house-madrid/" />
+  <meta property="og:title" content="Open House Madrid – Tania de Azevedo" />
+  <meta property="og:description" content="Identidad visual de cada edición del festival de arquitectura desde 2021 y rebranding del décimo aniversario en 2025." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://taniadeazevedo.es/open-house-madrid/" />
+  <meta property="og:image" content="https://taniadeazevedo.es/open-house-madrid/imgs/1.webp" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <script src="../js/theme.js"></script>
+  <script>document.documentElement.setAttribute("data-theme","dark");</script>
+  <meta name="theme-color" content="#07050d" />
+  <meta name="color-scheme" content="dark" />
 
   <style>
     :root {
@@ -551,137 +560,123 @@
       .ohm-card--wide { grid-template-columns: minmax(0, 1fr); gap: 24px; }
     }
   </style>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/scandi-project.css" />
-  <link rel="stylesheet" href="../css/cursor-ring.css" />
-  <link rel="stylesheet" href="../css/theme-toggle.css" />
   <link rel="stylesheet" href="../css/scandi-dark.css" />
+  <link rel="stylesheet" href="../css/v2.css" />
+  <link rel="stylesheet" href="../css/v2-case.css" />
 </head>
 
-<body>
-  <div class="custom-cursor"></div>
+<body class="v2-page v2-case">
+  <a class="v2-skip" href="#contenido">Saltar al contenido</a>
 
-  <header class="site-header">
-    <div class="nav-wrapper">
-      <div class="nav-shell">
-        <a class="nav-avatar" href="../" aria-label="Volver al inicio"><img src="../imgs/Yo.jpg" alt="Tania de Azevedo" /></a>
-        <div class="nav-actions">
-        <a href="mailto:taniadeazevedoribeiro@gmail.com" class="nav-cta" title="Escríbeme por email">
-          <span class="nav-cta-dot"></span>
-          <span>Open to work</span>
+  <header class="v2-nav" id="v2-nav">
+    <div class="v2-nav-in">
+      <div class="v2-brand">
+        <a class="v2-logo" href="../" aria-label="Tania de Azevedo, ir al inicio">
+          <span class="v2-logo-mark" aria-hidden="true"></span>
+          <span class="v2-logo-word">T<span class="v2-logo-rest">ania</span><sup>®</sup></span>
         </a>
-        <button class="theme-toggle" type="button" aria-label="Cambiar tema" aria-pressed="false">
-          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
-          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
-        </button>
-        </div>
+        <span class="v2-nav-sep" aria-hidden="true"></span>
+        <a class="v2-nav-label" href="../proyectos/">Proyectos</a>
       </div>
+      <nav class="v2-links" aria-label="Navegación principal">
+        <a href="../#experience">Experiencia</a>
+        <a href="../#contact">Contacto</a>
+      </nav>
+      <a class="v2-nav-cta" href="../files/CV-Tania-de-Azevedo-Ribeiro.pdf" target="_blank" rel="noopener noreferrer" download>Descargar CV <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5v8M4.8 7.6L8 10.8l3.2-3.2M3 13h10"/></svg></a>
+      <button class="v2-burger" id="v2-burger" type="button" aria-expanded="false" aria-controls="v2-menu" aria-label="Abrir menú"><span></span></button>
     </div>
   </header>
 
-  <main>
-    <!-- HERO PROYECTO -->
-    <section class="project-hero">
-      <div class="container">
-        <div class="project-hero-inner">
-          <div class="project-kicker">Identidad visual</div>
-          <h1 class="project-title">Open House Madrid</h1>
+  <div class="v2-menu" id="v2-menu" aria-hidden="true">
+    <nav aria-label="Menú móvil">
+      <a href="../proyectos/">Proyectos</a>
+      <a href="../#experience">Experiencia</a>
+      <a href="../#contact">Contacto</a>
+    </nav>
+    <div class="v2-menu-foot"><a class="v2-menu-cv" href="../files/CV-Tania-de-Azevedo-Ribeiro.pdf" target="_blank" rel="noopener noreferrer" download>Descargar CV <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5v8M4.8 7.6L8 10.8l3.2-3.2M3 13h10"/></svg></a><small>Bizkaia · taniadeazevedoribeiro@gmail.com</small></div>
+  </div>
 
-          <p class="project-subtitle">
-            Open House Madrid es un festival de arquitectura y ciudad que forma parte de la red internacional
-            <a href="https://openhouseworldwide.org" target="_blank" rel="noreferrer"><u>Open House Worldwide</u></a>.
-            Desde 2021 me encargué de la <strong>identidad visual de cada edición</strong> —adaptando el sistema gráfico a los
-            recorridos, edificios y mensajes de cada año— y en 2025 lideré el <strong>rebranding por el décimo aniversario</strong>,
-            consolidando la marca y su vínculo con la ciudad.
-          </p>
-
-          <figure class="project-hero-media">
-            <img
+  <main id="contenido">
+    <!-- PORTADA: migas, categoría, nombre, descripción e imagen grande -->
+    <section class="v2-cs-cover">
+      <div class="v2-cs-wrap">
+        <p class="v2-cs-crumb"><a href="../proyectos/">Proyectos</a><span aria-hidden="true">/</span><span>Open House Madrid</span></p>
+        <div class="v2-cs-head">
+          <div>
+            <p class="v2-cs-kicker">Branding, identidad y comunicación</p>
+            <h1 class="v2-cs-title">Open House Madrid</h1>
+          </div>
+          <p class="v2-cs-lede">Open House Madrid es un festival de arquitectura y ciudad que forma parte de la red internacional <a href="https://openhouseworldwide.org" target="_blank" rel="noreferrer"><u>Open House Worldwide</u></a>. Desde 2021 me encargué de la <strong>identidad visual de cada edición</strong> —adaptando el sistema gráfico a los recorridos, edificios y mensajes de cada año— y en 2025 lideré el <strong>rebranding por el décimo aniversario</strong>, consolidando la marca y su vínculo con la ciudad.</p>
+        </div>
+        <figure class="v2-cs-hero">
+          <img
               src="imgs/1.webp"
               alt="Voluntarias de Open House Madrid con camisetas y bolsas de la identidad visual de la edición 2022"
             />
-          </figure>
+        </figure>
+      </div>
+    </section>
+
+    <section class="v2-cs-sec" id="contexto">
+      <div class="v2-cs-wrap">
+        <div class="v2-cs-row">
+          <div class="v2-cs-label"><span class="v2-cs-num">01</span><h2 class="v2-cs-h2">Contexto y objetivos</h2></div>
+          <div class="v2-cs-body">
+            <p>Formé parte del equipo de Open House Madrid durante cuatro años y, desde la edición de 2021, desarrollé la <strong>identidad visual de cada año</strong>. Aunque el logotipo del festival ya existía, cada edición tuvo su propio sistema gráfico, construido a partir del lema, la programación y la relación con la ciudad.</p>
+            <p class="v2-cs-goals-title">Objetivos</p>
+            <ul class="v2-cs-goals">
+              <li><p>Dar a cada edición su propio sistema gráfico, construido a partir del lema, la programación y la relación con la ciudad.</p></li>
+              <li><p>Reforzar la personalidad de la marca con motivo del décimo aniversario.</p></li>
+              <li><p>Alinear todas las aplicaciones del festival bajo un mismo sistema.</p></li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- TEXTO + META -->
-    <section class="project-layout">
-      <div class="container project-layout-grid">
-        <div class="project-copy">
-          <section>
-            <h2>El trabajo</h2>
-
-            <!-- ✅ Bloque con fade + leer más -->
-            <div class="text-collapse is-collapsed" id="workText">
-              <p>
-                Formé parte del equipo de Open House Madrid durante cuatro años y, desde la edición de 2021, desarrollé la
-                <strong>identidad visual de cada año</strong>. Aunque el logotipo del festival ya existía, cada edición tuvo su
-                propio sistema gráfico, construido a partir del lema, la programación y la relación con la ciudad.
-              </p>
-
-              <p>
-                Entre 2021 y 2024 fui dando forma a un lenguaje visual coherente pero vivo, aplicándolo a campañas, redes,
-                publicaciones, señalética y piezas editoriales. Ese trabajo continuado sentó las bases para un paso más ambicioso:
-                con motivo del décimo aniversario, en 2025 actualizamos por completo la identidad para reforzar la personalidad de la marca
-                y alinear todas las aplicaciones del festival.
-              </p>
-
-              <p>
-                El nuevo sistema se construye sobre una <strong>retícula flexible y modular</strong> que unifica la comunicación y permite
-                generar piezas consistentes en todos los formatos: desde soportes digitales y señalética urbana, hasta campañas, redes sociales,
-                newsletters, web y merchandising. Además de definir la estructura y el diseño de la interfaz web, me ocupé de mantener la web viva,
-                actualizando contenidos y adaptando la gráfica de cada edición.
-              </p>
+    <section class="v2-cs-sec" id="papel">
+      <div class="v2-cs-wrap">
+        <div class="v2-cs-row">
+          <div class="v2-cs-label"><span class="v2-cs-num">02</span><h2 class="v2-cs-h2">Mi papel</h2></div>
+          <div class="v2-cs-body">
+            <p class="v2-cs-role">Dirección de arte, diseño gráfico y diseño de interfaz + estructura web. Desarrollo de identidades de edición (2021–2024) y rebranding global del festival en 2025.</p>
+            <div class="v2-cs-pills" aria-label="Áreas de trabajo">
+              <span>Sistema gráfico</span>
+              <span>Rebranding</span>
+              <span>Redes sociales</span>
+              <span>Publicidad online &amp; offline</span>
+              <span>Diseño web</span>
+              <span>Newsletters</span>
+              <span>Merchandising</span>
             </div>
-
-            <button class="read-more" id="readMoreBtn" aria-expanded="false" aria-controls="workText" type="button">
-              <span class="read-more__icon" aria-hidden="true">+</span>
-              <span class="read-more__label">Leer más</span>
-            </button>
-          </section>
+            <div class="v2-cs-links">
+              <a class="v2-btn v2-btn-ghost" href="files/MANUAL-MARCA-OPEN-HOUSE-MADRID.pdf">Ver manual de marca <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5l7-7M5.5 4.5h6v6"/></svg></a>
+            </div>
+          </div>
         </div>
-
-        <aside class="project-meta">
-          <div class="project-meta-block">
-            <div class="project-meta-label">Rol</div>
-            <div class="project-meta-main">
-              Dirección de arte, diseño gráfico y diseño de interfaz + estructura web.
-              Desarrollo de identidades de edición (2021–2024) y rebranding global del festival en 2025.
-            </div>
-          </div>
-
-          <div class="project-meta-block">
-            <div class="project-meta-label">Áreas de trabajo</div>
-            <div class="project-meta-pills">
-              <span class="meta-pill">Sistema gráfico</span>
-              <span class="meta-pill">Rebranding</span>
-              <span class="meta-pill">Redes sociales</span>
-              <span class="meta-pill">Publicidad online &amp; offline</span>
-              <span class="meta-pill">Diseño web</span>
-              <span class="meta-pill">Newsletters</span>
-              <span class="meta-pill">Merchandising</span>
-            </div>
-          </div>
-
-    
-
-          <div class="project-meta-block project-meta-button tight-meta">
-            <a
-              href="files/MANUAL-MARCA-OPEN-HOUSE-MADRID.pdf"
-              class="project-link-arrow"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Ver manual de marca
-            </a>
-          </div>
-        </aside>
       </div>
     </section>
 
-    <!-- GALERÍA MIX -->
-    <section class="project-gallery">
+    <section class="v2-cs-sec" id="proceso">
+      <div class="v2-cs-wrap">
+        <div class="v2-cs-row">
+          <div class="v2-cs-label"><span class="v2-cs-num">03</span><h2 class="v2-cs-h2">Proceso creativo</h2></div>
+          <div class="v2-cs-body">
+            <p>Entre 2021 y 2024 fui dando forma a un lenguaje visual coherente pero vivo, aplicándolo a campañas, redes, publicaciones, señalética y piezas editoriales. Ese trabajo continuado sentó las bases para un paso más ambicioso: con motivo del décimo aniversario, en 2025 actualizamos por completo la identidad para reforzar la personalidad de la marca y alinear todas las aplicaciones del festival.</p>
+            <p>El nuevo sistema se construye sobre una <strong>retícula flexible y modular</strong> que unifica la comunicación y permite generar piezas consistentes en todos los formatos: desde soportes digitales y señalética urbana, hasta campañas, redes sociales, newsletters, web y merchandising. Además de definir la estructura y el diseño de la interfaz web, me ocupé de mantener la web viva, actualizando contenidos y adaptando la gráfica de cada edición.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-cs-sec" id="galeria">
+      <div class="v2-cs-wrap">
+        <div class="v2-cs-row"><div class="v2-cs-label"><span class="v2-cs-num">04</span><h2 class="v2-cs-h2">Galería</h2></div></div>
+      </div>
+      <div class="v2-cs-gal">
+<section class="project-gallery">
       <div class="container">
         <div class="project-gallery-section">
           <div class="project-gallery-grid">
@@ -763,9 +758,15 @@
         </div>
       </div>
     </section>
+      </div>
+    </section>
 
-    <!-- EL FESTIVAL EN CIFRAS -->
-    <section class="ohm-stats" aria-label="El festival en cifras">
+    <section class="v2-cs-sec" id="resultado">
+      <div class="v2-cs-wrap">
+        <div class="v2-cs-row"><div class="v2-cs-label"><span class="v2-cs-num">05</span><h2 class="v2-cs-h2">Resultado final</h2></div></div>
+      </div>
+      <div class="v2-cs-result">
+<section class="ohm-stats" aria-label="El festival en cifras">
       <div class="container">
         <div class="ohm-head">
           <h2>El festival en cifras</h2>
@@ -852,65 +853,35 @@
         </div>
       </div>
     </section>
+      </div>
+    </section>
 
-    <!-- NAVEGACIÓN FINAL -->
-    <section class="project-bottom">
-      <div class="container">
-        <div class="project-bottom-nav">
-          <a href="https://taniadeazevedo.es" class="nav-link-arrow nav-link-back">Home</a>
-          <a href="https://taniadeazevedo.es/estrella-damm-n-a-andalucia-masters/" class="nav-link-arrow">
-            Ver otro proyecto
-          </a>
+    <!-- MÁS PROYECTOS: 3 relacionados (se eligen solos desde js/projects-data.js) -->
+    <section class="v2-cs-related" aria-label="Más proyectos">
+      <div class="v2-cs-wrap">
+        <div class="v2-rel-head">
+          <h2 class="v2-rel-h2">Más proyectos</h2>
+          <a class="v2-projects-all" href="../proyectos/">Ver todos<span class="v2-more-txt"> los proyectos</span> <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5l7-7M5.5 4.5h6v6"/></svg></a>
         </div>
+        <ul class="v2-rel-grid" id="v2-related" data-current="open-house-madrid/"></ul>
+        <noscript><p class="v2-rel-nojs"><a href="../proyectos/">Ver todos los proyectos</a></p></noscript>
       </div>
     </section>
   </main>
 
-  <script>
-    // Custom cursor
-    (function () {
-      const cursor = document.querySelector(".custom-cursor");
-      if (!cursor) return;
+  <footer class="v2-foot" aria-label="Pie de página">
+    <div class="v2-foot-in">
+      <p class="v2-foot-copy">© Tania de Azevedo · 2026</p>
+      <nav class="v2-foot-icons" aria-label="Contacto">
+          <a href="mailto:taniadeazevedoribeiro@gmail.com" aria-label="Escríbeme un email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M4 7.5l8 6 8-6"/></svg></a>
+          <a href="https://www.linkedin.com/in/tania-de-azevedo-ribeiro" target="_blank" rel="noreferrer" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+        </nav>
+    </div>
+  </footer>
 
-      document.addEventListener("mousemove", (e) => {
-        cursor.style.top = e.clientY + "px";
-        cursor.style.left = e.clientX + "px";
-      });
-
-      const hoverables = document.querySelectorAll("a, button, .read-more");
-      hoverables.forEach((el) => {
-        el.addEventListener("mouseenter", () => cursor.classList.add("is-hover"));
-        el.addEventListener("mouseleave", () => cursor.classList.remove("is-hover"));
-      });
-    })();
-
-    // Leer más / Leer menos + fade
-    (function () {
-      const text = document.getElementById("workText");
-      const btn = document.getElementById("readMoreBtn");
-      if (!text || !btn) return;
-
-      btn.addEventListener("click", () => {
-        const isCollapsed = text.classList.contains("is-collapsed");
-        const icon = btn.querySelector(".read-more__icon");
-        const label = btn.querySelector(".read-more__label");
-
-        if (isCollapsed) {
-          text.classList.remove("is-collapsed");
-          if (icon) icon.textContent = "–";
-          if (label) label.textContent = "Leer menos";
-          btn.setAttribute("aria-expanded", "true");
-        } else {
-          text.classList.add("is-collapsed");
-          if (icon) icon.textContent = "+";
-          if (label) label.textContent = "Leer más";
-          btn.setAttribute("aria-expanded", "false");
-          text.scrollIntoView({ behavior: "smooth", block: "start" });
-        }
-      });
-    })();
-  </script>
-  <script src="../js/cursor-ring.js" defer></script>
+  <script src="../js/v2.js" defer></script>
+  <script src="../js/projects-data.js" defer></script>
+  <script src="../js/related.js" defer></script>
   <script src="../js/chart-anim.js" defer></script>
 </body>
 </html>
