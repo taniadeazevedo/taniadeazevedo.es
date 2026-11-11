@@ -150,7 +150,20 @@
 
   /* vídeo de fondo del hero: con «reducir movimiento» se queda parado en el primer fotograma */
   var hv = document.getElementById('v2-hero-video');
-  if (hv && reduce) { hv.removeAttribute('autoplay'); hv.pause(); }
+  // Si el navegador no deja reproducir solo (p. ej. el modo de bajo consumo del iPhone), se esconde el vídeo
+  // (así no sale el botón de play) y se queda la foto de fondo (hero-poster.jpg, puesta en el CSS).
+  if (hv) {
+    var ocultarVideo = function () { hv.style.visibility = 'hidden'; };
+    var mostrarVideo = function () { hv.style.visibility = 'visible'; };
+    var intentar = function () { var p = hv.play && hv.play(); if (p && p.then) { p.then(mostrarVideo).catch(ocultarVideo); } };
+    hv.muted = true; hv.setAttribute('playsinline', ''); hv.setAttribute('webkit-playsinline', '');
+    intentar();
+    // si a los 2,5 s sigue parado, se esconde; y al primer toque o scroll del usuario se vuelve a intentar (iOS sí deja entonces)
+    setTimeout(function () { if (hv.paused) ocultarVideo(); }, 2500);
+    ['touchstart', 'pointerdown', 'scroll'].forEach(function (ev) { window.addEventListener(ev, function reintento() { window.removeEventListener(ev, reintento); if (hv.paused && !reduce) intentar(); }, { passive: true }); });
+    hv.addEventListener('playing', mostrarVideo);
+  }
+  if (hv && reduce) { hv.removeAttribute('autoplay'); hv.pause(); hv.style.visibility = 'hidden'; }
   // con ahorro de datos o una conexión lenta no se descarga el vídeo del hero (se queda el fondo degradado)
   var net = navigator.connection;
   if (hv && net && (net.saveData || /(^|-)2g$|3g/.test(net.effectiveType || ''))) { hv.pause(); hv.removeAttribute('autoplay'); [].slice.call(hv.querySelectorAll('source')).forEach(function (s) { s.remove(); }); hv.removeAttribute('src'); hv.load(); }

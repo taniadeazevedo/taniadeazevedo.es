@@ -120,7 +120,7 @@ html[data-theme="dark"] ::selection { background: var(--v2-violet); color: #fff;
   radial-gradient(40% 38% at 52% -12%, rgb(201 168 251 / 26%) 0%, transparent 72%),
   linear-gradient(180deg, #0c0718 0%, #07050d 100%); }
 /* foto de fondo: ocupa toda la tarjeta, con un velo oscuro a la izquierda para que el texto se lea */
-.v2-hero-photo { position: absolute; inset: 0; z-index: -2; background-size: cover; background-position: var(--photo-pos, 72% 30%); background-repeat: no-repeat; }
+.v2-hero-photo { position: absolute; inset: 0; z-index: -2; background-image: url(../imgs/hero-poster.jpg); background-size: cover; background-position: var(--photo-pos, 72% 30%); background-repeat: no-repeat; }
 .v2-hero-photo video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .v2-hero-photo::after { content: ""; position: absolute; inset: 0; background:
   linear-gradient(90deg, rgb(7 5 13 / 94%) 0%, rgb(7 5 13 / 72%) 36%, rgb(7 5 13 / 12%) 76%, rgb(7 5 13 / 0%) 100%),
@@ -377,7 +377,7 @@ a.v2-exp-icon:hover { transform: translateY(-2px) rotate(-4deg); }
 }
 
 /* ---- testimonios: citas grandes dentro de una tarjeta ---- */
-.v2-quotes { padding: 12px; }
+.v2-quotes { width: min(1180px, calc(100% - 48px)); margin: 0 auto; padding: 12px 0; } /* mismos laterales que proyectos y hero (1180px) */
 .v2-quotes-card { border-radius: clamp(26px, 3.2vw, 44px); background: #131317; border: 1px solid rgb(246 242 255 / 7%); padding: clamp(16px, 2.2vw, 36px) clamp(14px, 3.2vw, 56px) clamp(24px, 3vw, 48px); overflow: hidden; }
 .v2-quotes-in { position: relative; max-width: 1180px; margin: 0 auto; }
 .v2-quotes-bar { position: absolute; z-index: 3; right: 0; top: calc(clamp(56px, 5vw, 80px) * .18 - 21px); display: flex; align-items: center; justify-content: flex-end; gap: 16px; }
@@ -525,3 +525,24 @@ a.v2-exp-icon:hover { transform: translateY(-2px) rotate(-4deg); }
 
 /* en pantallas táctiles no hay tecla C: se oculta el aviso */
 @media (hover: none) { .v2-contact-hint { display: none; } }
+
+/* vídeos de fondo: nunca se muestran los controles ni el botón de play del navegador (Safari en iPhone lo pinta si no deja reproducir solo) */
+video[autoplay] { pointer-events: none; }
+video[autoplay]::-webkit-media-controls,
+video[autoplay]::-webkit-media-controls-panel,
+video[autoplay]::-webkit-media-controls-play-button,
+video[autoplay]::-webkit-media-controls-start-playback-button,
+video[autoplay]::-webkit-media-controls-overlay-play-button,
+video[autoplay]::-webkit-media-controls-enclosure { display: none !important; opacity: 0 !important; -webkit-appearance: none; }
+video[data-src]::-webkit-media-controls-start-playback-button { display: none !important; }
+
+/* testimonios en móvil y tablet: contador y flechas en su propia fila, y la comilla en otra, para que nada pise el texto */
+@media (max-width: 900px) {
+  .v2-quotes-bar { position: static; margin: 0 0 8px; }
+  .v2-quotes-stage { margin-top: 0; }
+  .v2-quote blockquote { padding-top: 46px; }
+  .v2-quote-mark { top: 0; left: 0; font-size: 52px; }
+}
+
+/* campo trampa anti-spam: fuera de pantalla para personas y lectores de pantalla (los bots sí lo rellenan) */
+.v2-hp { position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; }

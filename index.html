@@ -44,7 +44,7 @@
         <span class="v2-logo-word">T<span class="v2-logo-rest">ania</span><sup>®</sup></span>
       </a>
       <nav class="v2-links" aria-label="Navegación principal">
-        <a href="#proyectos">Proyectos</a>
+        <a href="proyectos/">Proyectos</a>
         <a href="#experience">Experiencia</a>
         <a href="#contact">Contacto</a>
       </nav>
@@ -55,7 +55,7 @@
 
   <div class="v2-menu" id="v2-menu" aria-hidden="true">
     <nav aria-label="Menú móvil">
-      <a href="#proyectos">Proyectos</a>
+      <a href="proyectos/">Proyectos</a>
       <a href="#experience">Experiencia</a>
       <a href="#contact">Contacto</a>
     </nav>
@@ -69,7 +69,7 @@
       <div class="v2-hero-card">
         <div class="v2-hero-bg" aria-hidden="true"></div>
         <!-- VÍDEO DE FONDO: sin sonido, en bucle; el velo oscuro de .v2-hero-photo::after mantiene el texto legible -->
-        <div class="v2-hero-photo" aria-hidden="true"><video id="v2-hero-video" autoplay muted loop playsinline preload="auto" tabindex="-1"><source src="video/hero-bg.mp4" type="video/mp4" /></video></div>
+        <div class="v2-hero-photo" aria-hidden="true"><video id="v2-hero-video" autoplay muted loop playsinline webkit-playsinline preload="auto" poster="imgs/hero-poster.jpg" tabindex="-1" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback" x-webkit-airplay="deny"><source src="video/hero-bg.mp4" type="video/mp4" /></video></div>
         <div class="v2-hero-glow" aria-hidden="true"></div>
         <div class="v2-hero-grid">
           <div class="v2-hero-copy">
@@ -279,8 +279,10 @@
             <a class="v2-contact-mail" href="mailto:taniadeazevedoribeiro@gmail.com">taniadeazevedoribeiro@gmail.com <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5l7-7M5.5 4.5h6v6"/></svg></a>
             <p class="v2-contact-hint">Pulsa <kbd>C</kbd> para copiar mi email</p>
           </div>
-          <form id="contactForm" class="v2-form" action="https://formsubmit.co/taniadeazevedoribeiro@gmail.com" method="POST">
+          <form id="contactForm" class="v2-form" method="POST">
             <input type="hidden" name="_captcha" value="false" />
+            <!-- anti-spam: campo trampa que las personas no ven (los bots lo rellenan) -->
+            <div class="v2-hp" aria-hidden="true"><label>No rellenar este campo <input type="text" name="_honey" tabindex="-1" autocomplete="off" /></label></div>
             <input type="hidden" name="_subject" value="Nuevo mensaje desde el portfolio" />
             <input type="hidden" name="_template" value="table" />
             <div class="v2-form-row">

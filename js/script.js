@@ -170,8 +170,19 @@
       const statusEl = document.getElementById("contactStatus");
       const submitBtn = form.querySelector(".contact-submit");
 
+      const cargadoEn = Date.now(); // momento en que se cargó el formulario (para medir cuánto tarda en enviarse)
+
       form.addEventListener("submit", function (e) {
         e.preventDefault();
+
+        // ANTI-SPAM 1: si el campo trampa (_honey) viene relleno es un bot → fingimos éxito y no enviamos nada
+        const trampa = form.querySelector('[name="_honey"]');
+        if (trampa && trampa.value) { form.reset(); return; }
+        // ANTI-SPAM 2: una persona tarda más de 4 s en escribir; un bot envía al instante → no enviamos
+        if (Date.now() - cargadoEn < 4000) {
+          if (statusEl) statusEl.textContent = "Un momento… revisa tu mensaje y vuelve a enviarlo.";
+          return;
+        }
 
         const originalText = submitBtn.textContent;
         submitBtn.disabled = true;
@@ -181,7 +192,7 @@
 
         const formData = new FormData(form);
 
-        fetch("https://formsubmit.co/ajax/taniadeazevedoribeiro@gmail.com", {
+        fetch("https://formsubmit.co/ajax/" + ["taniadeazevedoribeiro", "gmail.com"].join("@"), {
           method: "POST",
           body: formData,
           headers: { Accept: "application/json" },
