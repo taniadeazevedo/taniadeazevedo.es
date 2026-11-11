@@ -546,3 +546,14 @@ video[data-src]::-webkit-media-controls-start-playback-button { display: none !i
 
 /* campo trampa anti-spam: fuera de pantalla para personas y lectores de pantalla (los bots sí lo rellenan) */
 .v2-hp { position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+
+/* formación: bloque pequeño y compacto al final de Experiencia */
+.v2-edu { margin-top: clamp(40px, 5vw, 72px); }
+.v2-edu-h { margin: 0 0 6px; font: 500 clamp(20px, 1.8vw, 26px)/1.2 var(--v2-display); letter-spacing: -0.02em; color: #fff; }
+.v2-edu-list { list-style: none; margin: 0; padding: 0; }
+.v2-edu-list li { display: grid; grid-template-columns: minmax(0, 200px) minmax(0, 1fr); gap: 8px clamp(14px, 3vw, 40px); padding: 14px 0; border-top: 1px solid var(--v2-line); align-items: baseline; }
+.v2-edu-y { font: 500 14px/1.4 var(--v2-display); color: var(--v2-ink-3); white-space: nowrap; }
+.v2-edu-list p { margin: 0; font: 400 clamp(14px, 1.1vw, 16px)/1.45 var(--v2-display); color: var(--v2-ink-2); }
+.v2-edu-list strong { font-weight: 500; color: #fff; }
+.v2-edu-list p span { margin-left: 8px; color: var(--v2-ink-3); }
+@media (max-width: 640px) { .v2-edu-list li { grid-template-columns: minmax(0, 1fr); gap: 2px; } .v2-edu-list p span { display: block; margin: 2px 0 0; } }
