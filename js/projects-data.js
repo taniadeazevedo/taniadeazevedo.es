@@ -111,6 +111,6 @@ window.PROJECTS = [
     image: 'la-nueva-linea/imgs/la-nueva-linea-poster.jpg',
     alt: 'La Nueva Línea',
     url: 'la-nueva-linea/',
-    hidden: true   // en borrador: quitar esta línea cuando se quiera mostrar
+    hidden: true   // oculto. La carpeta la-nueva-linea/ ya no está en el repositorio (copia en ~/Documents/la-nueva-linea-copia): para mostrarlo, volver a añadir la carpeta y quitar esta línea
   }
 ];
