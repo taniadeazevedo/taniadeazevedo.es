@@ -1,34 +1,71 @@
 # ¡Hola! Soy Tania de Azevedo 👋
 
-### **Diseñadora de branding y entornos web** unidos a la lógica del código.
+### **Diseño, creatividad y código.**
 
+Diseñadora gráfica y de branding desde 2017. He creado identidades visuales, campañas y experiencias digitales para marcas y grandes eventos, cuidando tanto el concepto como el último detalle en pantalla.
 
-A lo largo de más de siete años he diseñado identidades visuales y experiencias digitales para marcas globales y grandes eventos, cuidando con mimo tanto el concepto estratégico como la interacción final en pantalla.
+*Ahora estoy estudiando **Desarrollo Java Full Stack** con un propósito claro: no busco ser una ingeniera experta de backend, sino dominar la lógica del código para tender puentes entre el diseño visual y la parte técnica de un producto.*
 
-*Actualmente, estoy ampliando mis horizontes estudiando **Desarrollo Java Full Stack** con un propósito claro: no busco convertirme en una ingeniera experta de backend, sino dominar la lógica del código para tender puentes perfectos entre el diseño visual y la arquitectura técnica de un producto.*
-
-🌐 **[Visita mi portfolio](https://taniadeazevedo.es)**
+🌐 **[Visita mi portfolio → taniadeazevedo.es](https://taniadeazevedo.es)**
 
 ---
 
-## 🛠️ Mi Kit de Herramientas y Aprendizaje
+## 🗂️ Proyectos
 
-| Área | Tecnologías y Herramientas |
+| Proyecto | Qué es |
 | :--- | :--- |
-| 🎨 **Diseño y Branding** | Adobe Creative Cloud, Wireframing, Sistemas de Diseño |
-| 💻 **Frontend Basado en Web** | HTML, CSS, JavaScript, Webfonts, Optimización de Audio y Video |
-| ⚙️ **En Aprendizaje (Lógica Backend)** | Java, Conceptos Full Stack, Control de versiones con Git & GitHub |
+| [Open House Madrid](https://taniadeazevedo.es/open-house-madrid/) | Identidad de cada edición desde 2021 y rebranding del décimo aniversario: sistema modular, campañas, señalética y web. |
+| [Open House Málaga](https://taniadeazevedo.es/open-house-malaga/) | Identidad y sistema gráfico del festival de arquitectura, de la calle a la pantalla. |
+| [LIV Golf Valderrama](https://taniadeazevedo.es/liv-golf/) | Más de 200 adaptaciones de una misma campaña: banners, vallas, mupis y vehículos rotulados. |
+| [Calcula lo tuyo](https://taniadeazevedo.es/calcula-lo-tuyo/) | Calculadoras laborales y guías, diseñadas, desarrolladas y optimizadas desde cero. |
+| [Estrella Damm N.A. Andalucía Masters](https://taniadeazevedo.es/estrella-damm-n-a-andalucia-masters/) | Identidad del torneo, cartelería y soportes exteriores, publicidad online y offline, newsletters y merchandising. |
+| [Fit Bites](https://taniadeazevedo.github.io/fit-bites/) | Web app de diario de comidas que hice mientras aprendía el CRUD en un curso de fullstack. ([código](https://github.com/taniadeazevedo/fit-bites)) |
+| Este portafolio | Hecho a mano con HTML, CSS y JavaScript puro, sin plantillas. |
+
+Todos los proyectos, con filtros, en [taniadeazevedo.es/proyectos](https://taniadeazevedo.es/proyectos/).
 
 ---
 
+## 🛠️ Mi kit de herramientas
+
+| Área | Herramientas |
+| :--- | :--- |
+| 🎨 **Diseño y branding** | Photoshop, Illustrator, sistemas de diseño, wireframing |
+| 💻 **Web** | HTML, CSS, JavaScript, WordPress, Mailchimp, optimización de audio y vídeo |
+| ⚙️ **En aprendizaje** | Java y conceptos Full Stack, Git y GitHub |
+
+---
+
+## 🧱 Cómo está hecha esta web
+
+Sin frameworks ni plantillas: HTML, CSS y JavaScript puro, publicada con **GitHub Pages** en un dominio propio.
+
+- **Cada proyecto es una carpeta** con su `index.html` (por ejemplo `liv-golf/`), y la lista de proyectos sale de un único archivo, `js/projects-data.js`.
+- **Sistema de diseño propio** en `css/v2.css` (variables, tema oscuro en lila) y `css/v2-case.css` para las páginas de proyecto.
+- **Rendimiento y accesibilidad:** imágenes optimizadas, vídeos de fondo que se pausan o se sustituyen por una foto si el dispositivo no los reproduce, respeto a «reducir movimiento» y uso con teclado.
+- **Formulario de contacto** con protección anti-spam.
+- Tipografía **Strichpunkt Sans Variable** (licencia OFL) e Inter.
+
+```
+taniadeazevedo.es/
+├── index.html          # la portada
+├── proyectos/          # todos los proyectos, con filtros
+├── <proyecto>/         # una carpeta por proyecto
+├── css/  js/  imgs/    # estilos, scripts e imágenes
+├── video/  fonts/      # vídeos de fondo y tipografías
+├── 404.html            # la página de error
+└── sitemap.xml, robots.txt, CNAME
+```
+
+---
 
 ## 📫 ¡Hablemos!
 
-Me encanta colaborar con equipos donde el diseño y la tecnología se encuentran. Si quieres saber más sobre mi perfil:
+Estoy abierta a nuevas oportunidades en equipos donde el diseño y la tecnología se encuentran.
 
-* 💼 Conectemos en [LinkedIn](https://linkedin.com/in/tania-de-azevedo-ribeiro)
-* 📧 Escríbeme a: [taniadeazevedoribeiro@gmail.com](mailto:taniadeazevedoribeiro@gmail.com)
-* 🌍 Explora más detalles en https://taniadeazevedo.es
+* 💼 [LinkedIn](https://linkedin.com/in/tania-de-azevedo-ribeiro)
+* 📧 [taniadeazevedoribeiro@gmail.com](mailto:taniadeazevedoribeiro@gmail.com)
+* 🌍 [taniadeazevedo.es](https://taniadeazevedo.es)
 
 ---
-*Prototipado, diseñado y estructurado con código por Tania de Azevedo.*
+*Diseñada y programada por Tania de Azevedo.*
