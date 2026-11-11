@@ -4,7 +4,7 @@
 
 Diseñadora gráfica y de branding desde 2017. He creado identidades visuales, campañas y experiencias digitales para marcas y grandes eventos, cuidando tanto el concepto como el último detalle en pantalla.
 
-*Ahora estoy estudiando **Desarrollo Java Full Stack** con un propósito claro: no busco ser una ingeniera experta de backend, sino dominar la lógica del código para tender puentes entre el diseño visual y la parte técnica de un producto.*
+Además de diseñar, programo mis propias webs: me gusta entender cómo funciona lo que diseño y poder llevarlo a la pantalla yo misma.
 
 🌐 **[Visita mi portfolio → taniadeazevedo.es](https://taniadeazevedo.es)**
 
@@ -19,7 +19,7 @@ Diseñadora gráfica y de branding desde 2017. He creado identidades visuales, c
 | [LIV Golf Valderrama](https://taniadeazevedo.es/liv-golf/) | Más de 200 adaptaciones de una misma campaña: banners, vallas, mupis y vehículos rotulados. |
 | [Calcula lo tuyo](https://taniadeazevedo.es/calcula-lo-tuyo/) | Calculadoras laborales y guías, diseñadas, desarrolladas y optimizadas desde cero. |
 | [Estrella Damm N.A. Andalucía Masters](https://taniadeazevedo.es/estrella-damm-n-a-andalucia-masters/) | Identidad del torneo, cartelería y soportes exteriores, publicidad online y offline, newsletters y merchandising. |
-| [Fit Bites](https://taniadeazevedo.github.io/fit-bites/) | Web app de diario de comidas que hice mientras aprendía el CRUD en un curso de fullstack. ([código](https://github.com/taniadeazevedo/fit-bites)) |
+| [Fit Bites](https://taniadeazevedo.github.io/fit-bites/) | Web app de diario de comidas con calorías y macros, hecha para practicar JavaScript. ([código](https://github.com/taniadeazevedo/fit-bites)) |
 | Este portafolio | Hecho a mano con HTML, CSS y JavaScript puro, sin plantillas. |
 
 Todos los proyectos, con filtros, en [taniadeazevedo.es/proyectos](https://taniadeazevedo.es/proyectos/).
@@ -32,7 +32,7 @@ Todos los proyectos, con filtros, en [taniadeazevedo.es/proyectos](https://tania
 | :--- | :--- |
 | 🎨 **Diseño y branding** | Photoshop, Illustrator, sistemas de diseño, wireframing |
 | 💻 **Web** | HTML, CSS, JavaScript, WordPress, Mailchimp, optimización de audio y vídeo |
-| ⚙️ **En aprendizaje** | Java y conceptos Full Stack, Git y GitHub |
+| 🔧 **Complemento** | Git y GitHub, lógica de programación |
 
 ---
 
