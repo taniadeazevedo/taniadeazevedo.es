@@ -86,8 +86,8 @@ window.PROJECTS = [
     cats: ['web', 'personal'],
     label: 'Web app · proyecto de aprendizaje',
     desc: 'Web app de diario de comidas que hice mientras aprendía el CRUD en un curso de fullstack: calorías y macros, recetas y lista de la compra.',
-    image: 'imgs/proyectos/fit-bites.jpg',
-    alt: 'Fit Bites: tres pantallas de la app — recetas, diario del día con calorías y macros, y resumen semanal',
+    image: 'imgs/proyectos/fit-bites-v2.jpg',
+    alt: 'Fit Bites: tres pantallas de la app — portada, diario del día con calorías y macros, y resumen semanal',
     url: 'https://taniadeazevedo.github.io/fit-bites/',   // por ahora lleva directo a la app; la página de caso está en fit-bites/ (borrador)
     external: true,
     cta: 'Ver proyecto'
