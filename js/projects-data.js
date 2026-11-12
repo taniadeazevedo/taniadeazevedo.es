@@ -19,8 +19,7 @@ window.PROJECT_FILTERS = [
   { id: 'branding', label: 'Branding e identidad' },
   { id: 'grafico', label: 'Diseño gráfico' },
   { id: 'web', label: 'Diseño web y desarrollo' },
-  { id: 'campanas', label: 'Campañas y eventos' },
-  { id: 'personal', label: 'Proyectos personales' }
+  { id: 'campanas', label: 'Campañas y eventos' }
 ];
 
 window.PROJECTS = [
