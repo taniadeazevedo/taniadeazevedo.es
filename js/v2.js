@@ -53,9 +53,9 @@
   /* ---------- 5. Texto que se ilumina con el scroll ---------- */
   var blocks = [].slice.call(document.querySelectorAll('[data-reveal]'));
   var words = [];                                      // { el, y, x, tone }
-  var OSC = document.documentElement.getAttribute('data-t') === 'oscuro';   // paleta suave de la home: blanco roto cálido y lila apagado
-  var DIM = OSC ? [243, 237, 228, 0.16] : [246, 242, 255, 0.16];   // color apagado
-  var TONES = OSC ? { white: [243, 237, 228, 1], lilac: [183, 168, 214, 1] } : { white: [246, 242, 255, 1], lilac: [201, 168, 251, 1] };
+  var VER = document.documentElement.getAttribute('data-t');   // paleta de la home: 'oscuro' (suave) o 'lila' (claro)
+  var DIM = VER === 'lila' ? [29, 21, 48, 0.16] : VER === 'oscuro' ? [243, 237, 228, 0.16] : [246, 242, 255, 0.16];   // color apagado
+  var TONES = VER === 'lila' ? { white: [29, 21, 48, 1], lilac: [106, 63, 196, 1] } : VER === 'oscuro' ? { white: [243, 237, 228, 1], lilac: [183, 168, 214, 1] } : { white: [246, 242, 255, 1], lilac: [201, 168, 251, 1] };
 
   function splitWords(root) {
     // recorre los nodos de texto y envuelve cada palabra en un <span class="w">, respetando <em>
