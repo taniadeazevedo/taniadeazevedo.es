@@ -191,3 +191,12 @@ html[data-t="lila"] .v2-work--madrid .v2-work-title, html[data-t="lila"] .v2-wor
 
 /* Experiencia: menos hueco entre el título y el primer trabajo */
 html[data-t="lila"] .v2-exp .v2-sec-title { margin-bottom: clamp(-20px, -1.2vw, -4px); }
+
+/* Safari: sin el botón de play nativo encima de los vídeos que arrancan solos (hero y portadas de los casos) (si no arranca solo, se queda la imagen); y si arranca, se ve sin controles */
+video[autoplay]::-webkit-media-controls,
+video[autoplay]::-webkit-media-controls-start-playback-button,
+video[autoplay]::-webkit-media-controls-overlay-play-button,
+video[autoplay]::-webkit-media-controls-panel { display: none !important; opacity: 0 !important; -webkit-appearance: none; }
+
+/* casos de estudio: el nombre del proyecto algo más pequeño */
+html[data-t="lila"] .v2-cs-title { font-size: clamp(28px, 3.3vw, 48px); line-height: 1.05; margin-top: 12px; }

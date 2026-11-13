@@ -161,7 +161,7 @@
     intentar();
     // si a los 2,5 s sigue parado, se esconde; y al primer toque o scroll del usuario se vuelve a intentar (iOS sí deja entonces)
     setTimeout(function () { if (hv.paused) ocultarVideo(); }, 2500);
-    ['touchstart', 'pointerdown', 'scroll'].forEach(function (ev) { window.addEventListener(ev, function reintento() { window.removeEventListener(ev, reintento); if (hv.paused && !reduce) intentar(); }, { passive: true }); });
+    ['touchstart', 'touchend', 'pointerdown', 'click', 'keydown', 'wheel', 'scroll'].forEach(function (ev) { window.addEventListener(ev, function reintento() { window.removeEventListener(ev, reintento); if (hv.paused && !reduce) intentar(); }, { passive: true }); });
     hv.addEventListener('playing', mostrarVideo);
   }
   if (hv && reduce) { hv.removeAttribute('autoplay'); hv.pause(); hv.style.visibility = 'hidden'; }
@@ -344,4 +344,14 @@
   window.addEventListener('resize', align);
   window.addEventListener('load', align);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(align);
+})();
+
+
+/* ---------- Vídeos que arrancan solos (portadas de los casos): si el navegador los bloquea, se reintenta con el primer gesto ---------- */
+(function () {
+  var vids = [].slice.call(document.querySelectorAll('video[autoplay]')).filter(function (v) { return v.id !== 'v2-hero-video'; });
+  if (!vids.length || (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) return;
+  function reintentar() { vids.forEach(function (v) { if (v.paused) { v.muted = true; var p = v.play && v.play(); if (p && p.catch) p.catch(function () {}); } }); }
+  setTimeout(reintentar, 600);
+  ['touchend', 'pointerdown', 'click', 'keydown', 'wheel', 'scroll'].forEach(function (ev) { window.addEventListener(ev, function once() { window.removeEventListener(ev, once); reintentar(); }, { passive: true }); });
 })();
