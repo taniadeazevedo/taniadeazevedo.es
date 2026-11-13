@@ -268,3 +268,11 @@ html[data-t="lila"] .v2-cs-sec#resultado .v2-cs-label { justify-content: center;
 /* resultado final: mismo espacio bajo el título que en «Proceso creativo» (el bloque de cifras traía mucho aire propio) */
 html[data-t="lila"] .v2-cs-sec#resultado .v2-cs-result { padding-top: 32px; }
 html[data-t="lila"] .v2-cs-sec#resultado .v2-cs-result > section { padding-top: 0 !important; margin-top: 0 !important; }
+
+/* títulos de «Proceso creativo» y «Galería» centrados en todos los casos (también en Calcula lo tuyo) */
+html[data-t="lila"] .v2-cs-sec#proceso .v2-cs-row, html[data-t="lila"] .v2-cs-sec#galeria .v2-cs-row { grid-template-columns: minmax(0, 1fr); justify-items: center; }
+html[data-t="lila"] .v2-cs-sec#proceso .v2-cs-label, html[data-t="lila"] .v2-cs-sec#galeria .v2-cs-label { justify-content: center; }
+
+/* Calcula lo tuyo: menos hueco bajo los títulos «Proceso creativo» y «Galería» (mismo espacio que en el resto de casos) */
+html[data-t="lila"] .v2-cs-gal:has(> .cs-section) { padding-top: 0; }
+html[data-t="lila"] .v2-cs-gal:has(> .cs-section) > .cs-section:first-child { padding-top: 27px; }
