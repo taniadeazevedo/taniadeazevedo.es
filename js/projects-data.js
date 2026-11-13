@@ -97,7 +97,7 @@ window.PROJECTS = [
     label: 'Diseño web y desarrollo',
     desc: 'Este portafolio, hecho a mano con HTML, CSS y JavaScript puro, sin plantillas: despliegue en GitHub Pages y proyectos por carpetas.',
     image: 'imgs/proyectos/portafolio-v2.jpg',
-    alt: 'Este portafolio en un monitor: la portada con «Diseño, creatividad y código.»',
+    alt: 'Este portafolio en un monitor: la portada con «Diseñadora de branding y experiencias digitales» y el vídeo de Robyn a la derecha',
     url: 'https://github.com/taniadeazevedo/taniadeazevedo.es',
     external: true,
     cta: 'Ver código'

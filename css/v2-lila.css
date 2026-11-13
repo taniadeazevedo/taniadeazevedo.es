@@ -8,7 +8,7 @@ html[data-t="lila"] {
   --v2-bg-2: #eee8f9;
   --v2-ink: #1d1530;                    /* carbón con matiz violeta profundo */
   --v2-ink-2: rgb(29 21 48 / 72%);
-  --v2-ink-3: rgb(29 21 48 / 56%);
+  --v2-ink-3: rgb(29 21 48 / 68%);
   --v2-line: rgb(29 21 48 / 14%);
   --v2-lilac: #6a3fc4;                  /* violeta apagado para texto y detalles (con contraste sobre lila claro) */
   --v2-lilac-2: #6a3fc4;
@@ -30,14 +30,14 @@ html[data-t="lila"] .v2-menu { background: rgb(246 242 253 / 97%); }
 html[data-t="lila"] .v2-menu a:hover { color: var(--v2-lilac); }
 
 /* hero: fondo lila, titular a la izquierda y vídeo en un rectángulo a la derecha */
-html[data-t="lila"] .v2-hero-card { --vr: clamp(24px, 4vw, 64px); --vw: min(39%, 530px); --vt: 112px; --vb: 96px; background: transparent; }
+html[data-t="lila"] .v2-hero-card { --vr: clamp(24px, 4vw, 64px); --vw: min(35%, 480px); --vt: 112px; --vb: 96px; background: transparent; }
 html[data-t="lila"] .v2-hero-bg, html[data-t="lila"] .v2-hero-glow, html[data-t="lila"] .v2-hero-card::after { display: none; }
 html[data-t="lila"] .v2-hero-photo { z-index: 0; inset: auto; right: var(--vr); top: var(--vt); bottom: var(--vb); width: var(--vw); border-radius: clamp(22px, 2.4vw, 34px); background-color: #e0d6f4; }
 html[data-t="lila"] .v2-hero-photo video { border-radius: inherit; }
 html[data-t="lila"] .v2-hero-photo::after { display: none; }
 html[data-t="lila"] .v2-hero-credit { right: calc(var(--vr) + 16px); bottom: calc(var(--vb) + 14px); text-align: right; color: rgb(255 255 255 / 82%); text-shadow: 0 1px 8px rgb(0 0 0 / 45%); }   /* el crédito va dentro del vídeo, en su esquina */
-html[data-t="lila"] .v2-h1 { font-size: clamp(38px, 4.9vw, 72px); line-height: .98; letter-spacing: -0.04em; background: linear-gradient(168deg, #1d1530 14%, #4b25a8 58%, #7c3aed 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; padding-bottom: .06em; }
-html[data-t="lila"] .v2-lede { font-size: clamp(18px, 1.7vw, 24px); max-width: 21em; color: var(--v2-ink-2); }
+html[data-t="lila"] .v2-h1 { font-size: clamp(34px, 4.3vw, 62px); line-height: .98; letter-spacing: -0.04em; background: linear-gradient(168deg, #1d1530 14%, #4b25a8 58%, #7c3aed 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; padding-bottom: .06em; }
+html[data-t="lila"] .v2-lede { font-size: clamp(16px, 1.45vw, 21px); max-width: 21em; color: var(--v2-ink-2); }
 
 /* botones: violeta signature sólido en «Ver proyectos»; «Hablemos» transparente con borde fino */
 html[data-t="lila"] .v2-btn-primary { background: var(--v2-action); color: #fff; border: 1px solid var(--v2-action); box-shadow: none; }
@@ -106,7 +106,7 @@ html[data-t="lila"] .v2-wa:hover { background: var(--v2-action); color: #fff; }
   html[data-t="lila"] .v2-hero-grid { order: 1; padding-bottom: 36px; gap: 30px; }
   html[data-t="lila"] .v2-works { position: static; }
   html[data-t="lila"] .v2-hero-photo { order: 2; position: relative; right: auto; top: auto; bottom: auto; width: auto; height: clamp(260px, 62vw, 420px); margin: 0 22px 34px; }
-  html[data-t="lila"] .v2-h1 { font-size: clamp(34px, 10.2vw, 58px); }
+  html[data-t="lila"] .v2-h1 { font-size: clamp(32px, 9.4vw, 52px); }
   html[data-t="lila"] .v2-h1 > span { text-wrap: balance; }
   html[data-t="lila"] .v2-lede { font-size: clamp(17px, 4.6vw, 22px); max-width: 24em; }
 }
@@ -154,3 +154,40 @@ html[data-t="lila"][data-theme="dark"] .lv-legend .k1::before { background: #1d1
 html[data-t="lila"] .v2-404 .v2-404-num { background: linear-gradient(98deg, #7c3aed 10%, #4b25a8 55%, #1d1530 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
 html[data-t="lila"] .v2-404 h1 { color: var(--v2-ink); }
 html[data-t="lila"] .v2-404 .v2-404-eye { background: linear-gradient(135deg, #7c3aed 10%, #4b25a8 85%); }
+
+/* escritorio: el contenido del hero sube un poco (menos hueco arriba del titular) */
+@media (min-width: 901px) {
+  html[data-t="lila"] .v2-hero-grid { padding-top: 104px; padding-bottom: 180px; }
+}
+
+/* contraste: el encabezado «Formación» era casi invisible sobre el fondo claro */
+html[data-t="lila"] .v2-edu-h { color: var(--v2-ink); }
+
+/* proyectos destacados: solo dos (Open House Madrid y LIV Golf), a medias, para que las imágenes se vean más grandes */
+html[data-t="lila"] .v2-work--madrid, html[data-t="lila"] .v2-work--liv { grid-column: span 6; }
+html[data-t="lila"] .v2-work--madrid .v2-work-art, html[data-t="lila"] .v2-work--liv .v2-work-art { aspect-ratio: 4 / 3; }
+html[data-t="lila"] .v2-work--madrid .v2-work-title, html[data-t="lila"] .v2-work--liv .v2-work-title { font-size: clamp(24px, 2.3vw, 34px); }
+@media (max-width: 900px) { html[data-t="lila"] .v2-work--madrid, html[data-t="lila"] .v2-work--liv { grid-column: auto; } html[data-t="lila"] .v2-work--madrid .v2-work-art, html[data-t="lila"] .v2-work--liv .v2-work-art { aspect-ratio: 4 / 3; } }
+
+/* botones del hero algo más compactos (escritorio) */
+@media (min-width: 901px) {
+  html[data-t="lila"] .v2-hero .v2-btn { height: 46px; padding: 0 22px; font-size: 15px; }
+}
+
+/* ============================================================
+   Hero como una sola composición (escritorio): dos columnas dentro del mismo contenedor (1400 px máx.),
+   vídeo cerca del texto, stack justo debajo de los botones, todo centrado en la altura de la pantalla
+   ============================================================ */
+@media (min-width: 901px) {
+  html[data-t="lila"] .v2-hero-card { --hg-pad: clamp(24px, 4vw, 64px); --gl: calc(max(0px, (100% - 1400px) / 2) + var(--hg-pad)); --gw: calc(min(100%, 1400px) - 2 * var(--hg-pad)); min-height: calc(100svh - 24px); }
+  html[data-t="lila"] .v2-hero-grid { max-width: 1400px; padding-top: 132px; padding-bottom: 84px; align-content: center; row-gap: 56px; }   /* texto, stack y vídeo centrados en la pantalla (un poco más abajo para compensar el menú) */
+  html[data-t="lila"] .v2-lede { margin-top: 30px; }
+  html[data-t="lila"] .v2-actions { margin-top: 30px; }
+  html[data-t="lila"] .v2-works { position: static; flex-wrap: wrap; max-width: calc(var(--gw) / 2 - 36px); row-gap: 8px; }   /* nunca pasa por debajo del vídeo: si no cabe, «+ y más» baja a otra línea */
+  /* el vídeo ocupa la columna derecha: empieza a mitad del contenedor más media separación y termina en su borde derecho */
+  html[data-t="lila"] .v2-hero-photo { left: calc(var(--gl) + var(--gw) / 2 + 36px); right: var(--gl); width: auto; }
+  html[data-t="lila"] .v2-hero-credit { right: calc(var(--gl) + 16px); }
+}
+
+/* Experiencia: menos hueco entre el título y el primer trabajo */
+html[data-t="lila"] .v2-exp .v2-sec-title { margin-bottom: clamp(-20px, -1.2vw, -4px); }
