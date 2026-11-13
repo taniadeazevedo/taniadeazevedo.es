@@ -200,3 +200,71 @@ video[autoplay]::-webkit-media-controls-panel { display: none !important; opacit
 
 /* casos de estudio: el nombre del proyecto algo más pequeño */
 html[data-t="lila"] .v2-cs-title { font-size: clamp(28px, 3.3vw, 48px); line-height: 1.05; margin-top: 12px; }
+
+/* galería partida en dos por el proceso creativo: la segunda parte arranca más cerca */
+html[data-t="lila"] .v2-cs-sec--cont { padding-top: clamp(20px, 3vw, 40px); }
+
+/* casos: sin líneas horizontales entre secciones, menos aire y «Mi papel» integrado dentro de «Contexto y objetivos» */
+html[data-t="lila"] .v2-cs-row { border-top: 0; padding-top: 0; }
+html[data-t="lila"] .v2-cs-sec { padding-top: clamp(40px, 5.5vw, 84px); }
+html[data-t="lila"] .v2-cs-sec--cont { padding-top: clamp(14px, 2vw, 28px); }
+html[data-t="lila"] .v2-cs-body .v2-cs-papel-title { margin-top: clamp(30px, 3.4vw, 46px); }
+html[data-t="lila"] .v2-cs-body .v2-cs-papel-title + .v2-cs-role { margin-top: 14px; }
+
+/* Contexto, objetivos y mi papel: tres columnas a todo el ancho (más visual y mucho menos alto), sin hueco vacío bajo el título */
+html[data-t="lila"] .v2-cs-row--ctx { grid-template-columns: minmax(0, 1fr); gap: clamp(18px, 2.2vw, 28px); }
+html[data-t="lila"] .v2-cs-ctx { display: grid; grid-template-columns: 1.15fr 1fr 1fr; gap: clamp(22px, 3.4vw, 56px); }
+html[data-t="lila"] .v2-cs-ctx .v2-cs-col > .v2-cs-goals-title { margin: 0 0 14px; }
+html[data-t="lila"] .v2-cs-ctx .v2-cs-col p { max-width: none; font-size: clamp(14.5px, 1.05vw, 16px); }
+html[data-t="lila"] .v2-cs-ctx .v2-cs-col > p:not(.v2-cs-goals-title):not(.v2-cs-role) { margin-bottom: .9em; }
+/* objetivos: lista numerada simple en vez de tres tarjetas */
+html[data-t="lila"] .v2-cs-ctx .v2-cs-goals { grid-template-columns: minmax(0, 1fr); gap: 12px; margin: 0; }
+html[data-t="lila"] .v2-cs-ctx .v2-cs-goals li { display: flex; gap: 14px; align-items: baseline; padding: 0; border: 0; background: none; border-radius: 0; }
+html[data-t="lila"] .v2-cs-ctx .v2-cs-goals li::before { margin: 0; flex-shrink: 0; }
+html[data-t="lila"] .v2-cs-ctx .v2-cs-goals p { font-size: clamp(14.5px, 1.05vw, 16px); line-height: 1.5; color: var(--v2-ink-2); }
+/* mi papel: frase más discreta y pills pequeñas */
+html[data-t="lila"] .v2-cs-ctx .v2-cs-role { margin: 0 0 14px; max-width: none; font-size: clamp(16px, 1.25vw, 18.5px); line-height: 1.35; }
+html[data-t="lila"] .v2-cs-ctx .v2-cs-pills { gap: 6px; }
+html[data-t="lila"] .v2-cs-ctx .v2-cs-pills span { height: 30px; padding: 0 12px; font-size: 13px; }
+html[data-t="lila"] .v2-cs-ctx .v2-cs-links { margin-top: 16px; }
+@media (max-width: 900px) { html[data-t="lila"] .v2-cs-ctx { grid-template-columns: minmax(0, 1fr); gap: 26px; } }
+
+/* Contexto / Objetivos / Mi papel: cada columna es una tarjeta suave, con separación clara entre ellas */
+html[data-t="lila"] .v2-cs-ctx { gap: clamp(14px, 1.6vw, 22px); }
+html[data-t="lila"] .v2-cs-ctx .v2-cs-col { background: rgb(29 21 48 / 4%); border: 1px solid rgb(29 21 48 / 8%); border-radius: clamp(18px, 1.8vw, 24px); padding: clamp(20px, 2vw, 30px); }
+html[data-t="lila"] .v2-cs-ctx .v2-cs-col > :last-child { margin-bottom: 0; }
+@media (max-width: 900px) { html[data-t="lila"] .v2-cs-ctx { gap: 14px; } }
+
+/* Proceso creativo entre fotos: menos aire alrededor */
+html[data-t="lila"] .v2-cs-sec#proceso { padding-top: clamp(22px, 2.6vw, 36px); }
+html[data-t="lila"] .v2-cs-sec--cont { padding-top: 0; }
+html[data-t="lila"] .v2-cs-sec#proceso .v2-cs-body p:last-child { margin-bottom: 0; }
+
+/* enlace del proyecto («Ver manual de marca», «Visitar calculalotuyo.es»): texto con flecha, sin botón */
+html[data-t="lila"] .v2-cs-ctx .v2-cs-links { margin-top: 18px; }
+html[data-t="lila"] .v2-cs-ctx .v2-cs-links a { display: inline-flex; align-items: center; gap: 7px; height: auto; padding: 0 0 2px; border: 0; border-radius: 0; background: none; box-shadow: none; color: var(--v2-lilac); font: 600 14.5px/1.2 var(--v2-display); text-decoration: underline; text-decoration-color: rgb(106 63 196 / 35%); text-underline-offset: .22em; transition: color .2s ease, text-decoration-color .2s ease; }
+html[data-t="lila"] .v2-cs-ctx .v2-cs-links a:hover { background: none; color: var(--v2-ink); text-decoration-color: var(--v2-ink); transform: none; }
+html[data-t="lila"] .v2-cs-ctx .v2-cs-links a svg { width: 13px; height: 13px; }
+
+/* objetivos con más personalidad: tarjeta lila y números grandes en violeta */
+html[data-t="lila"] .v2-cs-ctx .v2-cs-col:nth-child(2) { background: var(--v2-soft); border-color: transparent; }
+html[data-t="lila"] .v2-cs-ctx .v2-cs-goals { gap: 18px; counter-reset: goal; }
+html[data-t="lila"] .v2-cs-ctx .v2-cs-goals li { align-items: flex-start; gap: 16px; }
+html[data-t="lila"] .v2-cs-ctx .v2-cs-goals li::before { font: 600 clamp(30px, 2.8vw, 40px)/.9 var(--v2-display); letter-spacing: -0.04em; color: var(--v2-action); min-width: 1.5em; margin-top: 2px; }
+html[data-t="lila"] .v2-cs-ctx .v2-cs-goals p { color: var(--v2-ink); }
+
+/* proceso creativo: centrado, con más espacio, cuando lleva texto */
+html[data-t="lila"] .v2-cs-sec#proceso { padding-top: clamp(48px, 6vw, 96px); }
+html[data-t="lila"] .v2-cs-sec#proceso + .v2-cs-sec--cont { padding-top: clamp(40px, 5vw, 72px); }
+html[data-t="lila"] .v2-cs-sec#proceso .v2-cs-row:has(> .v2-cs-body) { grid-template-columns: minmax(0, 1fr); justify-items: center; text-align: center; gap: clamp(16px, 2vw, 26px); }
+html[data-t="lila"] .v2-cs-sec#proceso .v2-cs-row:has(> .v2-cs-body) .v2-cs-label { justify-content: center; }
+html[data-t="lila"] .v2-cs-sec#proceso .v2-cs-row:has(> .v2-cs-body) .v2-cs-body { max-width: 44em; }
+html[data-t="lila"] .v2-cs-sec#proceso .v2-cs-row:has(> .v2-cs-body) .v2-cs-body p { max-width: none; margin-left: auto; margin-right: auto; font-size: clamp(16px, 1.3vw, 19px); line-height: 1.65; }
+
+/* resultado final: el título de la sección va centrado, como «El festival en cifras» */
+html[data-t="lila"] .v2-cs-sec#resultado .v2-cs-row { grid-template-columns: minmax(0, 1fr); justify-items: center; }
+html[data-t="lila"] .v2-cs-sec#resultado .v2-cs-label { justify-content: center; }
+
+/* resultado final: mismo espacio bajo el título que en «Proceso creativo» (el bloque de cifras traía mucho aire propio) */
+html[data-t="lila"] .v2-cs-sec#resultado .v2-cs-result { padding-top: 32px; }
+html[data-t="lila"] .v2-cs-sec#resultado .v2-cs-result > section { padding-top: 0 !important; margin-top: 0 !important; }
