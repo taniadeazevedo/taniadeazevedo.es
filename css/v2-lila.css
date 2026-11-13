@@ -1,7 +1,7 @@
 /* ============================================================
-   PRUEBA: home en LILA CLARO (fondo lila muy claro, texto carbón violáceo, violeta signature en la acción principal,
-   vídeo en un rectángulo a la derecha). Solo actúa con <html data-t="lila">.
-   Para quitarla: borrar este archivo y su <link>, y volver a data-t="oscuro" en index.html.
+   TEMA LILA CLARO (toda la web) (fondo lila muy claro, texto carbón violáceo, violeta signature en la acción principal,
+   vídeo en un rectángulo a la derecha). Actúa con <html data-t="lila"> (todas las páginas).
+   
    ============================================================ */
 html[data-t="lila"] {
   --v2-bg: #f6f2fd;                     /* lila muy claro */
@@ -35,9 +35,8 @@ html[data-t="lila"] .v2-hero-bg, html[data-t="lila"] .v2-hero-glow, html[data-t=
 html[data-t="lila"] .v2-hero-photo { z-index: 0; inset: auto; right: var(--vr); top: var(--vt); bottom: var(--vb); width: var(--vw); border-radius: clamp(22px, 2.4vw, 34px); background-color: #e0d6f4; box-shadow: 0 24px 60px rgb(29 21 48 / 18%); }
 html[data-t="lila"] .v2-hero-photo video { border-radius: inherit; }
 html[data-t="lila"] .v2-hero-photo::after { display: none; }
-html[data-t="lila"] .v2-hero-credit { color: var(--v2-ink-3); right: var(--vr); bottom: 66px; text-align: right; }
-html[data-t="lila"] .v2-h1 { font-size: clamp(42px, 5.6vw, 84px); line-height: .98; letter-spacing: -0.04em; color: var(--v2-ink); background: none; -webkit-text-fill-color: currentColor; }
-html[data-t="lila"] .v2-h1 .v2-hl { font-weight: inherit; color: var(--v2-action); }   /* «experiencias digitales» en el morado signature */
+html[data-t="lila"] .v2-hero-credit { right: calc(var(--vr) + 16px); bottom: calc(var(--vb) + 14px); text-align: right; color: rgb(255 255 255 / 82%); text-shadow: 0 1px 8px rgb(0 0 0 / 45%); }   /* el crédito va dentro del vídeo, en su esquina */
+html[data-t="lila"] .v2-h1 { font-size: clamp(42px, 5.6vw, 84px); line-height: .98; letter-spacing: -0.04em; background: linear-gradient(168deg, #1d1530 14%, #4b25a8 58%, #7c3aed 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; padding-bottom: .06em; }
 html[data-t="lila"] .v2-lede { font-size: clamp(18px, 1.7vw, 24px); max-width: 21em; color: var(--v2-ink-2); }
 
 /* botones: violeta signature sólido en «Ver proyectos»; «Hablemos» transparente con borde fino */
@@ -111,3 +110,47 @@ html[data-t="lila"] .v2-wa:hover { background: var(--v2-action); color: #fff; }
   html[data-t="lila"] .v2-h1 > span { text-wrap: balance; }
   html[data-t="lila"] .v2-lede { font-size: clamp(17px, 4.6vw, 22px); max-width: 24em; }
 }
+
+/* "+ y más": en escritorio va a la derecha del stack; en móvil entra en la propia fila, justo después del último icono */
+.v2-dock li.v2-more-li { display: none; }
+@media (max-width: 900px) {
+  .v2-works-more { display: none; }
+  .v2-dock li.v2-more-li { display: flex; align-items: center; width: auto; height: 32px; margin-left: 0; font: 400 13px/1 var(--v2-display); white-space: nowrap; }
+}
+
+/* flechas de las fotos de proyectos destacados: círculo claro con la flecha en carbón (antes se perdían sobre la foto) */
+html[data-t="lila"] .v2-work-arrow { background: rgb(255 255 255 / 92%); border: 0; color: var(--v2-ink); box-shadow: 0 6px 18px rgb(29 21 48 / 22%); }
+html[data-t="lila"] .v2-work:hover .v2-work-arrow, html[data-t="lila"] .v2-work:focus-visible .v2-work-arrow { background: var(--v2-action); color: #fff; }
+html[data-t="lila"] .v2-page { background-image: none; }
+html[data-t="lila"] .v2-h1 .v2-hl { font-weight: inherit; }
+
+/* ============================================================
+   Resto de páginas: Proyectos y casos de estudio
+   ============================================================ */
+/* Proyectos */
+html[data-t="lila"] .v2-idx-title, html[data-t="lila"] .v2-card-title, html[data-t="lila"] .v2-nav-label { color: var(--v2-ink); }
+html[data-t="lila"] .v2-card-media { background: #e8e0f6; }
+html[data-t="lila"] .v2-card-link:hover .v2-card-title, html[data-t="lila"] .v2-card-link:focus-visible .v2-card-title { text-decoration-color: rgb(29 21 48 / 60%); }
+html[data-t="lila"] .v2-nav-sep { background: rgb(29 21 48 / 24%); }
+html[data-t="lila"] .v2-filter { border-color: rgb(29 21 48 / 20%); color: var(--v2-ink-2); }
+html[data-t="lila"] .v2-filter:hover { color: var(--v2-ink); border-color: rgb(29 21 48 / 40%); }
+html[data-t="lila"] .v2-filter[aria-pressed="true"] { background: var(--v2-action); border-color: var(--v2-action); color: #fff; }
+html[data-t="lila"] .v2-filter[aria-pressed="true"] span { color: rgb(255 255 255 / 70%); }
+
+/* casos de estudio (plantilla v2-case.css) */
+html[data-t="lila"] .v2-cs-title, html[data-t="lila"] .v2-cs-h2, html[data-t="lila"] .v2-rel-h2, html[data-t="lila"] .v2-rel-title,
+html[data-t="lila"] .v2-cs-lede strong, html[data-t="lila"] .v2-cs-body p strong, html[data-t="lila"] .v2-cs-body p.v2-cs-role,
+html[data-t="lila"] .v2-cs-goals-two strong { color: var(--v2-ink); }
+html[data-t="lila"] .v2-cs-hero, html[data-t="lila"] .v2-cs-grid figure, html[data-t="lila"] .v2-rel-media, html[data-t="lila"] .v2-cs-phones img { background-color: #e8e0f6; }
+html[data-t="lila"] .v2-cs-goals li, html[data-t="lila"] .v2-cs-pills span { background: rgb(29 21 48 / 4%); border-color: rgb(29 21 48 / 16%); color: var(--v2-ink); }
+html[data-t="lila"] .v2-cs-body code { background: rgb(29 21 48 / 8%); }
+html[data-t="lila"] .v2-rel-link:hover .v2-rel-title, html[data-t="lila"] .v2-rel-link:focus-visible .v2-rel-title { text-decoration-color: rgb(29 21 48 / 60%); }
+html[data-t="lila"] .v2-cs-lede a { text-decoration-color: rgb(106 63 196 / 40%); }
+/* LIV Golf: barras y leyendas que en oscuro eran blancas pasan a carbón sobre el fondo claro */
+html[data-t="lila"][data-theme="dark"] .lv-c1 { background: #1d1530; }
+html[data-t="lila"][data-theme="dark"] .lv-legend .k1::before { background: #1d1530; }
+
+/* 404 */
+html[data-t="lila"] .v2-404 .v2-404-num { background: linear-gradient(98deg, #7c3aed 10%, #4b25a8 55%, #1d1530 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+html[data-t="lila"] .v2-404 h1 { color: var(--v2-ink); }
+html[data-t="lila"] .v2-404 .v2-404-eye { background: linear-gradient(135deg, #7c3aed 10%, #4b25a8 85%); }

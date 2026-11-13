@@ -324,3 +324,24 @@
   // el enlace de WhatsApp del bloque de contacto usa el mismo número
   var link = document.getElementById('v2-wa-link'); if (link) link.href = url;
 })();
+
+
+/* ---------- Hero en lila: el vídeo de la derecha se alinea con el contenido de la izquierda ----------
+   Arriba con el principio del titular y abajo con la fila del stack. Se mide con offsetTop (que ignora la animación de entrada). */
+(function () {
+  var card = document.querySelector('.v2-hero-card'), h1 = document.querySelector('.v2-h1'), works = document.querySelector('.v2-works');
+  if (!card || !h1 || !works || document.documentElement.getAttribute('data-t') !== 'lila') return;
+  function off(el) { var y = 0; while (el && el !== card) { y += el.offsetTop; el = el.offsetParent; } return y; }
+  function align() {
+    if (window.innerWidth <= 900) { card.style.removeProperty('--vt'); card.style.removeProperty('--vb'); return; }   // en móvil el vídeo va debajo
+    var fs = parseFloat(getComputedStyle(h1).fontSize) || 60;
+    var top = off(h1) + Math.round(fs * 0.1);                                  // el alto de línea deja un pequeño hueco sobre las mayúsculas
+    var bottom = card.offsetHeight - (off(works) + works.offsetHeight) + 6;     // los iconos (32 px) quedan centrados en una fila de 44 px
+    card.style.setProperty('--vt', top + 'px');
+    card.style.setProperty('--vb', bottom + 'px');
+  }
+  align();
+  window.addEventListener('resize', align);
+  window.addEventListener('load', align);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(align);
+})();
