@@ -276,3 +276,44 @@ html[data-t="lila"] .v2-cs-sec#proceso .v2-cs-label, html[data-t="lila"] .v2-cs-
 /* Calcula lo tuyo: menos hueco bajo los títulos «Proceso creativo» y «Galería» (mismo espacio que en el resto de casos) */
 html[data-t="lila"] .v2-cs-gal:has(> .cs-section) { padding-top: 0; }
 html[data-t="lila"] .v2-cs-gal:has(> .cs-section) > .cs-section:first-child { padding-top: 27px; }
+
+/* Contexto y objetivos: solo dos tarjetas; debajo, una línea y «Mi papel» (frase a la izquierda, pills y enlace a la derecha) */
+html[data-t="lila"] .v2-cs-ctx { grid-template-columns: 1fr 1fr; }
+html[data-t="lila"] .v2-cs-papel { border-top: 1px solid rgb(29 21 48 / 14%); padding-top: clamp(22px, 2.4vw, 32px); margin-top: clamp(6px, 1vw, 14px); }
+html[data-t="lila"] .v2-cs-papel > .v2-cs-goals-title { margin: 0 0 14px; }
+html[data-t="lila"] .v2-cs-papel-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(14px, 1.6vw, 22px); align-items: start; }
+html[data-t="lila"] .v2-cs-papel .v2-cs-role { margin: 0; max-width: none; font-size: clamp(16px, 1.25vw, 18.5px); line-height: 1.4; }
+html[data-t="lila"] .v2-cs-papel .v2-cs-pills { gap: 6px; }
+html[data-t="lila"] .v2-cs-papel .v2-cs-pills span { height: 30px; padding: 0 12px; font-size: 13px; }
+html[data-t="lila"] .v2-cs-papel .v2-cs-links { margin-top: 16px; }
+html[data-t="lila"] .v2-cs-papel .v2-cs-links a { display: inline-flex; align-items: center; gap: 7px; height: auto; padding: 0 0 2px; border: 0; border-radius: 0; background: none; box-shadow: none; color: var(--v2-lilac); font: 600 14.5px/1.2 var(--v2-display); text-decoration: underline; text-decoration-color: rgb(106 63 196 / 35%); text-underline-offset: .22em; transition: color .2s ease, text-decoration-color .2s ease; }
+html[data-t="lila"] .v2-cs-papel .v2-cs-links a:hover { background: none; color: var(--v2-ink); text-decoration-color: var(--v2-ink); transform: none; }
+html[data-t="lila"] .v2-cs-papel .v2-cs-links a svg { width: 13px; height: 13px; }
+@media (max-width: 900px) { html[data-t="lila"] .v2-cs-ctx { grid-template-columns: minmax(0, 1fr); } html[data-t="lila"] .v2-cs-papel-grid { grid-template-columns: minmax(0, 1fr); } }
+
+/* Mi papel: una sola columna cuando no hay pills (la frase ya lo dice todo); dos columnas solo si hay pills */
+html[data-t="lila"] .v2-cs-papel-grid { grid-template-columns: minmax(0, 1fr); }
+html[data-t="lila"] .v2-cs-papel-grid .v2-cs-role { max-width: 52em; }
+html[data-t="lila"] .v2-cs-papel-grid:has(.v2-cs-pills) { grid-template-columns: 1fr 1fr; }
+html[data-t="lila"] .v2-cs-papel-grid:has(.v2-cs-pills) .v2-cs-role { max-width: none; }
+html[data-t="lila"] .v2-cs-papel-grid > .v2-cs-papel-right > .v2-cs-links:first-child { margin-top: 12px; }
+@media (max-width: 900px) { html[data-t="lila"] .v2-cs-papel-grid:has(.v2-cs-pills) { grid-template-columns: minmax(0, 1fr); } }
+
+/* ============================================================
+   Mi papel: tarjeta oscura a todo el ancho, con los roles en grande (un único momento de contraste, a juego con el botón del CV)
+   ============================================================ */
+html[data-t="lila"] .v2-cs-papel { background: #1d1530; border: 0; border-radius: clamp(22px, 2.4vw, 32px); padding: clamp(26px, 3.2vw, 46px); margin-top: clamp(14px, 1.8vw, 24px); color: #f6f2fd; }
+html[data-t="lila"] .v2-cs-papel-in { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: clamp(22px, 4.5vw, 72px); align-items: end; }
+html[data-t="lila"] .v2-cs-papel-main > .v2-cs-goals-title { margin: 0 0 clamp(14px, 1.6vw, 22px); color: #c4b3ee; }
+html[data-t="lila"] .v2-cs-roles { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+html[data-t="lila"] .v2-cs-roles li { font: 600 clamp(26px, 3.1vw, 46px)/1.05 var(--v2-display); letter-spacing: -0.04em; color: #f6f2fd; }
+html[data-t="lila"] .v2-cs-roles li:nth-child(even) { color: #c4b3ee; }
+html[data-t="lila"] .v2-cs-roles--many li { font-size: clamp(20px, 2.1vw, 30px); letter-spacing: -0.03em; }
+html[data-t="lila"] .v2-cs-papel-side .v2-cs-role { margin: 0; max-width: 30em; font: 400 clamp(15px, 1.15vw, 17px)/1.6 var(--v2-display); color: rgb(246 242 253 / 78%); }
+html[data-t="lila"] .v2-cs-papel .v2-cs-links { margin-top: 18px; }
+html[data-t="lila"] .v2-cs-papel .v2-cs-links a { color: #d9ccf8; text-decoration-color: rgb(217 204 248 / 45%); }
+html[data-t="lila"] .v2-cs-papel .v2-cs-links a:hover { color: #fff; text-decoration-color: #fff; }
+@media (max-width: 900px) { html[data-t="lila"] .v2-cs-papel-in { grid-template-columns: minmax(0, 1fr); align-items: start; gap: 22px; } }
+
+/* líneas de las gráficas y la línea temporal (Estrella Damm, etc.): eran blancas y no se veían sobre el fondo claro */
+html[data-t="lila"] { --line-2: rgb(29 21 48 / 24%); }
