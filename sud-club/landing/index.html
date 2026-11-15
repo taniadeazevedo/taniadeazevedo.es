@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"> <!-- acentos y símbolo ° -->
+<meta name="viewport" content="width=device-width, initial-scale=1"> <!-- adaptable al móvil -->
+<title>SUD CLUB · A temperature, not a place</title> <!-- título de la pestaña -->
+<meta name="description" content="SUD CLUB — a Mediterranean cultural club. Self-initiated project."> <!-- descripción para buscadores -->
+<link rel="preconnect" href="https://fonts.googleapis.com"> <!-- conexión previa a Google Fonts -->
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@50..150,100..900&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Recursive:slnt,wght,CASL,CRSV,MONO@-15..0,300..1000,0..1,0..1,0..1&display=swap" rel="stylesheet">
+<script src="sud-logo.js"></script> <!-- el logo dibujado, copia exacta del original -->
+<style>
+  /* ---------- Paleta ---------- */
+  :root {
+    --cal: #F3EEE4; --sombra: #2E4A68; --arcilla: #B4643F; /* cal, azul sombra, arcilla */
+    --ocre: #E0A93E; --tomate: #D8352A; --brasa: #1C0F0B;  /* ocre, tomate, brasa */
+    --bg: var(--ocre); --ink: var(--brasa);                /* colores del estado actual de la portada (los cambia JavaScript) */
+    --pad: clamp(16px, 4vw, 48px);                         /* margen lateral: 16 px en móvil, más en escritorio */
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }    /* reseteo */
+  html { scroll-behavior: smooth; }                        /* los enlaces del menú bajan suave */
+  body { background: var(--cal); color: var(--brasa); font-family: "Newsreader", serif; font-size: 18px; line-height: 1.5; }
+  a { color: inherit; }
+  .mono { font-family: "Recursive", monospace; font-variation-settings: "MONO" 1, "wght" 600; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; } /* datos */
+  .head { font-family: "Anybody", sans-serif; font-variation-settings: "wdth" 75, "wght" 700; letter-spacing: .01em; line-height: .95; } /* titulares: nunca espaciado negativo */
+  section { padding: clamp(56px, 9vw, 120px) var(--pad); }  /* aire vertical de cada bloque */
+  section, .door { scroll-margin-top: 64px; }              /* al saltar desde el menú, la cabecera no tapa el principio */
+
+  /* ---------- Cabecera (interfaz: siempre en Sombra, no se calienta) ---------- */
+  .bar { position: fixed; inset: 0 0 auto 0; z-index: 30; display: flex; align-items: center; justify-content: space-between; padding: 14px var(--pad); background: var(--cal); color: var(--sombra); border-bottom: 1px solid #1C0F0B1A; }
+  .bar .brand svg { height: 30px; width: auto; display: block; } /* versión reducida: SUD + CLUB, sin isotipo */
+  .bar-right { display: flex; align-items: center; gap: 18px; }
+  .icon-btn { background: none; border: 0; color: inherit; cursor: pointer; display: flex; align-items: center; gap: 8px; padding: 4px; }
+  .icon-btn svg { width: 26px; height: 26px; }
+  .bag-count { min-width: 18px; text-align: center; }
+
+  /* ---------- Menú persiana ---------- */
+  .menu { position: fixed; inset: 0; z-index: 20; pointer-events: none; } /* capa a pantalla completa */
+  .menu .lama { position: absolute; left: 0; right: 0; height: calc(100% / 8 + 1px); background: var(--brasa); transform: scaleY(0); transform-origin: top; transition: transform .45s cubic-bezier(.6, 0, .2, 1); } /* cada lama baja desde arriba */
+  .menu.open { pointer-events: auto; }
+  .menu.open .lama { transform: scaleY(1); }               /* abierto: lamas desplegadas (persiana bajada) */
+  .menu nav { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; padding: 80px var(--pad) 40px; gap: 6px; opacity: 0; transition: opacity .3s; }
+  .menu.open nav { opacity: 1; transition-delay: .35s; }   /* el texto aparece cuando la persiana ha bajado */
+  .menu nav a { color: var(--cal); text-decoration: none; font-size: clamp(44px, 9vw, 110px); }
+  .menu nav a:hover { color: var(--ocre); }
+  .menu nav a span { font-size: 12px; vertical-align: middle; margin-left: 12px; color: var(--ocre); }
+
+  /* ---------- Portada (reacciona a la temperatura real) ---------- */
+  .hero { min-height: 100svh; padding-top: 110px; background: var(--bg); color: var(--ink); position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; gap: 32px; transition: background .6s, color .6s; }
+  .hero::before { content: ""; position: absolute; inset: -20%; background: repeating-linear-gradient(-24deg, transparent 0 calc(38px - var(--shade, 16px)), #1C0F0B 0 38px); opacity: .1; pointer-events: none; } /* sombra de persiana: más calor, rayas más gruesas */
+  .hero > * { position: relative; }
+  .hero-top { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+  .hero h1 { font-size: clamp(30px, 7vw, 96px); white-space: nowrap; } /* tagline en dos líneas fijas: "A temperature," / "not a place." (ninguna se parte) */
+  .reading { text-align: right; }
+  .reading .big { font-family: "Recursive", monospace; font-variation-settings: "MONO" 1, "wght" 700; font-size: clamp(40px, 7vw, 90px); line-height: 1; letter-spacing: -.01em; }
+  .hero-logo svg { width: 100%; height: auto; max-height: 46vh; display: block; }  /* el logo grande, en su estado */
+  .cities { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .cities button { font: inherit; font-family: "Recursive", monospace; font-variation-settings: "MONO" 1, "wght" 600; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; background: transparent; color: inherit; border: 1.5px solid currentColor; padding: 7px 10px; border-radius: 2px; cursor: pointer; }
+  .cities button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+  .rule { font-size: 12px; opacity: .85; flex-basis: 100%; margin-top: 4px; }
+
+  /* ---------- Manifiesto ---------- */
+  .manifesto { background: var(--cal); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 32px; }
+  .manifesto p.big { font-size: clamp(26px, 3.4vw, 44px); line-height: 1.18; }
+  .manifesto p.big em { color: var(--arcilla); }
+
+  /* ---------- Tres puertas: revista, mesa, despensa ---------- */
+  .doors { display: grid; grid-template-columns: repeat(3, 1fr); padding: 0; }
+  .door { padding: clamp(28px, 4vw, 48px) var(--pad); min-height: 520px; display: flex; flex-direction: column; justify-content: space-between; gap: 24px; text-decoration: none; position: relative; overflow: hidden; }
+  .door .sub svg { width: 70%; max-width: 260px; height: auto; display: block; }
+  .door h3 { font-size: clamp(30px, 3.4vw, 46px); }
+  .door p { font-size: 17px; max-width: 32ch; }
+  .door .go { display: inline-flex; gap: 8px; align-items: center; }
+  .door .go svg { width: 22px; height: 22px; transition: transform .3s; }
+  .door:hover .go svg { transform: translateX(6px); }
+  .door::after { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(-24deg, transparent 0 22px, #1C0F0B 22px 38px); opacity: 0; transition: opacity .4s; pointer-events: none; } /* al pasar el ratón, entra la sombra de persiana */
+  .door:hover::after { opacity: .08; }
+
+  /* ---------- Próxima mesa ---------- */
+  .next { background: var(--tomate); color: var(--brasa); display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 32px; align-items: end; }
+  .next h2 { font-size: clamp(56px, 11vw, 160px); }
+  .next ul { list-style: none; border-top: 2px solid var(--brasa); }
+  .next li { display: grid; grid-template-columns: 96px 1fr auto; gap: 12px; padding: 14px 0; border-bottom: 1px solid #1C0F0B40; align-items: baseline; }
+  .next li .city { font-family: "Anybody"; font-variation-settings: "wdth" 75, "wght" 700; font-size: 22px; }
+  .btn { font: inherit; font-family: "Recursive", monospace; font-variation-settings: "MONO" 1, "wght" 700; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; background: var(--brasa); color: var(--cal); border: 0; padding: 10px 14px; border-radius: 2px; cursor: pointer; text-decoration: none; display: inline-block; }
+  .btn.ghost { background: transparent; color: inherit; border: 1.5px solid currentColor; }
+
+  /* ---------- Newsletter ---------- */
+  .news { background: var(--sombra); color: var(--cal); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; align-items: end; }
+  .news h2 { font-size: clamp(44px, 7vw, 96px); }
+  .news form { display: flex; gap: 8px; flex-wrap: wrap; }
+  .news input { flex: 1; min-width: 200px; font: inherit; font-size: 18px; padding: 12px; background: transparent; color: var(--cal); border: 0; border-bottom: 2px solid var(--cal); }
+  .news input::placeholder { color: #F3EEE499; }
+  .news .btn { background: var(--cal); color: var(--sombra); }
+  .news .done { font-size: 22px; font-style: italic; }
+
+  /* ---------- Pie ---------- */
+  footer { padding: 56px var(--pad) 32px; background: var(--brasa); color: var(--cal); }
+  footer .flogo svg { width: 100%; height: auto; display: block; }
+  footer .meta { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-top: 32px; }
+
+  /* ---------- Móvil ---------- */
+  @media (max-width: 860px) {
+    .manifesto, .next, .news { grid-template-columns: minmax(0, 1fr); }
+    .doors { grid-template-columns: 1fr; }
+    .door { min-height: 380px; }
+    .reading { text-align: left; }
+    .next li { grid-template-columns: 80px 1fr; } .next li .btn { grid-column: 2; justify-self: start; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+
+<!-- Cabecera -->
+<header class="bar">
+  <a class="brand" href="#top" aria-label="SUD CLUB, inicio" id="brand"></a>
+  <div class="bar-right">
+    <span class="mono" id="bar-temp"></span>
+    <button class="icon-btn" aria-label="Bag"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M8 14 H32 L30 36 H10 Z M14 14 V10 A6 6 0 0 1 26 10 V14"/></svg><span class="mono bag-count" id="bag">0</span></button>
+    <button class="icon-btn" id="menu-btn" aria-label="Open menu" aria-expanded="false"><svg viewBox="0 0 40 40"><path d="M6 4 H34 V10 H6 Z" fill="currentColor"/><path d="M6 15 H34 M6 21 H34 M6 27 H34 M6 33 H34" stroke="currentColor" stroke-width="2.5"/></svg></button>
+  </div>
+</header>
+
+<!-- Menú persiana -->
+<div class="menu" id="menu" aria-hidden="true">
+  <div id="lamas"></div>
+  <nav>
+    <a class="head" href="#magazine">Magazine<span class="mono">SUD °</span></a>
+    <a class="head" href="#mesa">Mesa<span class="mono">Dinners</span></a>
+    <a class="head" href="#despensa">Despensa<span class="mono">Shop</span></a>
+    <a class="head" href="#sobremesa">Newsletter<span class="mono">Sundays · 15:00</span></a>
+  </nav>
+</div>
+
+<main id="top">
+  <!-- Portada -->
+  <section class="hero" id="hero">
+    <div class="hero-top">
+      <h1 class="head">A temperature,<br>not a place.</h1>
+      <div class="reading">
+        <div class="mono" id="city-name">Napoli · now</div>
+        <div class="big" id="city-temp">--°</div>
+        <div class="mono" id="city-state">Bochorno</div>
+      </div>
+    </div>
+    <div class="hero-logo" id="hero-logo"></div>
+    <div class="cities" id="cities">
+      <p class="mono rule" id="rule">Reading the real temperature…</p>
+    </div>
+  </section>
+
+  <!-- Manifiesto -->
+  <section class="manifesto">
+    <p class="mono">SUD CLUB · Est. 2027 · Nomadic</p>
+    <div>
+      <p class="big">There are places where heat changes everything. Words stretch. Dinners start late and never end. Streets empty at three and fill up at midnight. You won't find that on a map. You'll find it at <em>38 degrees</em>.</p>
+      <p class="mono" style="margin-top:24px">A Mediterranean cultural club that edits, gathers and bottles.</p>
+    </div>
+  </section>
+
+  <!-- Tres puertas -->
+  <section class="doors" aria-label="SUD CLUB">
+    <a class="door" id="magazine" href="#magazine" style="background:var(--ocre);color:var(--tomate)">
+      <div class="sub" data-label="MAGAZINE"></div>
+      <div><p class="mono" style="color:var(--brasa)">Nº 38 °C · Calima · Out June 2027</p>
+        <h3 class="head">The magazine that heats up as you read it.</h3>
+        <p style="color:var(--brasa);margin-top:12px">96 pages, from the shade to the fire. Interviews, data and long sobremesas.</p></div>
+      <span class="go mono" style="color:var(--brasa)">Read SUD ° <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="3"><path d="M6 20 H34 M24 10 L34 20 L24 30"/></svg></span>
+    </a>
+    <a class="door" id="mesa" href="#next" style="background:var(--arcilla);color:var(--cal)">
+      <div class="sub" data-label="MESA"></div>
+      <div><p class="mono">Long tables · one city at a time</p>
+        <h3 class="head">Dinners that start at nine and end whenever.</h3>
+        <p style="margin-top:12px">The club has no home. Every summer it sets the table somewhere else.</p></div>
+      <span class="go mono">See the dates <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="3"><path d="M6 20 H34 M24 10 L34 20 L24 30"/></svg></span>
+    </a>
+    <a class="door" id="despensa" href="#despensa" style="background:var(--cal);color:var(--sombra)">
+      <div class="sub" data-label="DESPENSA"></div>
+      <div><p class="mono">Collection Nº 01 · 380 boxes</p>
+        <h3 class="head">Oil, anchovies and vermut. The label tells you the temperature.</h3>
+        <p style="margin-top:12px;color:var(--brasa)">Thermochromic inks: the blind on the label opens in your hand.</p></div>
+      <button class="go mono btn" id="add" type="button" style="align-self:flex-start">Add box 38° · €72</button>
+    </a>
+  </section>
+
+  <!-- Próximas mesas -->
+  <section class="next" id="next">
+    <h2 class="head">Next<br>tables</h2>
+    <ul>
+      <li><span class="mono">18.06.27</span><span><span class="city">Marseille</span><br><span style="font-size:16px">Launch dinner · 38 °C</span></span><a class="btn" href="#next">Tickets</a></li>
+      <li><span class="mono">09.07.27</span><span><span class="city">Napoli</span><br><span style="font-size:16px">Sobremesa until midnight</span></span><a class="btn" href="#next">Tickets</a></li>
+      <li><span class="mono">23.07.27</span><span><span class="city">València</span><br><span style="font-size:16px">Clay &amp; vermut</span></span><span class="btn ghost">Sold out</span></li>
+      <li><span class="mono">06.08.27</span><span><span class="city">Athína</span><br><span style="font-size:16px">Rooftop festa</span></span><a class="btn" href="#next">Tickets</a></li>
+    </ul>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="news" id="sobremesa">
+    <div><p class="mono">Newsletter</p><h2 class="head">La Sobremesa</h2></div>
+    <div>
+      <p style="margin-bottom:20px">One email every Sunday at 15:00, the hottest hour. Short, slow, and best read lying down.</p>
+      <form id="nl"><label class="mono" for="email" style="flex-basis:100%">Your email</label>
+        <input id="email" type="email" required placeholder="you@somewhere.hot" autocomplete="email">
+        <button class="btn" type="submit">Subscribe</button></form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="flogo" id="flogo"></div>
+  <div class="meta mono"><span>SUD CLUB · A temperature, not a place.</span><span>Self-initiated project · Concept & design: Tania de Azevedo · 2026</span></div>
+</footer>
+
+<script>
+// ---------- 1. Logos (todos desde el archivo compartido: proporciones exactas) ----------
+document.getElementById("brand").innerHTML = SUD.logo({ variant: "red" });            // cabecera: reducida, sin isotipo (< 48 px)
+document.querySelectorAll(".door .sub").forEach(el => el.innerHTML = SUD.logo({ variant: "sub", label: el.dataset.label, state: 1 })); // sub-marcas
+document.getElementById("flogo").innerHTML = SUD.logo({ variant: "full", state: 0 });  // pie: logo completo grande
+
+// ---------- 2. Menú persiana ----------
+const menu = document.getElementById("menu"), btn = document.getElementById("menu-btn");
+document.getElementById("lamas").innerHTML = Array.from({ length: 8 }, (_, k) =>       // 8 lamas, cada una baja con un pequeño retraso
+  `<div class="lama" style="top:${k * 12.5}%;transition-delay:${k * 0.04}s"></div>`).join("");
+function toggleMenu(open) {
+  menu.classList.toggle("open", open);                               // abre o cierra
+  btn.setAttribute("aria-expanded", open); menu.setAttribute("aria-hidden", !open);
+  document.querySelector(".bar").style.color = open ? "#F3EEE4" : ""; // logo e iconos en cal sobre la persiana oscura
+  document.querySelector(".bar").style.background = open ? "transparent" : "";
+  document.querySelector(".bar").style.borderColor = open ? "transparent" : "";
+}
+btn.addEventListener("click", () => toggleMenu(!menu.classList.contains("open")));
+menu.querySelectorAll("a").forEach(a => a.addEventListener("click", () => toggleMenu(false))); // al elegir, se sube la persiana
+
+// ---------- 3. Portada: temperatura real de las ciudades ----------
+const CITIES = [                                                     // nombre, latitud, longitud y temperatura de reserva (si no hay conexión)
+  ["València", 39.47, -0.38, 24], ["Marseille", 43.30, 5.37, 19], ["Napoli", 40.85, 14.27, 22],
+  ["Athína", 37.98, 23.73, 27], ["Tunis", 36.81, 10.18, 29], ["Al-Iskandariya", 31.20, 29.92, 31],
+];
+const BRAND = 2;                                                     // temperatura de marca de la portada: Bochorno (32°)
+let temps = CITIES.map(c => c[3]), live = false, current = 2;        // temperaturas, si son reales y ciudad elegida
+
+// Regla de la estrategia: la marca decide y el clima matiza (como mucho un estado arriba o abajo)
+const stateFor = t => BRAND + (t < 20 ? -1 : t > 30 ? 1 : 0);
+
+function showCity(k) {
+  current = k;
+  const t = Math.round(temps[k]), s = stateFor(t), st = SUD.STATES[s];
+  const hero = document.getElementById("hero");
+  hero.style.setProperty("--bg", st.bg); hero.style.setProperty("--ink", st.ink);   // colores del estado
+  hero.style.setProperty("--shade", `${10 + s * 6}px`);                // rayas de sombra más gruesas con más calor
+  document.getElementById("hero-logo").innerHTML = SUD.logo({ variant: "full", state: s }); // logo en su estado
+  document.getElementById("city-name").textContent = `${CITIES[k][0]} · ${live ? "weather now" : "typical weather"}`; // el número grande es SOLO el tiempo real
+  document.getElementById("city-temp").textContent = `${t}°`;
+  document.getElementById("city-state").textContent = `SUD mood: ${st.name}`; // el estado de la marca, sin grados para no confundir
+  document.getElementById("bar-temp").textContent = `${CITIES[k][0]} ${t}°`;
+  const move = s === BRAND ? "stays in" : s > BRAND ? "heats up to" : "cools down to";
+  document.getElementById("rule").textContent = `It's ${t} °C in ${CITIES[k][0]} ${live ? "right now" : "(typical)"}, so SUD ${move} ${st.name}. The brand decides, the weather adjusts.`; // explicación en una frase
+  document.querySelectorAll("#cities button").forEach((b, j) => b.setAttribute("aria-pressed", j === k));
+}
+document.getElementById("cities").insertAdjacentHTML("afterbegin", CITIES.map((c, k) =>
+  `<button type="button" data-k="${k}">${c[0]}</button>`).join(""));            // botones de ciudad
+document.getElementById("cities").addEventListener("click", e => { const b = e.target.closest("button"); if (b) showCity(Number(b.dataset.k)); });
+showCity(current);                                                   // primero, con las temperaturas de reserva
+
+// Pide la temperatura actual a Open-Meteo (servicio meteorológico abierto, sin datos personales)
+const url = "https://api.open-meteo.com/v1/forecast?latitude=" + CITIES.map(c => c[1]).join(",") +
+  "&longitude=" + CITIES.map(c => c[2]).join(",") + "&current=temperature_2m";
+fetch(url).then(r => r.json()).then(data => {
+  const list = Array.isArray(data) ? data : [data];                  // con varias ciudades devuelve una lista
+  temps = list.map((d, k) => d?.current?.temperature_2m ?? temps[k]); // temperatura real de cada ciudad
+  live = true; showCity(current);                                    // repinta con los datos reales
+}).catch(() => {});                                                  // sin conexión: se quedan las de reserva
+
+// ---------- 4. Bolsa y newsletter (prototipo: no se envía nada) ----------
+let bag = 0;
+document.getElementById("add").addEventListener("click", e => {
+  e.preventDefault(); bag++; document.getElementById("bag").textContent = bag;     // suma a la bolsa
+  e.currentTarget.textContent = "Added · it's in the shade";
+});
+document.getElementById("nl").addEventListener("submit", e => {
+  e.preventDefault();                                                // prototipo: no se manda el correo a ningún sitio
+  e.currentTarget.outerHTML = `<p class="done">Done. See you on Sunday at three.</p>`;
+});
+</script>
+</body>
+</html>

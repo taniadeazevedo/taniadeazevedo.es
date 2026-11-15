@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html data-t="lila" lang="es" data-theme="dark" data-root="../">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon.ico" sizes="48x48" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <title>SUD CLUB – Proyecto · Tania de Azevedo</title>
+  <meta name="description" content="SUD CLUB: identidad de un club cultural mediterráneo en la que todo cambia con la temperatura. Proyecto personal de branding." />
+  <!-- Quitar esta línea cuando el proyecto esté listo para salir en Google -->
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="canonical" href="https://taniadeazevedo.es/sud-club/" />
+  <meta property="og:title" content="SUD CLUB – Tania de Azevedo" />
+  <meta property="og:description" content="Identidad de un club cultural mediterráneo en la que todo cambia con la temperatura." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://taniadeazevedo.es/sud-club/" />
+  <meta property="og:image" content="https://taniadeazevedo.es/sud-club/imgs/portada.jpg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f6f2fd" />
+  <meta name="color-scheme" content="light" />
+  <script>document.documentElement.setAttribute("data-theme","dark");</script>
+  <link rel="preload" as="font" type="font/woff2" href="../fonts/strichpunkt/strichpunkt-sans-latin-wght-normal.woff2" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/v2.css" />
+  <link rel="stylesheet" href="../css/v2-case.css" />
+  <link rel="stylesheet" href="../css/v2-lila.css" />
+  <!-- Las tipografías de SUD CLUB: Anybody (titulares) y Recursive (datos y "CLUB" del logo) -->
+  <link href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@50..150,100..900&family=Recursive:slnt,wght,CASL,CRSV,MONO@-15..0,300..1000,0..1,0..1,0..1&display=swap" rel="stylesheet" />
+  <style>
+    /* ---------- Piezas vivas de la galería (en código) ---------- */
+    .sud-live { container-type: inline-size; position: relative; overflow: hidden; }               /* tamaños relativos al ancho de cada pieza (cqi) */
+    .sud-mono { font-family: Recursive, monospace; font-variation-settings: "MONO" 1, "wght" 600; text-transform: uppercase; letter-spacing: .08em; }
+    .sud-head { font-family: Anybody, sans-serif; font-variation-settings: "wdth" 75, "wght" 700; letter-spacing: .01em; line-height: .95; }
+
+    /* Construcción del logo */
+    #sudBuild { background: #F3EEE4; color: #2E4A68; aspect-ratio: 16 / 8; }
+    .b-logo { position: absolute; inset: 14% 12% 18%; }
+    .b-logo svg { width: 100%; height: 100%; overflow: visible; }
+    .b-logo path { stroke-dasharray: 1 1; stroke-dashoffset: calc(1 - var(--d, 1)); }             /* las letras se dibujan */
+    .b-logo rect { opacity: var(--pers, 1); }                                                       /* la persiana */
+    .b-logo text:not(.n) { opacity: var(--club, 1); }                                               /* CLUB */
+    .b-logo .ret { opacity: var(--g, 1); }                                                          /* la retícula */
+    .b-logo .ret line { stroke: currentColor; stroke-width: .4; stroke-dasharray: 2 2; opacity: .55; }
+    .b-logo .ret .n { font: 600 7px Recursive, monospace; fill: currentColor; }
+    .b-cap { position: absolute; left: 4cqi; right: 4cqi; bottom: 3.5cqi; display: flex; justify-content: space-between; font: 600 max(11px, 1.2cqi) Recursive, monospace; text-transform: uppercase; letter-spacing: .08em; }
+
+    /* Cinco estados: franjas que entran como lamas */
+    #sudStates { background: #F3EEE4; }
+    .band { display: flex; align-items: center; gap: 4cqi; padding: 0 5cqi; height: 13cqi; transform: scaleX(0); transform-origin: left; transition: transform .7s cubic-bezier(.6, 0, .2, 1); }
+    #sudStates.on .band { transform: none; }
+    .st { flex: 1; display: flex; align-items: center; justify-content: space-between; gap: 2cqi; } /* un estado: logo y nombre */
+    .band-logo { position: relative; height: 6.4cqi; }
+    .band-logo svg { height: 100%; width: auto; display: block; overflow: visible; }
+    .band-ghost { position: absolute; inset: 0; color: #FFF7E3; opacity: .8; z-index: 0; } /* el halo va detrás… */
+    .band-logo > svg { position: relative; z-index: 1; }                                    /* …y el logo, delante */
+    .band-ghost text, .band-ghost rect { display: none; }                                           /* en el halo solo vibran las letras */
+    .band-txt { text-align: right; font: 600 max(10px, 1.3cqi) Recursive, monospace; text-transform: uppercase; letter-spacing: .08em; }
+    .band-txt b { display: block; font-size: 1.6em; }
+    .band-txt span { opacity: .75; }
+
+    /* Iconografía: se dibuja en cascada, en bucle */
+    #sudIcons { color: #2E4A68; padding: 2cqi 0; display: grid; gap: 4cqi; }                     /* sobre el fondo de la página, en cal */
+    .fam { display: grid; grid-template-columns: 14cqi 1fr; align-items: center; gap: 2cqi; border-top: 1px solid rgb(29 21 48 / 16%); padding-top: 3cqi; }
+    .fam > span { font: 600 max(10px, 1.3cqi) Recursive, monospace; text-transform: uppercase; letter-spacing: .08em; }
+    .fam > div { display: flex; justify-content: space-between; gap: 2cqi; }                  /* los iconos ocupan todo el ancho */
+    .fam svg { width: 8cqi; height: 8cqi; overflow: visible; }
+    .fam .s { fill: none; stroke: currentColor; stroke-width: 2.6; stroke-dasharray: 1 1; animation: dibuja 7s cubic-bezier(.6, 0, .2, 1) infinite; animation-delay: calc(var(--i) * .05s); }
+    .fam .f { fill: currentColor; animation: aparece 7s ease infinite; animation-delay: calc(var(--i) * .05s); }
+    @keyframes dibuja { 0% { stroke-dashoffset: 1; } 18%, 88% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: -1; } }   /* se dibuja rápido, se queda casi todo el ciclo y se borra */
+    @keyframes aparece { 0%, 8% { opacity: 0; } 18%, 88% { opacity: 1; } 98%, 100% { opacity: 0; } }
+
+    /* Carteles 2:3 */
+    .poster { container-type: inline-size; aspect-ratio: 2 / 3; position: relative; overflow: hidden; display: flex; flex-direction: column; gap: clamp(14px, 1.9vw, 24px); padding: clamp(16px, 2vw, 26px) clamp(18px, 2.2vw, 28px) clamp(14px, 1.7vw, 22px); box-sizing: border-box; } /* columna: titular, foto, logo y pie con el mismo hueco entre sí */
+    .p-head { flex: none; font: 700 8.6cqi/0.95 Anybody, sans-serif; font-variation-settings: "wdth" 75, "wght" 700; }
+    .p-photo { flex: 1; min-height: 0; }                       /* la foto ocupa lo que sobra: así el hueco con SUD es siempre igual */
+    .p-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .p-logo { flex: none; }
+    .p-logo svg { width: 100%; height: auto; display: block; overflow: visible; }
+    .p-foot { flex: none; margin-top: -6px; padding-top: 2.4cqi; border-top: .4cqi solid currentColor; display: flex; justify-content: space-between; font: 600 2.6cqi Recursive, monospace; text-transform: uppercase; letter-spacing: .06em; }
+    .v2-cs-trio { max-width: 1228px; box-sizing: border-box; margin: 0 auto; padding: 0 clamp(18px, 3vw, 24px); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(10px, 1.4vw, 16px); }
+    .v2-cs-trio figure { margin: 0; overflow: hidden; border-radius: clamp(14px, 1.6vw, 22px); }
+    .v2-cs-trio figcaption { margin-top: 10px; font: 500 14px/1.3 var(--v2-display, Inter, sans-serif); color: var(--v2-ink-3, #9a97a8); }
+    .v2-cs-block { margin-top: clamp(10px, 1.4vw, 16px); }
+
+    /* Publicaciones 4:5 */
+    .post { container-type: inline-size; aspect-ratio: 4 / 5; position: relative; overflow: hidden; }
+    .po-k { position: absolute; left: 7cqi; top: 7cqi; font: 600 3.6cqi Recursive, monospace; text-transform: uppercase; letter-spacing: .08em; }
+    .po-txt { position: absolute; left: 7cqi; right: 7cqi; bottom: 9cqi; font: 700 13cqi/0.95 Anybody, sans-serif; font-variation-settings: "wdth" 75, "wght" 700; }
+    .po-txt.sm { font-size: 9cqi; }
+    .po-num { position: absolute; left: 7cqi; top: 30cqi; font: 700 28cqi/1 Recursive, monospace; font-variation-settings: "MONO" 1, "wght" 700; }
+    .po-logo { position: absolute; left: 12cqi; right: 12cqi; top: 50%; transform: translateY(-50%); }
+    .po-logo svg { width: 100%; height: auto; display: block; }
+
+    /* Vídeos cortos 9:16 */
+    .reel { container-type: inline-size; aspect-ratio: 9 / 16; position: relative; overflow: hidden; }
+    .r-num { position: absolute; left: 7cqi; top: 6cqi; font: 700 18cqi/1 Recursive, monospace; font-variation-settings: "MONO" 1, "wght" 700; }
+    .r-name { position: absolute; right: 7cqi; top: 9cqi; font: 600 4.4cqi Recursive, monospace; text-transform: uppercase; letter-spacing: .08em; }
+    .r-logo { position: absolute; left: 50%; bottom: 40%; transform: translateX(-50%); }
+    .r-logo svg { height: 100%; width: auto; display: block; overflow: visible; }
+    .r-foot { position: absolute; left: 7cqi; right: 7cqi; bottom: 7cqi; font: 600 3.8cqi Recursive, monospace; text-transform: uppercase; letter-spacing: .08em; }
+    .r2-clock { position: absolute; inset: 0; display: grid; place-items: center; font: 700 22cqi Recursive, monospace; font-variation-settings: "MONO" 1, "wght" 700; color: #1C0F0B; }
+    .r2-lama { position: absolute; left: 0; right: 0; height: 11.2%; background: #1C0F0B; transform-origin: top; transform: scaleY(0); }
+    .r2-line { position: absolute; left: 8cqi; right: 8cqi; top: 50%; transform: translateY(-50%); font: 700 14cqi/0.95 Anybody, sans-serif; font-variation-settings: "wdth" 75, "wght" 700; color: #F3EEE4; opacity: 0; }
+    .r2-late { position: absolute; inset: 0; background: #E0A93E; display: grid; place-items: center; opacity: 0; }
+    .r2-late span { font: 700 26cqi Recursive, monospace; font-variation-settings: "MONO" 1, "wght" 700; color: #D8352A; }
+    .r3-temp { position: absolute; left: 7cqi; top: 7cqi; font: 600 5.4cqi Recursive, monospace; text-transform: uppercase; letter-spacing: .06em; color: #F3EEE4; }
+    .r3-label { position: absolute; left: 14cqi; right: 14cqi; top: 22%; aspect-ratio: 2 / 3; background: #F3EEE4; color: #B4643F; container-type: inline-size; }
+    .r3-sub { position: absolute; left: 8cqi; right: 22cqi; top: 8cqi; }
+    .r3-sub svg { width: 100%; height: auto; display: block; }
+    .r3-pica { position: absolute; left: 8cqi; top: 52cqi; font: 700 27cqi/1 Anybody, sans-serif; font-variation-settings: "wdth" 75, "wght" 700; }
+    .r3-lamas { position: absolute; left: 5cqi; right: 5cqi; top: 50cqi; height: 34cqi; display: grid; grid-template-rows: repeat(5, 1fr); gap: 1.2cqi; }
+    .r3-lamas i { background: #B4643F; }
+    .r3-name { position: absolute; left: 8cqi; top: 100cqi; font: 700 15cqi/1 Anybody, sans-serif; font-variation-settings: "wdth" 75, "wght" 700; color: #1C0F0B; }
+    .r3-data { position: absolute; left: 8cqi; right: 8cqi; top: 120cqi; padding-top: 3cqi; border-top: .6cqi solid #1C0F0B; font: 600 4.6cqi Recursive, monospace; text-transform: uppercase; color: #1C0F0B; }
+
+
+    /* Piezas sobre el fondo de la página, sin tarjeta */
+    .v2-cs-grid figure.bare { background: transparent; border-radius: 0; overflow: visible; }
+    .v2-cs-duo { max-width: 860px; box-sizing: border-box; margin: 0 auto; padding: 0 clamp(18px, 3vw, 24px); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(12px, 2vw, 28px); }
+    .v2-cs-duo figure { margin: 0; } .v2-cs-duo .reel { border-radius: clamp(14px, 1.6vw, 22px); }
+    .v2-cs-duo figcaption { margin-top: 10px; font: 500 14px/1.3 var(--v2-display, Inter, sans-serif); color: var(--v2-ink-3, #9a97a8); }
+    .kin { width: 100%; box-sizing: border-box; background: #1C0F0B; color: #F3EEE4; display: flex; flex-direction: column; justify-content: center; padding: 0 9%; } /* ancho completo, como el termómetro */
+    .kin span { font: 700 21cqi/0.98 Anybody, sans-serif; text-transform: uppercase; letter-spacing: .01em; animation: calor 4s ease-in-out infinite; animation-delay: calc(var(--i) * .25s); }
+    @keyframes calor { 0%, 100% { font-variation-settings: "wdth" 50, "wght" 500; color: #F3EEE4; } 50% { font-variation-settings: "wdth" 130, "wght" 800; color: #E0A93E; } } /* cada palabra se ensancha con el calor */
+    .v2-cs-five { max-width: 1228px; box-sizing: border-box; margin: 0 auto; padding: 0 clamp(18px, 3vw, 24px); display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(8px, 1vw, 12px); }
+    .slide { border-radius: 4px; }
+    .cs-title { position: absolute; left: 7cqi; right: 7cqi; top: 20cqi; font: 700 19cqi/0.95 Anybody, sans-serif; font-variation-settings: "wdth" 75, "wght" 700; color: #D8352A; }
+    .cs-city { position: absolute; left: 7cqi; top: 16cqi; font: 700 14cqi/1 Anybody, sans-serif; font-variation-settings: "wdth" 75, "wght" 700; }
+    .cs-lama { position: absolute; left: 0; top: 42cqi; background: #D8352A; }
+    .cs-hour { position: absolute; left: 7cqi; bottom: 16cqi; font: 700 17cqi/1 Recursive, monospace; font-variation-settings: "MONO" 1, "wght" 700; }
+    .cs-end { position: absolute; left: 7cqi; right: 7cqi; top: 22cqi; font: 700 13cqi/0.95 Anybody, sans-serif; font-variation-settings: "wdth" 75, "wght" 700; }
+    .cs-foot { position: absolute; left: 7cqi; right: 7cqi; bottom: 5cqi; display: flex; justify-content: space-between; font: 600 3.2cqi Recursive, monospace; text-transform: uppercase; letter-spacing: .08em; }
+
+    @media (max-width: 700px) {
+      .v2-cs-trio { grid-template-columns: minmax(0, 1fr); max-width: 460px; }
+      #sudBuild { aspect-ratio: 4 / 3; } .b-logo { inset: 16% 8% 20%; }
+      .band { height: auto; flex-direction: column; align-items: stretch; padding: 4cqi 5cqi; gap: 4cqi; } .band-logo { height: 9cqi; } .band-txt { font-size: 2.6cqi; }
+      .fam { grid-template-columns: 1fr; } .fam > div { flex-wrap: wrap; justify-content: flex-start; gap: 5cqi; } .fam svg { width: 11cqi; height: 11cqi; }
+      .v2-cs-duo { grid-template-columns: minmax(0, 1fr); max-width: 420px; } .v2-cs-five { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    /* ---------- Ajustes v4: bloques sueltos, leyendas y noche ---------- */
+    #sudBuild { border-radius: clamp(18px, 2vw, 28px); }                                         /* la construcción con sus propias esquinas */
+    #sudStates { background: transparent; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(10px, 1.4vw, 16px); } /* cinco bloques sueltos */
+    .stb { box-sizing: border-box; border-radius: clamp(14px, 1.6vw, 22px); padding: clamp(22px, 3vw, 40px); container-type: inline-size; opacity: 0; transform: translateY(24px); transition: opacity .6s, transform .7s cubic-bezier(.6, 0, .2, 1); }
+    .stb.wide { grid-column: 1 / -1; }
+    #sudStates.on .stb { opacity: 1; transform: none; }                                           /* entran uno a uno al verse */
+    .stb .st { display: flex; flex-direction: column; align-items: flex-start; gap: 4cqi; }
+    .stb .band-logo { height: 19cqi; }                                                          /* el logo llena su bloque */
+    .stb.wide .band-logo { height: 9.5cqi; }
+    .stb .band-txt { text-align: left; font-size: max(11px, 2.4cqi); }
+    .stb.wide .band-txt { font-size: max(11px, 1.2cqi); }
+    .sud-cap { margin: 10px 0 0; font: 500 14px/1.4 var(--v2-display, Inter, sans-serif); color: var(--v2-ink-3, #9a97a8); } /* leyenda pequeña bajo cada pieza */
+    .v2-cs-grid figure.bare { background: transparent; border-radius: 0; overflow: visible; }
+    .v2-cs-duo .reel { aspect-ratio: 4 / 5; }                                                    /* termómetro y tipografía: mismo formato, bien encajados */
+    .v2-cs-duo .r-logo { bottom: 30%; }
+    .kin { padding: 0 8% !important; justify-content: center; gap: 1cqi; }
+    .kin span { font-size: 18cqi !important; }
+    #noche { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(8px, 1vw, 12px); } /* la noche, hora a hora, sobre el fondo */
+    .hora { container-type: inline-size; box-sizing: border-box; border-radius: clamp(12px, 1.4vw, 18px); padding: clamp(16px, 1.8vw, 24px); min-height: 280px; display: flex; flex-direction: column; justify-content: space-between; }
+    .hora b { display: block; font: 700 22cqi/1 Recursive, monospace; font-variation-settings: "MONO" 1, "wght" 700; }
+    .hora span { display: block; margin-top: 4cqi; font: 600 max(10px, 6cqi) Recursive, monospace; text-transform: uppercase; letter-spacing: .06em; }
+    .hora p { margin: 0; font: 500 max(13px, 8cqi)/1.3 var(--v2-display, Inter, sans-serif); }
+    @media (max-width: 700px) {
+      #sudStates { grid-template-columns: minmax(0, 1fr); } .stb .band-logo, .stb.wide .band-logo { height: 13cqi; } .stb.wide .band-txt { font-size: max(11px, 2.4cqi); }
+      #noche { grid-template-columns: minmax(0, 1fr); } .hora { min-height: 0; gap: 12px; } .hora b { font-size: 12cqi; } .hora span { font-size: 4cqi; } .hora p { font-size: 15px; }
+    }
+
+    /* ---------- v5: maquetación de la galería ---------- */
+    .sud-row { max-width: 1228px; box-sizing: border-box; margin: 0 auto; padding: 0 clamp(18px, 3vw, 24px); }
+    .sud-gap { margin-top: clamp(56px, 8vw, 110px) !important; }                                     /* mucho aire entre bloques: cada uno se distingue */
+    .sud-id { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 3fr); gap: clamp(10px, 1.4vw, 16px); align-items: stretch; }
+    .sud-id #sudBuild { aspect-ratio: auto; min-height: 100%; }
+    #sudStates { display: grid !important; grid-template-columns: 1fr !important; grid-template-rows: repeat(5, 1fr); gap: clamp(8px, 1vw, 12px) !important; }
+    .stb { padding: clamp(12px, 1.4vw, 18px) clamp(14px, 1.6vw, 22px) !important; display: flex; align-items: center; }
+    .stb .st { flex-direction: row !important; align-items: center !important; justify-content: space-between; width: 100%; gap: 10px !important; }
+    .stb .band-logo, .stb.wide .band-logo { height: clamp(26px, 3.4vw, 44px) !important; }
+    .stb .band-txt, .stb.wide .band-txt { text-align: right !important; font-size: clamp(9px, .8vw, 11px) !important; }
+    #sudIcons { max-width: 860px; margin: 0 auto; }                                                  /* iconos más pequeños, centrados */
+    .fam svg { width: clamp(26px, 3.6vw, 40px) !important; height: clamp(26px, 3.6vw, 40px) !important; }
+    .fam { grid-template-columns: 120px 1fr !important; padding-top: 18px !important; }
+    #sudIcons { gap: 22px !important; }
+    .sud-four { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(10px, 1.4vw, 16px); }
+    .sud-four > div { border-radius: clamp(12px, 1.4vw, 18px); overflow: hidden; }
+    #kinetic .reel { aspect-ratio: 2 / 3 !important; border-radius: 0 !important; height: 100%; }      /* la tipografía, como un cartel más */
+    .sud-social { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)) minmax(0, 1.1fr); grid-auto-flow: row dense; gap: clamp(8px, 1vw, 12px); max-width: 980px; }
+    .sud-social > div { border-radius: 6px; overflow: hidden; }
+    .sud-reel { grid-column: 4; grid-row: 1 / span 2; }                                             /* el termómetro ocupa las dos filas de la derecha */
+    .sud-reel .reel { aspect-ratio: auto !important; height: 100%; border-radius: 0 !important; }
+    .sud-reel .r-num { font-size: 22cqi; } .sud-reel .r-logo { bottom: 38%; }
+    .sud-cap.sud-row { display: block; margin-top: 12px; }
+    @media (max-width: 700px) {
+      .sud-id { grid-template-columns: minmax(0, 1fr); } .sud-id #sudBuild { aspect-ratio: 4 / 3; }
+      .sud-four { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .sud-social { grid-template-columns: repeat(2, minmax(0, 1fr)); } .sud-reel { grid-column: auto; grid-row: span 2; }
+      .fam { grid-template-columns: 1fr !important; }
+    }
+    #galeria-2 .v2-cs-gal > :first-child { margin-top: 0 !important; }      /* tras el proceso, la galería sigue con el espacio normal de la plantilla */
+    /* Resultado final centrado, igual que el proceso creativo */
+    html[data-t="lila"] #resultado .v2-cs-body-end { margin: 0 auto; max-width: 44em; text-align: center; }
+    html[data-t="lila"] #resultado .v2-cs-body-end p { font-size: clamp(16px, 1.3vw, 19px); line-height: 1.65; margin-left: auto; margin-right: auto; }
+    @media (prefers-reduced-motion: reduce) { .stb { opacity: 1; transform: none; transition: none; } }
+    @media (prefers-reduced-motion: reduce) { .fam .s, .fam .f, .kin span { animation: none; } .band { transition: none; } }
+
+    /* ---------- Portada interactiva de SUD CLUB ---------- */
+    .sud-stage {
+      --bg: #F3EEE4; --ink: #2E4A68; --shade: 10px;                       /* colores y grosor de sombra del estado (los cambia JavaScript) */
+      position: relative; aspect-ratio: 16 / 9; container-type: inline-size; /* proporción de portada; tamaños relativos al ancho (cqi) */
+      overflow: hidden; border-radius: clamp(18px, 2vw, 28px);           /* esquinas como el resto de imágenes del portfolio */
+      background: var(--bg); color: var(--ink); transition: background .25s, color .25s;
+    }
+    .sud-stage::before {                                                  /* sombra de persiana: las rayas engordan con el calor */
+      content: ""; position: absolute; inset: -20%; pointer-events: none; opacity: .09;
+      background: repeating-linear-gradient(-24deg, transparent 0 calc(3.2cqi - var(--shade)), #1C0F0B 0 3.2cqi);
+    }
+    .sud-top { position: absolute; left: 4cqi; right: 4cqi; top: 3.5cqi; display: flex; justify-content: space-between; align-items: baseline; font-family: Recursive, monospace; font-variation-settings: "MONO" 1, "wght" 700; text-transform: uppercase; letter-spacing: .06em; }
+    #sudTempTxt { font-size: 5cqi; letter-spacing: 0; }                  /* el número, grande */
+    #sudStateTxt { font-size: 2cqi; }                                     /* el nombre del estado */
+    .sud-logo, .sud-ghost { position: absolute; left: 50%; bottom: 24%; transform: translateX(-50%); line-height: 0; } /* logo centrado, apoyado en su línea base */
+    .sud-logo svg, .sud-ghost svg { display: block; height: 100%; width: auto; overflow: visible; }
+    .sud-ghost { color: #FFF7E3; pointer-events: none; z-index: 0; }      /* halo de calima: copia clara detrás */
+    .sud-ghost text, .sud-ghost rect { display: none; }                   /* en el halo solo vibran las letras */
+    .sud-logo { z-index: 1; }
+    .sud-bar { position: absolute; left: 4cqi; right: 4cqi; bottom: 4cqi; display: flex; align-items: center; gap: 2cqi; z-index: 2; font-family: Recursive, monospace; font-variation-settings: "MONO" 1, "wght" 600; font-size: max(11px, 1.3cqi); text-transform: uppercase; letter-spacing: .08em; }
+    .sud-bar input { flex: 1; accent-color: var(--ink); cursor: pointer; height: 28px; } /* la barra, del color de la tinta */
+    .sud-hint { opacity: .8; transition: opacity .4s; }
+    .sud-hint.is-gone { opacity: 0; }                                     /* el aviso desaparece al tocar la barra */
+    @media (max-width: 700px) {
+      .sud-stage { aspect-ratio: 4 / 5; }                                 /* en móvil, vertical */
+      #sudTempTxt { font-size: 9cqi; } #sudStateTxt { font-size: 3.6cqi; }
+      .sud-bar { flex-wrap: wrap; } .sud-bar input { flex-basis: 100%; order: 3; } .sud-hint { display: none; }
+    }
+  </style>
+</head>
+
+<body class="v2-page v2-case">
+  <a class="v2-skip" href="#contenido">Saltar al contenido</a>
+
+  <header class="v2-nav" id="v2-nav">
+    <div class="v2-nav-in">
+      <div class="v2-brand">
+        <a class="v2-logo" href="../" aria-label="Tania de Azevedo, ir al inicio">
+          <span class="v2-logo-mark" aria-hidden="true"></span>
+          <span class="v2-logo-word">T<span class="v2-logo-rest">ania</span><sup>®</sup></span>
+        </a>
+        <span class="v2-nav-sep" aria-hidden="true"></span>
+        <a class="v2-nav-label" href="../proyectos/">Proyectos</a>
+      </div>
+      <nav class="v2-links" aria-label="Navegación principal">
+        <a href="../#experience">Experiencia</a>
+        <a href="../#contact">Contacto</a>
+      </nav>
+      <a class="v2-nav-cta" href="../files/CV-Tania-de-Azevedo-Ribeiro.pdf" target="_blank" rel="noopener noreferrer" download>Descargar CV <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5v8M4.8 7.6L8 10.8l3.2-3.2M3 13h10"/></svg></a>
+      <button class="v2-burger" id="v2-burger" type="button" aria-expanded="false" aria-controls="v2-menu" aria-label="Abrir menú"><span></span></button>
+    </div>
+  </header>
+
+  <div class="v2-menu" id="v2-menu" aria-hidden="true">
+    <nav aria-label="Menú móvil">
+      <a href="../proyectos/">Proyectos</a>
+      <a href="../#experience">Experiencia</a>
+      <a href="../#contact">Contacto</a>
+    </nav>
+    <div class="v2-menu-foot"><a class="v2-menu-cv" href="../files/CV-Tania-de-Azevedo-Ribeiro.pdf" target="_blank" rel="noopener noreferrer" download>Descargar CV <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5v8M4.8 7.6L8 10.8l3.2-3.2M3 13h10"/></svg></a><small>Bizkaia · taniadeazevedoribeiro@gmail.com</small></div>
+  </div>
+
+  <main id="contenido">
+    <!-- PORTADA -->
+    <section class="v2-cs-cover">
+      <div class="v2-cs-wrap">
+        <p class="v2-cs-crumb"><a href="../proyectos/">Proyectos</a><span aria-hidden="true">/</span><span>SUD CLUB</span></p>
+        <div class="v2-cs-head">
+          <div>
+            <p class="v2-cs-kicker">Identidad visual · Proyecto personal</p>
+            <h1 class="v2-cs-title">SUD CLUB</h1>
+          </div>
+          <p class="v2-cs-lede">Hay sitios donde el calor lo cambia todo: las palabras se estiran, las cenas empiezan tarde y nunca terminan. SUD CLUB es un club cultural del Mediterráneo nacido de esa certeza: <strong>el sur no es un lugar, es una temperatura</strong>.</p>
+        </div>
+        <!-- PORTADA INTERACTIVA: el logo cambia con la barra de temperatura (de 18° a 44°) -->
+        <figure class="v2-cs-hero sud-hero">
+          <div class="sud-stage" id="sudStage">
+            <div class="sud-top"><span id="sudTempTxt">18 °C</span><span id="sudStateTxt">Sombra</span></div>
+            <div class="sud-logo" id="sudLogo" role="img" aria-label="Logotipo de SUD CLUB"></div>
+            <div class="sud-ghost" id="sudGhost" aria-hidden="true"></div>
+            <div class="sud-bar">
+              <label for="sudTemp">Temperatura</label>
+              <input type="range" id="sudTemp" min="18" max="44" step="0.5" value="18">
+              <span class="sud-hint">Mueve la barra →</span>
+            </div>
+          </div>
+          <noscript><img src="imgs/portada.jpg" alt="El logotipo de SUD CLUB sobre una foto de vermut en sombra" /></noscript>
+        </figure>
+      </div>
+    </section>
+
+    <section class="v2-cs-sec" id="contexto">
+      <div class="v2-cs-wrap">
+        <div class="v2-cs-row v2-cs-row--ctx">
+          <div class="v2-cs-label"><span class="v2-cs-num">01</span><h2 class="v2-cs-h2">Contexto y objetivos</h2></div>
+          <div class="v2-cs-body v2-cs-ctx">
+            <div class="v2-cs-col">
+              <p class="v2-cs-goals-title">Contexto</p>
+              <p>Un club sin casa. Cada verano pone la mesa en una ciudad distinta, edita una revista y embotella lo que el sur produce. Una marca que se cuenta con el cuerpo, no con la postal.</p>
+              <p class="v2-cs-poem">El sur no es un lugar: es una temperatura.</p>
+            </div>
+            <div class="v2-cs-col">
+              <p class="v2-cs-goals-title">Objetivos</p>
+              <ul class="v2-cs-goals">
+                <li><p>Escapar de la postal: ni mar azul, ni olivos, ni lino blanco.</p></li>
+                <li><p>Una sola regla para todo: la temperatura.</p></li>
+                <li><p>Que cada pieza, del logo a la mesa, se sienta caliente.</p></li>
+              </ul>
+            </div>
+          </div>
+          <div class="v2-cs-papel">
+            <div class="v2-cs-papel-in">
+              <div class="v2-cs-papel-main">
+                <p class="v2-cs-goals-title">Mi papel</p>
+                <ul class="v2-cs-roles">
+                <li>Dirección de arte</li>
+                <li>Identidad visual</li>
+                <li>Diseño y desarrollo web</li>
+                </ul>
+              </div>
+              <div class="v2-cs-papel-side">
+                <p class="v2-cs-role">Concepto, estrategia e identidad completa: logotipo, iconografía, cartelería, editorial, redes sociales, animación, una web que lee el tiempo real y la identidad de un evento.</p>
+                <div class="v2-cs-links">
+                  <a class="v2-btn v2-btn-ghost" href="landing/" target="_blank" rel="noopener noreferrer">Ver la web <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5l7-7M5.5 4.5h6v6"/></svg></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-cs-sec" id="galeria">
+      <div class="v2-cs-wrap">
+        <div class="v2-cs-row"><div class="v2-cs-label"><span class="v2-cs-num">02</span><h2 class="v2-cs-h2">Galería</h2></div></div>
+      </div>
+      <div class="v2-cs-gal">
+        <!-- Identidad: la construcción (70 %) y, a la derecha, los cinco estados en columna -->
+        <div class="sud-row sud-id">
+          <div class="sud-live" id="sudBuild" role="img" aria-label="Construcción del logotipo: la retícula de cinco franjas aparece, las letras se dibujan y baja la persiana"></div>
+          <div class="sud-live" id="sudStates" role="img" aria-label="El logotipo en sus cinco estados, de 18 a 44 grados"></div>
+        </div>
+        <!-- Iconografía -->
+        <div class="sud-row sud-gap"><div class="sud-live" id="sudIcons" role="img" aria-label="Iconografía: 27 iconos que se dibujan en cascada"></div></div>
+        <!-- Carteles + tipografía cinética -->
+        <div class="sud-row sud-gap sud-four">
+          <div id="cartel1" role="img" aria-label="Cartel a 38 grados: A temperature, not a place"></div>
+          <div id="cartel2" role="img" aria-label="Cartel a 32 grados: Nobody goes out before seven"></div>
+          <div id="cartel3" role="img" aria-label="Cartel a 44 grados: Culture served at high temperature"></div>
+          <div id="kinetic" role="img" aria-label="Tipografía cinética: Nobody goes out before seven, cada palabra se ensancha"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-cs-sec" id="proceso">
+      <div class="v2-cs-wrap">
+        <div class="v2-cs-row">
+          <div class="v2-cs-label"><span class="v2-cs-num">03</span><h2 class="v2-cs-h2">Proceso creativo</h2></div>
+          <div class="v2-cs-body">
+            <p>Todo empieza en una escala de cinco temperaturas, de la sombra al fuego. Con el calor, las letras se ensanchan, se aprietan y se estiran, y el color pasa de la cal al tomate. <strong>El logo no tiene versiones: tiene estados.</strong></p>
+            <p>El isotipo es una persiana. A las tres de la tarde, todo el sur la baja, y su sombra a rayas atraviesa cada foto, cada cartel y cada mesa.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-cs-sec v2-cs-sec--cont" id="galeria-2">
+      <div class="v2-cs-gal">
+        <!-- Redes: seis publicaciones y, al lado, el vídeo del termómetro -->
+        <div class="sud-row sud-gap sud-social">
+          <div id="post1" role="img" aria-label="Publicación: el logotipo en Fuego"></div>
+          <div id="post2" role="img" aria-label="Publicación: Culture served at high temperature"></div>
+          <div id="post3" role="img" aria-label="Publicación: Sevilla sale a las 21:30"></div>
+          <div class="sud-reel" id="reel1" role="img" aria-label="Vídeo corto: el logotipo sube de 18 a 44 grados"></div>
+          <div id="post4" role="img" aria-label="Publicación: Nobody goes out before seven"></div>
+          <div id="post5" role="img" aria-label="Publicación: las 15:00, la hora más calurosa"></div>
+          <div id="post6" role="img" aria-label="Publicación: A temperature, not a place"></div>
+        </div>
+        <!-- Carrusel -->
+        <div class="v2-cs-five sud-gap" id="carrusel" role="img" aria-label="Carrusel de cinco diapositivas: a qué hora sale la gente en cada ciudad"></div>
+        <!-- El evento -->
+        <div class="sud-row sud-gap"><div id="noche" role="img" aria-label="La noche del evento, de las 21:00 a la 01:00: cada hora, un estado térmico"></div></div>
+        <p class="sud-cap sud-row">El evento: la cena sube de temperatura hora a hora, de la llegada a la fiesta.</p>
+      </div>
+    </section>
+
+    <section class="v2-cs-sec" id="resultado">
+      <div class="v2-cs-wrap">
+        <div class="v2-cs-row"><div class="v2-cs-label"><span class="v2-cs-num">04</span><h2 class="v2-cs-h2">Resultado final</h2></div></div>
+      </div>
+      <div class="v2-cs-result">
+        <div class="v2-cs-wrap"><div class="v2-cs-body v2-cs-body-end">
+          <p>Una marca que se lee como un termómetro: <strong>cinco estados, veintisiete iconos, una revista, una web que mira el tiempo real y una noche que sube de temperatura</strong>.</p>
+          <p>Proyecto personal, sin cliente. Las fotografías son estudios de dirección de arte creados con inteligencia artificial.</p>
+        </div></div>
+      </div>
+    </section>
+
+    <!-- MÁS PROYECTOS -->
+    <section class="v2-cs-related" aria-label="Más proyectos">
+      <div class="v2-cs-wrap">
+        <div class="v2-rel-head">
+          <h2 class="v2-rel-h2">Más proyectos</h2>
+          <a class="v2-projects-all" href="../proyectos/">Ver todos<span class="v2-more-txt"> los proyectos</span> <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5l7-7M5.5 4.5h6v6"/></svg></a>
+        </div>
+        <ul class="v2-rel-grid" id="v2-related" data-current="sud-club/"></ul>
+        <noscript><p class="v2-rel-nojs"><a href="../proyectos/">Ver todos los proyectos</a></p></noscript>
+      </div>
+    </section>
+  </main>
+
+  <footer class="v2-foot" aria-label="Pie de página">
+    <div class="v2-foot-in">
+      <p class="v2-foot-copy">© Tania de Azevedo · 2026</p>
+      <nav class="v2-foot-icons" aria-label="Contacto">
+          <a href="mailto:taniadeazevedoribeiro@gmail.com" aria-label="Escríbeme un email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M4 7.5l8 6 8-6"/></svg></a>
+          <a href="https://www.linkedin.com/in/tania-de-azevedo-ribeiro" target="_blank" rel="noreferrer" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+        </nav>
+    </div>
+  </footer>
+
+  <!-- Portada interactiva: el logo dibujado (copia exacta del original) que cambia con la temperatura -->
+  <script src="landing/sud-logo.js"></script>
+  <script src="caso.js" defer></script>
+  <script>
+    (function () {
+      const stage = document.getElementById("sudStage");               // el escenario
+      const slot = document.getElementById("sudLogo"), ghost = document.getElementById("sudGhost"); // logo y halo
+      const range = document.getElementById("sudTemp");                // la barra
+      const tTxt = document.getElementById("sudTempTxt"), sTxt = document.getElementById("sudStateTxt");
+      const hint = document.querySelector(".sud-hint");
+      const S = SUD.STATES, T = S.map(s => s.t);                       // estados: 18, 26, 32, 38, 44
+      const rgb = h => [1, 3, 5].map(n => parseInt(h.slice(n, n + 2), 16));
+      function colorAt(t, key) {                                        // color de fondo o tinta a cualquier temperatura
+        let i = 0; while (i < 3 && t > T[i + 1]) i++;
+        const k = Math.max(0, Math.min(1, (t - T[i]) / (T[i + 1] - T[i])));
+        const a = rgb(S[i][key]), b = rgb(S[i + 1][key]);
+        return `rgb(${a.map((v, j) => Math.round(v + (b[j] - v) * k)).join(",")})`;
+      }
+      let vib = 0;                                                      // vibración actual (máxima a 38°)
+      function draw(t) {
+        const svg = SUD.logoAt(t, { align: "xMidYMax" });               // el logo a esa temperatura exacta
+        const h = svg.match(/viewBox="([^"]+)"/)[1].split(" ").map(Number)[3]; // alto del logo (crece con el estirón de Fuego)
+        const size = (h / 108) * 24 + "cqi";                            // alto en pantalla: las letras siempre miden lo mismo
+        slot.style.height = ghost.style.height = size;
+        slot.innerHTML = svg; ghost.innerHTML = svg;
+        stage.style.setProperty("--bg", colorAt(t, "bg"));             // fondo del estado
+        stage.style.setProperty("--ink", colorAt(t, "ink"));           // tinta del estado
+        stage.style.setProperty("--shade", (0.4 + (t - 18) / 26 * 1.8).toFixed(2) + "cqi"); // rayas más gruesas con calor
+        const st = S.reduce((b, s) => Math.abs(s.t - t) < Math.abs(b.t - t) ? s : b); // estado más cercano
+        tTxt.textContent = `${Math.round(t)} °C`; sTxt.textContent = st.name;
+        range.setAttribute("aria-valuetext", `${Math.round(t)} grados, ${st.name}`); // para lectores de pantalla
+        vib = Math.max(0, 1 - Math.abs(t - 38) / 4);
+        ghost.style.opacity = (vib * 0.85).toFixed(2);
+      }
+      // Temblor de calima a 12 fotogramas por segundo
+      const calm = matchMedia("(prefers-reduced-motion: reduce)").matches;
+      let last = 0;
+      (function shake(now) {
+        if (!calm && vib > 0.02 && now - last > 1000 / 12) {
+          last = now;
+          ghost.style.transform = `translate(calc(-50% + ${(vib * 1.2 + (Math.random() - 0.5) * vib * 0.8).toFixed(2)}cqi), ${((Math.random() - 0.5) * vib * 0.4).toFixed(2)}cqi)`;
+        }
+        requestAnimationFrame(shake);
+      })(0);
+      // Al tocar la barra: manda la persona
+      let touched = false;
+      range.addEventListener("input", () => { touched = true; hint.classList.add("is-gone"); draw(+range.value); });
+      // Al cargar: el logo sube solo de 18° a 32° para enseñar que se mueve (si no se pide menos movimiento)
+      draw(18);
+      if (!calm) {
+        const t0 = performance.now() + 600, dur = 2200;
+        (function intro(now) {
+          if (touched) return;                                          // si la persona ya ha tocado la barra, se para
+          const p = Math.max(0, Math.min(1, (now - t0) / dur));
+          const t = 18 + 14 * (0.5 - 0.5 * Math.cos(p * Math.PI));      // de 18 a 32, con suavidad
+          range.value = t; draw(t);
+          if (p < 1) requestAnimationFrame(intro);
+        })(performance.now());
+      }
+    })();
+  </script>
+  <script src="../js/v2.js" defer></script>
+  <script src="../js/projects-data.js" defer></script>
+  <script src="../js/related.js" defer></script>
+</body>
+</html>
