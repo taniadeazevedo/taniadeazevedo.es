@@ -317,3 +317,12 @@ html[data-t="lila"] .v2-cs-papel .v2-cs-links a:hover { color: #fff; text-decora
 
 /* líneas de las gráficas y la línea temporal (Estrella Damm, etc.): eran blancas y no se veían sobre el fondo claro */
 html[data-t="lila"] { --line-2: rgb(29 21 48 / 24%); }
+
+/* Contexto: una línea poética al pie de la tarjeta, para llenar el hueco que deja Objetivos */
+html[data-t="lila"] .v2-cs-ctx .v2-cs-col:first-child { display: flex; flex-direction: column; }
+html[data-t="lila"] .v2-cs-ctx .v2-cs-col .v2-cs-poem { margin: auto 0 0; padding: 16px 0 0 16px; position: relative; max-width: 30em; font: 500 clamp(16px, 1.35vw, 19px)/1.4 var(--v2-display); letter-spacing: -0.015em; color: var(--v2-ink); }
+html[data-t="lila"] .v2-cs-ctx .v2-cs-col .v2-cs-poem::before { content: ""; position: absolute; left: 0; top: 18px; bottom: 2px; width: 2px; border-radius: 2px; background: var(--v2-action); }
+
+/* Objetivos: si la tarjeta es más alta que su contenido, los tres objetivos se reparten por toda la altura */
+html[data-t="lila"] .v2-cs-ctx .v2-cs-col:nth-child(2) { display: flex; flex-direction: column; }
+html[data-t="lila"] .v2-cs-ctx .v2-cs-col:nth-child(2) .v2-cs-goals { flex: 1; align-content: space-between; }
