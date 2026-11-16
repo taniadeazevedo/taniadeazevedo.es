@@ -18,7 +18,10 @@
     return '<li class="v2-card" data-cats="' + esc((p.cats || []).join(' ')) + '">' +
       '<a class="v2-card-link" href="' + esc(p.external ? p.url : ROOT + p.url) + '"' + ext + '>' +
         '<div class="v2-card-media">' +
-          '<img src="' + esc(ROOT + p.image) + '" alt="' + esc(p.alt || p.title) + '" loading="lazy" decoding="async" width="1440" height="990" />' +
+          (p.video
+            // con vídeo: se carga y reproduce solo cuando la tarjeta está cerca de la pantalla (data-src); sin vídeo, imagen normal
+            ? '<video data-src="' + esc(ROOT + p.video) + '" poster="' + esc(ROOT + (p.poster || p.image)) + '" muted loop playsinline webkit-playsinline preload="none" disablepictureinpicture role="img" aria-label="' + esc(p.alt || p.title) + '"></video>'
+            : '<img src="' + esc(ROOT + p.image) + '" alt="' + esc(p.alt || p.title) + '" loading="lazy" decoding="async" width="1440" height="990" />') +
         '</div>' +
         '<div class="v2-card-body">' +
           '<p class="v2-card-meta"><span class="v2-card-cat">' + esc(p.label) + '</span></p>' +
@@ -28,6 +31,21 @@
         '</div>' +
       '</a></li>';
   }).join('');
+
+  // ---- vídeos de las tarjetas: se descargan y se reproducen solo al acercarse a la pantalla, y se paran al salir ----
+  var vids = [].slice.call(grid.querySelectorAll('video[data-src]'));   // las tarjetas con vídeo
+  if (vids.length && 'IntersectionObserver' in window && !reduce) {      // con "reducir movimiento" solo se ve la imagen
+    var vio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        var v = en.target;
+        if (en.isIntersecting) {
+          if (!v.getAttribute('src')) v.setAttribute('src', v.getAttribute('data-src'));   // primera vez: se pone la dirección del vídeo
+          var pr = v.play(); if (pr && pr.catch) pr.catch(function () {});               // y se reproduce (silenciado)
+        } else { v.pause(); }
+      });
+    }, { rootMargin: '200px 0px' });
+    vids.forEach(function (v) { vio.observe(v); });
+  }
 
   // ---- filtros (solo los que tienen al menos un proyecto) ----
   var used = {};

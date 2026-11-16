@@ -326,3 +326,8 @@ html[data-t="lila"] .v2-cs-ctx .v2-cs-col .v2-cs-poem::before { content: ""; pos
 /* Objetivos: si la tarjeta es más alta que su contenido, los tres objetivos se reparten por toda la altura */
 html[data-t="lila"] .v2-cs-ctx .v2-cs-col:nth-child(2) { display: flex; flex-direction: column; }
 html[data-t="lila"] .v2-cs-ctx .v2-cs-col:nth-child(2) .v2-cs-goals { flex: 1; align-content: space-between; }
+
+/* tarjetas de Proyectos con vídeo (SUD CLUB): mismo encuadre y zoom que una imagen, y sin botón de play nativo en Safari */
+html[data-t="lila"] .v2-card-media video { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1.1s var(--v2-ease); }
+html[data-t="lila"] .v2-card-link:hover .v2-card-media video, html[data-t="lila"] .v2-card-link:focus-visible .v2-card-media video { transform: scale(1.05); }
+.v2-card-media video::-webkit-media-controls, .v2-card-media video::-webkit-media-controls-start-playback-button, .v2-card-media video::-webkit-media-controls-overlay-play-button, .v2-card-media video::-webkit-media-controls-panel { display: none !important; opacity: 0 !important; -webkit-appearance: none; }

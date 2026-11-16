@@ -8,6 +8,7 @@
 //   label    categoría que se ve en la tarjeta
 //   desc     descripción breve
 //   image    ruta de la imagen de portada (desde la raíz de la web)
+//   video    (opcional) vídeo en bucle para la tarjeta de la página Proyectos; poster = imagen mientras carga
 //   alt      texto alternativo de la imagen
 //   url      enlace a la página del proyecto (si es de otra web, external: true)
 //   cta      texto del enlace (opcional; por defecto "Ver caso de estudio")
@@ -29,6 +30,8 @@ window.PROJECTS = [
     label: 'Branding e identidad visual',
     desc: 'Identidad para un club cultural del Mediterráneo que cambia con la temperatura: logotipo, iconografía, carteles, redes y evento.',
     image: 'sud-club/imgs/portada.jpg?v=2',
+    video: 'sud-club/video/sud-home.mp4',            // si hay vídeo, la tarjeta lo reproduce (la imagen queda como respaldo)
+    poster: 'sud-club/video/sud-home-poster.jpg',     // imagen que se ve mientras carga el vídeo
     alt: 'El logotipo de SUD CLUB sobre una foto de vermut en sombra',
     url: 'sud-club/'
   },
