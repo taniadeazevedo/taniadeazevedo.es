@@ -115,25 +115,38 @@
     // Cada fila es una semana y un estado: arriba la más reciente (Fuego), abajo la primera (Tibio)
     feed.innerHTML = [
       P.logo(S[4]), P.frase(S[4], "Culture served at high temperature."), P.foto(S[4], "Las tres"),
-      P.dato(S[3], "21:30", "Sevilla goes out at half past nine."), P.foto(S[3], "Siesta"), P.frase(S[3], "Nº 38 °C. Out in June."),
+      P.dato(S[3], "21:30", "Sevilla goes out at half past nine."), P.foto(S[3], "Siesta"), P.frase(S[3], "The south moves to the night."),
       P.frase(S[2], "Nobody goes out before seven."), P.dato(S[2], "15:00", "The hottest hour. Shutters down."), P.foto(S[2], "Sobremesa"),
       P.foto(S[1], "Aceite"), P.frase(S[1], "A temperature, not a place."), P.logo(S[1]),
     ].join("");
-    // Stories: encuesta de temperatura, cuenta atrás y aviso de la revista del domingo
+    // Stories: encuesta de temperatura, cuenta atrás y aviso del boletín del domingo
     const st = (n, html) => { const el = $("story" + n); if (el) el.innerHTML = html; };
     st(1, `<div class="story" style="background:${C.cal};color:${C.sombra}"><span class="po-k">Sunday poll</span>
-      <div class="sy-t" style="top:22cqi;font-size:15cqi">How hot is it where you are?</div>
-      <div class="sy-box" style="top:80cqi;background:#fff"><div style="height:2.4cqi;border-radius:2cqi;background:linear-gradient(90deg,${C.sombra},${C.ocre},${C.tomate})"></div><div class="sy-row"><span>18°</span><span>44°</span></div></div>
+      <div class="sy-t" style="top:20cqi;font-size:15cqi">How hot is it where you are?</div>
+      <div class="sy-box" style="top:70cqi;background:#fff">                <!-- el sticker de la encuesta, con el tirador a 32° -->
+        <div style="position:relative;height:2.6cqi;border-radius:2cqi;background:linear-gradient(90deg,${C.sombra},${C.arcilla},${C.ocre},${C.tomate})">
+          <div style="position:absolute;left:54%;top:50%;width:7cqi;height:7cqi;border-radius:50%;background:${C.brasa};transform:translate(-50%,-50%);box-shadow:0 0 0 1cqi #fff"></div></div>
+        <div class="sy-row"><span>18°</span><span>44°</span></div></div>
+      <div style="position:absolute;left:7cqi;right:7cqi;top:104cqi">          <!-- resultados del domingo pasado: una lama por ciudad -->
+        <div class="sy-k">Last Sunday · 2.418 votes</div>
+        ${[["Sevilla", 36], ["Napoli", 30], ["Marseille", 29]].map(([c, t]) => `<div class="sy-res"><span>${c}</span><i style="width:${(t - 18) / 26 * 100}%;background:${t >= 34 ? C.tomate : C.ocre}"></i><b>${t}°</b></div>`).join("")}
+      </div>
       <span class="sy-f"><span>Slider sticker</span><span>sud.club</span></span></div>`);
     st(2, `<div class="story" style="background:${C.tomate};color:${C.brasa}"><span class="po-k">SUD Mesa · Marseille</span>
-      <div class="sy-t" style="top:24cqi;font-size:30cqi">18.06</div>
-      <div class="sy-t" style="top:60cqi;font-size:11cqi">Launch dinner. Doors at nine.</div>
-      <div class="sy-box" style="top:102cqi;background:${C.brasa};color:${C.cal};text-align:center">Countdown · 00 : 21 : 00</div>
+      <div class="sy-t" style="top:18cqi;font-size:30cqi;font-variation-settings:'wdth' 70,'wght' 800">18.06</div>
+      <div class="sy-t" style="top:50cqi;font-size:11cqi">Launch dinner. Doors at nine.</div>
+      <div class="sy-box" style="top:84cqi;background:${C.cal};color:${C.brasa}">   <!-- el sticker de cuenta atrás de Instagram -->
+        <div class="sy-k" style="opacity:.7">Launch dinner · Marseille</div>
+        <div class="sy-cd">${[["02", "Days"], ["21", "Hours"], ["00", "Min"]].map(([n, l]) => `<div><b>${n}</b><span>${l}</span></div>`).join("")}</div>
+        <div class="sy-btn" style="background:${C.tomate};color:${C.cal}">Remind me</div></div>
       <span class="sy-f"><span>Countdown sticker</span><span>44°</span></span></div>`);
     st(3, `<div class="story" style="background:${C.sombra};color:${C.cal}"><span class="po-k">Sunday · 15:00</span>
-      <div style="position:absolute;left:7cqi;top:22cqi;width:22cqi">${PERS}</div>
-      <div class="sy-t" style="top:50cqi;font-size:16cqi">La Sobremesa is out.</div>
-      <div class="sy-it" style="top:98cqi">Best read lying down, shutters half closed.</div>
+      <svg viewBox="0 0 26 40" style="position:absolute;left:7cqi;top:20cqi;width:13cqi" fill="${C.cal}">${SUD.persiana(0, 0)}</svg> <!-- la persiana exacta, alineada al margen -->
+      <div class="sy-t" style="top:48cqi;font-size:16cqi">La Sobremesa is out.</div>
+      <div class="sy-it" style="top:99cqi">Best read lying down, shutters half closed.</div>
+      <div class="sy-link" style="top:124cqi;color:${C.sombra}">           <!-- el sticker de enlace de Instagram -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>
+        <span>sud.club/sobremesa</span></div>
       <span class="sy-f"><span>Link sticker</span><span>18°</span></span></div>`);
   })();
 
@@ -141,18 +154,23 @@
   // 6a · El termómetro: el logo sube de 18° a 44° y vuelve
   (function () {
     const el = $("reel1"); if (!el) return;
-    el.innerHTML = `<div class="reel"><div class="r-num"></div><div class="r-name"></div><div class="r-logo"></div><div class="r-foot">A temperature, not a place.</div></div>`;
+    el.innerHTML = `<div class="reel rt"><div class="rt-bar"><i></i></div><span class="po-k">Reel · 0:07</span><div class="r-num"></div><div class="r-name"></div><div class="r-logo"></div>
+      <div class="rt-scala">${S.map((x) => `<span style="left:${(x.t - 18) / 26 * 100}%">${x.t}°</span>`).join("")}<i></i></div>
+      <span class="sy-f"><span>A temperature, not a place.</span><span>Reel</span></span></div>`;
     const box = el.firstChild, num = box.querySelector(".r-num"), name = box.querySelector(".r-name"), slot = box.querySelector(".r-logo");
+    const barra = box.querySelector(".rt-bar i"), marca = box.querySelector(".rt-scala i");
     let ultima = -1;
     bucle(el, (t) => {
+      barra.style.width = ((t % 7) / 7 * 100).toFixed(1) + "%";         // la barra de progreso del vídeo
       const temp = 18 + 26 * (0.5 - 0.5 * Math.cos(((t % 7) / 7) * 2 * Math.PI)); // ida y vuelta en 7 s
       if (Math.abs(temp - ultima) < 0.15) return; ultima = temp;     // si apenas cambia, no se redibuja
       box.style.background = colorAt(temp, "bg"); box.style.color = colorAt(temp, "ink");
-      const svg = SUD.logoAt(temp, { align: "xMidYMax" });
+      const svg = SUD.logoAt(temp, { align: "xMinYMax" });
       const h = +svg.match(/viewBox="([^"]+)"/)[1].split(" ")[3];   // el alto crece con el estirón
-      slot.style.height = (h / 108) * 26 + "cqi"; slot.innerHTML = svg; // las letras ocupan casi todo el ancho en Tibio
+      slot.style.height = (h / 108) * 25 + "cqi"; slot.innerHTML = svg; // lo más grande que cabe en Tibio, el estado más ancho
       num.textContent = `${Math.round(temp)}°`;
       name.textContent = S.reduce((b, s) => (Math.abs(s.t - temp) < Math.abs(b.t - temp) ? s : b)).name;
+      marca.style.left = ((temp - 18) / 26 * 100).toFixed(1) + "%";   // el punto recorre la escala
     }, 3.5);
   })();
   // 6b · Tipografía cinética: cada palabra se ensancha con el calor, en cascada (ancho de 50 a 130)
@@ -257,11 +275,11 @@
     const CIUDADES = [["Sevilla", 36, "21:30"], ["Napoli", 30, "20:30"], ["Marseille", 29, "20:00"]];
     const slide = (bg, dentro) => `<div class="post slide" style="background:${bg};color:${C.brasa}">${dentro}</div>`;
     el.innerHTML = [
-      slide(C.ocre, `<span class="po-k">SUD ° · Data · 1/5</span><div class="cs-title">Who goes out when?</div><span class="cs-foot"><span>Swipe →</span><span>38 °C</span></span>`),
+      slide(C.ocre, `<span class="po-k">SUD · Data · 1/5</span><div class="cs-title">Who goes out when?</div><span class="cs-foot"><span>Swipe →</span><span>38 °C</span></span>`),
       ...CIUDADES.map(([c, t, h], k) => slide(C.ocre, `<span class="po-k">${k + 2}/5</span><div class="cs-city">${c}</div>
         <i class="cs-lama" style="right:${100 - (t - 20) * 5.5}cqi;height:${(t - 26) * 3.2}cqi"></i>
         <div class="cs-hour">${h}</div><span class="cs-foot"><span>${t} °C in August</span><span>→</span></span>`)), // la lama engorda con la temperatura
-      slide(C.tomate, `<span class="po-k">5/5</span><div class="cs-end">Heat doesn't empty the south. It moves it to the night.</div><span class="cs-foot"><span>SUD ° Nº 38</span><span>Link in bio</span></span>`),
+      slide(C.tomate, `<span class="po-k">5/5</span><div class="cs-end">Heat doesn't empty the south. It moves it to the night.</div><span class="cs-foot"><span>sud.club</span><span>Link in bio</span></span>`),
     ].join("");
   })();
 })();
