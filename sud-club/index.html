@@ -240,6 +240,11 @@
       .ig-wall { grid-template-columns: repeat(2, minmax(0, 1fr)); } .ig-phone { grid-column: 1 / -1; grid-row: 1; }
       .ig-side > div { flex: none; aspect-ratio: 9 / 16; }
     }
+    /* ---------- Rótulos de cada bloque: qué es cada cosa, en una línea ---------- */
+    .sud-tag { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; padding-bottom: 12px; border-bottom: 1px solid #1d153014; } /* nombre + media línea, con un filete fino debajo */
+    .sud-tag b { font: 600 clamp(17px, 1.4vw, 20px)/1.2 var(--v2-display, Inter, sans-serif); color: var(--v2-ink, #1d1530); }
+    .sud-tag span { font: 400 clamp(14px, 1.1vw, 16px)/1.4 var(--v2-display, Inter, sans-serif); color: var(--v2-ink-3, #6f6a80); }
+    .sud-tag + * { margin-top: clamp(16px, 2vw, 24px) !important; }                                 /* el bloque, pegado a su rótulo */
     /* ---------- Fotos de las piezas en el mundo real ---------- */
     .sud-foto { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: clamp(12px, 1.4vw, 18px); }
     .sud-carteles { display: grid; grid-template-columns: minmax(0, 2.25fr) minmax(0, 1fr); gap: clamp(10px, 1.4vw, 16px); align-items: start; } /* foto 3:2 y reel 2:3: así miden lo mismo de alto (≈ 69 % / 31 %) */
@@ -412,15 +417,18 @@
       </div>
       <div class="v2-cs-gal">
         <!-- Identidad: la construcción (70 %) y, a la derecha, los cinco estados en columna -->
+        <div class="sud-row sud-tag"><b>Identidad</b></div>
         <div class="sud-row sud-id">
           <div class="sud-live" id="sudBuild" role="img" aria-label="Construcción del logotipo: la retícula de cinco franjas aparece, las letras se dibujan y baja la persiana"></div>
           <div class="sud-live" id="sudStates" role="img" aria-label="El logotipo en sus cinco estados, de 18 a 44 grados"></div>
         </div>
         <!-- Iconografía -->
-        <div class="sud-row sud-gap"><div class="sud-live" id="sudIcons" role="img" aria-label="Iconografía: 27 iconos que se dibujan en cascada"></div></div>
+        <div class="sud-row sud-gap sud-tag"><b>Iconografía</b></div>
+        <div class="sud-row"><div class="sud-live" id="sudIcons" role="img" aria-label="Iconografía: 27 iconos que se dibujan en cascada"></div></div>
         <!-- Carteles + tipografía cinética -->
         <!-- Los tres carteles pegados en la calle (mockup) y, a la derecha, la tipografía cinética -->
-        <div class="sud-row sud-gap sud-carteles">
+        <div class="sud-row sud-gap sud-tag"><b>Carteles</b></div>
+        <div class="sud-row sud-carteles">
           <img class="sud-foto" src="imgs/mockup-carteles.jpg" width="1536" height="1024" loading="lazy" decoding="async" alt="Los tres carteles de SUD CLUB pegados en una pared encalada, con la sombra de una persiana encima" />
           <div id="kinetic" role="img" aria-label="Tipografía cinética: Nobody goes out before seven, cada palabra se ensancha"></div>
         </div>
@@ -434,6 +442,7 @@
           <div class="v2-cs-body">
             <p>Todo empieza en una escala de cinco temperaturas, de la sombra al fuego. Con el calor, las letras se ensanchan, se aprietan y se estiran, y el color pasa de la cal al tomate. <strong>El logo no tiene versiones: tiene estados.</strong></p>
             <p>El isotipo es una persiana. A las tres de la tarde, todo el sur la baja, y su sombra a rayas atraviesa cada foto, cada cartel y cada mesa.</p>
+            <p>La misma regla mueve todo el sistema: <strong>los carteles, las redes y la cena de lanzamiento cambian de color y de forma con el calor</strong>.</p>
           </div>
         </div>
       </div>
@@ -442,7 +451,8 @@
     <section class="v2-cs-sec v2-cs-sec--cont" id="galeria-2">
       <div class="v2-cs-gal">
         <!-- Redes: el perfil de Instagram en el centro y, a cada lado, dos piezas verticales -->
-        <div class="sud-row sud-gap ig-wall">
+        <div class="sud-row sud-gap sud-tag"><b>Redes</b></div>
+        <div class="sud-row ig-wall">
           <div class="ig-side">
             <div id="story1" role="img" aria-label="Story: encuesta, ¿qué temperatura hace donde estás?"></div>
             <div id="story2" role="img" aria-label="Story: cuenta atrás para la cena de lanzamiento en Marsella"></div>
@@ -459,8 +469,8 @@
         <!-- Carrusel -->
         <div class="v2-cs-five sud-gap" id="carrusel" role="img" aria-label="Carrusel de cinco diapositivas: a qué hora sale la gente en cada ciudad"></div>
         <!-- El evento -->
-        <div class="sud-row sud-gap"><div id="noche" role="img" aria-label="La noche del evento, de las 21:00 a la 01:00: cada hora, un estado térmico"></div></div>
-        <p class="sud-cap sud-row">El evento: la cena sube de temperatura hora a hora, de la llegada a la fiesta.</p>
+        <div class="sud-row sud-gap sud-tag"><b>Evento · SUD Mesa</b></div>
+        <div class="sud-row"><div id="noche" role="img" aria-label="La noche del evento, de las 21:00 a la 01:00: cada hora, un estado térmico"></div></div>
         <!-- Piezas impresas del evento: menú, entrada y tarjeta de sitio -->
         <div class="sud-row sud-gap ev-piezas">
           <div class="ev-pz" id="evMenu" style="aspect-ratio:1/1.8;background:#F3EEE4" role="img" aria-label="Menú Served at: cada plato con su temperatura de servicio"></div>
@@ -472,7 +482,6 @@
         </div>
         <!-- La mesa larga, vista desde arriba -->
         <div class="sud-row ev-mesa-row"><div class="ev-mesa" id="evMesa" role="img" aria-label="La mesa larga vista desde arriba: el camino de mesa es una persiana que va de la sombra al fuego"></div></div>
-        <p class="sud-cap sud-row">La mesa larga: te sientas en la temperatura que te toca.</p>
       </div>
     </section>
 
