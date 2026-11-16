@@ -36,7 +36,7 @@
 
   // ---------- Persiana de 2 módulos (26 × 40) ----------
   function persiana(x, heat) {
-    const box = 40 * 0.16, pitch = (40 - box * 1.25) / 4, th = pitch * (0.42 + 0.5 * heat);
+    const box = 40 * 0.16, pitch = (40 - box * 1.25) / 4, th = pitch * (0.42 + 0.2 * heat) /* lamas: se cierran con el calor, pero siempre dejan hueco para que la persiana se lea (Fuego: 62 %) */;
     let r = `<rect x="${x}" y="0" width="26" height="${box.toFixed(1)}"/>`;
     for (let j = 0; j < 4; j++) r += `<rect x="${x}" y="${(box * 1.25 + j * pitch + pitch - th).toFixed(1)}" width="26" height="${th.toFixed(1)}"/>`;
     return r;

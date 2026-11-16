@@ -27,7 +27,7 @@
   <link rel="stylesheet" href="../css/v2-case.css" />
   <link rel="stylesheet" href="../css/v2-lila.css" />
   <!-- Las tipografías de SUD CLUB: Anybody (titulares) y Recursive (datos y "CLUB" del logo) -->
-  <link href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@50..150,100..900&family=Recursive:slnt,wght,CASL,CRSV,MONO@-15..0,300..1000,0..1,0..1,0..1&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@50..150,100..900&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=Recursive:slnt,wght,CASL,CRSV,MONO@-15..0,300..1000,0..1,0..1,0..1&display=swap" rel="stylesheet" />
   <style>
     /* ---------- Piezas vivas de la galería (en código) ---------- */
     .sud-live { container-type: inline-size; position: relative; overflow: hidden; }               /* tamaños relativos al ancho de cada pieza (cqi) */
@@ -156,8 +156,8 @@
     .v2-cs-grid figure.bare { background: transparent; border-radius: 0; overflow: visible; }
     .v2-cs-duo .reel { aspect-ratio: 4 / 5; }                                                    /* termómetro y tipografía: mismo formato, bien encajados */
     .v2-cs-duo .r-logo { bottom: 30%; }
-    .kin { padding: 0 8% !important; justify-content: center; gap: 1cqi; }
-    .kin span { font-size: 18cqi !important; }
+    .kin { padding: 0 8% !important; justify-content: center; align-items: center; gap: 1cqi; } /* palabras centradas: crecen igual a izquierda y derecha */
+    .kin span { font-size: 15.5cqi !important; text-align: center; white-space: nowrap; }        /* tamaño para que, ensanchada del todo, ninguna toque el borde */
     #noche { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(8px, 1vw, 12px); } /* la noche, hora a hora, sobre el fondo */
     .hora { container-type: inline-size; box-sizing: border-box; border-radius: clamp(12px, 1.4vw, 18px); padding: clamp(16px, 1.8vw, 24px); min-height: 280px; display: flex; flex-direction: column; justify-content: space-between; }
     .hora b { display: block; font: 700 22cqi/1 Recursive, monospace; font-variation-settings: "MONO" 1, "wght" 700; }
@@ -176,7 +176,7 @@
     #sudStates { display: grid !important; grid-template-columns: 1fr !important; grid-template-rows: repeat(5, 1fr); gap: clamp(8px, 1vw, 12px) !important; }
     .stb { padding: clamp(12px, 1.4vw, 18px) clamp(14px, 1.6vw, 22px) !important; display: flex; align-items: center; }
     .stb .st { flex-direction: row !important; align-items: center !important; justify-content: space-between; width: 100%; gap: 10px !important; }
-    .stb .band-logo, .stb.wide .band-logo { height: clamp(26px, 3.4vw, 44px) !important; }
+    .stb .band-logo, .stb.wide .band-logo { height: clamp(30px, 4vw, 52px) !important; }
     .stb .band-txt, .stb.wide .band-txt { text-align: right !important; font-size: clamp(9px, .8vw, 11px) !important; }
     #sudIcons { max-width: 860px; margin: 0 auto; }                                                  /* iconos más pequeños, centrados */
     .fam svg { width: clamp(26px, 3.6vw, 40px) !important; height: clamp(26px, 3.6vw, 40px) !important; }
@@ -197,7 +197,45 @@
       .sud-social { grid-template-columns: repeat(2, minmax(0, 1fr)); } .sud-reel { grid-column: auto; grid-row: span 2; }
       .fam { grid-template-columns: 1fr !important; }
     }
-    #galeria-2 .v2-cs-gal > :first-child { margin-top: 0 !important; }      /* tras el proceso, la galería sigue con el espacio normal de la plantilla */
+    #galeria-2 .v2-cs-gal > :first-child { margin-top: 0 !important; }
+
+    /* ---------- Redes: perfil de Instagram + stories ---------- */
+    .ig-phone { max-width: 460px; margin: 0 auto; background: #fff; border: 1px solid #1d153014; border-radius: 26px; padding: 20px 10px 10px; box-sizing: border-box; } /* el perfil, como en el móvil */
+    .ig-profile { display: flex; gap: 14px; align-items: center; padding: 0 8px 14px; font: 400 13px/1.55 Recursive, monospace; font-variation-settings: "MONO" 1, "wght" 400; color: #1C0F0B; }
+    .ig-profile b { font-weight: 400; }
+    .ig-av { width: 56px; height: 56px; flex: none; border-radius: 50%; background: #1C0F0B; color: #F3EEE4; display: grid; place-items: center; } /* avatar: la persiana */
+    .ig-av svg { width: 26px; height: 26px; }
+    .ig-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2px; }    /* rejilla de 3 columnas, como Instagram */
+    .ig-f { position: absolute; left: 6cqi; right: 6cqi; bottom: 5cqi; display: flex; justify-content: space-between; font: 600 3.4cqi Recursive, monospace; text-transform: uppercase; letter-spacing: .08em; text-shadow: 0 1px 6px #0006; } /* pie de las fotos */
+    .ig-stories { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(8px, 1vw, 12px); max-width: 980px; } /* tres stories y el termómetro, en vertical */
+    .ig-stories > div { border-radius: clamp(10px, 1.2vw, 14px); overflow: hidden; }
+    .story { position: relative; aspect-ratio: 9 / 16; container-type: inline-size; overflow: hidden; }
+    .sy-t { position: absolute; left: 7cqi; right: 7cqi; font: 700 15cqi/0.95 Anybody, sans-serif; font-variation-settings: "wdth" 75, "wght" 700; } /* titulares */
+    .sy-box { position: absolute; left: 9cqi; right: 9cqi; border-radius: 4cqi; padding: 5cqi; box-shadow: 0 2cqi 6cqi #0002; font: 600 4cqi Recursive, monospace; text-transform: uppercase; letter-spacing: .08em; } /* stickers */
+    .sy-row { display: flex; justify-content: space-between; margin-top: 3cqi; font: 600 3.6cqi Recursive, monospace; color: #2E4A68; }
+    .sy-it { position: absolute; left: 7cqi; right: 7cqi; font: italic 400 6cqi/1.3 Newsreader, Georgia, serif; } /* la línea en cursiva de lectura */
+    .sy-f { position: absolute; left: 7cqi; right: 7cqi; bottom: 6cqi; display: flex; justify-content: space-between; font: 600 3.4cqi Recursive, monospace; text-transform: uppercase; letter-spacing: .08em; }
+    .ig-reel .reel { aspect-ratio: 9 / 16 !important; border-radius: 0 !important; }
+    @media (max-width: 700px) { .ig-stories { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    /* ---------- Evento: piezas impresas y mesa larga ---------- */
+    .ev-piezas { display: grid; grid-template-columns: minmax(0, .556fr) minmax(0, .857fr) minmax(0, .667fr); gap: clamp(14px, 2vw, 24px); align-items: stretch; } /* anchos calculados para que las tres columnas midan lo mismo de alto */
+    .ev-col { display: flex; flex-direction: column; gap: clamp(14px, 2vw, 24px); }
+    .ev-col #evPlace { aspect-ratio: auto !important; flex: 1; min-height: 0; }                     /* la tarjeta rellena lo que deja la entrada: la columna cuadra con el menú y la señalética */
+    .ev-pz { position: relative; container-type: inline-size; overflow: hidden; border-radius: 4px; box-shadow: 0 18px 36px -22px #1C0F0B88; } /* papel impreso, con sombra */
+    .ev-pz svg { width: 100%; height: auto; display: block; overflow: visible; }
+    .ev-k { position: absolute; font: 600 3.4cqi Recursive, monospace; font-variation-settings: "MONO" 1, "wght" 600; letter-spacing: .08em; text-transform: uppercase; } /* datos en mono */
+    .ev-t { position: absolute; font-family: Anybody, sans-serif; font-variation-settings: "wdth" 75, "wght" 700; letter-spacing: .01em; line-height: .95; } /* titulares */
+    .ev-serif { font-family: Newsreader, Georgia, serif; font-optical-sizing: none; font-variation-settings: "opsz" 16; } /* mismo dibujo a cualquier tamaño: el menú no cambia de líneas */
+    .ev-num { font-family: Recursive, monospace; font-variation-settings: "MONO" 1, "wght" 700; white-space: nowrap; }
+    .ev-datos { position: absolute; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: .35cqi solid; padding-top: 1.6cqi; } /* fila de datos de la entrada */
+    .ev-datos span { display: block; font: 600 2.4cqi Recursive, monospace; letter-spacing: .08em; text-transform: uppercase; opacity: .7; }
+    .ev-datos b { display: block; font: 700 4.4cqi/1.1 Recursive, monospace; font-variation-settings: "MONO" 1, "wght" 700; }
+    .ev-mesa-row { margin-top: clamp(14px, 2vw, 24px) !important; }                                /* pegada a las piezas: mismo hueco que entre ellas */
+    .ev-mesa { border-radius: clamp(12px, 1.4vw, 18px); overflow: hidden; }
+    .ev-mesa svg { width: 100%; height: auto; display: block; }
+    @media (max-width: 640px) { .ev-piezas { grid-template-columns: minmax(0, 1fr); max-width: 420px; } .ev-col #evPlace { aspect-ratio: 3 / 2 !important; flex: none; } } /* en móvil, una debajo de otra */
+
+      /* tras el proceso, la galería sigue con el espacio normal de la plantilla */
     /* Resultado final centrado, igual que el proceso creativo */
     html[data-t="lila"] #resultado .v2-cs-body-end { margin: 0 auto; max-width: 44em; text-align: center; }
     html[data-t="lila"] #resultado .v2-cs-body-end p { font-size: clamp(16px, 1.3vw, 19px); line-height: 1.65; margin-left: auto; margin-right: auto; }
@@ -372,21 +410,35 @@
 
     <section class="v2-cs-sec v2-cs-sec--cont" id="galeria-2">
       <div class="v2-cs-gal">
-        <!-- Redes: seis publicaciones y, al lado, el vídeo del termómetro -->
-        <div class="sud-row sud-gap sud-social">
-          <div id="post1" role="img" aria-label="Publicación: el logotipo en Fuego"></div>
-          <div id="post2" role="img" aria-label="Publicación: Culture served at high temperature"></div>
-          <div id="post3" role="img" aria-label="Publicación: Sevilla sale a las 21:30"></div>
-          <div class="sud-reel" id="reel1" role="img" aria-label="Vídeo corto: el logotipo sube de 18 a 44 grados"></div>
-          <div id="post4" role="img" aria-label="Publicación: Nobody goes out before seven"></div>
-          <div id="post5" role="img" aria-label="Publicación: las 15:00, la hora más calurosa"></div>
-          <div id="post6" role="img" aria-label="Publicación: A temperature, not a place"></div>
+        <!-- Redes: el perfil de Instagram entero -->
+        <div class="sud-row sud-gap"><div class="ig-phone" role="img" aria-label="Perfil de Instagram de SUD CLUB: doce publicaciones que van de Tibio a Fuego">
+          <div class="ig-profile"><div class="ig-av" id="igAv"></div><div><b>sud.club</b><br>A temperature, not a place.<br>Edits · gathers · bottles · Nomadic</div></div>
+          <div class="ig-grid" id="igFeed"></div>
+        </div></div>
+        <!-- Stories y el vídeo del termómetro -->
+        <div class="sud-row sud-gap ig-stories">
+          <div id="story1" role="img" aria-label="Story: encuesta, ¿qué temperatura hace donde estás?"></div>
+          <div id="story2" role="img" aria-label="Story: cuenta atrás para la cena de lanzamiento en Marsella"></div>
+          <div id="story3" role="img" aria-label="Story: sale La Sobremesa, el domingo a las 15:00"></div>
+          <div class="ig-reel" id="reel1" role="img" aria-label="Vídeo corto: el logotipo sube de 18 a 44 grados"></div>
         </div>
         <!-- Carrusel -->
         <div class="v2-cs-five sud-gap" id="carrusel" role="img" aria-label="Carrusel de cinco diapositivas: a qué hora sale la gente en cada ciudad"></div>
         <!-- El evento -->
         <div class="sud-row sud-gap"><div id="noche" role="img" aria-label="La noche del evento, de las 21:00 a la 01:00: cada hora, un estado térmico"></div></div>
         <p class="sud-cap sud-row">El evento: la cena sube de temperatura hora a hora, de la llegada a la fiesta.</p>
+        <!-- Piezas impresas del evento: menú, entrada y tarjeta de sitio -->
+        <div class="sud-row sud-gap ev-piezas">
+          <div class="ev-pz" id="evMenu" style="aspect-ratio:1/1.8;background:#F3EEE4" role="img" aria-label="Menú Served at: cada plato con su temperatura de servicio"></div>
+          <div class="ev-col">
+            <div class="ev-pz" id="evTicket" style="aspect-ratio:2/1;background:#D8352A" role="img" aria-label="Entrada con la última lama troquelada"></div>
+            <div class="ev-pz" id="evPlace" style="aspect-ratio:3/2;background:#E0A93E" role="img" aria-label="Tarjeta de sitio: Lucía, asiento 038, Bochorno"></div>
+          </div>
+          <div class="ev-pz" id="evSign" style="aspect-ratio:2/3;background:#D8352A" role="img" aria-label="Señalética: flecha hacia la mesa larga, en Fuego"></div>
+        </div>
+        <!-- La mesa larga, vista desde arriba -->
+        <div class="sud-row ev-mesa-row"><div class="ev-mesa" id="evMesa" role="img" aria-label="La mesa larga vista desde arriba: el camino de mesa es una persiana que va de la sombra al fuego"></div></div>
+        <p class="sud-cap sud-row">La mesa larga: te sientas en la temperatura que te toca.</p>
       </div>
     </section>
 
@@ -396,8 +448,7 @@
       </div>
       <div class="v2-cs-result">
         <div class="v2-cs-wrap"><div class="v2-cs-body v2-cs-body-end">
-          <p>Una marca que se lee como un termómetro: <strong>cinco estados, veintisiete iconos, una revista, una web que mira el tiempo real y una noche que sube de temperatura</strong>.</p>
-          <p>Proyecto personal, sin cliente. Las fotografías son estudios de dirección de arte creados con inteligencia artificial.</p>
+          <p>Una identidad que cambia con el calor: <strong>el logo, los colores y la tipografía responden a la temperatura</strong>. El sistema tiene cinco estados, veintisiete iconos animados, carteles, redes, una web que lee el tiempo real de cada ciudad y una cena que sube de temperatura hora a hora.</p>
         </div></div>
       </div>
     </section>
