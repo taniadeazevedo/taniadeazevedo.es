@@ -304,6 +304,7 @@
     .sud-hint.is-gone { opacity: 0; }                                     /* el aviso desaparece al tocar la barra */
     @media (max-width: 700px) {
       .sud-stage { aspect-ratio: 1 / 1; }                                 /* en móvil, cuadrada (antes 4:5 y quedaba muy alargada hacia arriba) */
+      .sud-logo, .sud-ghost { bottom: auto; top: 47%; transform: translate(-50%, -50%); } /* en móvil el logo va centrado entre el número y la barra (antes anclado abajo) */
       #sudTempTxt { font-size: 9cqi; } #sudStateTxt { font-size: 3.6cqi; }
       .sud-bar { flex-wrap: wrap; } .sud-bar input { flex-basis: 100%; order: 3; } .sud-hint { display: none; }
     }
