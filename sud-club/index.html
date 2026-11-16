@@ -240,9 +240,18 @@
       .ig-wall { grid-template-columns: repeat(2, minmax(0, 1fr)); } .ig-phone { grid-column: 1 / -1; grid-row: 1; }
       .ig-side > div { flex: none; aspect-ratio: 9 / 16; }
     }
+    /* ---------- Fotos de las piezas en el mundo real ---------- */
+    .sud-foto { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: clamp(12px, 1.4vw, 18px); }
+    .sud-carteles { display: grid; grid-template-columns: minmax(0, 2.25fr) minmax(0, 1fr); gap: clamp(10px, 1.4vw, 16px); align-items: start; } /* foto 3:2 y reel 2:3: así miden lo mismo de alto (≈ 69 % / 31 %) */
+    .sud-carteles .sud-foto { aspect-ratio: 3 / 2; height: auto; }
+    .sud-carteles #kinetic { border-radius: clamp(12px, 1.4vw, 18px); overflow: hidden; }
+    @media (max-width: 640px) { .sud-carteles { grid-template-columns: minmax(0, 1fr); } .sud-carteles #kinetic { max-width: 300px; width: 100%; margin: 0 auto; } }
+    .ev-foto { display: block; width: 100%; height: auto; object-fit: cover; border-radius: 4px; box-shadow: 0 18px 36px -22px #1C0F0B88; } /* las fotos de la entrada y la señalética, como las demás piezas */
     /* ---------- Evento: piezas impresas y mesa larga ---------- */
     .ev-piezas { display: grid; grid-template-columns: minmax(0, .556fr) minmax(0, .857fr) minmax(0, .667fr); gap: clamp(14px, 2vw, 24px); align-items: stretch; } /* anchos calculados para que las tres columnas midan lo mismo de alto */
     .ev-col { display: flex; flex-direction: column; gap: clamp(14px, 2vw, 24px); }
+    .ev-piezas > #evMenu, .ev-piezas > .ev-foto { align-self: start; }                             /* el menú y la señalética marcan el alto con su proporción */
+    .ev-col > .ev-foto { flex: none; }                                                              /* la foto de la entrada, siempre 2:1 */
     .ev-col #evPlace { aspect-ratio: auto !important; flex: 1; min-height: 0; }                     /* la tarjeta rellena lo que deja la entrada: la columna cuadra con el menú y la señalética */
     .ev-pz { position: relative; container-type: inline-size; overflow: hidden; border-radius: 4px; box-shadow: 0 18px 36px -22px #1C0F0B88; } /* papel impreso, con sombra */
     .ev-pz svg { width: 100%; height: auto; display: block; overflow: visible; }
@@ -410,10 +419,9 @@
         <!-- Iconografía -->
         <div class="sud-row sud-gap"><div class="sud-live" id="sudIcons" role="img" aria-label="Iconografía: 27 iconos que se dibujan en cascada"></div></div>
         <!-- Carteles + tipografía cinética -->
-        <div class="sud-row sud-gap sud-four">
-          <div id="cartel1" role="img" aria-label="Cartel a 38 grados: A temperature, not a place"></div>
-          <div id="cartel2" role="img" aria-label="Cartel a 32 grados: Nobody goes out before seven"></div>
-          <div id="cartel3" role="img" aria-label="Cartel a 44 grados: Culture served at high temperature"></div>
+        <!-- Los tres carteles pegados en la calle (mockup) y, a la derecha, la tipografía cinética -->
+        <div class="sud-row sud-gap sud-carteles">
+          <img class="sud-foto" src="imgs/mockup-carteles.jpg" width="1536" height="1024" loading="lazy" decoding="async" alt="Los tres carteles de SUD CLUB pegados en una pared encalada, con la sombra de una persiana encima" />
           <div id="kinetic" role="img" aria-label="Tipografía cinética: Nobody goes out before seven, cada palabra se ensancha"></div>
         </div>
       </div>
@@ -457,10 +465,10 @@
         <div class="sud-row sud-gap ev-piezas">
           <div class="ev-pz" id="evMenu" style="aspect-ratio:1/1.8;background:#F3EEE4" role="img" aria-label="Menú Served at: cada plato con su temperatura de servicio"></div>
           <div class="ev-col">
-            <div class="ev-pz" id="evTicket" style="aspect-ratio:2/1;background:#D8352A" role="img" aria-label="Entrada con la última lama troquelada"></div>
+            <img class="ev-foto" src="imgs/mockup-entrada.jpg" width="1774" height="887" loading="lazy" decoding="async" style="aspect-ratio:2/1" alt="Una mano sostiene la entrada de la cena de lanzamiento delante de la mesa larga, al atardecer" />
             <div class="ev-pz" id="evPlace" style="aspect-ratio:3/2;background:#E0A93E" role="img" aria-label="Tarjeta de sitio: Lucía, asiento 038, Bochorno"></div>
           </div>
-          <div class="ev-pz" id="evSign" style="aspect-ratio:2/3;background:#D8352A" role="img" aria-label="Señalética: flecha hacia la mesa larga, en Fuego"></div>
+          <img class="ev-foto" src="imgs/mockup-senaletica.jpg" width="1024" height="1536" loading="lazy" decoding="async" style="aspect-ratio:2/3" alt="Pizarra en la puerta del patio con la señalética «Mesa larga» y, al fondo, la mesa preparándose" />
         </div>
         <!-- La mesa larga, vista desde arriba -->
         <div class="sud-row ev-mesa-row"><div class="ev-mesa" id="evMesa" role="img" aria-label="La mesa larga vista desde arriba: el camino de mesa es una persiana que va de la sombra al fuego"></div></div>
@@ -504,7 +512,7 @@
 
   <!-- Portada interactiva: el logo dibujado (copia exacta del original) que cambia con la temperatura -->
   <script src="landing/sud-logo.js?v=20261116"></script>
-  <script src="caso.js?v=20261116e" defer></script>
+  <script src="caso.js?v=20261116f" defer></script>
   <script>
     (function () {
       const stage = document.getElementById("sudStage");               // el escenario
@@ -549,23 +557,8 @@
       // Al tocar la barra: manda la persona
       let touched = false;
       range.addEventListener("input", () => { touched = true; hint.classList.add("is-gone"); draw(+range.value); });
-      // Mientras nadie toque la barra, la temperatura sube y baja sola (18° → 44° → 18°), para que se vea que el logo cambia
+      // La portada empieza quieta en 18°: solo cambia cuando la persona mueve la barra (el aviso «Mueve la barra →» la invita)
       draw(18);
-      if (!calm) {
-        let visible = true;                                             // solo se mueve mientras está a la vista
-        new IntersectionObserver(([e]) => { visible = e.isIntersecting; }).observe(stage);
-        const t0 = performance.now() + 600, ciclo = 9000;              // un ciclo completo en 9 segundos
-        let ultima = -1;
-        (function auto(now) {
-          if (touched) return;                                          // si la persona toca la barra, se para y manda ella
-          requestAnimationFrame(auto);
-          if (!visible || now < t0) return;
-          const p = ((now - t0) % ciclo) / ciclo;
-          const t = 18 + 26 * (0.5 - 0.5 * Math.cos(p * 2 * Math.PI));  // ida y vuelta, con suavidad en los extremos
-          if (Math.abs(t - ultima) < 0.1) return; ultima = t;           // si apenas cambia, no se redibuja
-          range.value = t; draw(t);
-        })(performance.now());
-      }
     })();
   </script>
   <script src="../js/v2.js" defer></script>

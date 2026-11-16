@@ -207,21 +207,8 @@
           <span class="ev-serif" style="font-size:5.6cqi;line-height:1.15;color:${C.brasa}">${d}</span>
           <span class="ev-num" style="font-size:4.6cqi;color:${C.arcilla}">${t}</span></div>`).join("")}</div>
       <div class="ev-k" style="left:8cqi;right:8cqi;bottom:6cqi;color:${C.arcilla};display:flex;justify-content:space-between"><span>Sobremesa until 1:00</span><span>26° Tibio</span></div>`;
-    // Entrada (Fuego): la fecha manda; el resguardo lleva la persiana del logo y el asiento
+    // La entrada y la señalética son fotos (mockups); aquí se dibujan el menú, la tarjeta de sitio y la mesa
     const pers = (w) => `<svg viewBox="-1 -1 28 42" style="width:${w}cqi;display:block" fill="${C.brasa}">${SUD.persiana(0, 1)}</svg>`; // la persiana exacta del logo
-    $("evTicket").innerHTML = `
-      <div style="position:absolute;left:5cqi;top:5cqi;width:12cqi;color:${C.brasa}">${SUD.logo({ variant: "sub", label: "MESA", state: 4 })}</div>
-      <div class="ev-k" style="right:31cqi;top:5.5cqi;font-size:2.6cqi;color:${C.brasa}">Admit one · Nº 01</div>
-      <div class="ev-t" style="left:4.6cqi;top:18cqi;font-size:13cqi;font-variation-settings:'wdth' 70,'wght' 800;color:${C.brasa}">18.06.27</div>
-      <div class="ev-serif" style="position:absolute;left:5cqi;top:31.5cqi;font-size:3.6cqi;font-style:italic;color:${C.brasa}">Launch dinner in a courtyard, Marseille.</div>
-      <div class="ev-datos" style="left:5cqi;right:31cqi;bottom:4.5cqi;border-color:${C.brasa};color:${C.brasa}">
-        <div><span>Doors</span><b>21:00</b></div><div><span>Until</span><b>01:00</b></div><div><span>Served at</span><b>44°</b></div></div>
-      <div style="position:absolute;right:26cqi;top:0;bottom:0;border-left:.35cqi dashed ${C.brasa}"></div>
-      <div style="position:absolute;right:0;top:0;bottom:0;width:26cqi;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:5cqi 0 4.5cqi;box-sizing:border-box;color:${C.brasa}">
-        ${pers(8)}
-        <div style="text-align:center"><div class="ev-num" style="font-size:2.6cqi;letter-spacing:.08em;text-transform:uppercase">Seat</div><div class="ev-t" style="position:static;font-size:9cqi">038</div></div>
-        <div class="ev-num" style="font-size:2.4cqi;letter-spacing:.08em;text-transform:uppercase">Tear here ↑</div>
-      </div>`;
     // Tarjeta de sitio (Bochorno): el nombre y, debajo, en qué temperatura de la mesa te sientas
     const pos = (t) => ((t - 18) / 26 * 100).toFixed(1);               // posición en la escala de 18° a 44°
     $("evPlace").innerHTML = `
@@ -235,14 +222,6 @@
           <div class="ev-num" style="position:absolute;left:${pos(st.t)}%;top:5cqi;transform:translateX(-50%);font-size:2.4cqi">${st.t}°</div>`).join("")}
         <div style="position:absolute;left:${pos(32)}%;top:2cqi;width:3.6cqi;height:3.6cqi;border-radius:50%;background:${C.brasa};transform:translate(-50%,-50%);box-shadow:0 0 0 .8cqi ${C.ocre}"></div>
       </div>`;
-    // Señalética (Fuego): flecha del sistema de iconos, titular enorme y la persiana bajada al pie
-    $("evSign").innerHTML = `
-      <div style="position:absolute;left:7cqi;top:7cqi;width:24cqi;color:${C.brasa}">${SUD.logo({ state: 4 })}</div>
-      <div class="ev-k" style="right:7cqi;top:8cqi;font-size:3cqi;color:${C.brasa}">44° Fuego</div>
-      <svg viewBox="4 8 32 24" style="position:absolute;left:6cqi;top:28cqi;width:40cqi" fill="none" stroke="${C.brasa}" stroke-width="4.4" stroke-linecap="butt"><path d="M6 20 H33 M23 10 L33 20 L23 30"/></svg>
-      <div class="ev-t" style="left:6cqi;right:6cqi;top:62cqi;font-size:27cqi;font-variation-settings:'wdth' 70,'wght' 800;line-height:.86;color:${C.brasa}">Mesa<br>larga</div>
-      <div class="ev-k" style="left:7cqi;right:7cqi;top:113cqi;font-size:3cqi;display:flex;justify-content:space-between;color:${C.brasa}"><span>Patio · 30 m</span><span>21:00 — 01:00</span></div>
-      <div style="position:absolute;left:0;right:0;bottom:0;height:26cqi">${[0, 1, 2, 3].map((j) => `<div style="position:absolute;left:0;right:0;top:${j * 6.6}cqi;height:${3 + j * 0.9}cqi;background:${C.brasa}"></div>`).join("")}</div>`;
     // La mesa larga, vista desde arriba: platos, sillas y un camino de mesa que se calienta de la sombra al fuego
     const W = 1000, H = 300, n = 44, x0 = 60, x1 = 940;
     const TONOS = [C.sombra, C.arcilla, C.ocre, C.tomate, C.brasa];    // del frío al fuego
