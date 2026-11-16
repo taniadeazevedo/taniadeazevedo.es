@@ -194,7 +194,9 @@
       .sud-id { grid-template-columns: minmax(0, 1fr); } .sud-id #sudBuild { aspect-ratio: 4 / 3; }
       .sud-four { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .sud-social { grid-template-columns: repeat(2, minmax(0, 1fr)); } .sud-reel { grid-column: auto; grid-row: span 2; }
-      .fam { grid-template-columns: 1fr !important; }
+      .fam { grid-template-columns: 1fr !important; gap: 12px !important; }
+      .fam > div { display: grid !important; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 0 !important; justify-items: center; }   /* una sola fila por familia: siete columnas iguales que ocupan todo el ancho, siempre alineadas */
+      .fam svg { width: min(38px, 100%) !important; height: auto !important; aspect-ratio: 1; }
     }
     #galeria-2 .v2-cs-gal > :first-child { margin-top: 0 !important; }
 
@@ -304,7 +306,7 @@
     .sud-hint.is-gone { opacity: 0; }                                     /* el aviso desaparece al tocar la barra */
     @media (max-width: 700px) {
       .sud-stage { aspect-ratio: 1 / 1; }                                 /* en móvil, cuadrada (antes 4:5 y quedaba muy alargada hacia arriba) */
-      .sud-logo, .sud-ghost { bottom: auto; top: 47%; transform: translate(-50%, -50%); } /* en móvil el logo va centrado entre el número y la barra (antes anclado abajo) */
+      .sud-logo, .sud-ghost { bottom: auto; top: 47%; translate: 0 -50%; } /* en móvil el logo y su halo van centrados entre el número y la barra (antes anclados abajo); «translate» no choca con el transform que mueve el halo desde JavaScript */
       #sudTempTxt { font-size: 9cqi; } #sudStateTxt { font-size: 3.6cqi; }
       .sud-bar { flex-wrap: wrap; } .sud-bar input { flex-basis: 100%; order: 3; } .sud-hint { display: none; }
     }
