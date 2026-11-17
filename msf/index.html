@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -113,7 +113,7 @@
 <header>
   <div class="ancho">
     <div class="firma"><b>Tania de Azevedo</b> · <span data-en>Proposal for MSF-OCBA · Graphic &amp; Digital Design Officer</span><span data-es>Propuesta para MSF-OCBA · Graphic &amp; Digital Design Officer</span></div>
-    <div class="idioma"><button data-l="en" class="on">EN</button> <button data-l="es">ES</button></div>
+    <div class="idioma"><button data-l="es" class="on">ES</button> <button data-l="en">EN</button></div>
   </div>
 </header>
 
@@ -272,11 +272,11 @@ function idioma(l) {
   document.documentElement.lang = l;                                   // muestra los textos y piezas del idioma
   document.querySelectorAll('[data-' + (l === 'en' ? 'es' : 'en') + '] video').forEach(v => v.pause()); // para los vídeos ocultos
   document.querySelectorAll('.idioma button').forEach(b => b.classList.toggle('on', b.dataset.l === l)); // botón activo
-  try { localStorage.setItem('idioma-msf', l); } catch (e) {}          // recuerda la elección
+  try { localStorage.setItem('idioma-msf-v2', l); } catch (e) {}          // recuerda la elección
 }
 document.querySelectorAll('.idioma button').forEach(b => b.onclick = () => idioma(b.dataset.l));
-let inicial = 'en';                                                     // por defecto, inglés (idioma de la oferta)
-try { inicial = localStorage.getItem('idioma-msf') || 'en'; } catch (e) {}
+let inicial = 'es';                                                     // por defecto, español
+try { inicial = localStorage.getItem('idioma-msf-v2') || 'es'; } catch (e) {}
 idioma(inicial);
 
 // ---------- Carrusel: flechas ----------
