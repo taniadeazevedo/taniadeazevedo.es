@@ -64,6 +64,13 @@
            overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; scrollbar-width: none; }
   .pista::-webkit-scrollbar { display: none; }
   .pista figure { scroll-snap-align: start; }
+  /* Revista (efecto de pasar páginas) */
+  .revista-marco { margin-top: 30px; }
+  .revista { max-width: 880px; margin: 0 auto; }
+  .revista-ctrl { display: flex; justify-content: center; align-items: center; margin-top: 22px; }
+  .revista-pag { min-width: 160px; text-align: center; font-size: 14px; font-weight: 500; color: var(--negro); }
+  .revista-ayuda { text-align: center; font-size: 14px; color: var(--gris); margin: 10px 0 0; }
+  .pista.editorial { grid-auto-columns: calc((100% - 2 * 20px) / 2.6); padding-bottom: 24px; } /* páginas A4: con sombra, y un poco más estrechas */
   .news { display: grid; grid-template-columns: 1fr 520px; gap: 56px; align-items: start; }   /* newsletter entera, con el texto al lado */
   .news-texto { position: sticky; top: 32px; max-width: 460px; }                               /* el texto acompaña al bajar */
   @media (max-width: 860px) { .news { grid-template-columns: 1fr; } .news-texto { position: static; } .news .pieza { max-width: 520px; } }
@@ -230,16 +237,41 @@
     </div>
   </section>
 
-  <!-- ===== DECISIONES ===== -->
+  <!-- ===== 5 · EDITORIAL: propuesta de maquetación de la memoria ===== -->
   <section>
+    <div class="ancho">
+      <div class="num">05 · Editorial</div>
+      <h2 data-en>Layout proposal: Activity Report 2025</h2><h2 data-es>Propuesta de maquetación: Memoria de actividades 2025</h2>
+      <p class="texto" data-en>A few pages of the MSF Spain (OCBA) Activity Report 2025, laid out with the same visual system. Real data from the report: long tables become charts and key figures that can be read at a glance. In Spanish, like the original.</p>
+      <p class="texto" data-es>Unas páginas de la Memoria de actividades 2025 de MSF España (OCBA), maquetadas con el mismo sistema visual. Datos reales de la memoria: las tablas largas pasan a gráficos y cifras clave que se leen de un vistazo.</p>
+      <!-- Revista: las páginas se pasan como en una revista (cubierta sola, el resto en doble página) -->
+      <div class="revista-marco">
+        <div id="revista" class="revista"></div>
+        <div class="revista-ctrl">
+          <button class="flecha r-ant" aria-label="Anterior / Previous" title="Anterior / Previous"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M15 4 L7 12 L15 20" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+          <span id="revista-pag" class="revista-pag">Portada</span>
+          <button class="flecha r-sig" aria-label="Siguiente / Next" title="Siguiente / Next"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M9 4 L17 12 L9 20" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+        </div>
+        <p class="revista-ayuda" data-en>Click the corners or drag to turn the pages.</p>
+        <p class="revista-ayuda" data-es>Pulsa en las esquinas o arrastra para pasar las páginas.</p>
+      </div>
+      <div class="botones">
+        <a class="boton" href="memoria/Memoria-2025-propuesta-maquetacion-Tania-de-Azevedo.pdf" target="_blank" data-en>Download the PDF</a>
+        <a class="boton" href="memoria/Memoria-2025-propuesta-maquetacion-Tania-de-Azevedo.pdf" target="_blank" data-es>Descargar el PDF</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== DECISIONES ===== -->
+  <section class="gris">
     <div class="ancho">
       <div class="num" data-en>How it was made</div><div class="num" data-es>Cómo está hecho</div>
       <h2 data-en>Design decisions</h2><h2 data-es>Decisiones de diseño</h2>
       <ul class="decisiones">
         <li data-en><b>Real data</b>All figures come from the WHO Interagency Emergency Health Kit 2024, the kit MSF uses in its own version.</li>
         <li data-es><b>Datos reales</b>Todas las cifras salen del Interagency Emergency Health Kit 2024 de la OMS, el kit que MSF usa en su propia versión.</li>
-        <li data-en><b>MSF brand guidelines and msf.es</b>White as identity and red only to highlight, plus what I saw on your website: white text boxes, tags and straight buttons.</li>
-        <li data-es><b>Manual de marca de MSF y msf.es</b>Blanco como identidad y rojo solo para destacar, más lo que vi en vuestra web: cajas blancas, etiquetas y botones rectos.</li>
+        <li data-en><b>MSF brand guidelines and msf.es</b>Red #EE0000 on screen and #D7211E in print, only to highlight. Inter Tight replaces Atlas Grotesk (licensed), with the type weights and components of msf.es.</li>
+        <li data-es><b>Manual de marca de MSF y msf.es</b>Rojo #EE0000 en pantalla y #D7211E en impresión, solo para destacar. Inter Tight sustituye a Atlas Grotesk (con licencia), con los pesos y componentes de msf.es.</li>
         <li data-en><b>Plain language</b>No formulas or jargon. Short sentences anyone can follow: "Each one cares for 1,000 people. Together, they care for 10,000."</li>
         <li data-es><b>Lenguaje sencillo</b>Sin fórmulas ni tecnicismos. Frases cortas que cualquiera entiende: «Cada una atiende a 1.000 personas. Juntas, atienden a 10.000.»</li>
         <li data-en><b>Accessibility</b>Keyboard navigation, alternative text, layouts for mobile and respect for the "reduce motion" setting on every device.</li>
@@ -266,6 +298,7 @@
   </div>
 </footer>
 
+<script src="memoria/page-flip.browser.js"></script>  <!-- StPageFlip 2.0.7 (licencia MIT), alojada en la propia web -->
 <script>
 // Cambia el idioma: cada pieza está en los dos idiomas y el CSS solo enseña la del idioma elegido
 function idioma(l) {
@@ -282,18 +315,57 @@ let inicial = 'es';                                                     // por d
 try { inicial = localStorage.getItem('idioma-msf-v2') || 'es'; } catch (e) {}
 idioma(inicial);
 
-// ---------- Carrusel: flechas ----------
-const pista = document.querySelector('.pista');
-const [ant, sig] = document.querySelectorAll('.flecha');
-const paso = () => { const f = [...pista.children].find(x => x.offsetWidth); return f.offsetWidth + 20; }; // ancho de una diapositiva + hueco
-ant.onclick = () => pista.scrollBy({ left: -paso() });                  // una diapositiva atrás
-sig.onclick = () => pista.scrollBy({ left: paso() });                   // una diapositiva adelante
-const flechas = () => {                                                 // apaga la flecha que no lleva a ningún sitio
-  ant.disabled = pista.scrollLeft < 5;
-  sig.disabled = pista.scrollLeft + pista.clientWidth > pista.scrollWidth - 5;
-};
-pista.addEventListener('scroll', flechas); addEventListener('resize', flechas); flechas();
-document.querySelectorAll('.idioma button').forEach(b => b.addEventListener('click', () => { pista.scrollLeft = 0; flechas(); })); // al cambiar de idioma, vuelve al principio
+// ---------- Carruseles: flechas (sirve para todos los de la página) ----------
+document.querySelectorAll('.slider').forEach(slider => {
+  const pista = slider.querySelector('.pista');
+  const [ant, sig] = slider.querySelectorAll('.flecha');
+  const paso = () => { const f = [...pista.children].find(x => x.offsetWidth); return f.offsetWidth + 20; }; // ancho de una pieza + hueco
+  ant.onclick = () => pista.scrollBy({ left: -paso() });                // una atrás
+  sig.onclick = () => pista.scrollBy({ left: paso() });                 // una adelante
+  const flechas = () => {                                               // apaga la flecha que no lleva a ningún sitio
+    ant.disabled = pista.scrollLeft < 5;
+    sig.disabled = pista.scrollLeft + pista.clientWidth > pista.scrollWidth - 5;
+  };
+  pista.addEventListener('scroll', flechas); addEventListener('resize', flechas); flechas();
+  document.querySelectorAll('.idioma button').forEach(b => b.addEventListener('click', () => { pista.scrollLeft = 0; flechas(); })); // al cambiar de idioma, al principio
+});
+
+// ---------- Revista: pasar las páginas de la memoria ----------
+(() => {
+  const caja = document.getElementById('revista');
+  const paginas = [1, 2, 3, 4, 5, 6, 7, 8].map(n => `memoria/img/pagina${n}.jpg`);  // portada, 3 dobles páginas y contraportada
+  if (!window.St) {                                                      // si la librería no carga: las páginas en fila
+    caja.innerHTML = paginas.map(p => `<img src="${p}" alt="" style="width:24%;margin:.5%">`).join('');
+    document.querySelector('.revista-ctrl').style.display = 'none'; return;
+  }
+  const libro = new St.PageFlip(caja, {
+    width: 420, height: 594, size: 'stretch',                            // proporción A4; se adapta al ancho
+    minWidth: 240, maxWidth: 440, minHeight: 340, maxHeight: 622,
+    showCover: true, usePortrait: true,                                  // cubierta sola; en móvil, de una en una
+    maxShadowOpacity: 0.35, flippingTime: 900, mobileScrollSupport: true,
+  });
+  libro.loadFromImages(paginas);
+  const ant = document.querySelector('.r-ant'), sig = document.querySelector('.r-sig'), txt = document.getElementById('revista-pag');
+  const es = () => document.documentElement.lang === 'es';
+  const rotulo = i => {                                                  // «Portada», «Páginas 2–3», «Contraportada»
+    const n = paginas.length, doble = libro.getOrientation() === 'landscape';
+    if (i === 0) return es() ? 'Portada' : 'Cover';
+    if (i >= n - 1) return es() ? 'Contraportada' : 'Back cover';
+    if (!doble) return (es() ? 'Página ' : 'Page ') + (i + 1);
+    const a = i % 2 ? i : i - 1;                                         // primera página de la doble
+    return (es() ? 'Páginas ' : 'Pages ') + (a + 1) + '–' + (a + 2);
+  };
+  const actualizar = () => {
+    const i = libro.getCurrentPageIndex();
+    txt.textContent = rotulo(i);
+    ant.disabled = i === 0;
+    sig.disabled = i >= paginas.length - 1;
+  };
+  ant.onclick = () => libro.flipPrev();
+  sig.onclick = () => libro.flipNext();
+  libro.on('flip', actualizar); libro.on('changeOrientation', actualizar); libro.on('init', actualizar);
+  document.querySelectorAll('.idioma button').forEach(b => b.addEventListener('click', actualizar));
+})();
 
 // ---------- Visor: ver en grande sin salir de la página ----------
 const visor = document.querySelector('.visor'), grande = visor.querySelector('img');
