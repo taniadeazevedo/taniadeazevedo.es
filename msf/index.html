@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Propuesta no oficial: que los buscadores no la indexen (solo la ve quien tiene el enlace) -->
+<meta name="robots" content="noindex, nofollow">
+<title>What fits in a kit · Proposal for MSF-OCBA · Tania de Azevedo</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  /* Colores y medidas de la página (los del manual de MSF: blanco, negro y rojo solo para destacar) */
+  :root { --rojo: #EE0000; --negro: #000; --texto: #414141; --gris: #8a8a8a; --fondo: #F5F5F5; --linea: #E2E2E2; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #fff; color: var(--texto); font-family: "Inter Tight", Arial, sans-serif; font-size: 17px; line-height: 1.55; }   /* texto como el de msf.es (16–18 px) */
+  a { color: inherit; }
+  .ancho { max-width: 1120px; margin: 0 auto; padding: 0 24px; }        /* columna centrada con margen lateral */
+
+  /* Barra superior: quién firma + cambio de idioma */
+  header { border-bottom: 1px solid var(--linea); }
+  header .ancho { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 18px; padding-bottom: 18px; }
+  .firma { font-size: 15px; color: var(--gris); }
+  .firma b { color: var(--negro); }
+  .idioma button { font: 700 14px "Inter Tight", Arial; border: 2px solid var(--negro); background: #fff; padding: 6px 12px; cursor: pointer; }
+  .idioma button.on { background: var(--negro); color: #fff; }
+
+  /* Portada */
+  .portada { padding-top: 72px; padding-bottom: 56px; }   /* solo arriba y abajo: el margen lateral lo pone .ancho */
+  .etiqueta { display: inline-block; background: var(--rojo); color: #fff; font-weight: 500; font-size: 14px; letter-spacing: .04em; text-transform: uppercase; padding: 7px 12px; } /* como las etiquetas de categoría de msf.es */
+  h1 { font-size: clamp(42px, 6vw, 64px); line-height: 1.08; font-weight: 500; color: var(--negro); letter-spacing: -0.025em; margin: 22px 0 0; }
+  h1 span { color: var(--rojo); display: block; }
+  .entrada { font-size: clamp(18px, 2vw, 21px); max-width: 720px; margin: 28px 0 0; }
+  .entrada b { color: var(--negro); }
+
+  /* Secciones */
+  section { padding: 64px 0; }
+  section.gris { background: var(--fondo); }                            /* bloques alternos en gris clarito */
+  section.linea { border-top: 1px solid var(--linea); }                 /* separación entre dos bloques blancos seguidos */
+  h2 { font-size: clamp(26px, 3vw, 30px); line-height: 1.27; font-weight: 500; color: var(--negro); margin: 4px 0 12px; }   /* títulos de sección: 30/38 como msf.es */
+  h3 { font-size: 22px; line-height: 1.2; font-weight: 500; color: var(--negro); margin: 4px 0 10px; }                /* títulos pequeños: 22/26 como sus tarjetas */
+  .num { color: var(--rojo); font-weight: 700; font-size: 14px; letter-spacing: .08em; text-transform: uppercase; }
+  .texto { max-width: 720px; }
+  .dos { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+  @media (max-width: 760px) { .dos { grid-template-columns: 1fr; gap: 24px; } }
+
+  /* Piezas: se ven enteras, en cuadrícula, sin tener que pulsar nada */
+  .pieza { margin: 0; }
+  .pieza img, .pieza video { display: block; width: 100%; height: auto; }
+  .pieza figcaption { font-size: 14px; color: var(--gris); margin-top: 8px; line-height: 1.4; }
+  .pieza a:hover img { opacity: .92; }
+  .sombra img, .sombra .cortes { box-shadow: 0 6px 24px rgba(0,0,0,.10); }  /* piezas con fondo blanco: se separan del fondo */
+  .rejilla { display: grid; gap: 28px; margin-top: 30px; }
+  .web { grid-template-columns: 1fr; }
+  .interactiva { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; background: #fff; box-shadow: 0 6px 24px rgba(0,0,0,.10); } /* la infografía de verdad, incrustada */
+  @media (max-width: 807px) { .interactiva { aspect-ratio: 1000 / 2920; } }   /* en pantallas estrechas la infografía pasa a vertical */
+  .motion { grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: start; }   /* 2 vídeos + la story */
+  .motion video { aspect-ratio: 9 / 16; background: #000; }
+  /* Carrusel: diapositivas grandes, se ven 2 y media y se pasan con las flechas (cuadradas, como las de msf.es) */
+  .slider { margin-top: 30px; }
+  .flechas { display: flex; justify-content: flex-end; margin-bottom: 16px; }
+  .flecha { width: 56px; height: 56px; display: grid; place-items: center; background: #fff; color: var(--rojo); border: 2px solid var(--rojo); cursor: pointer; }
+  .flecha + .flecha { border-left: 0; }                                  /* las dos flechas, pegadas */
+  .flecha:disabled { color: #C8C8C8; cursor: default; }                  /* al principio o al final */
+  .pista { display: grid; grid-auto-flow: column; grid-auto-columns: calc((100% - 2 * 20px) / 2.5); gap: 20px;
+           overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; scrollbar-width: none; }
+  .pista::-webkit-scrollbar { display: none; }
+  .pista figure { scroll-snap-align: start; }
+  .news { display: grid; grid-template-columns: 1fr 520px; gap: 56px; align-items: start; }   /* newsletter entera, con el texto al lado */
+  .news-texto { position: sticky; top: 32px; max-width: 460px; }                               /* el texto acompaña al bajar */
+  @media (max-width: 860px) { .news { grid-template-columns: 1fr; } .news-texto { position: static; } .news .pieza { max-width: 520px; } }
+  /* Ver en grande sin salir de la página */
+  .ampliable { cursor: zoom-in; }
+  .visor { position: fixed; inset: 0; z-index: 10; background: rgba(0,0,0,.88); display: none; place-items: center; padding: 24px; cursor: zoom-out; }
+  .visor.abierto { display: grid; }
+  .visor img { max-width: 100%; max-height: calc(100vh - 48px); width: auto; height: auto; box-shadow: 0 10px 40px rgba(0,0,0,.5); }
+  .visor button { position: absolute; top: 16px; right: 16px; width: 48px; height: 48px; border: 0; background: #fff; font-size: 28px; line-height: 1; cursor: pointer; }
+  .botones { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+  .boton { display: inline-block; text-decoration: none; font-weight: 500; font-size: 15px; letter-spacing: .03em; text-transform: uppercase; padding: 14px 24px; border: 2px solid var(--negro); color: var(--negro); } /* botón recto en mayúsculas, como los de msf.es */
+  .boton.rojo { background: var(--rojo); border-color: var(--rojo); color: #fff; }
+  @media (max-width: 860px) {
+    .pista { grid-auto-columns: calc((100% - 20px) / 1.6); }
+  }
+  @media (max-width: 620px) {
+    .motion { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .pista { grid-auto-columns: 82%; gap: 14px; }
+    }
+
+  /* Decisiones de diseño */
+  .decisiones { list-style: none; padding: 0; margin: 26px 0 0; display: grid; grid-template-columns: 1fr 1fr; gap: 26px 40px; align-items: start; }
+  .decisiones li { border-left: 4px solid var(--rojo); padding-left: 16px; }
+  .decisiones b { color: var(--negro); display: block; }
+  @media (max-width: 760px) { .decisiones { grid-template-columns: 1fr; } }
+
+  /* Pie de contacto: negro, como la barra superior de msf.es */
+  footer { background: var(--negro); color: #fff; padding: 64px 0 40px; }
+  footer h2 { color: #fff; }
+  footer .cierre { font-size: clamp(18px, 2vw, 21px); color: #D0D0D0; max-width: 640px; margin: 0; }
+  .contacto { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; margin: 36px 0 44px; border-top: 1px solid #333; }
+  .contacto a { display: block; padding: 20px 20px 22px 0; text-decoration: none; color: #fff; border-bottom: 1px solid #333; }
+  .contacto a + a { padding-left: 20px; border-left: 1px solid #333; }
+  .contacto span { display: block; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--rojo); font-weight: 700; margin-bottom: 6px; }
+  .contacto b { font-weight: 500; font-size: clamp(16px, 1.7vw, 20px); overflow-wrap: anywhere; }
+  .contacto a:hover b { text-decoration: underline; }
+  .aviso { font-size: 14px; color: #9A9A9A; max-width: 760px; margin: 0; }
+  .aviso b { color: #fff; }
+  @media (max-width: 760px) { .contacto { grid-template-columns: 1fr; } .contacto a + a { padding-left: 0; border-left: 0; } }
+
+  /* Idiomas: solo se ve el texto del idioma elegido */
+  html[lang="en"] [data-es], html[lang="es"] [data-en] { display: none !important; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="ancho">
+    <div class="firma"><b>Tania de Azevedo</b> · <span data-en>Proposal for MSF-OCBA · Graphic &amp; Digital Design Officer</span><span data-es>Propuesta para MSF-OCBA · Graphic &amp; Digital Design Officer</span></div>
+    <div class="idioma"><button data-l="en" class="on">EN</button> <button data-l="es">ES</button></div>
+  </div>
+</header>
+
+<main>
+  <!-- ===== PORTADA ===== -->
+  <div class="portada ancho">
+    <span class="etiqueta" data-en>Unofficial campaign proposal</span><span class="etiqueta" data-es>Propuesta de campaña no oficial</span>
+    <h1 data-en>What fits <span>in a kit.</span></h1>
+    <h1 data-es>Lo que cabe <span>en un kit.</span></h1>
+    <p class="entrada" data-en>A small campaign made with MSF's brand guidelines to explain, in a simple way, the <b>WHO emergency health kit</b> that MSF uses. One idea, adapted to web, social media, newsletter and motion, in <b>English and Spanish</b>.</p>
+    <p class="entrada" data-es>Una pequeña campaña hecha con el manual de marca de MSF para explicar, de forma sencilla, el <b>kit de emergencia sanitaria de la OMS</b> que usa MSF. Una idea adaptada a web, redes, newsletter y motion, en <b>español e inglés</b>.</p>
+  </div>
+
+  <!-- ===== EL RETO Y LA IDEA ===== -->
+  <section class="gris">
+    <div class="ancho dos">
+      <div>
+        <div class="num" data-en>The challenge</div><div class="num" data-es>El reto</div>
+        <h3 data-en>Technical information, made clear for everyone.</h3>
+        <h3 data-es>Información técnica, clara para todo el mundo.</h3>
+        <p class="texto" data-en>An emergency health kit is medical logistics: units, modules, medicines, quantities. The goal was to make anyone understand in seconds what it is and, above all, what it makes possible. This is the part of design I enjoy most: making important information visual and clear.</p>
+        <p class="texto" data-es>Un kit de emergencia sanitaria es logística médica: unidades, módulos, medicamentos, cantidades. El objetivo era que cualquiera entendiera en segundos qué es y, sobre todo, qué permite conseguir. Es la parte del diseño que más disfruto: hacer visual y clara la información importante.</p>
+      </div>
+      <div>
+        <div class="num" data-en>The idea</div><div class="num" data-es>La idea</div>
+        <h3 data-en>What's missing without a kit. What fits in a kit.</h3>
+        <h3 data-es>Lo que falta sin un kit. Lo que cabe en un kit.</h3>
+        <p class="texto" data-en>Two states of the same box: closed, it shows the absence; open, the response. An isometric box with 17 units works as the visual system across every format.</p>
+        <p class="texto" data-es>Dos estados de una misma caja: cerrada, muestra la ausencia; abierta, la respuesta. Una caja isométrica con 17 unidades funciona como sistema visual en todos los formatos.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 1 · INFOGRAFÍA INTERACTIVA ===== -->
+  <section>
+    <div class="ancho">
+      <div class="num">01 · Web</div>
+      <h2 data-en>Interactive infographic</h2><h2 data-es>Infografía interactiva</h2>
+      <p class="texto" data-en>Try it here: open and close the kit, and move over each unit to see what it holds. Works with mouse, touch and keyboard.</p>
+      <p class="texto" data-es>Pruébala aquí: abre y cierra el kit, y pasa por cada unidad para ver qué lleva. Funciona con ratón, táctil y teclado.</p>
+      <div class="rejilla web">
+        <iframe class="interactiva" data-en src="infografia-web-en.html?embed" title="Interactive infographic: What fits in a kit" loading="lazy"></iframe>
+        <iframe class="interactiva" data-es src="infografia-web.html?embed" title="Infografía interactiva: Lo que cabe en un kit" loading="lazy"></iframe>
+      </div>
+      <div class="botones">
+        <a class="boton" href="infografia-web-en.html" target="_blank" data-en>Open full screen</a>
+        <a class="boton" href="infografia-web.html" target="_blank" data-es>Abrir a pantalla completa</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 2 · MOTION Y STORY ===== -->
+  <section class="gris">
+    <div class="ancho">
+      <div class="num">02 · Motion</div>
+      <h2 data-en>Motion pieces and story</h2><h2 data-es>Motion y story</h2>
+      <p class="texto" data-en>Vertical, for Reels and Stories, and made to work without sound. Two 15-second versions, illustrated and with photos, and a story with the full kit.</p>
+      <p class="texto" data-es>Vertical, para Reels y Stories, y pensado para funcionar sin sonido. Dos versiones de 15 segundos, ilustrada y con fotos, y una story con el kit completo.</p>
+      <div class="rejilla motion" data-en>
+        <figure class="pieza"><video controls muted playsinline preload="none" src="video/what-fits-in-a-kit-EN.mp4" poster="video/kit-en.jpg"></video><figcaption>Illustrated version · 15 s</figcaption></figure>
+        <figure class="pieza"><video controls muted playsinline preload="none" src="video/what-fits-in-a-kit-photos-EN.mp4" poster="video/fotos-en.jpg"></video><figcaption>Photo version · 16 s (AI-generated images)</figcaption></figure>
+        <figure class="pieza"><img class="ampliable" src="img/grande/story-en.jpg" alt="Instagram story: What fits in a kit, the open box with its lists and the figure 10,000 people with medical care." loading="lazy"><figcaption>Instagram story</figcaption></figure>
+      </div>
+      <div class="rejilla motion" data-es>
+        <figure class="pieza"><video controls muted playsinline preload="none" src="video/lo-que-cabe-en-un-kit-ES.mp4" poster="video/kit-es.jpg"></video><figcaption>Versión ilustrada · 15 s</figcaption></figure>
+        <figure class="pieza"><video controls muted playsinline preload="none" src="video/lo-que-cabe-en-un-kit-fotos-ES.mp4" poster="video/fotos-es.jpg"></video><figcaption>Versión con fotos · 16 s (imágenes generadas con IA)</figcaption></figure>
+        <figure class="pieza"><img class="ampliable" src="img/grande/story-es.jpg" alt="Story de Instagram: Lo que cabe en un kit, la caja abierta con sus listas y la cifra 10.000 personas con atención médica." loading="lazy"><figcaption>Story de Instagram</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 3 · CARTEL Y CARRUSEL ===== -->
+  <section>
+    <div class="ancho">
+      <div class="num" data-en>03 · Social</div><div class="num" data-es>03 · Redes</div>
+      <h2 data-en>Instagram carousel</h2><h2 data-es>Carrusel de Instagram</h2>
+      <p class="texto" data-en>On social media the tone is closer: photos, short sentences and one idea per slide, in the style of MSF's own Instagram.</p>
+      <p class="texto" data-es>En redes el tono es más cercano: fotos, frases cortas y una idea por diapositiva, en la línea del Instagram de MSF.</p>
+      <div class="slider">
+        <div class="flechas"><button class="flecha ant" aria-label="Previous" title="Previous"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M15 4 L7 12 L15 20" fill="none" stroke="currentColor" stroke-width="2"/></svg></button><button class="flecha sig" aria-label="Next" title="Next"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M9 4 L17 12 L9 20" fill="none" stroke="currentColor" stroke-width="2"/></svg></button></div>
+        <div class="pista" tabindex="0" aria-label="Instagram carousel / carrusel de Instagram">
+        <figure class="pieza" data-en><img class="ampliable" src="img/grande/slide1-en.jpg" alt="Instagram carousel, slide 1/5" loading="lazy"><figcaption>1/5</figcaption></figure>
+        <figure class="pieza" data-en><img class="ampliable" src="img/grande/slide2-en.jpg" alt="Instagram carousel, slide 2/5" loading="lazy"><figcaption>2/5</figcaption></figure>
+        <figure class="pieza" data-en><img class="ampliable" src="img/grande/slide3-en.jpg" alt="Instagram carousel, slide 3/5" loading="lazy"><figcaption>3/5</figcaption></figure>
+        <figure class="pieza" data-en><img class="ampliable" src="img/grande/slide4-en.jpg" alt="Instagram carousel, slide 4/5" loading="lazy"><figcaption>4/5</figcaption></figure>
+        <figure class="pieza" data-en><img class="ampliable" src="img/grande/slide5-en.jpg" alt="Instagram carousel, slide 5/5" loading="lazy"><figcaption>5/5</figcaption></figure>
+        <figure class="pieza" data-es><img class="ampliable" src="img/grande/slide1-es.jpg" alt="Carrusel de Instagram, diapositiva 1/5" loading="lazy"><figcaption>1/5</figcaption></figure>
+        <figure class="pieza" data-es><img class="ampliable" src="img/grande/slide2-es.jpg" alt="Carrusel de Instagram, diapositiva 2/5" loading="lazy"><figcaption>2/5</figcaption></figure>
+        <figure class="pieza" data-es><img class="ampliable" src="img/grande/slide3-es.jpg" alt="Carrusel de Instagram, diapositiva 3/5" loading="lazy"><figcaption>3/5</figcaption></figure>
+        <figure class="pieza" data-es><img class="ampliable" src="img/grande/slide4-es.jpg" alt="Carrusel de Instagram, diapositiva 4/5" loading="lazy"><figcaption>4/5</figcaption></figure>
+        <figure class="pieza" data-es><img class="ampliable" src="img/grande/slide5-es.jpg" alt="Carrusel de Instagram, diapositiva 5/5" loading="lazy"><figcaption>5/5</figcaption></figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 4 · NEWSLETTER ===== -->
+  <section class="gris">
+    <div class="ancho news">
+      <div class="news-texto">
+        <div class="num">04 · Newsletter</div>
+        <h2 data-en>Newsletter</h2><h2 data-es>Newsletter</h2>
+        <p data-en>An email built the way email needs to be built (tables, inline styles, 600 px), so it works in Gmail and Outlook.</p>
+        <p data-es>Un email maquetado como se maquetan los emails (tablas, estilos en línea, 600 px), para que funcione en Gmail y Outlook.</p>
+        <p data-en><b>Subject line:</b> "10,000 people. 3 months. One kit."<br><b>Preview text:</b> See what's inside and how it is prepared to respond when it matters most.</p>
+        <p data-es><b>Asunto:</b> «10.000 personas. 3 meses. Un kit.»<br><b>Texto de vista previa:</b> Descubre qué contiene y cómo se prepara para responder cuando más se necesita.</p>
+        <div class="botones">
+          <a class="boton" href="newsletter-en.html" target="_blank" data-en>Open the email</a>
+          <a class="boton" href="newsletter.html" target="_blank" data-es>Abrir el email</a>
+        </div>
+      </div>
+      <figure class="pieza sombra" data-en><img src="img/newsletter-en.jpg" alt="Newsletter: What fits in a kit, with the figures 10,000, 3 and 17, the basic and hospital units, and a call to donate." loading="lazy"></figure>
+      <figure class="pieza sombra" data-es><img src="img/newsletter-es.jpg" alt="Newsletter: Lo que cabe en un kit, con las cifras 10.000, 3 y 17, las unidades básicas y de hospital, y una llamada a colaborar." loading="lazy"></figure>
+    </div>
+  </section>
+
+  <!-- ===== DECISIONES ===== -->
+  <section>
+    <div class="ancho">
+      <div class="num" data-en>How it was made</div><div class="num" data-es>Cómo está hecho</div>
+      <h2 data-en>Design decisions</h2><h2 data-es>Decisiones de diseño</h2>
+      <ul class="decisiones">
+        <li data-en><b>Real data</b>All figures come from the WHO Interagency Emergency Health Kit 2024, the kit MSF uses in its own version.</li>
+        <li data-es><b>Datos reales</b>Todas las cifras salen del Interagency Emergency Health Kit 2024 de la OMS, el kit que MSF usa en su propia versión.</li>
+        <li data-en><b>MSF brand guidelines and msf.es</b>White as identity and red only to highlight, plus what I saw on your website: white text boxes, tags and straight buttons.</li>
+        <li data-es><b>Manual de marca de MSF y msf.es</b>Blanco como identidad y rojo solo para destacar, más lo que vi en vuestra web: cajas blancas, etiquetas y botones rectos.</li>
+        <li data-en><b>Plain language</b>No formulas or jargon. Short sentences anyone can follow: "Each one cares for 1,000 people. Together, they care for 10,000."</li>
+        <li data-es><b>Lenguaje sencillo</b>Sin fórmulas ni tecnicismos. Frases cortas que cualquiera entiende: «Cada una atiende a 1.000 personas. Juntas, atienden a 10.000.»</li>
+        <li data-en><b>Accessibility</b>Keyboard navigation, alternative text, layouts for mobile and respect for the "reduce motion" setting on every device.</li>
+        <li data-es><b>Accesibilidad</b>Navegación con teclado, texto alternativo, versiones para móvil y respeto por el ajuste de «reducir movimiento» en cada dispositivo.</li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<!-- Visor para ver las piezas en grande -->
+<div class="visor" role="dialog" aria-modal="true" aria-label="Image"><button type="button" aria-label="Close / Cerrar">×</button><img alt=""></div>
+
+<footer>
+  <div class="ancho">
+    <div class="num">Tania de Azevedo</div>
+    <h2 data-en>Thank you for your time.</h2><h2 data-es>Gracias por vuestro tiempo.</h2>
+    <div class="contacto">
+      <a href="mailto:taniadeazevedoribeiro@gmail.com"><span>Email</span><b>taniadeazevedoribeiro@gmail.com</b></a>
+      <a href="https://taniadeazevedo.es" target="_blank"><span>Portfolio</span><b>taniadeazevedo.es</b></a>
+      <a href="tel:+34634756022"><span data-en>Phone</span><span data-es>Teléfono</span><b>634 756 022</b></a>
+    </div>
+    <p class="aviso" data-en><b>Unofficial proposal</b>, made for my application. It is not affiliated with Médecins Sans Frontières. Photos are AI-generated and do not show real MSF operations.</p>
+    <p class="aviso" data-es><b>Propuesta no oficial</b>, hecha para mi candidatura. No está vinculada a Médicos Sin Fronteras. Las fotos están generadas con IA y no corresponden a intervenciones reales de MSF.</p>
+  </div>
+</footer>
+
+<script>
+// Cambia el idioma: cada pieza está en los dos idiomas y el CSS solo enseña la del idioma elegido
+function idioma(l) {
+  document.documentElement.lang = l;                                   // muestra los textos y piezas del idioma
+  document.querySelectorAll('[data-' + (l === 'en' ? 'es' : 'en') + '] video').forEach(v => v.pause()); // para los vídeos ocultos
+  document.querySelectorAll('.idioma button').forEach(b => b.classList.toggle('on', b.dataset.l === l)); // botón activo
+  try { localStorage.setItem('idioma-msf', l); } catch (e) {}          // recuerda la elección
+}
+document.querySelectorAll('.idioma button').forEach(b => b.onclick = () => idioma(b.dataset.l));
+let inicial = 'en';                                                     // por defecto, inglés (idioma de la oferta)
+try { inicial = localStorage.getItem('idioma-msf') || 'en'; } catch (e) {}
+idioma(inicial);
+
+// ---------- Carrusel: flechas ----------
+const pista = document.querySelector('.pista');
+const [ant, sig] = document.querySelectorAll('.flecha');
+const paso = () => { const f = [...pista.children].find(x => x.offsetWidth); return f.offsetWidth + 20; }; // ancho de una diapositiva + hueco
+ant.onclick = () => pista.scrollBy({ left: -paso() });                  // una diapositiva atrás
+sig.onclick = () => pista.scrollBy({ left: paso() });                   // una diapositiva adelante
+const flechas = () => {                                                 // apaga la flecha que no lleva a ningún sitio
+  ant.disabled = pista.scrollLeft < 5;
+  sig.disabled = pista.scrollLeft + pista.clientWidth > pista.scrollWidth - 5;
+};
+pista.addEventListener('scroll', flechas); addEventListener('resize', flechas); flechas();
+document.querySelectorAll('.idioma button').forEach(b => b.addEventListener('click', () => { pista.scrollLeft = 0; flechas(); })); // al cambiar de idioma, vuelve al principio
+
+// ---------- Visor: ver en grande sin salir de la página ----------
+const visor = document.querySelector('.visor'), grande = visor.querySelector('img');
+document.querySelectorAll('.ampliable').forEach(img => img.addEventListener('click', () => {
+  grande.src = img.src; grande.alt = img.alt;                           // la misma imagen, en grande
+  visor.classList.add('abierto'); visor.querySelector('button').focus();
+}));
+const cerrar = () => visor.classList.remove('abierto');
+visor.addEventListener('click', cerrar);                                // clic en cualquier sitio: se cierra
+addEventListener('keydown', e => { if (e.key === 'Escape') cerrar(); }); // o con Escape
+</script>
+</body>
+</html>
