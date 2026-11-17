@@ -155,8 +155,8 @@
       <p class="texto" data-en>Try it here: open and close the kit, and move over each unit to see what it holds. Works with mouse, touch and keyboard.</p>
       <p class="texto" data-es>Pruébala aquí: abre y cierra el kit, y pasa por cada unidad para ver qué lleva. Funciona con ratón, táctil y teclado.</p>
       <div class="rejilla web">
-        <iframe class="interactiva" data-en src="infografia-web-en.html?embed" title="Interactive infographic: What fits in a kit" loading="lazy"></iframe>
-        <iframe class="interactiva" data-es src="infografia-web.html?embed" title="Infografía interactiva: Lo que cabe en un kit" loading="lazy"></iframe>
+        <!-- Una sola infografía: se carga la del idioma elegido (una oculta no puede animarse) -->
+        <iframe class="interactiva" id="interactiva" title="Infografía interactiva / Interactive infographic"></iframe>
       </div>
       <div class="botones">
         <a class="boton" href="infografia-web-en.html" target="_blank" data-en>Open full screen</a>
@@ -270,6 +270,9 @@
 // Cambia el idioma: cada pieza está en los dos idiomas y el CSS solo enseña la del idioma elegido
 function idioma(l) {
   document.documentElement.lang = l;                                   // muestra los textos y piezas del idioma
+  const inf = document.getElementById('interactiva');                  // la infografía interactiva
+  const src = l === 'en' ? 'infografia-web-en.html?embed' : 'infografia-web.html?embed';
+  if (inf.getAttribute('src') !== src) inf.setAttribute('src', src);   // se carga de nuevo en el idioma elegido
   document.querySelectorAll('[data-' + (l === 'en' ? 'es' : 'en') + '] video').forEach(v => v.pause()); // para los vídeos ocultos
   document.querySelectorAll('.idioma button').forEach(b => b.classList.toggle('on', b.dataset.l === l)); // botón activo
   try { localStorage.setItem('idioma-msf-v2', l); } catch (e) {}          // recuerda la elección
