@@ -331,3 +331,15 @@ html[data-t="lila"] .v2-cs-ctx .v2-cs-col:nth-child(2) .v2-cs-goals { flex: 1; a
 html[data-t="lila"] .v2-card-media video { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1.1s var(--v2-ease); }
 html[data-t="lila"] .v2-card-link:hover .v2-card-media video, html[data-t="lila"] .v2-card-link:focus-visible .v2-card-media video { transform: scale(1.05); }
 .v2-card-media video::-webkit-media-controls, .v2-card-media video::-webkit-media-controls-start-playback-button, .v2-card-media video::-webkit-media-controls-overlay-play-button, .v2-card-media video::-webkit-media-controls-panel { display: none !important; opacity: 0 !important; -webkit-appearance: none; }
+
+/* ============================================================
+   Píldora «Interactivo»: discreta, solo dentro de las piezas con las que se puede jugar (portada de SUD CLUB); no va en las tarjetas
+   Uso: <span class="v2-pill-int"><svg…/>Interactivo</span> dentro de un contenedor con position: relative
+   ============================================================ */
+.v2-cs-hero { position: relative; }
+.v2-pill-int { position: absolute; top: clamp(10px, 1.4vw, 16px); right: clamp(10px, 1.4vw, 16px); z-index: 4; display: inline-flex; align-items: center; gap: 7px; height: 28px; padding: 0 13px 0 11px; border-radius: 999px;
+  background: rgb(29 21 48 / 74%); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); color: #f6f2fd;
+  font: 500 11px/1 "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace; letter-spacing: .1em; text-transform: uppercase; white-space: nowrap; pointer-events: none; }
+.v2-pill-int svg { width: 13px; height: 13px; flex-shrink: 0; color: #d9c8ff; }
+.v2-pill-int--centro { right: auto; left: 50%; transform: translateX(-50%); top: clamp(12px, 2.2cqi, 22px); }   /* en la portada de SUD CLUB va en el centro, entre la temperatura y el estado */
+@media (max-width: 600px) { .v2-pill-int { height: 24px; font-size: 10px; padding: 0 10px 0 9px; } .v2-pill-int svg { width: 11px; height: 11px; } }
