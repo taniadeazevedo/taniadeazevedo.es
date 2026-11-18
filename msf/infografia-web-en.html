@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What fits in a kit</title>
+<!-- Inter Tight: sustituto gratuito de Atlas Grotesk (la de MSF tiene licencia) -->
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  /* Fondo gris alrededor para que se vea el marco blanco de la pieza */
+  body { margin: 0; background: #d9d9d9; display: grid; place-items: center; min-height: 100vh; font-family: "Inter Tight", Arial, sans-serif; }
+  /* Contenedor relativo: el tooltip se posiciona dentro */
+  .pieza { position: relative; width: min(96vw, 1280px); }
+  /* La pieza: formato horizontal 16:9 (1600 × 900) */
+  svg { display: block; width: 100%; height: auto; background: #fff; box-shadow: 0 10px 40px rgba(0,0,0,.15); }
+  /* Todos los textos con la tipografía sustituta */
+  text { font-family: "Inter Tight", Arial, sans-serif; }
+  /* Botón y elementos interactivos: cursor de mano */
+  #boton, [data-u] { cursor: pointer; }
+  /* Quitar el contorno azul del foco y poner uno rojo de marca */
+  #boton:focus { outline: none; }
+  #boton:focus-visible rect { stroke: #000; stroke-width: 3; }
+  .item:focus { outline: none; }
+  /* Ítem de la lista resaltado (al pasar por encima su cubo) */
+  .item.activo text { fill: #EE0000; font-weight: 700; }
+  /* Etiquetas: aparecen con un fundido */
+  #etiquetas { transition: opacity .4s; }
+  /* Tooltip: caja blanca con borde negro, como sus pictogramas */
+  .tip { position: absolute; pointer-events: none; background: #fff; border: 2px solid #000; padding: 10px 12px; max-width: 230px;
+         font-size: 14px; line-height: 1.3; color: #414141; opacity: 0; transform: translate(-50%, calc(-100% - 14px)); transition: opacity .15s; }
+  .tip b { display: block; color: #000; font-size: 15px; margin-bottom: 2px; } /* título del tooltip */
+  .tip.visible { opacity: 1; }
+  .cambia { transition: opacity .3s; }      /* los textos que cambian se funden */
+  .cambia.fuera { opacity: 0; }             /* estado oculto durante el cambio */
+  .num-c { transition: fill .6s; }
+  #botonTxt { text-transform: uppercase; letter-spacing: .02em; } /* texto del botón en mayúsculas, como en msf.es */
+  #botonFondo, #botonTxt { transition: fill .3s, stroke .3s; } /* el botón cambia de color suavemente */          /* las cifras cambian de color suavemente */
+  .tip .num { display: block; font-size: 34px; font-weight: 500; color: #EE0000; line-height: 1; } /* cifra grande en rojo */
+  /* Modo incrustado (?embed): dentro de la página del proyecto, sin fondo gris ni sombra */
+  html.embed body { background: #fff; display: block; min-height: 0; margin: 0; }
+  html.embed .pieza { width: 100%; }
+  html.embed svg { box-shadow: none; }
+</style>
+<script>if (/embed/.test(location.search)) document.documentElement.classList.add("embed"); // ¿va dentro de otra página?</script>
+</head>
+<body>
+<div class="pieza">
+<svg id="svg" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" role="img"
+     aria-label="Interactive infographic: an emergency health kit provides care for 10,000 people for 3 months. It has 10 basic units and 7 hospital units.">
+
+  <!-- ===== TITULAR (arriba a la izquierda, dentro del marco blanco) ===== -->
+  <text id="t1" class="cambia" x="70" y="123" font-size="88" font-weight="500" fill="#000">What fits</text>
+  <text id="t2" class="cambia" x="70" y="213" font-size="88" font-weight="500" fill="#EE0000">in a kit</text>
+  <!-- Entradilla: negro, regular, alineada a la izquierda -->
+  <text id="e1" class="cambia" x="70" y="276" font-size="26" fill="#414141">An emergency health kit can provide care for</text>
+  <text id="e2" class="cambia" x="70" y="310" font-size="26" fill="#414141"><tspan id="e2a" font-weight="500" fill="#000">10,000 people for 3 months.</tspan><tspan id="e2b"></tspan></text>
+
+  <!-- ===== LOGO: esquina superior derecha, sobre blanco, con su área de protección ===== -->
+  <image href="data:image/png;base64,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" x="1270" y="62" width="260" height="84" />
+
+  <!-- ===== BOTÓN abrir / cerrar ===== -->
+  <g id="boton" role="button" tabindex="0" aria-label="Open or close the kit">
+    <rect id="botonFondo" x="70" y="345" width="200" height="54" rx="0" fill="#EE0000" stroke="#EE0000" stroke-width="2"/> <!-- botón rojo recto, como los de msf.es -->
+    <text id="botonTxt" x="170" y="378" font-size="16" font-weight="500" fill="#fff" text-anchor="middle">Open the kit</text>
+  </g>
+  <!-- Texto de apoyo: qué puede hacer la persona -->
+  <text id="e3" class="cambia" x="290" y="378" font-size="20" font-weight="500" fill="#EE0000">See what's inside →</text>
+
+  <!-- Aquí el script dibuja la caja isométrica (se redibuja en cada fotograma) -->
+  <g id="ilustracion"></g>
+  <!-- Etiquetas de la derecha (se dibujan una vez) -->
+  <g id="etiquetas" opacity="0"></g>
+
+  <!-- ===== CIFRAS (columna izquierda) ===== -->
+  <line id="linea" x1="70" y1="430" x2="520" y2="430" stroke="#000" stroke-width="2"/>
+  <!-- Cifra principal: grande, con su frase debajo -->
+  <text id="cifra" class="num-c" x="70" y="548" font-size="128" font-weight="500" fill="#EE0000">0</text>
+  <text id="c1" class="cambia" x="70" y="614" font-size="26" font-weight="500" fill="#000">people with medical care</text>
+  <!-- Fila: 3 meses (cifra a la izquierda, explicación al lado) -->
+  <text id="n3" class="num-c" x="70" y="704" font-size="80" font-weight="500" fill="#EE0000">3</text>
+  <text id="lm" x="190" y="672" font-size="24" font-weight="500" fill="#000">months</text>
+  <text id="c3" class="cambia" x="190" y="700" font-size="22" fill="#414141">of medicines and supplies</text>
+  <!-- Fila: 17 unidades -->
+  <text id="n17" class="num-c" x="70" y="794" font-size="80" font-weight="500" fill="#EE0000">17</text>
+  <text id="lu" x="190" y="762" font-size="24" font-weight="500" fill="#000">units</text>
+  <text id="c17" class="cambia" x="190" y="790" font-size="22" fill="#414141">from clinic to hospital</text>
+  <!-- Fuente del dato (MSF pide veracidad y precisión) -->
+  <text id="fuente" x="70" y="840" font-size="12" fill="#8a8a8a">Sources: WHO, Interagency Emergency Health Kit 2024 (MSF uses its own version). Basic unit contents: 2017 edition.</text>
+  <!-- Aviso: es un ejercicio, no comunicación oficial -->
+  <text id="firma" x="70" y="862" font-size="14" fill="#8a8a8a">Unofficial proposal · <tspan font-weight="700" fill="#414141">Tania de Azevedo</tspan></text>
+</svg>
+<!-- Tooltip (HTML, encima del SVG) -->
+<div class="tip" id="tip" role="status" aria-live="polite"></div>
+</div>
+
+<script>
+// ---------- Ajustes de la perspectiva isométrica ----------
+// En pantallas estrechas (móvil) la pieza pasa a una composición vertical
+const MOVIL = window.innerWidth < 760;     // ¿pantalla estrecha?
+const VBW = MOVIL ? 1000 : 1600;           // ancho del lienzo (viewBox)
+const S = MOVIL ? 52 : 36;                 // tamaño de 1 unidad en píxeles
+const CX = MOVIL ? 500 : 860;              // centro horizontal del dibujo
+const CY = MOVIL ? 1130 : 575;             // centro vertical del dibujo
+const NEGRO = "#000";    // contorno negro, como en sus pictogramas
+const ROJO = "#EE0000";  // rojo MSF
+const NS = "http://www.w3.org/2000/svg"; // espacio de nombres para crear elementos SVG
+const W = 7, D = 5, H = 3;               // ancho, fondo y alto de la caja
+const zB = 4.6, zS = 10.1;               // alturas finales de las dos capas (kit abierto)
+
+// Textos de cada unidad de hospital (fuente: OMS, IEHK 2024)
+const HOSP = [
+  ["Oral", "Oral medicines for wards, outpatient departments or mobile clinics."],
+  ["Injectables", "Injectable medicines for hospital wards."],
+  ["Mental health", "Psychotropic medicines for specifically trained professionals."],
+  ["Cold chain", "Medicines that must travel and be stored cold."],
+  ["Prophylaxis (PEP)", "Preventive treatment after possible exposure to HIV."],
+  ["Malaria", "Includes what is needed to prepare and give artesunate."],
+  ["Controlled", "Medicines subject to special control."],
+];
+
+// Las 10 unidades básicas cuentan una consulta, paso a paso.
+// Cada una lleva LO MISMO; cada cubo descubre una cosa de lo que hay dentro.
+// Fuente: lista de la unidad básica IEHK (edición 2017), catálogo de la Cruz Roja.
+const BASICA = [
+  ["500",   "health cards", "Everyone who arrives gets their own card, kept in its own plastic bag."],
+  ["5",     "digital thermometers", "The first question in any consultation: is there a fever?"],
+  ["3,000", "paracetamol tablets", "To bring down fever and ease pain."],
+  ["3,000", "amoxicillin tablets", "A basic antibiotic to treat infections."],
+  ["200",   "sachets of oral rehydration salts", "One sachet in a litre of clean water treats dehydration caused by diarrhoea."],
+  ["1,000", "zinc tablets", "Given with oral rehydration salts to children with diarrhoea."],
+  ["200",   "albendazole tablets", "Against intestinal worms."],
+  ["50",    "tubes of eye ointment", "Tetracycline to treat eye infections."],
+  ["700",   "bandages and gauze", "200 bandages and 500 compresses to clean and cover wounds."],
+  ["1",     "15-litre foldable water container", "For water. Plus soap and treatment guidelines in Spanish, English and French."],
+];
+const vistos = new Set(); // unidades básicas ya descubiertas
+
+// Posición de cada unidad de hospital: fila de 4 y fila de 3 (la 2.ª desplazada para centrarla)
+const posH = [];
+for (const [fila, cols] of [[0, 4], [1, 3]]) for (let c = 0; c < cols; c++) posH.push([0.6 + c * 1.6 + fila * 0.8, 0.9 + fila * 1.7]);
+// Posición de cada unidad básica: 2 filas × 5 columnas
+const posB = [];
+for (let f = 0; f < 2; f++) for (let c = 0; c < 5; c++) posB.push([0.35 + c * 1.35, 1.2 + f * 1.4]);
+
+// Convierte un punto 3D (x, y, z) a un punto 2D de la pantalla
+const iso = (x, y, z) => [CX + (x - y) * S * 0.866, CY + (x + y) * S * 0.5 - z * S]; // 0.866 = cos 30°
+
+// Crea un polígono SVG a partir de puntos 3D
+function cara(g, puntos, relleno, extra = {}) {
+  const p = document.createElementNS(NS, "polygon");                          // nuevo polígono
+  p.setAttribute("points", puntos.map(pt => iso(...pt).join(",")).join(" ")); // puntos en 2D
+  p.setAttribute("fill", relleno);                                             // color
+  p.setAttribute("stroke", NEGRO);                                             // contorno negro
+  p.setAttribute("stroke-width", 2.5);                                         // grosor
+  p.setAttribute("stroke-linejoin", "round");                                  // esquinas suaves
+  for (const k in extra) p.setAttribute(k, extra[k]);                          // atributos extra
+  g.appendChild(p);                                                            // lo añadimos
+}
+
+// Dibuja un cubo (sus 3 caras visibles) dentro de un grupo con un identificador
+function cubo(g, x, y, z, w, d, h, col, id) {
+  const c = document.createElementNS(NS, "g"); // grupo del cubo
+  c.dataset.u = id;                            // id para saber qué unidad es al pasar el ratón
+  cara(c, [[x,y,z+h],[x+w,y,z+h],[x+w,y+d,z+h],[x,y+d,z+h]], col[0]); // arriba
+  cara(c, [[x,y+d,z],[x+w,y+d,z],[x+w,y+d,z+h],[x,y+d,z+h]], col[1]); // frontal izquierda
+  cara(c, [[x+w,y,z],[x+w,y+d,z],[x+w,y+d,z+h],[x+w,y,z+h]], col[2]); // frontal derecha
+  g.appendChild(c);                            // añadimos el cubo
+  return c;                                    // y lo devolvemos (para ponerle el número)
+}
+
+// Crea un texto SVG
+function texto(g, x, y, contenido, tam, peso = 400, color = "#414141", ancla = "start") {
+  const t = document.createElementNS(NS, "text");               // nuevo texto
+  Object.entries({ x, y, "font-size": tam, "font-weight": peso, fill: color, "text-anchor": ancla })
+    .forEach(([k, v]) => t.setAttribute(k, v));                  // sus atributos
+  t.textContent = contenido;                                     // contenido
+  g.appendChild(t);                                              // lo añadimos
+  return t;                                                      // y lo devolvemos
+}
+
+// Solapa de la tapa: bisagra de a→b, se abre en dirección "dir" con ángulo th
+function solapa(g, a, b, dir, largo, th, relleno) {
+  const c = Math.cos(th), s = Math.sin(th);                            // giro de la solapa
+  const v = [dir[0] * c * largo, dir[1] * c * largo, s * largo];       // vector de la solapa
+  cara(g, [a, b, [b[0]+v[0], b[1]+v[1], b[2]+v[2]], [a[0]+v[0], a[1]+v[1], a[2]+v[2]]], relleno);
+}
+
+// ---------- Utilidades de animación ----------
+const tramo = (t, a, b) => Math.min(1, Math.max(0, (t - a) / (b - a)));    // 0→1 dentro de un tramo
+const suave = u => u < .5 ? 4*u*u*u : 1 - Math.pow(-2*u + 2, 3) / 2;        // aceleración suave
+const mezcla = (a, b, u) => a + (b - a) * u;                                 // interpolar
+
+let T = 0;          // progreso actual (0 = cerrado, 1 = abierto)
+let activo = null;  // unidad bajo el ratón, p. ej. "h3" o "b7"
+const dib = document.getElementById("ilustracion"); // grupo del dibujo
+
+// ---------- Dibuja toda la caja para un progreso t ----------
+function dibujar(t) {
+  dib.innerHTML = "";                                      // vaciamos el fotograma anterior
+  const th = suave(tramo(t, 0, 0.3)) * 130 * Math.PI / 180; // ángulo de las solapas (0° → 130°)
+  const abierta = th > Math.PI / 2;                         // ¿solapas ya por detrás?
+  // Solapas: [bisagra inicio, bisagra fin, dirección al cerrar, largo, color]
+  const sIzq = [[0,0,H],[0,D,H],[1,0],3.5,"#EDEDED"];  // izquierda (detrás)
+  const sFon = [[0,0,H],[W,0,H],[0,1],2.5,"#EDEDED"];  // fondo (detrás)
+  const sDer = [[W,0,H],[W,D,H],[-1,0],3.5,"#F5F5F5"]; // derecha (delante)
+  const sFre = [[0,D,H],[W,D,H],[0,-1],2.5,"#FFFFFF"]; // frontal (delante)
+  const pinta = s => solapa(dib, s[0], s[1], s[2], s[3], th, s[4]); // dibuja una solapa
+
+  if (abierta) { pinta(sIzq); pinta(sFon); }                       // abiertas: las de atrás van primero
+  cara(dib, [[0,0,0],[0,D,0],[0,D,H],[0,0,H]], "#E6E6E6");         // pared interior izquierda
+  cara(dib, [[0,0,0],[W,0,0],[W,0,H],[0,0,H]], "#EDEDED");         // pared interior del fondo
+  cara(dib, [[0,0,0],[W,0,0],[W,D,0],[0,D,0]], "#F5F5F5");         // suelo
+
+  // Guías discontinuas (solo con el kit abierto)
+  for (const [x, y] of [[0,0],[W,0],[0,D],[W,D]]) {
+    const a = iso(x, y, H + 0.2), b = iso(x, y, 11.4);             // de la caja hacia arriba
+    const l = document.createElementNS(NS, "line");                // línea
+    Object.entries({ x1: a[0], y1: a[1], x2: b[0], y2: b[1], stroke: "#9a9a9a", "stroke-width": 1.5,
+      "stroke-dasharray": "4 6", opacity: tramo(t, 0.7, 1) }).forEach(([k, v]) => l.setAttribute(k, v));
+    dib.appendChild(l);                                            // la añadimos
+  }
+
+  // Capa 1: 10 unidades básicas (rojas). Suben después que las de hospital (están debajo)
+  posB.forEach(([x, y], i) => {
+    const u = suave(tramo(t, 0.42 + i * 0.012, 0.8 + i * 0.012));  // cada una sale un poco después
+    const on = activo === "b" + i, visto = vistos.has(i);           // ¿activa? ¿ya descubierta?
+    const z = mezcla(0.05, zB, u) + (on ? 0.35 : 0);                // si está activa, sube un poco
+    const col = on ? ["#000", "#222", "#111"]                       // activa = negra
+              : visto ? ["#FFFFFF", "#B81B19", "#951512"]           // descubierta = tapa blanca ("abierta")
+              : [ROJO, "#B81B19", "#951512"];                       // sin descubrir = roja
+    const c = cubo(dib, x, y, z, 1, 1, 0.7, col, "b" + i);          // dibujamos la unidad
+    const p = iso(x + 0.5, y + 0.5, z + 0.7);                       // centro de su tapa
+    texto(c, p[0], p[1] + 5, i + 1, 14, 700, visto && !on ? ROJO : "#fff", "middle"); // su número de paso
+  });
+
+  // Capa 2: 7 unidades de hospital (blancas y numeradas). Salen primero
+  posH.forEach(([x, y], i) => {
+    const u = suave(tramo(t, 0.22 + i * 0.02, 0.62 + i * 0.02));    // escalonadas
+    const z = mezcla(0.8, zS, u);                                   // de dentro de la caja a arriba
+    const on = activo === "h" + i;                                  // ¿está activa?
+    const c = cubo(dib, x, y, z, 1.2, 1.2, 1, on ? [ROJO, "#B81B19", "#951512"] : ["#FFFFFF", "#F0F0F0", "#DADADA"], "h" + i);
+    const p = iso(x + 0.6, y + 0.6, z + 1);                         // centro de su cara de arriba
+    texto(c, p[0], p[1] + 7, i + 1, 20, 700, on ? "#fff" : ROJO, "middle"); // su número
+  });
+
+  cara(dib, [[0,D,0],[W,D,0],[W,D,H],[0,D,H]], "#FFFFFF");         // pared frontal izquierda
+  cara(dib, [[W,0,0],[W,D,0],[W,D,H],[W,0,H]], "#F5F5F5");         // pared frontal derecha
+
+
+  if (!abierta) { pinta(sIzq); pinta(sDer); pinta(sFon); pinta(sFre); } // cerrada: la tapa tapa todo
+  else { pinta(sDer); pinta(sFre); }                                     // abierta: solo las de delante
+
+  // Contador de personas
+  if (destino) document.getElementById("cifra").textContent = Math.round(10000 * suave(tramo(t, 0.55, 1))).toLocaleString("en-GB"); // al abrir, cuenta
+  document.getElementById("etiquetas").setAttribute("opacity", tramo(t, 0.8, 1)); // etiquetas al final
+}
+
+// ---------- Etiquetas de la derecha (una sola vez) ----------
+const eti = document.getElementById("etiquetas"); // grupo de etiquetas
+const LX = 1190;                                    // columna de los textos
+function conector(ancla, y) {                       // línea en codo: dibujo → texto
+  const pl = document.createElementNS(NS, "polyline");
+  pl.setAttribute("points", `${ancla[0]},${ancla[1]} ${LX-30},${ancla[1]} ${LX-30},${y} ${LX-14},${y}`);
+  pl.setAttribute("fill", "none"); pl.setAttribute("stroke", NEGRO); pl.setAttribute("stroke-width", 1.5);
+  eti.appendChild(pl);                              // la añadimos
+  const pt = document.createElementNS(NS, "circle"); // puntito sobre el dibujo
+  pt.setAttribute("cx", ancla[0]); pt.setAttribute("cy", ancla[1]); pt.setAttribute("r", 5);
+  eti.appendChild(pt);                              // lo añadimos
+}
+let progreso;                                    // texto que cambia al explorar
+if (!MOVIL) {
+  // Hospital: título, subtítulo y lista de 7
+  conector(iso(6.6, 1.5, zS + 0.5), 222);
+  texto(eti, LX, 230, "7 hospital units", 26, 700, "#000");
+  texto(eti, LX, 258, "Doctors and specialised staff", 18);
+  HOSP.forEach(([nombre], i) => {
+    const g = document.createElementNS(NS, "g");       // grupo del ítem
+    g.setAttribute("class", "item");                    // clase para resaltarlo
+    g.dataset.u = "h" + i;                              // enlazado con su cubo
+    g.setAttribute("tabindex", "0");                    // se puede recorrer con el teclado
+    texto(g, LX, 292 + i * 23, `${i + 1}  ${nombre}`, 18); // número + nombre
+    eti.appendChild(g);                                 // lo añadimos
+  });
+  // Básicas
+  conector(iso(6.75, 1.7, zB + 0.35), 522);
+  texto(eti, LX, 530, "10 basic units", 26, 700, "#000");
+  texto(eti, LX, 560, "Each one cares for 1,000 people.", 18);
+  texto(eti, LX, 584, "Together, they care for 10,000.", 18, 700, "#000"); // en palabras sencillas: cuadra con el 10.000
+  texto(eti, LX, 608, "Nurses and community health workers", 18);
+  progreso = texto(eti, LX, 640, "Explore what each unit holds", 18, 700, ROJO); // cambia según lo descubierto
+  // La caja
+  conector(iso(W, 2, 1.25), 692); // punto en la pared derecha, a la misma altura que el texto → línea recta
+  texto(eti, LX, 700, "The kit", 26, 700, "#000");
+  texto(eti, LX, 730, "Prepared before the emergency,", 18);
+  texto(eti, LX, 754, "stored and ready to go.", 18);
+} else {
+  // MÓVIL: las etiquetas van debajo de la caja, sin conectores.
+  // Una muestra de color al lado de cada título la relaciona con el dibujo.
+  const ML = 60;                                       // margen izquierdo
+  const muestra = (y, relleno) => {                    // cuadrado de color
+    const r = document.createElementNS(NS, "rect");
+    Object.entries({ x: ML, y: y - 32, width: 34, height: 34, fill: relleno, stroke: NEGRO, "stroke-width": 3 })
+      .forEach(([k, v]) => r.setAttribute(k, v));
+    eti.appendChild(r);
+  };
+  // Hospital
+  muestra(1530, "#FFFFFF");
+  texto(eti, ML + 50, 1530, "7 hospital units", 44, 700, "#000");
+  texto(eti, ML, 1578, "Doctors and specialised staff", 32);
+  HOSP.forEach(([nombre], i) => {                      // lista en dos columnas (4 + 3)
+    const g = document.createElementNS(NS, "g");
+    g.setAttribute("class", "item"); g.dataset.u = "h" + i; g.setAttribute("tabindex", "0");
+    texto(g, ML + (i < 4 ? 0 : 440), 1634 + (i % 4) * 46, `${i + 1}  ${nombre}`, 32);
+    eti.appendChild(g);
+  });
+  // Básicas
+  muestra(1860, ROJO);
+  texto(eti, ML + 50, 1860, "10 basic units", 44, 700, "#000");
+  texto(eti, ML, 1908, "Each one cares for 1,000 people.", 32);
+  texto(eti, ML, 1952, "Together, they care for 10,000.", 32, 700, "#000");
+  texto(eti, ML, 1996, "Nurses and community health workers", 32);
+  progreso = texto(eti, ML, 2046, "Explore what each unit holds", 32, 700, ROJO);
+  // La caja
+  muestra(2130, "#F5F5F5");
+  texto(eti, ML + 50, 2130, "The kit", 44, 700, "#000");
+  texto(eti, ML, 2178, "Prepared before the emergency,", 32);
+  texto(eti, ML, 2220, "stored and ready to go.", 32);
+}
+
+// ---------- Interacción ----------
+const svg = document.getElementById("svg");   // el SVG
+const tip = document.getElementById("tip");   // el tooltip
+function info(id) {                             // contenido del tooltip según la unidad
+  const i = +id.slice(1);                        // número de unidad
+  if (id[0] === "h") return `<b>${i + 1}. ${HOSP[i][0]}</b>${HOSP[i][1]}`; // hospital: nombre + qué es
+  const [n, que, historia] = BASICA[i];          // básica: cifra, qué es, historia
+  return `<span class="num">${n}</span><b>${que}</b>${historia}`; // la cifra grande y el texto
+}
+function contar() {                              // actualiza el progreso de la historia
+  if (vistos.size === 10) {                      // ¡todas descubiertas!
+    progreso.textContent = "This is what each of the 10 holds."; // el remate: deja claro que es el contenido de UNA unidad
+  } else if (vistos.size) progreso.textContent = `${vistos.size} of 10 units explored`; // contador
+}
+
+function activar(id, x, y) {                   // resalta una unidad y muestra su tooltip
+  if (T < 0.95) return;                         // solo con el kit abierto
+  activo = id;                                  // guardamos cuál es
+  document.querySelectorAll(".item").forEach(e => e.classList.toggle("activo", e.dataset.u === id)); // resalta en la lista
+  if (id[0] === "b") { vistos.add(+id.slice(1)); contar(); } // básica: la marcamos como descubierta
+  tip.innerHTML = info(id);                     // texto del tooltip
+  const ancho = tip.offsetWidth, cont = svg.getBoundingClientRect().width; // ancho del tooltip y de la pieza
+  tip.style.left = Math.min(Math.max(x, ancho / 2 + 6), cont - ancho / 2 - 6) + "px"; // sin salirse por los lados
+  tip.style.top = y + "px";                     // encima del cubo
+  tip.classList.add("visible");                 // lo enseñamos
+  dibujar(T);                                   // redibujamos con el resaltado
+}
+function desactivar() {                         // quita el resaltado
+  activo = null;
+  document.querySelectorAll(".item").forEach(e => e.classList.remove("activo"));
+  tip.classList.remove("visible");
+  dibujar(T);
+}
+// Posición del tooltip encima de un cubo (convierte coordenadas del SVG a píxeles)
+function sobreCubo(id) {
+  const i = +id.slice(1), r = svg.getBoundingClientRect(), k = r.width / VBW; // escala real
+  const p = id[0] === "h" ? iso(posH[i][0] + 0.6, posH[i][1] + 0.6, zS + 1) : iso(posB[i][0] + 0.5, posB[i][1] + 0.5, zB + 1.05);
+  return [p[0] * k, p[1] * k];                  // en píxeles dentro de .pieza
+}
+// Ratón: cualquier cosa con data-u (cubos o ítems de la lista)
+// (usamos pointermove porque el dibujo se rehace al resaltar y "pointerout" daría falsos avisos)
+svg.addEventListener("pointermove", e => {
+  const el = e.target.closest("[data-u]");      // ¿estamos sobre una unidad?
+  const id = el ? el.dataset.u : null;           // su id, o nada
+  if (id === activo) return;                     // misma unidad: no hacemos nada
+  if (id) activar(id, ...sobreCubo(id));         // nueva unidad: resaltamos
+  else if (activo) desactivar();                 // fuera de cualquier unidad: quitamos
+});
+svg.addEventListener("pointerleave", () => { if (activo) desactivar(); }); // el ratón sale de la pieza
+// Toque (móvil y tablet): pulsar un cubo lo abre; pulsar fuera lo cierra
+svg.addEventListener("click", e => {
+  if (e.target.closest("#boton")) return;      // el botón va aparte
+  const el = e.target.closest("[data-u]");      // ¿se ha pulsado una unidad?
+  if (el) { if (el.dataset.u !== activo) activar(el.dataset.u, ...sobreCubo(el.dataset.u)); }
+  else if (activo) desactivar();                 // pulsar fuera: quitamos
+});
+// Teclado: recorrer la lista con Tab
+eti.addEventListener("focusin", e => { const el = e.target.closest("[data-u]"); if (el) activar(el.dataset.u, ...sobreCubo(el.dataset.u)); });
+eti.addEventListener("focusout", desactivar);
+
+// Abrir / cerrar con animación
+let destino = 0, anim = null;                   // a dónde vamos y animación en curso
+const reducir = matchMedia("(prefers-reduced-motion: reduce)").matches; // accesibilidad: sin animación
+// Textos de cada estado: 1 = kit abierto (llega), 0 = kit cerrado (no llega)
+const TXT = {
+  1: { t1: "What fits", t2: "in a kit", e1: "An emergency health kit can provide care for",
+       e2a: "10,000 people for 3 months.", e2b: "", e3: "See what's inside →",
+       c1: "people with medical care", c3: "of medicines and supplies", c17: "from clinic to hospital" },
+  0: { t1: "What's missing", t2: "without a kit", e1: "If the kit doesn't arrive, 10,000 people",
+       e2a: "may be left without medical care.", e2b: "", e3: "",
+       c1: "people without medical care", c3: "without medicines or supplies", c17: "that don't arrive" },
+};
+let modoTxt = 1; // qué textos se ven ahora
+function textos(a) {
+  if (a === modoTxt) return;                                  // ya están puestos
+  modoTxt = a;                                                // guardamos el nuevo estado
+  const els = document.querySelectorAll(".cambia");          // textos que cambian
+  els.forEach(e => e.classList.add("fuera"));                 // 1) se desvanecen
+  setTimeout(() => {
+    for (const [id, v] of Object.entries(TXT[a])) document.getElementById(id).textContent = v; // 2) cambiamos el texto
+    document.querySelectorAll(".num-c").forEach(n => n.style.fill = a ? ROJO : "#414141");     // cifras: rojo o gris (bajón)
+    els.forEach(e => e.classList.remove("fuera"));            // 3) vuelven a aparecer
+  }, 300);
+}
+function ir(a) {
+  textos(a);                                    // cambia el mensaje (bajón al cerrar)
+  destino = a;                                  // 1 = abrir, 0 = cerrar
+  document.getElementById("botonTxt").textContent = a ? "Close the kit" : "Open the kit"; // texto del botón
+  const fondo = document.getElementById("botonFondo");              // fondo del botón
+  fondo.style.fill = a ? "#FFFFFF" : ROJO;                           // cerrar = blanco · abrir = rojo
+  fondo.style.stroke = a ? "#000" : ROJO;                            // cerrar lleva borde negro
+  document.getElementById("botonTxt").style.fill = a ? "#000" : "#fff"; // texto negro o blanco
+  if (activo) desactivar();                     // quitamos resaltados
+  if (reducir) { T = a; dibujar(T); return; }   // sin animación si el usuario lo prefiere
+  cancelAnimationFrame(anim);                   // paramos la anterior
+  let prev = performance.now();                 // tiempo del fotograma anterior
+  const paso = ahora => {
+    const dt = (ahora - prev) / 2200; prev = ahora;               // la animación completa dura 2,2 s
+    T = destino ? Math.min(1, T + dt) : Math.max(0, T - dt * 1.6); // cerrar es un poco más rápido
+    dibujar(T);                                                    // pintamos
+    if (T !== destino) anim = requestAnimationFrame(paso);         // seguimos si no hemos llegado
+  };
+  anim = requestAnimationFrame(paso);           // arrancamos
+}
+const boton = document.getElementById("boton"); // el botón
+boton.addEventListener("click", () => ir(destino ? 0 : 1)); // clic: alterna
+boton.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); ir(destino ? 0 : 1); } }); // teclado
+
+if (MOVIL) {                                     // composición vertical para móvil
+  svg.setAttribute("viewBox", "0 0 1000 2920");  // lienzo alto
+  const pon = (id, a) => { const e = document.getElementById(id); for (const k in a) e.setAttribute(k, a[k]); };
+  pon("t1", { x: 60, y: 150, "font-size": 88 });              // titular
+  pon("t2", { x: 60, y: 242, "font-size": 88 });
+  pon("e1", { x: 60, y: 340, "font-size": 36 });               // entradilla
+  pon("e2", { x: 60, y: 388, "font-size": 36 });
+  const logo = svg.querySelector("image");                     // logo arriba a la derecha
+  logo.setAttribute("x", 700); logo.setAttribute("y", 70); logo.setAttribute("width", 240); logo.setAttribute("height", 78); // logo en inglés (más ancho)
+  pon("botonFondo", { x: 60, y: 430, width: 300, height: 80, rx: 0 }); // botón más grande para el dedo
+  pon("botonTxt", { x: 210, y: 479, "font-size": 24 });
+  pon("e3", { x: 384, y: 480, "font-size": 30 });
+  pon("linea", { x1: 60, y1: 2290, x2: 940, y2: 2290 });       // cifras, al final
+  pon("cifra", { x: 60, y: 2430, "font-size": 150 });
+  pon("c1", { x: 60, y: 2504, "font-size": 38 });
+  pon("n3", { x: 60, y: 2620, "font-size": 110 });
+  pon("lm", { x: 210, y: 2580, "font-size": 36 });
+  pon("c3", { x: 210, y: 2620, "font-size": 32 });
+  pon("n17", { x: 60, y: 2760, "font-size": 110 });
+  pon("lu", { x: 210, y: 2720, "font-size": 36 });
+  pon("c17", { x: 210, y: 2760, "font-size": 32 });
+  const f = document.getElementById("fuente");                 // fuente en dos líneas
+  f.textContent = ""; f.setAttribute("font-size", 22);
+  [["Sources: WHO, Interagency Emergency Health Kit 2024 (MSF uses", 2830],
+   ["its own version). Basic unit contents: 2017 edition.", 2860]].forEach(([t, y]) => {
+    const ts = document.createElementNS(NS, "tspan"); ts.setAttribute("x", 60); ts.setAttribute("y", y); ts.textContent = t; f.appendChild(ts);
+  });
+  pon("firma", { x: 60, y: 2898, "font-size": 24 });
+}
+// Si se cruza el límite móvil/escritorio (girar la tablet, redimensionar), recargamos con la composición adecuada
+matchMedia("(max-width: 759px)").addEventListener("change", () => location.reload());
+
+dibujar(0);                       // empezamos con el kit cerrado
+setTimeout(() => ir(1), 900);     // y se abre solo al cargar
+</script>
+</body>
+</html>

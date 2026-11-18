@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lo que cabe en un kit</title>
+<!-- Inter Tight: sustituto gratuito de Atlas Grotesk (la de MSF tiene licencia) -->
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  /* Fondo gris alrededor para que se vea el marco blanco de la pieza */
+  body { margin: 0; background: #d9d9d9; display: grid; place-items: center; min-height: 100vh; font-family: "Inter Tight", Arial, sans-serif; }
+  /* Contenedor relativo: el tooltip se posiciona dentro */
+  .pieza { position: relative; width: min(96vw, 1280px); }
+  /* La pieza: formato horizontal 16:9 (1600 × 900) */
+  svg { display: block; width: 100%; height: auto; background: #fff; box-shadow: 0 10px 40px rgba(0,0,0,.15); }
+  /* Todos los textos con la tipografía sustituta */
+  text { font-family: "Inter Tight", Arial, sans-serif; }
+  /* Botón y elementos interactivos: cursor de mano */
+  #boton, [data-u] { cursor: pointer; }
+  /* Quitar el contorno azul del foco y poner uno rojo de marca */
+  #boton:focus { outline: none; }
+  #boton:focus-visible rect { stroke: #000; stroke-width: 3; }
+  .item:focus { outline: none; }
+  /* Ítem de la lista resaltado (al pasar por encima su cubo) */
+  .item.activo text { fill: #EE0000; font-weight: 700; }
+  /* Etiquetas: aparecen con un fundido */
+  #etiquetas { transition: opacity .4s; }
+  /* Tooltip: caja blanca con borde negro, como sus pictogramas */
+  .tip { position: absolute; pointer-events: none; background: #fff; border: 2px solid #000; padding: 10px 12px; max-width: 230px;
+         font-size: 14px; line-height: 1.3; color: #414141; opacity: 0; transform: translate(-50%, calc(-100% - 14px)); transition: opacity .15s; }
+  .tip b { display: block; color: #000; font-size: 15px; margin-bottom: 2px; } /* título del tooltip */
+  .tip.visible { opacity: 1; }
+  .cambia { transition: opacity .3s; }      /* los textos que cambian se funden */
+  .cambia.fuera { opacity: 0; }             /* estado oculto durante el cambio */
+  .num-c { transition: fill .6s; }
+  #botonTxt { text-transform: uppercase; letter-spacing: .02em; } /* texto del botón en mayúsculas, como en msf.es */
+  #botonFondo, #botonTxt { transition: fill .3s, stroke .3s; } /* el botón cambia de color suavemente */          /* las cifras cambian de color suavemente */
+  .tip .num { display: block; font-size: 34px; font-weight: 500; color: #EE0000; line-height: 1; } /* cifra grande en rojo */
+  /* Modo incrustado (?embed): dentro de la página del proyecto, sin fondo gris ni sombra */
+  html.embed body { background: #fff; display: block; min-height: 0; margin: 0; }
+  html.embed .pieza { width: 100%; }
+  html.embed svg { box-shadow: none; }
+</style>
+<script>if (/embed/.test(location.search)) document.documentElement.classList.add("embed"); // ¿va dentro de otra página?</script>
+</head>
+<body>
+<div class="pieza">
+<svg id="svg" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" role="img"
+     aria-label="Infografía interactiva: un kit de emergencia sanitaria atiende a 10.000 personas durante 3 meses. Tiene 10 unidades básicas y 7 unidades de hospital.">
+
+  <!-- ===== TITULAR (arriba a la izquierda, dentro del marco blanco) ===== -->
+  <text id="t1" class="cambia" x="70" y="123" font-size="88" font-weight="500" fill="#000">Lo que cabe</text>
+  <text id="t2" class="cambia" x="70" y="213" font-size="88" font-weight="500" fill="#EE0000">en un kit</text>
+  <!-- Entradilla: negro, regular, alineada a la izquierda -->
+  <text id="e1" class="cambia" x="70" y="276" font-size="26" fill="#414141">Un kit de emergencia sanitaria permite atender a</text>
+  <text id="e2" class="cambia" x="70" y="310" font-size="26" fill="#414141"><tspan id="e2a" font-weight="500" fill="#000">10.000 personas durante 3 meses.</tspan><tspan id="e2b"></tspan></text>
+
+  <!-- ===== LOGO: esquina superior derecha, sobre blanco, con su área de protección ===== -->
+  <image href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKEAAABKCAYAAADT0jT3AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAABAJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1wTU06T3JpZ2luYWxEb2N1bWVudElEPSJ1dWlkOkFGMDQzNkVBOTAzQjExREI5MERGRDVDQ0RCRjczNDIzIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjgzOEU3ODA0NjBDNzExRTc4NURERUU0QzU3NzNCNjU4IiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjgzOEU3ODAzNjBDNzExRTc4NURERUU0QzU3NzNCNjU4IiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIElsbHVzdHJhdG9yIENDIDIwMTcgKE1hY2ludG9zaCkiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0idXVpZDpmOGJjNTM5My1mMzUzLWQzNGQtYjM3OS1kMmZlZmUzYjYwMGMiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6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" x="1340" y="60" width="190" height="87" />
+
+  <!-- ===== BOTÓN abrir / cerrar ===== -->
+  <g id="boton" role="button" tabindex="0" aria-label="Abrir o cerrar el kit">
+    <rect id="botonFondo" x="70" y="345" width="200" height="54" rx="0" fill="#EE0000" stroke="#EE0000" stroke-width="2"/> <!-- botón rojo recto, como los de msf.es -->
+    <text id="botonTxt" x="170" y="378" font-size="16" font-weight="500" fill="#fff" text-anchor="middle">Abrir el kit</text>
+  </g>
+  <!-- Texto de apoyo: qué puede hacer la persona -->
+  <text id="e3" class="cambia" x="290" y="378" font-size="20" font-weight="500" fill="#EE0000">Descubre qué contiene →</text>
+
+  <!-- Aquí el script dibuja la caja isométrica (se redibuja en cada fotograma) -->
+  <g id="ilustracion"></g>
+  <!-- Etiquetas de la derecha (se dibujan una vez) -->
+  <g id="etiquetas" opacity="0"></g>
+
+  <!-- ===== CIFRAS (columna izquierda) ===== -->
+  <line id="linea" x1="70" y1="430" x2="520" y2="430" stroke="#000" stroke-width="2"/>
+  <!-- Cifra principal: grande, con su frase debajo -->
+  <text id="cifra" class="num-c" x="70" y="548" font-size="128" font-weight="500" fill="#EE0000">0</text>
+  <text id="c1" class="cambia" x="70" y="588" font-size="26" font-weight="500" fill="#000">personas con atención médica</text>
+  <!-- Fila: 3 meses (cifra a la izquierda, explicación al lado) -->
+  <text id="n3" class="num-c" x="70" y="682" font-size="80" font-weight="500" fill="#EE0000">3</text>
+  <text id="lm" x="190" y="650" font-size="24" font-weight="500" fill="#000">meses</text>
+  <text id="c3" class="cambia" x="190" y="678" font-size="22" fill="#414141">con medicinas y material</text>
+  <!-- Fila: 17 unidades -->
+  <text id="n17" class="num-c" x="70" y="778" font-size="80" font-weight="500" fill="#EE0000">17</text>
+  <text id="lu" x="190" y="746" font-size="24" font-weight="500" fill="#000">unidades</text>
+  <text id="c17" class="cambia" x="190" y="774" font-size="22" fill="#414141">de la consulta al hospital</text>
+  <!-- Fuente del dato (MSF pide veracidad y precisión) -->
+  <text id="fuente" x="70" y="840" font-size="12" fill="#8a8a8a">Fuentes: OMS, Interagency Emergency Health Kit 2024 (MSF utiliza su propia versión). Contenido de la unidad básica: edición 2017.</text>
+  <!-- Aviso: es un ejercicio, no comunicación oficial -->
+  <text id="firma" x="70" y="862" font-size="14" fill="#8a8a8a">Propuesta no oficial · <tspan font-weight="700" fill="#414141">Tania de Azevedo</tspan></text>
+</svg>
+<!-- Tooltip (HTML, encima del SVG) -->
+<div class="tip" id="tip" role="status" aria-live="polite"></div>
+</div>
+
+<script>
+// ---------- Ajustes de la perspectiva isométrica ----------
+// En pantallas estrechas (móvil) la pieza pasa a una composición vertical
+const MOVIL = window.innerWidth < 760;     // ¿pantalla estrecha?
+const VBW = MOVIL ? 1000 : 1600;           // ancho del lienzo (viewBox)
+const S = MOVIL ? 52 : 36;                 // tamaño de 1 unidad en píxeles
+const CX = MOVIL ? 500 : 860;              // centro horizontal del dibujo
+const CY = MOVIL ? 1130 : 575;             // centro vertical del dibujo
+const NEGRO = "#000";    // contorno negro, como en sus pictogramas
+const ROJO = "#EE0000";  // rojo MSF
+const NS = "http://www.w3.org/2000/svg"; // espacio de nombres para crear elementos SVG
+const W = 7, D = 5, H = 3;               // ancho, fondo y alto de la caja
+const zB = 4.6, zS = 10.1;               // alturas finales de las dos capas (kit abierto)
+
+// Textos de cada unidad de hospital (fuente: OMS, IEHK 2024)
+const HOSP = [
+  ["Oral", "Medicamentos orales para planta, consultas externas o clínicas móviles."],
+  ["Inyectables", "Medicamentos inyectables para planta de hospital."],
+  ["Salud mental", "Psicofármacos para profesionales con formación específica."],
+  ["Cadena de frío", "Medicamentos que tienen que viajar y guardarse en frío."],
+  ["Profilaxis (PEP)", "Tratamiento preventivo tras una posible exposición al VIH."],
+  ["Malaria", "Incluye lo necesario para preparar y administrar artesunato."],
+  ["Controlados", "Medicamentos sujetos a un control especial."],
+];
+
+// Las 10 unidades básicas cuentan una consulta, paso a paso.
+// Cada una lleva LO MISMO; cada cubo descubre una cosa de lo que hay dentro.
+// Fuente: lista de la unidad básica IEHK (edición 2017), catálogo de la Cruz Roja.
+const BASICA = [
+  ["500",   "fichas de salud",             "Cada persona que llega tiene su ficha, guardada en su propia bolsa de plástico."],
+  ["5",     "termómetros digitales",       "La primera pregunta de cualquier consulta: ¿hay fiebre?"],
+  ["3.000", "comprimidos de paracetamol",  "Para bajar la fiebre y calmar el dolor."],
+  ["3.000", "comprimidos de amoxicilina",  "Un antibiótico básico para tratar infecciones."],
+  ["200",   "sobres de suero oral",        "Un sobre en un litro de agua limpia para tratar la deshidratación por diarrea."],
+  ["1.000", "comprimidos de zinc",         "Se administran junto al suero oral a niñas y niños con diarrea."],
+  ["200",   "comprimidos de albendazol",   "Contra los parásitos intestinales."],
+  ["50",    "tubos de pomada para los ojos","Tetraciclina para tratar infecciones oculares."],
+  ["700",   "vendas y gasas",              "200 vendas y 500 compresas para limpiar y cubrir heridas."],
+  ["1",     "bidón plegable de 15 litros", "Para el agua. Junto con jabón y una guía de tratamiento en español, inglés y francés."],
+];
+const vistos = new Set(); // unidades básicas ya descubiertas
+
+// Posición de cada unidad de hospital: fila de 4 y fila de 3 (la 2.ª desplazada para centrarla)
+const posH = [];
+for (const [fila, cols] of [[0, 4], [1, 3]]) for (let c = 0; c < cols; c++) posH.push([0.6 + c * 1.6 + fila * 0.8, 0.9 + fila * 1.7]);
+// Posición de cada unidad básica: 2 filas × 5 columnas
+const posB = [];
+for (let f = 0; f < 2; f++) for (let c = 0; c < 5; c++) posB.push([0.35 + c * 1.35, 1.2 + f * 1.4]);
+
+// Convierte un punto 3D (x, y, z) a un punto 2D de la pantalla
+const iso = (x, y, z) => [CX + (x - y) * S * 0.866, CY + (x + y) * S * 0.5 - z * S]; // 0.866 = cos 30°
+
+// Crea un polígono SVG a partir de puntos 3D
+function cara(g, puntos, relleno, extra = {}) {
+  const p = document.createElementNS(NS, "polygon");                          // nuevo polígono
+  p.setAttribute("points", puntos.map(pt => iso(...pt).join(",")).join(" ")); // puntos en 2D
+  p.setAttribute("fill", relleno);                                             // color
+  p.setAttribute("stroke", NEGRO);                                             // contorno negro
+  p.setAttribute("stroke-width", 2.5);                                         // grosor
+  p.setAttribute("stroke-linejoin", "round");                                  // esquinas suaves
+  for (const k in extra) p.setAttribute(k, extra[k]);                          // atributos extra
+  g.appendChild(p);                                                            // lo añadimos
+}
+
+// Dibuja un cubo (sus 3 caras visibles) dentro de un grupo con un identificador
+function cubo(g, x, y, z, w, d, h, col, id) {
+  const c = document.createElementNS(NS, "g"); // grupo del cubo
+  c.dataset.u = id;                            // id para saber qué unidad es al pasar el ratón
+  cara(c, [[x,y,z+h],[x+w,y,z+h],[x+w,y+d,z+h],[x,y+d,z+h]], col[0]); // arriba
+  cara(c, [[x,y+d,z],[x+w,y+d,z],[x+w,y+d,z+h],[x,y+d,z+h]], col[1]); // frontal izquierda
+  cara(c, [[x+w,y,z],[x+w,y+d,z],[x+w,y+d,z+h],[x+w,y,z+h]], col[2]); // frontal derecha
+  g.appendChild(c);                            // añadimos el cubo
+  return c;                                    // y lo devolvemos (para ponerle el número)
+}
+
+// Crea un texto SVG
+function texto(g, x, y, contenido, tam, peso = 400, color = "#414141", ancla = "start") {
+  const t = document.createElementNS(NS, "text");               // nuevo texto
+  Object.entries({ x, y, "font-size": tam, "font-weight": peso, fill: color, "text-anchor": ancla })
+    .forEach(([k, v]) => t.setAttribute(k, v));                  // sus atributos
+  t.textContent = contenido;                                     // contenido
+  g.appendChild(t);                                              // lo añadimos
+  return t;                                                      // y lo devolvemos
+}
+
+// Solapa de la tapa: bisagra de a→b, se abre en dirección "dir" con ángulo th
+function solapa(g, a, b, dir, largo, th, relleno) {
+  const c = Math.cos(th), s = Math.sin(th);                            // giro de la solapa
+  const v = [dir[0] * c * largo, dir[1] * c * largo, s * largo];       // vector de la solapa
+  cara(g, [a, b, [b[0]+v[0], b[1]+v[1], b[2]+v[2]], [a[0]+v[0], a[1]+v[1], a[2]+v[2]]], relleno);
+}
+
+// ---------- Utilidades de animación ----------
+const tramo = (t, a, b) => Math.min(1, Math.max(0, (t - a) / (b - a)));    // 0→1 dentro de un tramo
+const suave = u => u < .5 ? 4*u*u*u : 1 - Math.pow(-2*u + 2, 3) / 2;        // aceleración suave
+const mezcla = (a, b, u) => a + (b - a) * u;                                 // interpolar
+
+let T = 0;          // progreso actual (0 = cerrado, 1 = abierto)
+let activo = null;  // unidad bajo el ratón, p. ej. "h3" o "b7"
+const dib = document.getElementById("ilustracion"); // grupo del dibujo
+
+// ---------- Dibuja toda la caja para un progreso t ----------
+function dibujar(t) {
+  dib.innerHTML = "";                                      // vaciamos el fotograma anterior
+  const th = suave(tramo(t, 0, 0.3)) * 130 * Math.PI / 180; // ángulo de las solapas (0° → 130°)
+  const abierta = th > Math.PI / 2;                         // ¿solapas ya por detrás?
+  // Solapas: [bisagra inicio, bisagra fin, dirección al cerrar, largo, color]
+  const sIzq = [[0,0,H],[0,D,H],[1,0],3.5,"#EDEDED"];  // izquierda (detrás)
+  const sFon = [[0,0,H],[W,0,H],[0,1],2.5,"#EDEDED"];  // fondo (detrás)
+  const sDer = [[W,0,H],[W,D,H],[-1,0],3.5,"#F5F5F5"]; // derecha (delante)
+  const sFre = [[0,D,H],[W,D,H],[0,-1],2.5,"#FFFFFF"]; // frontal (delante)
+  const pinta = s => solapa(dib, s[0], s[1], s[2], s[3], th, s[4]); // dibuja una solapa
+
+  if (abierta) { pinta(sIzq); pinta(sFon); }                       // abiertas: las de atrás van primero
+  cara(dib, [[0,0,0],[0,D,0],[0,D,H],[0,0,H]], "#E6E6E6");         // pared interior izquierda
+  cara(dib, [[0,0,0],[W,0,0],[W,0,H],[0,0,H]], "#EDEDED");         // pared interior del fondo
+  cara(dib, [[0,0,0],[W,0,0],[W,D,0],[0,D,0]], "#F5F5F5");         // suelo
+
+  // Guías discontinuas (solo con el kit abierto)
+  for (const [x, y] of [[0,0],[W,0],[0,D],[W,D]]) {
+    const a = iso(x, y, H + 0.2), b = iso(x, y, 11.4);             // de la caja hacia arriba
+    const l = document.createElementNS(NS, "line");                // línea
+    Object.entries({ x1: a[0], y1: a[1], x2: b[0], y2: b[1], stroke: "#9a9a9a", "stroke-width": 1.5,
+      "stroke-dasharray": "4 6", opacity: tramo(t, 0.7, 1) }).forEach(([k, v]) => l.setAttribute(k, v));
+    dib.appendChild(l);                                            // la añadimos
+  }
+
+  // Capa 1: 10 unidades básicas (rojas). Suben después que las de hospital (están debajo)
+  posB.forEach(([x, y], i) => {
+    const u = suave(tramo(t, 0.42 + i * 0.012, 0.8 + i * 0.012));  // cada una sale un poco después
+    const on = activo === "b" + i, visto = vistos.has(i);           // ¿activa? ¿ya descubierta?
+    const z = mezcla(0.05, zB, u) + (on ? 0.35 : 0);                // si está activa, sube un poco
+    const col = on ? ["#000", "#222", "#111"]                       // activa = negra
+              : visto ? ["#FFFFFF", "#B81B19", "#951512"]           // descubierta = tapa blanca ("abierta")
+              : [ROJO, "#B81B19", "#951512"];                       // sin descubrir = roja
+    const c = cubo(dib, x, y, z, 1, 1, 0.7, col, "b" + i);          // dibujamos la unidad
+    const p = iso(x + 0.5, y + 0.5, z + 0.7);                       // centro de su tapa
+    texto(c, p[0], p[1] + 5, i + 1, 14, 700, visto && !on ? ROJO : "#fff", "middle"); // su número de paso
+  });
+
+  // Capa 2: 7 unidades de hospital (blancas y numeradas). Salen primero
+  posH.forEach(([x, y], i) => {
+    const u = suave(tramo(t, 0.22 + i * 0.02, 0.62 + i * 0.02));    // escalonadas
+    const z = mezcla(0.8, zS, u);                                   // de dentro de la caja a arriba
+    const on = activo === "h" + i;                                  // ¿está activa?
+    const c = cubo(dib, x, y, z, 1.2, 1.2, 1, on ? [ROJO, "#B81B19", "#951512"] : ["#FFFFFF", "#F0F0F0", "#DADADA"], "h" + i);
+    const p = iso(x + 0.6, y + 0.6, z + 1);                         // centro de su cara de arriba
+    texto(c, p[0], p[1] + 7, i + 1, 20, 700, on ? "#fff" : ROJO, "middle"); // su número
+  });
+
+  cara(dib, [[0,D,0],[W,D,0],[W,D,H],[0,D,H]], "#FFFFFF");         // pared frontal izquierda
+  cara(dib, [[W,0,0],[W,D,0],[W,D,H],[W,0,H]], "#F5F5F5");         // pared frontal derecha
+
+
+  if (!abierta) { pinta(sIzq); pinta(sDer); pinta(sFon); pinta(sFre); } // cerrada: la tapa tapa todo
+  else { pinta(sDer); pinta(sFre); }                                     // abierta: solo las de delante
+
+  // Contador de personas
+  if (destino) document.getElementById("cifra").textContent = Math.round(10000 * suave(tramo(t, 0.55, 1))).toLocaleString("es-ES"); // al abrir, cuenta
+  document.getElementById("etiquetas").setAttribute("opacity", tramo(t, 0.8, 1)); // etiquetas al final
+}
+
+// ---------- Etiquetas de la derecha (una sola vez) ----------
+const eti = document.getElementById("etiquetas"); // grupo de etiquetas
+const LX = 1190;                                    // columna de los textos
+function conector(ancla, y) {                       // línea en codo: dibujo → texto
+  const pl = document.createElementNS(NS, "polyline");
+  pl.setAttribute("points", `${ancla[0]},${ancla[1]} ${LX-30},${ancla[1]} ${LX-30},${y} ${LX-14},${y}`);
+  pl.setAttribute("fill", "none"); pl.setAttribute("stroke", NEGRO); pl.setAttribute("stroke-width", 1.5);
+  eti.appendChild(pl);                              // la añadimos
+  const pt = document.createElementNS(NS, "circle"); // puntito sobre el dibujo
+  pt.setAttribute("cx", ancla[0]); pt.setAttribute("cy", ancla[1]); pt.setAttribute("r", 5);
+  eti.appendChild(pt);                              // lo añadimos
+}
+let progreso;                                    // texto que cambia al explorar
+if (!MOVIL) {
+  // Hospital: título, subtítulo y lista de 7
+  conector(iso(6.6, 1.5, zS + 0.5), 222);
+  texto(eti, LX, 230, "7 unidades de hospital", 26, 700, "#000");
+  texto(eti, LX, 258, "Médicos y personal especializado", 18);
+  HOSP.forEach(([nombre], i) => {
+    const g = document.createElementNS(NS, "g");       // grupo del ítem
+    g.setAttribute("class", "item");                    // clase para resaltarlo
+    g.dataset.u = "h" + i;                              // enlazado con su cubo
+    g.setAttribute("tabindex", "0");                    // se puede recorrer con el teclado
+    texto(g, LX, 292 + i * 23, `${i + 1}  ${nombre}`, 18); // número + nombre
+    eti.appendChild(g);                                 // lo añadimos
+  });
+  // Básicas
+  conector(iso(6.75, 1.7, zB + 0.35), 522);
+  texto(eti, LX, 530, "10 unidades básicas", 26, 700, "#000");
+  texto(eti, LX, 560, "Cada una atiende a 1.000 personas.", 18);
+  texto(eti, LX, 584, "Juntas, atienden a 10.000.", 18, 700, "#000"); // en palabras sencillas: cuadra con el 10.000
+  texto(eti, LX, 608, "Enfermería y agentes de salud", 18);
+  progreso = texto(eti, LX, 640, "Explora qué lleva cada unidad", 18, 700, ROJO); // cambia según lo descubierto
+  // La caja
+  conector(iso(W, 2, 1.25), 692); // punto en la pared derecha, a la misma altura que el texto → línea recta
+  texto(eti, LX, 700, "El kit", 26, 700, "#000");
+  texto(eti, LX, 730, "Preparado antes de la emergencia,", 18);
+  texto(eti, LX, 754, "almacenado y listo para salir.", 18);
+} else {
+  // MÓVIL: las etiquetas van debajo de la caja, sin conectores.
+  // Una muestra de color al lado de cada título la relaciona con el dibujo.
+  const ML = 60;                                       // margen izquierdo
+  const muestra = (y, relleno) => {                    // cuadrado de color
+    const r = document.createElementNS(NS, "rect");
+    Object.entries({ x: ML, y: y - 32, width: 34, height: 34, fill: relleno, stroke: NEGRO, "stroke-width": 3 })
+      .forEach(([k, v]) => r.setAttribute(k, v));
+    eti.appendChild(r);
+  };
+  // Hospital
+  muestra(1530, "#FFFFFF");
+  texto(eti, ML + 50, 1530, "7 unidades de hospital", 44, 700, "#000");
+  texto(eti, ML, 1578, "Médicos y personal especializado", 32);
+  HOSP.forEach(([nombre], i) => {                      // lista en dos columnas (4 + 3)
+    const g = document.createElementNS(NS, "g");
+    g.setAttribute("class", "item"); g.dataset.u = "h" + i; g.setAttribute("tabindex", "0");
+    texto(g, ML + (i < 4 ? 0 : 440), 1634 + (i % 4) * 46, `${i + 1}  ${nombre}`, 32);
+    eti.appendChild(g);
+  });
+  // Básicas
+  muestra(1860, ROJO);
+  texto(eti, ML + 50, 1860, "10 unidades básicas", 44, 700, "#000");
+  texto(eti, ML, 1908, "Cada una atiende a 1.000 personas.", 32);
+  texto(eti, ML, 1952, "Juntas, atienden a 10.000.", 32, 700, "#000");
+  texto(eti, ML, 1996, "Enfermería y agentes de salud", 32);
+  progreso = texto(eti, ML, 2046, "Explora qué lleva cada unidad", 32, 700, ROJO);
+  // La caja
+  muestra(2130, "#F5F5F5");
+  texto(eti, ML + 50, 2130, "El kit", 44, 700, "#000");
+  texto(eti, ML, 2178, "Preparado antes de la emergencia,", 32);
+  texto(eti, ML, 2220, "almacenado y listo para salir.", 32);
+}
+
+// ---------- Interacción ----------
+const svg = document.getElementById("svg");   // el SVG
+const tip = document.getElementById("tip");   // el tooltip
+function info(id) {                             // contenido del tooltip según la unidad
+  const i = +id.slice(1);                        // número de unidad
+  if (id[0] === "h") return `<b>${i + 1}. ${HOSP[i][0]}</b>${HOSP[i][1]}`; // hospital: nombre + qué es
+  const [n, que, historia] = BASICA[i];          // básica: cifra, qué es, historia
+  return `<span class="num">${n}</span><b>${que}</b>${historia}`; // la cifra grande y el texto
+}
+function contar() {                              // actualiza el progreso de la historia
+  if (vistos.size === 10) {                      // ¡todas descubiertas!
+    progreso.textContent = "Esto lleva cada una de las 10."; // el remate: deja claro que es el contenido de UNA unidad
+  } else if (vistos.size) progreso.textContent = `${vistos.size} de 10 unidades descubiertas`; // contador
+}
+
+function activar(id, x, y) {                   // resalta una unidad y muestra su tooltip
+  if (T < 0.95) return;                         // solo con el kit abierto
+  activo = id;                                  // guardamos cuál es
+  document.querySelectorAll(".item").forEach(e => e.classList.toggle("activo", e.dataset.u === id)); // resalta en la lista
+  if (id[0] === "b") { vistos.add(+id.slice(1)); contar(); } // básica: la marcamos como descubierta
+  tip.innerHTML = info(id);                     // texto del tooltip
+  const ancho = tip.offsetWidth, cont = svg.getBoundingClientRect().width; // ancho del tooltip y de la pieza
+  tip.style.left = Math.min(Math.max(x, ancho / 2 + 6), cont - ancho / 2 - 6) + "px"; // sin salirse por los lados
+  tip.style.top = y + "px";                     // encima del cubo
+  tip.classList.add("visible");                 // lo enseñamos
+  dibujar(T);                                   // redibujamos con el resaltado
+}
+function desactivar() {                         // quita el resaltado
+  activo = null;
+  document.querySelectorAll(".item").forEach(e => e.classList.remove("activo"));
+  tip.classList.remove("visible");
+  dibujar(T);
+}
+// Posición del tooltip encima de un cubo (convierte coordenadas del SVG a píxeles)
+function sobreCubo(id) {
+  const i = +id.slice(1), r = svg.getBoundingClientRect(), k = r.width / VBW; // escala real
+  const p = id[0] === "h" ? iso(posH[i][0] + 0.6, posH[i][1] + 0.6, zS + 1) : iso(posB[i][0] + 0.5, posB[i][1] + 0.5, zB + 1.05);
+  return [p[0] * k, p[1] * k];                  // en píxeles dentro de .pieza
+}
+// Ratón: cualquier cosa con data-u (cubos o ítems de la lista)
+// (usamos pointermove porque el dibujo se rehace al resaltar y "pointerout" daría falsos avisos)
+svg.addEventListener("pointermove", e => {
+  const el = e.target.closest("[data-u]");      // ¿estamos sobre una unidad?
+  const id = el ? el.dataset.u : null;           // su id, o nada
+  if (id === activo) return;                     // misma unidad: no hacemos nada
+  if (id) activar(id, ...sobreCubo(id));         // nueva unidad: resaltamos
+  else if (activo) desactivar();                 // fuera de cualquier unidad: quitamos
+});
+svg.addEventListener("pointerleave", () => { if (activo) desactivar(); }); // el ratón sale de la pieza
+// Toque (móvil y tablet): pulsar un cubo lo abre; pulsar fuera lo cierra
+svg.addEventListener("click", e => {
+  if (e.target.closest("#boton")) return;      // el botón va aparte
+  const el = e.target.closest("[data-u]");      // ¿se ha pulsado una unidad?
+  if (el) { if (el.dataset.u !== activo) activar(el.dataset.u, ...sobreCubo(el.dataset.u)); }
+  else if (activo) desactivar();                 // pulsar fuera: quitamos
+});
+// Teclado: recorrer la lista con Tab
+eti.addEventListener("focusin", e => { const el = e.target.closest("[data-u]"); if (el) activar(el.dataset.u, ...sobreCubo(el.dataset.u)); });
+eti.addEventListener("focusout", desactivar);
+
+// Abrir / cerrar con animación
+let destino = 0, anim = null;                   // a dónde vamos y animación en curso
+const reducir = matchMedia("(prefers-reduced-motion: reduce)").matches; // accesibilidad: sin animación
+// Textos de cada estado: 1 = kit abierto (llega), 0 = kit cerrado (no llega)
+const TXT = {
+  1: { t1: "Lo que cabe", t2: "en un kit", e1: "Un kit de emergencia sanitaria permite atender a",
+       e2a: "10.000 personas durante 3 meses.", e2b: "", e3: "Descubre qué contiene →",
+       c1: "personas con atención médica", c3: "con medicinas y material", c17: "de la consulta al hospital" },
+  0: { t1: "Lo que falta", t2: "sin un kit", e1: "Si el kit no llega, 10.000 personas",
+       e2a: "pueden quedarse sin atención médica.", e2b: "", e3: "",
+       c1: "personas sin atención médica", c3: "sin medicinas ni material", c17: "que no llegan" },
+};
+let modoTxt = 1; // qué textos se ven ahora
+function textos(a) {
+  if (a === modoTxt) return;                                  // ya están puestos
+  modoTxt = a;                                                // guardamos el nuevo estado
+  const els = document.querySelectorAll(".cambia");          // textos que cambian
+  els.forEach(e => e.classList.add("fuera"));                 // 1) se desvanecen
+  setTimeout(() => {
+    for (const [id, v] of Object.entries(TXT[a])) document.getElementById(id).textContent = v; // 2) cambiamos el texto
+    document.querySelectorAll(".num-c").forEach(n => n.style.fill = a ? ROJO : "#414141");     // cifras: rojo o gris (bajón)
+    els.forEach(e => e.classList.remove("fuera"));            // 3) vuelven a aparecer
+  }, 300);
+}
+function ir(a) {
+  textos(a);                                    // cambia el mensaje (bajón al cerrar)
+  destino = a;                                  // 1 = abrir, 0 = cerrar
+  document.getElementById("botonTxt").textContent = a ? "Cerrar el kit" : "Abrir el kit"; // texto del botón
+  const fondo = document.getElementById("botonFondo");              // fondo del botón
+  fondo.style.fill = a ? "#FFFFFF" : ROJO;                           // cerrar = blanco · abrir = rojo
+  fondo.style.stroke = a ? "#000" : ROJO;                            // cerrar lleva borde negro
+  document.getElementById("botonTxt").style.fill = a ? "#000" : "#fff"; // texto negro o blanco
+  if (activo) desactivar();                     // quitamos resaltados
+  if (reducir) { T = a; dibujar(T); return; }   // sin animación si el usuario lo prefiere
+  cancelAnimationFrame(anim);                   // paramos la anterior
+  let prev = performance.now();                 // tiempo del fotograma anterior
+  const paso = ahora => {
+    const dt = (ahora - prev) / 2200; prev = ahora;               // la animación completa dura 2,2 s
+    T = destino ? Math.min(1, T + dt) : Math.max(0, T - dt * 1.6); // cerrar es un poco más rápido
+    dibujar(T);                                                    // pintamos
+    if (T !== destino) anim = requestAnimationFrame(paso);         // seguimos si no hemos llegado
+  };
+  anim = requestAnimationFrame(paso);           // arrancamos
+}
+const boton = document.getElementById("boton"); // el botón
+boton.addEventListener("click", () => ir(destino ? 0 : 1)); // clic: alterna
+boton.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); ir(destino ? 0 : 1); } }); // teclado
+
+if (MOVIL) {                                     // composición vertical para móvil
+  svg.setAttribute("viewBox", "0 0 1000 2920");  // lienzo alto
+  const pon = (id, a) => { const e = document.getElementById(id); for (const k in a) e.setAttribute(k, a[k]); };
+  pon("t1", { x: 60, y: 150, "font-size": 100 });              // titular
+  pon("t2", { x: 60, y: 252, "font-size": 100 });
+  pon("e1", { x: 60, y: 340, "font-size": 36 });               // entradilla
+  pon("e2", { x: 60, y: 388, "font-size": 36 });
+  const logo = svg.querySelector("image");                     // logo arriba a la derecha
+  logo.setAttribute("x", 780); logo.setAttribute("y", 66); logo.setAttribute("width", 160); logo.setAttribute("height", 73);
+  pon("botonFondo", { x: 60, y: 430, width: 300, height: 80, rx: 0 }); // botón más grande para el dedo
+  pon("botonTxt", { x: 210, y: 479, "font-size": 24 });
+  pon("e3", { x: 384, y: 480, "font-size": 30 });
+  pon("linea", { x1: 60, y1: 2290, x2: 940, y2: 2290 });       // cifras, al final
+  pon("cifra", { x: 60, y: 2430, "font-size": 150 });
+  pon("c1", { x: 60, y: 2484, "font-size": 38 });
+  pon("n3", { x: 60, y: 2620, "font-size": 110 });
+  pon("lm", { x: 210, y: 2580, "font-size": 36 });
+  pon("c3", { x: 210, y: 2620, "font-size": 32 });
+  pon("n17", { x: 60, y: 2760, "font-size": 110 });
+  pon("lu", { x: 210, y: 2720, "font-size": 36 });
+  pon("c17", { x: 210, y: 2760, "font-size": 32 });
+  const f = document.getElementById("fuente");                 // fuente en dos líneas
+  f.textContent = ""; f.setAttribute("font-size", 22);
+  [["Fuentes: OMS, Interagency Emergency Health Kit 2024 (MSF utiliza", 2830],
+   ["su propia versión). Contenido de la unidad básica: edición 2017.", 2860]].forEach(([t, y]) => {
+    const ts = document.createElementNS(NS, "tspan"); ts.setAttribute("x", 60); ts.setAttribute("y", y); ts.textContent = t; f.appendChild(ts);
+  });
+  pon("firma", { x: 60, y: 2898, "font-size": 24 });
+}
+// Si se cruza el límite móvil/escritorio (girar la tablet, redimensionar), recargamos con la composición adecuada
+matchMedia("(max-width: 759px)").addEventListener("change", () => location.reload());
+
+dibujar(0);                       // empezamos con el kit cerrado
+setTimeout(() => ir(1), 900);     // y se abre solo al cargar
+</script>
+</body>
+</html>
