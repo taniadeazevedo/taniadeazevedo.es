@@ -99,9 +99,7 @@ window.PROJECTS = [
     desc: 'Web app de diario de comidas que hice mientras aprendía el CRUD en un curso de fullstack: calorías y macros, recetas y lista de la compra.',
     image: 'imgs/proyectos/fit-bites-v2.jpg',
     alt: 'Fit Bites: tres pantallas de la app — portada, diario del día con calorías y macros, y resumen semanal',
-    url: 'https://taniadeazevedo.github.io/fit-bites/',   // por ahora lleva directo a la app; la página de caso está en fit-bites/ (borrador)
-    external: true,
-    cta: 'Ver proyecto'
+    url: 'fit-bites/'
   },
   {
     title: 'Portafolio',
@@ -112,7 +110,8 @@ window.PROJECTS = [
     alt: 'Este portafolio en un monitor: la portada con «Diseñadora de branding y experiencias digitales» y el vídeo de Robyn a la derecha',
     url: 'https://github.com/taniadeazevedo/taniadeazevedo.es',
     external: true,
-    cta: 'Ver código'
+    cta: 'Ver código',
+    hidden: true   // oculto por ahora: quitar esta línea para volver a mostrarlo
   },
   {
     title: 'La Nueva Línea',

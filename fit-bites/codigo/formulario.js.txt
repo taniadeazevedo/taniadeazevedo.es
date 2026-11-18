@@ -1,0 +1,44 @@
+async function enviarFormulario(e) {                       // "e" es el evento "submit"
+    e.preventDefault();                                    // evita que el formulario recargue la página (su comportamiento normal)
+
+    const f = e.target;                                    // e.target = el formulario que se envió
+    const faltanIngredientes = ingredientesForm.length === 0; // true si no hay ningún ingrediente
+
+    if (!f.checkValidity() || faltanIngredientes) {        // si algún campo obligatorio está mal, O faltan ingredientes...
+        f.classList.add('was-validated');                  // ...Bootstrap pinta los errores en rojo
+        document.querySelector('#errorIngredientes').classList.toggle('d-none', !faltanIngredientes); // y enseña el aviso de ingredientes solo si faltan
+        return;                                            // ...y no seguimos
+    }
+
+    const datos = {                                        // montamos el objeto con la receta
+        nombre: f.nombre.value.trim(),                     // .trim() quita espacios sobrantes
+        categoria: f.categoria.value,
+        tipo: f.tipo.value,                                // el tipo de plato elegido en el desplegable
+        tiempo: Number(f.tiempo.value),                    // los campos dan texto: Number() los convierte en números
+        kcal: Number(f.kcal.value),
+        proteina: Number(f.proteina.value),
+        carbohidratos: Number(f.carbohidratos.value),
+        grasas: Number(f.grasas.value),
+        ingredientes: ingredientesForm,
+        foto: fotoForm
+    };
+
+    try {                                                  // intentamos guardar; si algo falla, saltamos al catch
+        if (recetaEditando) {                              // si estábamos editando...
+            await actualizarReceta({ ...datos, id: recetaEditando.id });   // PUT: editar ("..." copia los datos y le añadimos el id)
+        } else {                                           // si era nueva...
+            await guardarReceta(datos);                                     // POST: crear
+        }
+
+        const mensaje = recetaEditando ? 'Cambios guardados' : 'Receta guardada'; // el mensaje según el caso
+
+        estado.recetas = await cargarRecetas();            // volvemos a pedir la lista al servidor (ya con el cambio)
+        mostrarRecetas();                                  // y la volvemos a dibujar
+
+        bootstrap.Modal.getInstance(document.querySelector('#modalReceta')).hide(); // cerramos la ventana del formulario
+        mostrarAviso(mensaje);                             // y enseñamos el aviso verde
+    } catch (error) {                                      // si algo falló (servidor apagado, etc.)...
+        console.error('Error al guardar la receta:', error); // ...lo apuntamos en la consola (para ti)
+        mostrarAviso('No se pudo guardar. ¿Está encendido json-server?'); // ...y avisamos a la persona
+    }
+}

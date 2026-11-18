@@ -1,0 +1,99 @@
+/* =====================================================================
+   FIT BITES · estilos.css
+   Lenguaje visual inspirado en el concepto "Food Calorie App" de Dribbble
+   y en los diarios de comida más usados (MyFitnessPal, Yazio...):
+   - fondo gris claro y tarjetas blancas muy redondeadas, sin bordes duros
+   - un acento LIMA para lo importante (botones, día elegido, barras),
+     siempre con texto oscuro encima para que se lea bien
+   - una tarjeta destacada en lima suave con el dato principal (kcal)
+   - números grandes y rotundos (Plus Jakarta Sans, extra-negrita)
+   - en el móvil, barra de pestañas abajo con el "+" central
+   Cómo se lee un CSS:  selector { propiedad: valor; }
+   Va DESPUÉS de Bootstrap: lo que pongamos aquí pisa lo suyo.
+   ===================================================================== */
+
+/* ---------- 1. COLORES Y MEDIDAS (variables) ----------
+   Todo el diseño usa estas variables: para cambiar un color, se cambia aquí */
+:root {
+  --fondo: #EDEFEC;           /* fondo de la página: gris claro con un toque verde */
+  --superficie: #FFFFFF;      /* tarjetas, ventanas y casillas */
+  --superficie-2: #F3F5F1;    /* fondos suaves (al pasar el ratón, carriles de las barras) */
+  --borde: #E4E7E1;           /* líneas finas (separadores dentro de las tarjetas) */
+  --texto: #151A12;           /* texto principal (casi negro, verdoso) */
+  --texto-suave: #5E665A;     /* texto secundario (contraste 5,6:1 sobre blanco) */
+
+  --lima: #C6E35B;            /* EL ACENTO: botones, día elegido, barras del gráfico */
+  --lima-hover: #B5D446;      /* lima al pasar el ratón */
+  --lima-suave: #EEF6D2;      /* lima muy suave: la tarjeta destacada y los iconos */
+  --sobre-lima: #1A230D;      /* el texto que va ENCIMA de la lima (casi negro: contraste 12:1) */
+  --verde: #4A7012;           /* verde oliva oscuro: textos y detalles en color (5,9:1 sobre blanco) */
+  --verde-oscuro: #2E4A0A;    /* la barra de "hoy" en el gráfico y el anillo */
+
+  --marca: var(--verde);      /* (nombre que usan los textos de color de la marca) */
+
+  --aviso: #B4471F;           /* "te has pasado": naranja quemado (5:1 sobre blanco) */
+  --peligro: #C0392B;         /* borrar */
+
+  --macro-p: #E05578;         /* proteína: frambuesa */
+  --macro-c: #E9A23B;         /* carbohidratos: ámbar */
+  --macro-g: #4C82E0;         /* grasas: azul */
+  --macro-p-suave: #FCE8EE;   /* los mismos, muy suaves (fondos de iconos) */
+  --macro-c-suave: #FDF1DF;
+  --macro-g-suave: #E5EEFC;
+
+  --radio: 22px;              /* esquinas de las tarjetas: muy redondeadas, como en la referencia */
+  --radio-sm: 14px;           /* esquinas de botones y casillas */
+  --sombra: 0 1px 2px rgba(21, 26, 18, .04), 0 4px 16px rgba(21, 26, 18, .04);  /* sombra muy suave: separa la tarjeta del fondo */
+  --sombra-flotante: 0 12px 40px rgba(21, 26, 18, .14);  /* para lo que flota (barra de abajo, ventanas) */
+
+  /* Bootstrap lee sus propias variables: las apuntamos a las nuestras */
+  --bs-body-bg: var(--fondo);
+  --bs-body-color: var(--texto);
+  --bs-body-font-family: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif; /* si no carga, la del sistema */
+  --bs-body-font-size: .95rem;
+  --bs-border-color: var(--borde);
+  --bs-secondary-color: var(--texto-suave);          /* .text-body-secondary */
+  --bs-emphasis-color: var(--texto);
+  --bs-link-color: var(--verde);
+  --bs-link-color-rgb: 74, 112, 18;                  /* el mismo verde en formato r, g, b (Bootstrap lo necesita así) */
+  --bs-link-hover-color: var(--verde-oscuro);
+  --bs-link-hover-color-rgb: 46, 74, 10;
+  --bs-focus-ring-color: rgba(122, 166, 30, .35);
+}
+
+/* TEMA OSCURO: Bootstrap pone data-bs-theme="dark" en <html>; aquí cambiamos los valores */
+[data-bs-theme="dark"] {
+  --fondo: #0F120E;
+  --superficie: #181C16;
+  --superficie-2: #20251D;
+  --borde: #2A3026;
+  --texto: #EEF2EA;
+  --texto-suave: #A3AD9C;
+
+  --lima-suave: #232C15;      /* la tarjeta destacada, en lima muy oscuro */
+  --verde: #B9D85E;           /* en oscuro, los textos de color van en lima claro */
+  --verde-oscuro: #E3F59C;    /* la barra de "hoy", en lima muy claro */
+
+  --aviso: #F08A6C;
+  --peligro: #F07F6A;
+
+  --macro-p: #F06A8B;
+  --macro-c: #F0B04D;
+  --macro-g: #6E9BEF;
+  --macro-p-suave: #34202A;
+  --macro-c-suave: #33291A;
+  --macro-g-suave: #1D2840;
+
+  --sombra: none;
+  --sombra-flotante: 0 12px 40px rgba(0, 0, 0, .55);
+
+  --bs-body-bg: var(--fondo);
+  --bs-body-color: var(--texto);
+  --bs-border-color: var(--borde);
+  --bs-secondary-color: var(--texto-suave);
+  --bs-emphasis-color: var(--texto);
+  --bs-link-color: var(--verde);
+  --bs-link-color-rgb: 185, 216, 94;
+  --bs-link-hover-color: #D6EC8F;
+  --bs-link-hover-color-rgb: 214, 236, 143;
+}

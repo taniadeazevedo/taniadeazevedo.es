@@ -1,0 +1,13 @@
+    // botón "Sí, borrar" de la ventana de confirmación
+    document.querySelector('#btnConfirmarBorrado').addEventListener('click', async () => {
+        try {                                              // intentamos borrar
+            await borrarReceta(idParaBorrar);              // DELETE al servidor
+
+            estado.recetas = await cargarRecetas();        // pedimos la lista actualizada
+            mostrarRecetas();                              // la dibujamos
+            mostrarAviso('Receta borrada');                // avisamos
+        } catch (error) {                                  // si falla...
+            console.error('Error al borrar la receta:', error); // ...consola
+            mostrarAviso('No se pudo borrar. ¿Está encendido json-server?'); // ...aviso
+        }
+    });

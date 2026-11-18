@@ -343,3 +343,33 @@ html[data-t="lila"] .v2-card-link:hover .v2-card-media video, html[data-t="lila"
 .v2-pill-int svg { width: 13px; height: 13px; flex-shrink: 0; color: #d9c8ff; }
 .v2-pill-int--centro { right: auto; left: 50%; transform: translateX(-50%); top: clamp(12px, 2.2cqi, 22px); }   /* en la portada de SUD CLUB va en el centro, entre la temperatura y el estado */
 @media (max-width: 600px) { .v2-pill-int { height: 24px; font-size: 10px; padding: 0 10px 0 9px; } .v2-pill-int svg { width: 11px; height: 11px; } }
+
+/* ============================================================
+   Fit Bites (página de caso): pasos del CRUD, tablas y línea de tiempo adaptados al fondo claro
+   ============================================================ */
+html[data-t="lila"] .v2-cs-verb b { color: var(--v2-ink); background: var(--v2-soft); border-color: transparent; }
+html[data-t="lila"] .v2-cs-step h3, html[data-t="lila"] .v2-cs-timeline strong, html[data-t="lila"] .v2-cs-table td:first-child { color: var(--v2-ink); }
+html[data-t="lila"] .v2-cs-tablewrap { background: rgb(29 21 48 / 3%); border-color: rgb(29 21 48 / 14%); }
+html[data-t="lila"] .v2-cs-table th { background: rgb(29 21 48 / 5%); }
+html[data-t="lila"] .v2-cs-table td { border-top-color: rgb(29 21 48 / 12%); }
+html[data-t="lila"] .v2-cs-table code, html[data-t="lila"] .v2-cs-text code, html[data-t="lila"] .v2-cs-body p code { color: var(--v2-lilac); }
+html[data-t="lila"] .v2-cs-sw { border-color: rgb(29 21 48 / 25%); }
+html[data-t="lila"] .v2-cs-figure { background: #e8e0f6; border-color: rgb(29 21 48 / 12%); }
+html[data-t="lila"] .v2-cs-step, html[data-t="lila"] .v2-cs-timeline li { border-top-color: rgb(29 21 48 / 12%); }
+html[data-t="lila"] .v2-cs-code { border-color: rgb(29 21 48 / 18%); }
+
+/* Fit Bites: dentro de la tarjeta oscura de «Mi papel», las pills y el rótulo van en claro (antes salían oscuros sobre oscuro) */
+html[data-t="lila"] .v2-cs-papel .v2-cs-pills span { color: #f1ebff; background: rgb(255 255 255 / 9%); border-color: rgb(255 255 255 / 22%); }
+html[data-t="lila"] .v2-cs-papel > .v2-cs-goals-title { color: rgb(241 235 255 / 66%); }
+
+/* ============================================================
+   Fit Bites: la misma base que el resto de casos (título de cada sección centrado, texto centrado, sin líneas horizontales)
+   ============================================================ */
+html[data-t="lila"] .v2-cs-sec:is(#crud, #esqueleto, #modos, #datos, #tema, #modulos, #aprendizajes, #pantallas) .v2-cs-row { grid-template-columns: minmax(0, 1fr); justify-items: center; border-top: 0; }
+html[data-t="lila"] .v2-cs-sec:is(#crud, #esqueleto, #modos, #datos, #tema, #modulos, #aprendizajes, #pantallas) .v2-cs-label { justify-content: center; }
+html[data-t="lila"] .v2-cs-sec:is(#crud, #esqueleto, #modos, #datos, #tema, #modulos, #aprendizajes) .v2-cs-body { width: 100%; }
+html[data-t="lila"] .v2-cs-sec:is(#crud, #esqueleto, #modos, #datos, #tema, #modulos, #aprendizajes) .v2-cs-body > p:not(.v2-cs-codenote):not(.v2-cs-caption) { max-width: 46em; margin-left: auto; margin-right: auto; text-align: center; font-size: clamp(16px, 1.3vw, 19px); line-height: 1.65; }
+html[data-t="lila"] .v2-cs-step, html[data-t="lila"] .v2-cs-timeline li { border-top: 0; }
+html[data-t="lila"] .v2-cs-step { padding: clamp(18px, 2.4vw, 30px) 0; }
+html[data-t="lila"] .v2-cs-step:first-child { padding-top: 0; }
+html[data-t="lila"] .v2-cs-sec#crud .v2-cs-codenote { max-width: 46em; margin: 8px auto 0; text-align: center; }

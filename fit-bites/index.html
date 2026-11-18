@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html data-t="lila" lang="es" data-theme="dark" data-root="../">
+<head>
+    <meta charset="UTF-8" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon.ico" sizes="48x48" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <title>Fit Bites – Proyecto · Tania de Azevedo</title>
+  <meta name="description" content="Fit Bites: web app de diario de comidas que construí mientras hacía un curso de desarrollo fullstack, para aprender el CRUD: crear, leer, editar y borrar datos." />
+  <link rel="canonical" href="https://taniadeazevedo.es/fit-bites/" />
+  <meta property="og:title" content="Fit Bites – Tania de Azevedo" />
+  <meta property="og:description" content="Web app de diario de comidas hecha mientras aprendía el CRUD en un curso de desarrollo fullstack." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://taniadeazevedo.es/fit-bites/" />
+  <meta property="og:image" content="https://taniadeazevedo.es/fit-bites/imgs/portada-crud.jpg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f6f2fd" />
+  <meta name="color-scheme" content="light" />
+  <script>document.documentElement.setAttribute("data-theme","dark");</script>
+  <link rel="preload" as="font" type="font/woff2" href="../fonts/strichpunkt/strichpunkt-sans-latin-wght-normal.woff2" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/v2.css" />
+  <link rel="stylesheet" href="../css/v2-case.css" />
+  <link rel="stylesheet" href="../css/v2-lila.css" />
+</head>
+
+<body class="v2-page v2-case">
+  <a class="v2-skip" href="#contenido">Saltar al contenido</a>
+
+  <header class="v2-nav" id="v2-nav">
+    <div class="v2-nav-in">
+      <div class="v2-brand">
+        <a class="v2-logo" href="../" aria-label="Tania de Azevedo, ir al inicio">
+          <span class="v2-logo-mark" aria-hidden="true"></span>
+          <span class="v2-logo-word">T<span class="v2-logo-rest">ania</span><sup>®</sup></span>
+        </a>
+        <span class="v2-nav-sep" aria-hidden="true"></span>
+        <a class="v2-nav-label" href="../proyectos/">Proyectos</a>
+      </div>
+      <nav class="v2-links" aria-label="Navegación principal">
+        <a href="../#experience">Experiencia</a>
+        <a href="../#contact">Contacto</a>
+      </nav>
+      <a class="v2-nav-cta" href="../files/CV-Tania-de-Azevedo-Ribeiro.pdf" target="_blank" rel="noopener noreferrer" download>Descargar CV <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5v8M4.8 7.6L8 10.8l3.2-3.2M3 13h10"/></svg></a>
+      <button class="v2-burger" id="v2-burger" type="button" aria-expanded="false" aria-controls="v2-menu" aria-label="Abrir menú"><span></span></button>
+    </div>
+  </header>
+
+  <div class="v2-menu" id="v2-menu" aria-hidden="true">
+    <nav aria-label="Menú móvil">
+      <a href="../proyectos/">Proyectos</a>
+      <a href="../#experience">Experiencia</a>
+      <a href="../#contact">Contacto</a>
+    </nav>
+    <div class="v2-menu-foot"><a class="v2-menu-cv" href="../files/CV-Tania-de-Azevedo-Ribeiro.pdf" target="_blank" rel="noopener noreferrer" download>Descargar CV <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5v8M4.8 7.6L8 10.8l3.2-3.2M3 13h10"/></svg></a><small>Bizkaia · taniadeazevedoribeiro@gmail.com</small></div>
+  </div>
+
+  <main id="contenido">
+    <section class="v2-cs-cover">
+      <div class="v2-cs-wrap">
+        <p class="v2-cs-crumb"><a href="../proyectos/">Proyectos</a><span aria-hidden="true">/</span><span>Fit Bites</span></p>
+        <div class="v2-cs-head">
+          <div>
+            <p class="v2-cs-kicker">Web app · proyecto de aprendizaje</p>
+            <h1 class="v2-cs-title">Fit Bites</h1>
+          </div>
+          <p class="v2-cs-lede">Una web app para apuntar lo que comes y ver al momento tus calorías, proteína, carbohidratos y grasas. La construí mientras hacía un curso de desarrollo fullstack, para aprender a fondo el <strong>CRUD</strong>: crear, leer, editar y borrar datos.</p>
+        </div>
+        <figure class="v2-cs-hero">
+          <img src="imgs/portada-crud.jpg" alt="Fit Bites: el diario de la app en un móvil junto al código de datos.js con la función que crea una receta (POST), y las cuatro operaciones del CRUD: crear, leer, actualizar y borrar" width="2160" height="1485" />
+        </figure>
+      </div>
+    </section>
+
+    <section class="v2-cs-sec" id="contexto">
+      <div class="v2-cs-wrap">
+        <div class="v2-cs-row v2-cs-row--ctx">
+          <div class="v2-cs-label"><span class="v2-cs-num">01</span><h2 class="v2-cs-h2">Contexto y objetivos</h2></div>
+          <div class="v2-cs-body v2-cs-ctx">
+            <div class="v2-cs-col">
+              <p class="v2-cs-goals-title">Contexto</p>
+            <p>Fit Bites es el proyecto con el que aprendí el <strong>CRUD</strong> mientras hacía un curso de desarrollo fullstack: manejar los datos de una aplicación real, y no los de un ejercicio suelto. El tema es la comida y sus macros, un terreno con datos de sobra con los que practicar.</p>
+            <p>Empezó siendo una lista de recetas con calorías y macros, y fue creciendo hasta convertirse en un <strong>diario completo por comidas</strong>, con vista semanal, lista de la compra y modo oscuro.</p>
+            
+            </div>
+            <div class="v2-cs-col">
+              <p class="v2-cs-goals-title">Objetivos</p>
+            <ul class="v2-cs-goals">
+              <li><p>Entender el CRUD: pedir y enviar datos con fetch y los métodos GET, POST, PUT y DELETE contra una API REST.</p></li>
+              <li><p>Aprender JavaScript de verdad: módulos, async/await, localStorage y pintar la interfaz a partir de los datos.</p></li>
+              <li><p>Que se sintiera como una app: diseño responsive, modo claro y oscuro, y que se pueda instalar en el móvil.</p></li>
+            </ul>
+            
+            </div>
+          </div>
+          <div class="v2-cs-papel">
+            <div class="v2-cs-papel-in">
+              <div class="v2-cs-papel-main">
+                <p class="v2-cs-goals-title">Mi papel</p>
+                <ul class="v2-cs-roles">
+                <li>Diseño de interfaz</li>
+                <li>Desarrollo front-end</li>
+                <li>CRUD y datos</li>
+                </ul>
+              </div>
+              <div class="v2-cs-papel-side">
+                <p class="v2-cs-role">Proyecto propio de aprendizaje, hecho con HTML, CSS y JavaScript (módulos), Bootstrap 5, json-server, Firebase, app instalable (PWA) y GitHub Pages.</p>
+                <div class="v2-cs-links">
+                  <a class="v2-btn v2-btn-ghost" href="https://taniadeazevedo.github.io/fit-bites/" target="_blank" rel="noopener noreferrer">Ver la app <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5l7-7M5.5 4.5h6v6"/></svg></a>
+                  <a class="v2-btn v2-btn-ghost" href="https://github.com/taniadeazevedo/fit-bites" target="_blank" rel="noopener noreferrer">Ver el código <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5l7-7M5.5 4.5h6v6"/></svg></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="v2-cs-sec" id="crud">
+      <div class="v2-cs-wrap">
+        <div class="v2-cs-row">
+          <div class="v2-cs-label"><span class="v2-cs-num">02</span><h2 class="v2-cs-h2">El CRUD, paso a paso</h2></div>
+          <div class="v2-cs-body">
+            <p>Las recetas son el corazón del CRUD. Viven en una API REST de pruebas (<code>json-server</code>) y la web habla con ella usando <code>fetch</code> y <code>async/await</code>. Cada letra de CRUD es un verbo HTTP distinto, y cada uno tiene su propia función en <code>datos.js</code>.</p>
+            <ol class="v2-cs-steps" style="margin-top: clamp(26px, 3vw, 40px)">
+              <li class="v2-cs-step">
+                <div>
+                  <p class="v2-cs-verb"><b>POST</b> Create</p>
+                  <h3>Crear una receta</h3>
+                  <p class="v2-cs-text">El formulario recoge nombre, tipo, ingredientes, macros y foto. La función convierte la receta en texto JSON y la envía; el servidor le pone el <code>id</code> y la devuelve.</p>
+                </div>
+                <pre class="v2-cs-code"><code><span class="k">export async function</span> guardarReceta(receta) {
+  <span class="k">const</span> respuesta = <span class="k">await</span> fetch(URL_RECETAS, {
+    method: <span class="s">'POST'</span>,
+    body: JSON.stringify(receta),
+    headers: { <span class="s">'Content-type'</span>: <span class="s">'application/json'</span> }
+  });
+  <span class="k">if</span> (!respuesta.ok) <span class="k">throw new</span> Error(<span class="s">'No se pudo guardar'</span>);
+  <span class="k">return await</span> respuesta.json();   <span class="d">// trae el id nuevo</span>
+}</code></pre>
+              </li>
+              <li class="v2-cs-step">
+                <div>
+                  <p class="v2-cs-verb"><b>GET</b> Read</p>
+                  <h3>Leer las recetas</h3>
+                  <p class="v2-cs-text">Al abrir la web pide la lista. Si el servidor responde, se puede editar; si está apagado, el <code>catch</code> lo recoge y la web lee el archivo <code>recetas.json</code> en modo lectura.</p>
+                </div>
+                <pre class="v2-cs-code"><code><span class="k">export async function</span> cargarRecetas() {
+  <span class="k">if</span> (EN_LOCAL) {
+    <span class="k">try</span> {
+      <span class="k">const</span> respuesta = <span class="k">await</span> fetch(URL_RECETAS);
+      <span class="k">if</span> (respuesta.ok) {
+        estado.modoLectura = <span class="k">false</span>;
+        <span class="k">return await</span> respuesta.json();
+      }
+    } <span class="k">catch</span> (error) { <span class="d">/* json-server apagado */</span> }
+  }
+  estado.modoLectura = <span class="k">true</span>;
+  <span class="k">const</span> respuesta = <span class="k">await</span> fetch(ARCHIVO_RECETAS);
+  <span class="k">return</span> (<span class="k">await</span> respuesta.json()).recetas;
+}</code></pre>
+              </li>
+              <li class="v2-cs-step">
+                <div>
+                  <p class="v2-cs-verb"><b>PUT</b> Update</p>
+                  <h3>Editar una receta</h3>
+                  <p class="v2-cs-text">Es el mismo formulario que para crear, pero con los datos ya rellenos. La dirección lleva el <code>id</code> de la receta y se envía la receta completa con los cambios.</p>
+                </div>
+                <pre class="v2-cs-code"><code><span class="k">export async function</span> actualizarReceta(receta) {
+  <span class="k">const</span> respuesta = <span class="k">await</span> fetch(URL_RECETAS + receta.id, {
+    method: <span class="s">'PUT'</span>,
+    body: JSON.stringify(receta),
+    headers: { <span class="s">'Content-type'</span>: <span class="s">'application/json'</span> }
+  });
+  <span class="k">if</span> (!respuesta.ok) <span class="k">throw new</span> Error(<span class="s">'No se pudo actualizar'</span>);
+  <span class="k">return await</span> respuesta.json();
+}</code></pre>
+              </li>
+              <li class="v2-cs-step">
+                <div>
+                  <p class="v2-cs-verb"><b>DELETE</b> Delete</p>
+                  <h3>Borrar una receta</h3>
+                  <p class="v2-cs-text">Antes de borrar se abre una ventana de confirmación. Lo que ya apuntaste en el diario no cambia: cada línea guarda su propia copia de los valores.</p>
+                </div>
+                <pre class="v2-cs-code"><code><span class="k">export async function</span> borrarReceta(id) {
+  <span class="k">const</span> respuesta = <span class="k">await</span> fetch(URL_RECETAS + id, {
+    method: <span class="s">'DELETE'</span>
+  });
+  <span class="k">if</span> (!respuesta.ok) <span class="k">throw new</span> Error(<span class="s">'No se pudo borrar'</span>);
+}</code></pre>
+              </li>
+            </ol>
+            <p class="v2-cs-codenote">Código simplificado: en el proyecto cada línea lleva un comentario que explica qué hace.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-cs-sec" id="esqueleto">
+      <div class="v2-cs-wrap">
+        <div class="v2-cs-row">
+          <div class="v2-cs-label"><span class="v2-cs-num">03</span><h2 class="v2-cs-h2">El esqueleto, por dentro</h2></div>
+          <div class="v2-cs-body">
+            <p>Fit Bites nació como una herramienta para aprender el CRUD, así que lo más honesto es enseñar cómo está hecha. Aquí tienes su código real: el HTML, el CSS y los archivos de JavaScript que forman el núcleo, tal como los escribí, <strong>con mis comentarios de línea</strong>. Con las etiquetas <strong>C · R · U · D</strong> se iluminan las líneas que crean, leen, actualizan y borran; y con el interruptor puedes ver solo el código.</p>
+          </div>
+        </div>
+      </div>
+      <div class="v2-cs-wrap cv-wrap">
+        <div class="cv" id="visorCodigo" data-carpeta="codigo/">
+          <noscript><p>Activa JavaScript para ver el código aquí, o míralo en <a href="https://github.com/taniadeazevedo/fit-bites" target="_blank" rel="noopener noreferrer">GitHub</a>.</p></noscript>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-cs-sec" id="modos">
+      <div class="v2-cs-wrap">
+        <div class="v2-cs-row">
+          <div class="v2-cs-label"><span class="v2-cs-num">04</span><h2 class="v2-cs-h2">Un código, dos modos</h2></div>
+          <div class="v2-cs-body">
+            <p>En GitHub Pages no hay <code>json-server</code>, así que la misma web detecta dónde está abierta (<code>EN_LOCAL</code>) y se adapta. Así se puede publicar la app y seguir practicando el CRUD completo en el ordenador.</p>
+            <div class="v2-cs-tablewrap">
+              <table class="v2-cs-table">
+                <thead><tr><th></th><th>En mi ordenador</th><th>Publicada (GitHub Pages)</th></tr></thead>
+                <tbody>
+                  <tr><td>De dónde salen las recetas</td><td><code>json-server</code> (API REST)</td><td>archivo <code>json/recetas.json</code></td></tr>
+                  <tr><td>Crear, editar y borrar</td><td>Sí: POST, PUT y DELETE</td><td>No: modo lectura</td></tr>
+                  <tr><td>Botones de editar</td><td>Activos</td><td>Desactivados</td></tr>
+                  <tr><td>Diario, objetivo y compra</td><td colspan="2">Igual en los dos: se guardan en el navegador</td></tr>
+                  <tr><td>Service worker (offline)</td><td>No se registra, para no estorbar</td><td>Sí: la app se abre sin internet</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-cs-sec" id="datos">
+      <div class="v2-cs-wrap">
+        <div class="v2-cs-row">
+          <div class="v2-cs-label"><span class="v2-cs-num">05</span><h2 class="v2-cs-h2">Dónde vive cada dato</h2></div>
+          <div class="v2-cs-body">
+            <p>Lo que pertenece a la app (recetas y alimentos) y lo que pertenece a cada persona (su diario) se tratan distinto. Lo personal pasa siempre por un único módulo, <code>almacen.js</code>, y nunca se toca <code>localStorage</code> desde otro sitio.</p>
+            <div class="v2-cs-tablewrap">
+              <table class="v2-cs-table">
+                <thead><tr><th>Dato</th><th>Dónde</th><th>Detalle</th></tr></thead>
+                <tbody>
+                  <tr><td>Recetas</td><td><code>json-server</code> o <code>recetas.json</code></td><td>Es lo único con CRUD completo.</td></tr>
+                  <tr><td>Alimentos</td><td><code>alimentos.json</code></td><td>Unos 60, por 100 g en crudo. Solo lectura.</td></tr>
+                  <tr><td>Diario</td><td><code>localStorage</code></td><td>Los últimos 120 días, por comidas. Cada línea guarda una copia de sus valores.</td></tr>
+                  <tr><td>Objetivo, favoritas, compra y alimentos propios</td><td><code>localStorage</code></td><td>Se leen y guardan con <code>JSON.parse</code> y <code>JSON.stringify</code>.</td></tr>
+                  <tr><td>Tema claro u oscuro</td><td><code>localStorage</code></td><td>Solo en ese navegador.</td></tr>
+                  <tr><td>Nube (opcional)</td><td>Firebase</td><td>Authentication y Firestore para sincronizar entre dispositivos. El código está hecho; en la versión publicada aún no está activado.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-cs-sec" id="tema">
+      <div class="v2-cs-wrap">
+        <div class="v2-cs-row">
+          <div class="v2-cs-label"><span class="v2-cs-num">06</span><h2 class="v2-cs-h2">Modo claro y oscuro</h2></div>
+          <div class="v2-cs-body">
+            <p>Todos los colores de la interfaz son <strong>variables CSS</strong>. El tema oscuro no es otro diseño: es la misma hoja de estilos con los valores cambiados, activada con un atributo en <code>&lt;html&gt;</code>.</p>
+            <ul class="v2-cs-goals">
+              <li><p><strong>Se decide antes de pintar.</strong> Un pequeño script en la cabecera lee la elección guardada, o el modo del sistema (<code>prefers-color-scheme</code>), y pone el atributo antes de que se vea nada. Así no hay parpadeo blanco.</p></li>
+              <li><p><strong>El botón solo cambia el atributo.</strong> <code>aplicarTema()</code> pone <code>data-bs-theme</code> en <code>&lt;html&gt;</code>, cambia el icono (luna o sol), actualiza el texto para lectores de pantalla y guarda la elección.</p></li>
+              <li><p><strong>Contraste cuidado en los dos.</strong> El verde de los textos pasa a lima claro en oscuro, y la tarjeta destacada y los fondos de las macros se oscurecen para que todo se siga leyendo bien.</p></li>
+            </ul>
+            <div class="v2-cs-tablewrap">
+              <table class="v2-cs-table">
+                <thead><tr><th>Variable</th><th>Claro</th><th>Oscuro</th></tr></thead>
+                <tbody>
+                  <tr><td><code>--fondo</code></td><td><span class="v2-cs-sw" style="background:#EDEFEC"></span>#EDEFEC</td><td><span class="v2-cs-sw" style="background:#0F120E"></span>#0F120E</td></tr>
+                  <tr><td><code>--superficie</code></td><td><span class="v2-cs-sw" style="background:#FFFFFF"></span>#FFFFFF</td><td><span class="v2-cs-sw" style="background:#181C16"></span>#181C16</td></tr>
+                  <tr><td><code>--texto</code></td><td><span class="v2-cs-sw" style="background:#151A12"></span>#151A12</td><td><span class="v2-cs-sw" style="background:#EEF2EA"></span>#EEF2EA</td></tr>
+                  <tr><td><code>--verde</code> (textos de color)</td><td><span class="v2-cs-sw" style="background:#4A7012"></span>#4A7012</td><td><span class="v2-cs-sw" style="background:#B9D85E"></span>#B9D85E</td></tr>
+                  <tr><td><code>--lima</code> (acento)</td><td colspan="2"><span class="v2-cs-sw" style="background:#C6E35B"></span>#C6E35B, el mismo en los dos temas</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="v2-cs-gal">
+        <div class="v2-cs-wrap">
+          <figure class="v2-cs-figure"><img src="imgs/tema-claro-oscuro.jpg" alt="Fit Bites en modo claro y oscuro: el diario del día y la vista semanal, cada uno en los dos temas" width="2160" height="1200" loading="lazy" decoding="async" /></figure>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="v2-cs-sec" id="pantallas">
+      <div class="v2-cs-wrap">
+        <div class="v2-cs-row"><div class="v2-cs-label"><span class="v2-cs-num">07</span><h2 class="v2-cs-h2">Pantallas</h2></div></div>
+      </div>
+      <div class="v2-cs-gal">
+        <div class="v2-cs-phones">
+          <figure><img src="imgs/movil-diario.jpg" alt="Diario del día: anillo de calorías, proteína, carbohidratos y grasas" loading="lazy" decoding="async" /><figcaption>Diario</figcaption></figure>
+          <figure><img src="imgs/movil-semana.jpg" alt="Vista semanal con gráficos de calorías y proteína" loading="lazy" decoding="async" /><figcaption>Semana</figcaption></figure>
+          <figure><img src="imgs/movil-recetas.jpg" alt="Recetas con buscador, filtros y macros" loading="lazy" decoding="async" /><figcaption>Recetas</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-cs-sec" id="modulos">
+      <div class="v2-cs-wrap">
+        <div class="v2-cs-row">
+          <div class="v2-cs-label"><span class="v2-cs-num">08</span><h2 class="v2-cs-h2">El código en módulos</h2></div>
+          <div class="v2-cs-body">
+            <p>Sin frameworks: JavaScript puro dividido en módulos ES (<code>import</code> y <code>export</code>). Cada archivo atiende una zona y lo único compartido, las recetas cargadas, vive en <code>estado.js</code>.</p>
+            <div class="v2-cs-tablewrap">
+              <table class="v2-cs-table">
+                <thead><tr><th>Archivo</th><th>Qué hace</th></tr></thead>
+                <tbody>
+                  <tr><td><code>app.js</code></td><td>Punto de entrada: arranca cada parte.</td></tr>
+                  <tr><td><code>datos.js</code></td><td>El CRUD: <code>fetch</code> con GET, POST, PUT y DELETE.</td></tr>
+                  <tr><td><code>almacen.js</code></td><td>Todo lo personal: <code>localStorage</code> y, si hay cuenta, la nube.</td></tr>
+                  <tr><td><code>dia.js</code></td><td>Diario por comidas, vista semanal y gráficos SVG.</td></tr>
+                  <tr><td><code>recetas.js</code>, <code>detalle.js</code>, <code>formulario.js</code></td><td>Tarjetas, filtros, raciones y el formulario de crear y editar.</td></tr>
+                  <tr><td><code>compra.js</code></td><td>Lista de la compra.</td></tr>
+                  <tr><td><code>interfaz.js</code></td><td>Tema claro u oscuro y barra de pestañas del móvil.</td></tr>
+                  <tr><td><code>sw.js</code></td><td>Service worker: copia para usar la app sin internet.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- MÁS PROYECTOS: 3 relacionados (se eligen solos desde js/projects-data.js) -->
+    <section class="v2-cs-related" aria-label="Más proyectos">
+      <div class="v2-cs-wrap">
+        <div class="v2-rel-head">
+          <h2 class="v2-rel-h2">Más proyectos</h2>
+          <a class="v2-projects-all" href="../proyectos/">Ver todos<span class="v2-more-txt"> los proyectos</span> <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5l7-7M5.5 4.5h6v6"/></svg></a>
+        </div>
+        <ul class="v2-rel-grid" id="v2-related" data-current="fit-bites/"></ul>
+        <noscript><p class="v2-rel-nojs"><a href="../proyectos/">Ver todos los proyectos</a></p></noscript>
+      </div>
+    </section>
+  </main>
+
+  <footer class="v2-foot" aria-label="Pie de página">
+    <div class="v2-foot-in">
+      <p class="v2-foot-copy">© Tania de Azevedo · 2026</p>
+      <nav class="v2-foot-icons" aria-label="Contacto">
+          <a href="mailto:taniadeazevedoribeiro@gmail.com" aria-label="Escríbeme un email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M4 7.5l8 6 8-6"/></svg></a>
+          <a href="https://www.linkedin.com/in/tania-de-azevedo-ribeiro" target="_blank" rel="noreferrer" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+        </nav>
+    </div>
+  </footer>
+
+  <script src="../js/v2.js" defer></script>
+  <script src="../js/codigo.js" defer></script>
+  <script src="../js/avisos.js" defer></script>
+  <script src="../js/projects-data.js" defer></script>
+  <script src="../js/related.js" defer></script>
+</body>
+</html>
