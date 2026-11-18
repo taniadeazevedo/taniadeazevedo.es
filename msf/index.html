@@ -40,6 +40,9 @@
   .num { color: var(--rojo); font-weight: 700; font-size: 14px; letter-spacing: .08em; text-transform: uppercase; }
   .texto { max-width: 720px; }
   .dos { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+  .recuadro { background: var(--fondo); padding: 34px 34px 38px; }     /* recuadro gris claro */
+  .recuadro::before { content: ""; display: block; width: 28px; height: 3px; background: var(--rojo); margin-bottom: 18px; } /* línea roja corta */
+  .recuadro .texto { margin-bottom: 0; }
   @media (max-width: 760px) { .dos { grid-template-columns: 1fr; gap: 24px; } }
 
   /* Piezas: se ven enteras, en cuadrícula, sin tener que pulsar nada */
@@ -65,10 +68,27 @@
   .pista::-webkit-scrollbar { display: none; }
   .pista figure { scroll-snap-align: start; }
   /* Revista (efecto de pasar páginas) */
-  .revista-marco { margin-top: 30px; }
-  .revista { max-width: 880px; margin: 0 auto; }
-  .revista-ctrl { display: flex; justify-content: center; align-items: center; margin-top: 22px; }
-  .revista-pag { min-width: 160px; text-align: center; font-size: 14px; font-weight: 500; color: var(--negro); }
+  /* Visor de la memoria (escenario gris con marco, como el anuario de Open House Madrid) */
+  .visor-revista { position: relative; margin-top: 30px; background: #E9E9E9; border: 1px solid #DCDCDC; padding: 46px 84px 92px; }
+  .revista { max-width: 860px; margin: 0 auto; transition: filter .3s, transform .6s ease; }
+  .revista.sombra-der { transform: translateX(-25%); }  /* portada sola: centrada */
+  .revista.sombra-izq { transform: translateX(25%); }   /* contraportada sola: centrada */
+  .revista.sombra-der { filter: drop-shadow(10px 8px 12px rgba(0,0,0,.16)); }   /* portada: sombra solo a la derecha */
+  .revista.sombra-izq { filter: drop-shadow(-10px 8px 12px rgba(0,0,0,.16)); }  /* contraportada: sombra solo a la izquierda */
+  .revista.sombra-doble { filter: drop-shadow(0 8px 12px rgba(0,0,0,.14)); }    /* doble página: sombra suave abajo */
+  .hoja-r { background: #fff; }
+  .hoja-r img { display: block; width: 100%; height: 100%; object-fit: cover; user-select: none; }
+  .lado { position: absolute; top: calc(50% - 40px); transform: translateY(-50%); width: 56px; height: 56px; display: grid; place-items: center; background: none; border: 0; color: #555; cursor: pointer; z-index: 3; }
+  .lado:hover { color: var(--negro); }
+  .lado:disabled { color: #C2C2C2; cursor: default; }
+  .lado.r-ant { left: 14px; } .lado.r-sig { right: 14px; }
+  .barra-revista { position: absolute; left: 50%; bottom: 26px; transform: translateX(-50%); display: flex; align-items: center; gap: 4px; background: #fff; border: 1px solid #DCDCDC; box-shadow: 0 2px 8px rgba(0,0,0,.06); padding: 6px 8px 6px 16px; }
+  .revista-pag { min-width: 64px; font-size: 13px; color: var(--texto); font-variant-numeric: tabular-nums; }
+  .herr { width: 36px; height: 36px; display: grid; place-items: center; background: none; border: 0; color: #555; cursor: pointer; }
+  .herr:hover { color: var(--negro); background: var(--fondo); }
+  .visor-revista:fullscreen { background: #E9E9E9; display: flex; flex-direction: column; justify-content: center; padding: 40px 90px 100px; }
+  .visor-revista:fullscreen .revista { width: 100%; max-width: min(96vw, calc((100vh - 160px) * 1.414)); }
+  @media (max-width: 620px) { .visor-revista { padding: 24px 12px 84px; } .lado { display: none; } }
   .revista-ayuda { text-align: center; font-size: 14px; color: var(--gris); margin: 10px 0 0; }
   .pista.editorial { grid-auto-columns: calc((100% - 2 * 20px) / 2.6); padding-bottom: 24px; } /* páginas A4: con sombra, y un poco más estrechas */
   .news { display: grid; grid-template-columns: 1fr 520px; gap: 56px; align-items: start; }   /* newsletter entera, con el texto al lado */
@@ -134,17 +154,17 @@
     <p class="entrada" data-es>Una pequeña campaña hecha con el manual de marca de MSF para explicar, de forma sencilla, el <b>kit de emergencia sanitaria de la OMS</b> que usa MSF. Una idea adaptada a web, redes, newsletter y motion, en <b>español e inglés</b>.</p>
   </div>
 
-  <!-- ===== EL RETO Y LA IDEA ===== -->
-  <section class="gris">
+  <!-- ===== EL RETO Y LA IDEA: dos recuadros, como las tarjetas de msf.es ===== -->
+  <section style="padding-top: 8px;">
     <div class="ancho dos">
-      <div>
+      <div class="recuadro">
         <div class="num" data-en>The challenge</div><div class="num" data-es>El reto</div>
         <h3 data-en>Technical information, made clear for everyone.</h3>
         <h3 data-es>Información técnica, clara para todo el mundo.</h3>
         <p class="texto" data-en>An emergency health kit is medical logistics: units, modules, medicines, quantities. The goal was to make anyone understand in seconds what it is and, above all, what it makes possible. This is the part of design I enjoy most: making important information visual and clear.</p>
         <p class="texto" data-es>Un kit de emergencia sanitaria es logística médica: unidades, módulos, medicamentos, cantidades. El objetivo era que cualquiera entendiera en segundos qué es y, sobre todo, qué permite conseguir. Es la parte del diseño que más disfruto: hacer visual y clara la información importante.</p>
       </div>
-      <div>
+      <div class="recuadro">
         <div class="num" data-en>The idea</div><div class="num" data-es>La idea</div>
         <h3 data-en>What's missing without a kit. What fits in a kit.</h3>
         <h3 data-es>Lo que falta sin un kit. Lo que cabe en un kit.</h3>
@@ -155,7 +175,7 @@
   </section>
 
   <!-- ===== 1 · INFOGRAFÍA INTERACTIVA ===== -->
-  <section>
+  <section class="gris">
     <div class="ancho">
       <div class="num">01 · Web</div>
       <h2 data-en>Interactive infographic</h2><h2 data-es>Infografía interactiva</h2>
@@ -173,7 +193,7 @@
   </section>
 
   <!-- ===== 2 · MOTION Y STORY ===== -->
-  <section class="gris">
+  <section>
     <div class="ancho">
       <div class="num">02 · Motion</div>
       <h2 data-en>Motion pieces and story</h2><h2 data-es>Motion y story</h2>
@@ -193,7 +213,7 @@
   </section>
 
   <!-- ===== 3 · CARTEL Y CARRUSEL ===== -->
-  <section>
+  <section class="gris">
     <div class="ancho">
       <div class="num" data-en>03 · Social</div><div class="num" data-es>03 · Redes</div>
       <h2 data-en>Instagram carousel</h2><h2 data-es>Carrusel de Instagram</h2>
@@ -218,7 +238,7 @@
   </section>
 
   <!-- ===== 4 · NEWSLETTER ===== -->
-  <section class="gris">
+  <section>
     <div class="ancho news">
       <div class="news-texto">
         <div class="num">04 · Newsletter</div>
@@ -238,23 +258,25 @@
   </section>
 
   <!-- ===== 5 · EDITORIAL: propuesta de maquetación de la memoria ===== -->
-  <section>
+  <section class="gris">
     <div class="ancho">
       <div class="num">05 · Editorial</div>
       <h2 data-en>Layout proposal: Activity Report 2025</h2><h2 data-es>Propuesta de maquetación: Memoria de actividades 2025</h2>
       <p class="texto" data-en>A few pages of the MSF Spain (OCBA) Activity Report 2025, laid out with the same visual system. Real data from the report: long tables become charts and key figures that can be read at a glance. In Spanish, like the original.</p>
       <p class="texto" data-es>Unas páginas de la Memoria de actividades 2025 de MSF España (OCBA), maquetadas con el mismo sistema visual. Datos reales de la memoria: las tablas largas pasan a gráficos y cifras clave que se leen de un vistazo.</p>
-      <!-- Revista: las páginas se pasan como en una revista (cubierta sola, el resto en doble página) -->
-      <div class="revista-marco">
+      <!-- Visor de la memoria, como el anuario de Open House Madrid: escenario, flechas a los lados y barra de herramientas -->
+      <div class="visor-revista" id="visorRevista">
+        <button class="lado r-ant" aria-label="Anterior / Previous" title="Anterior / Previous"><svg viewBox="0 0 24 24" width="34" height="34"><path d="M15 4 L7 12 L15 20" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
         <div id="revista" class="revista"></div>
-        <div class="revista-ctrl">
-          <button class="flecha r-ant" aria-label="Anterior / Previous" title="Anterior / Previous"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M15 4 L7 12 L15 20" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
-          <span id="revista-pag" class="revista-pag">Portada</span>
-          <button class="flecha r-sig" aria-label="Siguiente / Next" title="Siguiente / Next"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M9 4 L17 12 L9 20" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+        <button class="lado r-sig" aria-label="Siguiente / Next" title="Siguiente / Next"><svg viewBox="0 0 24 24" width="34" height="34"><path d="M9 4 L17 12 L9 20" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <div class="barra-revista">
+          <span id="revista-pag" class="revista-pag">1 / 8</span>
+          <button class="herr" id="r-pantalla" title="Pantalla completa / Full screen" aria-label="Pantalla completa"><svg viewBox="0 0 24 24" width="18" height="18"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>
+          <a class="herr" href="memoria/Memoria-2025-propuesta-maquetacion-Tania-de-Azevedo.pdf" target="_blank" title="PDF" aria-label="Descargar el PDF"><svg viewBox="0 0 24 24" width="18" height="18"><path d="M12 4v11M7 10l5 5 5-5M5 20h14" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
         </div>
-        <p class="revista-ayuda" data-en>Click the corners or drag to turn the pages.</p>
-        <p class="revista-ayuda" data-es>Pulsa en las esquinas o arrastra para pasar las páginas.</p>
       </div>
+      <p class="revista-ayuda" data-en>Click the corners or drag to turn the pages.</p>
+      <p class="revista-ayuda" data-es>Pulsa en las esquinas o arrastra para pasar las páginas.</p>
       <div class="botones">
         <a class="boton" href="memoria/Memoria-2025-propuesta-maquetacion-Tania-de-Azevedo.pdf" target="_blank" data-en>Download the PDF</a>
         <a class="boton" href="memoria/Memoria-2025-propuesta-maquetacion-Tania-de-Azevedo.pdf" target="_blank" data-es>Descargar el PDF</a>
@@ -263,7 +285,7 @@
   </section>
 
   <!-- ===== DECISIONES ===== -->
-  <section class="gris">
+  <section>
     <div class="ancho">
       <div class="num" data-en>How it was made</div><div class="num" data-es>Cómo está hecho</div>
       <h2 data-en>Design decisions</h2><h2 data-es>Decisiones de diseño</h2>
@@ -308,11 +330,9 @@ function idioma(l) {
   if (inf.getAttribute('src') !== src) inf.setAttribute('src', src);   // se carga de nuevo en el idioma elegido
   document.querySelectorAll('[data-' + (l === 'en' ? 'es' : 'en') + '] video').forEach(v => v.pause()); // para los vídeos ocultos
   document.querySelectorAll('.idioma button').forEach(b => b.classList.toggle('on', b.dataset.l === l)); // botón activo
-  try { localStorage.setItem('idioma-msf-v2', l); } catch (e) {}          // recuerda la elección
 }
 document.querySelectorAll('.idioma button').forEach(b => b.onclick = () => idioma(b.dataset.l));
 let inicial = 'es';                                                     // por defecto, español
-try { inicial = localStorage.getItem('idioma-msf-v2') || 'es'; } catch (e) {}
 idioma(inicial);
 
 // ---------- Carruseles: flechas (sirve para todos los de la página) ----------
@@ -334,37 +354,38 @@ document.querySelectorAll('.slider').forEach(slider => {
 (() => {
   const caja = document.getElementById('revista');
   const paginas = [1, 2, 3, 4, 5, 6, 7, 8].map(n => `memoria/img/pagina${n}.jpg`);  // portada, 3 dobles páginas y contraportada
+  const n = paginas.length;
   if (!window.St) {                                                      // si la librería no carga: las páginas en fila
     caja.innerHTML = paginas.map(p => `<img src="${p}" alt="" style="width:24%;margin:.5%">`).join('');
-    document.querySelector('.revista-ctrl').style.display = 'none'; return;
+    return;
   }
   const libro = new St.PageFlip(caja, {
     width: 420, height: 594, size: 'stretch',                            // proporción A4; se adapta al ancho
-    minWidth: 240, maxWidth: 440, minHeight: 340, maxHeight: 622,
+    minWidth: 240, maxWidth: 700, minHeight: 340, maxHeight: 990,
     showCover: true, usePortrait: true,                                  // cubierta sola; en móvil, de una en una
-    maxShadowOpacity: 0.35, flippingTime: 900, mobileScrollSupport: true,
+    maxShadowOpacity: 0.18, flippingTime: 900, mobileScrollSupport: true, // sombra del pliegue más suave
   });
-  libro.loadFromImages(paginas);
+  // Modo HTML (no lienzo): así no se pinta una página blanca junto a la portada y las sombras se controlan con CSS
+  caja.innerHTML = paginas.map((p, k) => `<div class="hoja-r"${k === 0 || k === n - 1 ? ' data-density="hard"' : ''}><img src="${p}" alt="Página ${k + 1}" draggable="false"></div>`).join('');
+  libro.loadFromHTML(caja.querySelectorAll('.hoja-r'));
   const ant = document.querySelector('.r-ant'), sig = document.querySelector('.r-sig'), txt = document.getElementById('revista-pag');
-  const es = () => document.documentElement.lang === 'es';
-  const rotulo = i => {                                                  // «Portada», «Páginas 2–3», «Contraportada»
-    const n = paginas.length, doble = libro.getOrientation() === 'landscape';
-    if (i === 0) return es() ? 'Portada' : 'Cover';
-    if (i >= n - 1) return es() ? 'Contraportada' : 'Back cover';
-    if (!doble) return (es() ? 'Página ' : 'Page ') + (i + 1);
-    const a = i % 2 ? i : i - 1;                                         // primera página de la doble
-    return (es() ? 'Páginas ' : 'Pages ') + (a + 1) + '–' + (a + 2);
-  };
   const actualizar = () => {
-    const i = libro.getCurrentPageIndex();
-    txt.textContent = rotulo(i);
+    const i = libro.getCurrentPageIndex(), doble = libro.getOrientation() === 'landscape';
+    const a = i % 2 ? i : i - 1;                                         // primera página de la doble
+    const portada = i === 0, contra = i >= n - 1 && doble;
+    txt.textContent = portada || contra || !doble ? `${i + 1} / ${n}` : `${a + 1}–${a + 2} / ${n}`;
+    caja.classList.toggle('sombra-der', portada && doble);               // portada: sombra a la derecha
+    caja.classList.toggle('sombra-izq', contra);                         // contraportada: sombra a la izquierda
+    caja.classList.toggle('sombra-doble', doble && !portada && !contra);
     ant.disabled = i === 0;
-    sig.disabled = i >= paginas.length - 1;
+    sig.disabled = i >= n - 1;
   };
   ant.onclick = () => libro.flipPrev();
   sig.onclick = () => libro.flipNext();
   libro.on('flip', actualizar); libro.on('changeOrientation', actualizar); libro.on('init', actualizar);
-  document.querySelectorAll('.idioma button').forEach(b => b.addEventListener('click', actualizar));
+  // Pantalla completa (y salir con Escape)
+  const visor = document.getElementById('visorRevista');
+  document.getElementById('r-pantalla').onclick = () => document.fullscreenElement ? document.exitFullscreen() : visor.requestFullscreen && visor.requestFullscreen();
 })();
 
 // ---------- Visor: ver en grande sin salir de la página ----------
