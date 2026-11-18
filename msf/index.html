@@ -5,7 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Propuesta no oficial: que los buscadores no la indexen (solo la ve quien tiene el enlace) -->
 <meta name="robots" content="noindex, nofollow">
-<title>What fits in a kit · Proposal for MSF-OCBA · Tania de Azevedo</title>
+<title>Lo que cabe en un kit · Propuesta para MSF-OCBA · Tania de Azevedo</title>
+<!-- Vista previa al compartir el enlace (correo, WhatsApp, LinkedIn) -->
+<meta name="description" content="Propuesta de campaña no oficial para MSF-OCBA: infografía interactiva, motion, redes, newsletter y maquetación de la Memoria 2025.">
+<meta property="og:title" content="Lo que cabe en un kit · Propuesta para MSF-OCBA">
+<meta property="og:description" content="Propuesta de campaña no oficial de Tania de Azevedo: web, motion, redes, newsletter y editorial.">
+<meta property="og:image" content="https://taniadeazevedo.es/msf/img/infografia-es.jpg">
+<meta property="og:url" content="https://taniadeazevedo.es/msf/">
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 <style>
   /* Colores y medidas de la página (los del manual de MSF: blanco, negro y rojo solo para destacar) */
@@ -161,7 +167,7 @@
         <div class="num" data-en>The challenge</div><div class="num" data-es>El reto</div>
         <h3 data-en>Technical information, made clear for everyone.</h3>
         <h3 data-es>Información técnica, clara para todo el mundo.</h3>
-        <p class="texto" data-en>An emergency health kit is medical logistics: units, modules, medicines, quantities. The goal was to make anyone understand in seconds what it is and, above all, what it makes possible. This is the part of design I enjoy most: making important information visual and clear.</p>
+        <p class="texto" data-en>An emergency health kit is medical logistics: units, modules, medicines, quantities. The goal was to help anyone understand in seconds what it is and, above all, what it makes possible. This is the part of design I enjoy most: making important information visual and clear.</p>
         <p class="texto" data-es>Un kit de emergencia sanitaria es logística médica: unidades, módulos, medicamentos, cantidades. El objetivo era que cualquiera entendiera en segundos qué es y, sobre todo, qué permite conseguir. Es la parte del diseño que más disfruto: hacer visual y clara la información importante.</p>
       </div>
       <div class="recuadro">
@@ -179,7 +185,7 @@
     <div class="ancho">
       <div class="num">01 · Web</div>
       <h2 data-en>Interactive infographic</h2><h2 data-es>Infografía interactiva</h2>
-      <p class="texto" data-en>Try it here: open and close the kit, and move over each unit to see what it holds. Works with mouse, touch and keyboard.</p>
+      <p class="texto" data-en>Try it here: open and close the kit, and hover over or tap each unit to see what it holds. Works with mouse, touch and keyboard.</p>
       <p class="texto" data-es>Pruébala aquí: abre y cierra el kit, y pasa por cada unidad para ver qué lleva. Funciona con ratón, táctil y teclado.</p>
       <div class="rejilla web">
         <!-- Una sola infografía: se carga la del idioma elegido (una oculta no puede animarse) -->
@@ -197,8 +203,8 @@
     <div class="ancho">
       <div class="num">02 · Motion</div>
       <h2 data-en>Motion pieces and story</h2><h2 data-es>Motion y story</h2>
-      <p class="texto" data-en>Vertical, for Reels and Stories, and made to work without sound. Two 15-second versions, illustrated and with photos, and a story with the full kit.</p>
-      <p class="texto" data-es>Vertical, para Reels y Stories, y pensado para funcionar sin sonido. Dos versiones de 15 segundos, ilustrada y con fotos, y una story con el kit completo.</p>
+      <p class="texto" data-en>Vertical, for Reels and Stories, and made to work without sound. Two versions of around 15 seconds, illustrated and with photos, and a story with the full kit.</p>
+      <p class="texto" data-es>Vertical, para Reels y Stories, y pensado para funcionar sin sonido. Dos versiones de unos 15 segundos, ilustrada y con fotos, y una story con el kit completo.</p>
       <div class="rejilla motion" data-en>
         <figure class="pieza"><video controls muted playsinline preload="none" src="video/what-fits-in-a-kit-EN.mp4" poster="video/kit-en.jpg"></video><figcaption>Illustrated version · 15 s</figcaption></figure>
         <figure class="pieza"><video controls muted playsinline preload="none" src="video/what-fits-in-a-kit-photos-EN.mp4" poster="video/fotos-en.jpg"></video><figcaption>Photo version · 16 s (AI-generated images)</figcaption></figure>
@@ -330,6 +336,8 @@ function idioma(l) {
   if (inf.getAttribute('src') !== src) inf.setAttribute('src', src);   // se carga de nuevo en el idioma elegido
   document.querySelectorAll('[data-' + (l === 'en' ? 'es' : 'en') + '] video').forEach(v => v.pause()); // para los vídeos ocultos
   document.querySelectorAll('.idioma button').forEach(b => b.classList.toggle('on', b.dataset.l === l)); // botón activo
+  document.title = l === 'en' ? 'What fits in a kit · Proposal for MSF-OCBA · Tania de Azevedo' // título de la pestaña en inglés
+                              : 'Lo que cabe en un kit · Propuesta para MSF-OCBA · Tania de Azevedo'; // o en español
 }
 document.querySelectorAll('.idioma button').forEach(b => b.onclick = () => idioma(b.dataset.l));
 let inicial = 'es';                                                     // por defecto, español
