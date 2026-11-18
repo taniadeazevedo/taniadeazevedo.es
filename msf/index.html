@@ -406,5 +406,42 @@ const cerrar = () => visor.classList.remove('abierto');
 visor.addEventListener('click', cerrar);                                // clic en cualquier sitio: se cierra
 addEventListener('keydown', e => { if (e.key === 'Escape') cerrar(); }); // o con Escape
 </script>
+
+<!-- ---------- Avisos de visita al móvil (ntfy) ---------- -->
+<script>
+(() => {
+  const CANAL = 'https://ntfy.sh/tania-msf-7e877bccba02';                 // canal privado de avisos (app ntfy)
+  try {                                                                   // si el navegador bloquea el almacenamiento, no pasa nada
+    if (new URLSearchParams(location.search).has('soyyo')) {              // si entras con ?soyyo…
+      localStorage.setItem('msf-soyyo', '1');                             // …este dispositivo queda marcado como tuyo
+      history.replaceState(null, '', location.pathname);                  // y se limpia la dirección
+    }
+    if (localStorage.getItem('msf-soyyo')) return;                        // eres tú: no se avisa de nada
+  } catch (e) {}
+  if (location.protocol === 'file:' || /localhost|127\.0\.0\.1/.test(location.hostname)) return; // pruebas en local: sin avisos
+
+  const disp = /Mobi|Android|iPhone/i.test(navigator.userAgent) ? 'móvil' : 'ordenador'; // tipo de dispositivo
+  const avisar = (clave, titulo, texto) => {                              // manda un aviso, una sola vez por visita
+    try { if (sessionStorage.getItem('aviso-' + clave)) return; sessionStorage.setItem('aviso-' + clave, '1'); } catch (e) {}
+    const url = CANAL + '?title=' + encodeURIComponent(titulo) + '&tags=eyes'; // título y emoji 👀 del aviso
+    const cuerpo = texto + ' · ' + document.documentElement.lang.toUpperCase() + ' · ' + disp; // detalle: idioma y dispositivo
+    if (!(navigator.sendBeacon && navigator.sendBeacon(url, cuerpo)))      // sendBeacon llega aunque se cierre la página
+      fetch(url, { method: 'POST', body: cuerpo, keepalive: true }).catch(() => {}); // plan B
+  };
+
+  avisar('abre', 'Han abierto tu propuesta MSF', 'Visita a taniadeazevedo.es/msf'); // 1) al abrir la página
+
+  const memoria = document.getElementById('visorRevista');               // 2) al llegar a la memoria
+  if (memoria && 'IntersectionObserver' in window) {
+    new IntersectionObserver((entradas, obs) => {
+      if (entradas[0].isIntersecting) { avisar('memoria', 'Han llegado a la memoria', 'Bajaron hasta la sección Editorial'); obs.disconnect(); }
+    }, { threshold: 0.5 }).observe(memoria);                              // cuenta cuando se ve al menos la mitad del visor
+  }
+
+  document.querySelectorAll('a[href$=".pdf"]').forEach(a =>               // 3) al descargar el PDF
+    a.addEventListener('click', () => avisar('pdf', 'Han descargado el PDF', 'PDF de la Memoria 2025')));
+})();
+</script>
+
 </body>
 </html>
