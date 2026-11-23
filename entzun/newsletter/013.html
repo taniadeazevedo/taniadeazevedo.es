@@ -54,7 +54,7 @@
   <section class="portada margen">
     <p class="k">Respuestas al Nº 012</p>
     <h1 class="t-logo">Respondisteis.</h1>
-    <div class="pregunta-012"><span class="cifra">214</span><p>veces nos dijisteis qué disco pondríais después de Dummy.</p></div>
+    <div class="pregunta-012"><span class="cifra">214</span><p>veces nos dijisteis qué disco pondríais después de Preacher's Daughter.</p></div>
   </section>
 
   <!-- Los cinco discos más votados -->
@@ -65,8 +65,8 @@
     <div id="patron"></div>
     <div class="ganador-txt margen">
       <p class="k">Ganó, con 71 votos</p>
-      <h2 class="t-logo">Mezzanine.</h2>
-      <p>Lo pedisteis y lo ponemos. Massive Attack, entero y con la luz baja.</p>
+      <h2 class="t-logo">Souvlaki.</h2>
+      <p>Lo pedisteis y lo ponemos. Slowdive, entero y con la luz baja.</p>
       <div class="datos"><span>Jueves<br>3 diciembre</span><span>Disco B<br>22:09</span><span>30 sitios<br>por disco</span></div>
       <a class="boton k" id="reserva" href="#">Reservar sitio →</a>
     </div>
@@ -74,7 +74,7 @@
 
   <!-- Una de las respuestas -->
   <section class="cita margen">
-    <blockquote>«Mezzanine, pero sin que nadie hable hasta el final.»</blockquote>
+    <blockquote>«Souvlaki, pero sin que nadie hable hasta el final.»</blockquote>
     <cite>Ane, una de las 71</cite>
   </section>
 
@@ -92,7 +92,7 @@
 </article>
 
 <script>
-const VOTOS = [["Massive Attack", "Mezzanine", 1998, 71], ["Tricky", "Maxinquaye", 1995, 52], ["Sade", "Love Deluxe", 1992, 38], ["Cocteau Twins", "Heaven or Las Vegas", 1990, 29], ["Radiohead", "Kid A", 2000, 24]]; // artista, álbum, año y votos
+const VOTOS = [["Slowdive", "Souvlaki", 1993, 71], ["Cocteau Twins", "Heaven or Las Vegas", 1990, 52], ["Weyes Blood", "Titanic Rising", 2019, 38], ["Beach House", "Teen Dream", 2010, 29], ["Lana Del Rey", "Ultraviolence", 2014, 24]]; // artista, álbum, año y votos
 document.getElementById("ranking").innerHTML = VOTOS.map((v, i) => `<li><span class="k">${i + 1}</span><span><b>${v[0]}</b><small>${v[1]} · ${v[2]}</small></span><span class="k">${v[3]}</span><span class="barra" style="width:${v[3] / VOTOS[0][3] * 100}%"></span></li>`).join(""); // una fila por disco
 const ID = 28, tinta = "#D4D5D6";                                          // roseta de la marca: con simetría de 90°, siempre encaja
 let celdas = "";                                                           // aquí se acumula el patrón
