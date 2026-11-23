@@ -45,15 +45,6 @@ window.PROJECTS = [
     url: 'open-house-madrid/'
   },
   {
-    title: 'Open House Málaga',
-    cats: ['branding', 'grafico', 'campanas'],
-    label: 'Branding e identidad visual',
-    desc: 'Identidad y sistema gráfico del festival de arquitectura, de la calle a la pantalla.',
-    image: 'open-house-malaga/imgs/mupi-centro-comercial.jpg',
-    alt: 'Mupi digital de Open House Málaga 2025 en un centro comercial',
-    url: 'open-house-malaga/'
-  },
-  {
     title: 'LIV Golf Valderrama',
     cats: ['grafico', 'campanas'],
     label: 'Campañas y diseño gráfico',
@@ -61,6 +52,15 @@ window.PROJECTS = [
     image: 'liv-golf/img/portada-v4.jpg',
     alt: 'Portada del Diario de Cádiz con la campaña de LIV Golf Valderrama, sobre una superficie oscura',
     url: 'liv-golf/'
+  },
+  {
+    title: 'ENTZUN',
+    cats: ['branding', 'grafico', 'web'],
+    label: 'Branding e identidad visual',
+    desc: 'Identidad para un bar de escucha en Bilbao La Vieja: logotipo, sistema de glifos, web con reservas, redes, newsletter, vídeo e impresos.',
+    image: 'entzun/imgs/portada.jpg?v=4',                 // imagen fija: el logo limpio
+    alt: 'El logotipo de ENTZUN en gris claro sobre negro',
+    url: 'entzun/'
   },
   {
     title: 'Calcula lo tuyo',
@@ -79,6 +79,15 @@ window.PROJECTS = [
     image: 'estrella-damm-n-a-andalucia-masters/imgs/portada-v7.jpg',
     alt: 'Jugador durante el swing en el Estrella Damm N.A. Andalucía Masters, con el público y el rótulo #EDAM al fondo',
     url: 'estrella-damm-n-a-andalucia-masters/'
+  },
+  {
+    title: 'Open House Málaga',
+    cats: ['branding', 'grafico', 'campanas'],
+    label: 'Branding e identidad visual',
+    desc: 'Identidad y sistema gráfico del festival de arquitectura, de la calle a la pantalla.',
+    image: 'open-house-malaga/imgs/mupi-centro-comercial.jpg',
+    alt: 'Mupi digital de Open House Málaga 2025 en un centro comercial',
+    url: 'open-house-malaga/'
   },
   {
     title: 'Escáner laboral',

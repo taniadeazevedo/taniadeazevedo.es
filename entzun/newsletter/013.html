@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"> <!-- acentos -->
+<meta name="viewport" content="width=device-width, initial-scale=1"> <!-- adaptable al móvil -->
+<meta name="robots" content="noindex">
+<title>ENTZUN · Newsletter 013</title> <!-- título de la pestaña -->
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet"> <!-- letra de apoyo -->
+<link rel="stylesheet" href="../web/web.css?v=20261123z">      <!-- colores, tamaños, títulos y franja de la web -->
+<script src="../shared/entzun-logo.js"></script>      <!-- el logo y su alfabeto -->
+<script src="../shared/entzun-sistema.js"></script>   <!-- glifos y discos -->
+<script src="../web/web.js?v=20261123za"></script>              <!-- la programación -->
+<style>
+  body { background: #202122; padding: clamp(0px, 4vw, 56px) 0; }           /* la mesa sobre la que se ve el correo */
+  .correo { width: min(100%, 640px); margin: 0 auto; background: #D4D5D6; color: #0E0E0E; overflow: hidden; } /* este número es claro */
+  .margen { padding-left: clamp(20px, 6vw, 44px); padding-right: clamp(20px, 6vw, 44px); } /* margen lateral común */
+  .cabeza { display: flex; justify-content: space-between; align-items: center; padding-top: 22px; padding-bottom: 22px; border-bottom: 1px solid #0E0E0E; } /* logo y número */
+  .cabeza svg { display: block; width: 76px; }                              /* el logo pequeño */
+  .k { color: inherit; }                                                    /* las etiquetas toman el color del bloque */
+  .portada { padding-top: clamp(36px, 8vw, 56px); padding-bottom: clamp(30px, 6vw, 42px); } /* el arranque del correo */
+  .correo .t-logo { color: #0E0E0E; } .correo .ganador .t-logo { color: #D4D5D6; } /* títulos en negro, y en gris dentro del bloque negro */
+  .portada .t-logo { --t-titulo: clamp(34px, 8.6vw, 54px); margin-top: 14px; } /* título grande */
+  .pregunta-012 { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: clamp(18px, 4vw, 28px); align-items: end; margin-top: clamp(28px, 6vw, 40px); } /* cifra y pregunta */
+  .cifra { font-size: clamp(66px, 17vw, 104px); line-height: .8; font-weight: 500; letter-spacing: -.055em; } /* las respuestas */
+  .pregunta-012 p { font-size: var(--t-m); line-height: 1.35; }             /* la pregunta del número anterior */
+  .ranking { list-style: none; margin: 0; padding-bottom: clamp(34px, 7vw, 48px); } /* la lista de discos */
+  .ranking li { display: grid; grid-template-columns: 28px minmax(0, 1fr) auto; gap: 4px 10px; align-items: baseline; padding: 10px 0 11px; border-top: 1px solid #0E0E0E; } /* cada disco, más compacto */
+  .ranking b { font-weight: 500; font-size: var(--t-m); line-height: 1.2; } .ranking small { display: block; margin-top: 2px; font-size: var(--t-s); opacity: .68; } /* artista y álbum */
+  .barra { grid-column: 2 / -1; height: 7px; margin-top: 8px; background: #0E0E0E; transform-origin: left; } /* cuánto se votó */
+  .ganador { background: #0E0E0E; color: #D4D5D6; }                          /* el bloque negro */
+  .ganador svg { display: block; width: 100%; height: auto; }               /* el patrón del disco */
+  .giro { transform-origin: 50px 50px; transition: transform 1s cubic-bezier(.76, 0, .24, 1); } /* cada baldosa gira sobre su centro */
+  .ganador-txt { padding-top: clamp(30px, 6vw, 42px); padding-bottom: clamp(34px, 7vw, 46px); } /* texto del ganador */
+  .ganador .t-logo { --t-titulo: clamp(28px, 6.6vw, 42px); margin-top: 12px; } /* el nombre del disco */
+  .ganador-txt > p:not(.k) { margin-top: 14px; font-size: var(--t-m); line-height: 1.45; color: #D4D5D6; } /* la explicación */
+  .datos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 18px 0 20px; padding: 12px 0; border-top: 1px solid #D4D5D655; border-bottom: 1px solid #D4D5D655; } /* cuándo */
+  .datos span { font-size: var(--t-s); line-height: 1.35; }                 /* cada dato */
+  .boton { display: inline-block; padding: 14px 20px; border: 1px solid #D4D5D6; color: #D4D5D6; text-decoration: none; } /* reservar */
+  .cita { padding-top: clamp(28px, 6vw, 36px); padding-bottom: clamp(28px, 6vw, 36px); border-bottom: 1px solid #0E0E0E; } /* una respuesta */
+  .cita blockquote { margin: 0; font-size: clamp(23px, 5.2vw, 31px); line-height: 1.12; letter-spacing: -.03em; } /* la frase */
+  .cita cite { display: block; margin-top: 14px; font-style: normal; font-size: var(--t-s); } /* quién */
+  .siguiente { flex: 1; padding-top: clamp(32px, 7vw, 44px); padding-bottom: clamp(34px, 7vw, 46px); } /* la nueva pregunta */
+  .siguiente .t-logo { --t-titulo: clamp(22px, 4.8vw, 28px); margin: 12px 0 18px; } /* su título */
+  .siguiente a { color: inherit; }                                          /* enlace */
+  .pie-correo { padding-top: 26px; padding-bottom: 32px; border-top: 1px solid var(--linea); background: var(--negro); color: var(--gris); font-size: var(--t-s); line-height: 1.6; } /* pie */
+  .pie-correo a { color: inherit; }                                         /* enlace del pie */
+</style>
+</head>
+<body>
+<article class="correo">
+  <header class="cabeza margen"><span id="logo"></span><span class="k">Nº 013</span></header>
+
+  <!-- Arranque: este número lo escriben quienes respondieron -->
+  <section class="portada margen">
+    <p class="k">Respuestas al Nº 012</p>
+    <h1 class="t-logo">Respondisteis.</h1>
+    <div class="pregunta-012"><span class="cifra">214</span><p>veces nos dijisteis qué disco pondríais después de Dummy.</p></div>
+  </section>
+
+  <!-- Los cinco discos más votados -->
+  <ol class="ranking margen" id="ranking"></ol>
+
+  <!-- El disco ganador -->
+  <section class="ganador">
+    <div id="patron"></div>
+    <div class="ganador-txt margen">
+      <p class="k">Ganó, con 71 votos</p>
+      <h2 class="t-logo">Mezzanine.</h2>
+      <p>Lo pedisteis y lo ponemos. Massive Attack, entero y con la luz baja.</p>
+      <div class="datos"><span>Jueves<br>3 diciembre</span><span>Disco B<br>22:09</span><span>30 sitios<br>por disco</span></div>
+      <a class="boton k" id="reserva" href="#">Reservar sitio →</a>
+    </div>
+  </section>
+
+  <!-- Una de las respuestas -->
+  <section class="cita margen">
+    <blockquote>«Mezzanine, pero sin que nadie hable hasta el final.»</blockquote>
+    <cite>Ane, una de las 71</cite>
+  </section>
+
+  <!-- La pregunta del próximo número -->
+  <section class="siguiente margen">
+    <p class="k">Para el Nº 014</p>
+    <h2 class="t-logo">Ese disco que nunca has escuchado entero.</h2>
+    <a class="k" href="#">Responde a este correo →</a>
+  </section>
+
+  <footer class="pie-correo margen">
+    <p>ENTZUN · Calle San Francisco 31, bajo · Bilbao La Vieja</p>
+    <p>Recibes esto porque te apuntaste en entzun.eus. <a href="#">Darse de baja</a></p>
+  </footer>
+</article>
+
+<script>
+const VOTOS = [["Massive Attack", "Mezzanine", 1998, 71], ["Tricky", "Maxinquaye", 1995, 52], ["Sade", "Love Deluxe", 1992, 38], ["Cocteau Twins", "Heaven or Las Vegas", 1990, 29], ["Radiohead", "Kid A", 2000, 24]]; // artista, álbum, año y votos
+document.getElementById("ranking").innerHTML = VOTOS.map((v, i) => `<li><span class="k">${i + 1}</span><span><b>${v[0]}</b><small>${v[1]} · ${v[2]}</small></span><span class="k">${v[3]}</span><span class="barra" style="width:${v[3] / VOTOS[0][3] * 100}%"></span></li>`).join(""); // una fila por disco
+const ID = 28, tinta = "#D4D5D6";                                          // roseta de la marca: con simetría de 90°, siempre encaja
+let celdas = "";                                                           // aquí se acumula el patrón
+for (let f = 0; f < 1; f++) for (let c = 0; c < 4; c++) celdas += `<g transform="translate(${c * 100} ${f * 100})" clip-path="url(#celda013)"><g class="giro" style="transition-delay:${(c + f) * 90}ms" fill="${tinta}" stroke="${tinta}" stroke-width=".35">${glifo(ID, disco(ID)[5])}</g></g>`; // cuatro baldosas, como una franja
+document.getElementById("patron").innerHTML = `<svg viewBox="0 0 400 100" aria-hidden="true"><defs><clipPath id="celda013"><rect x="-.3" y="-.3" width="100.6" height="100.6"/></clipPath></defs>${celdas}</svg>`; // el patrón completo
+let correoVisible = true; new IntersectionObserver(([e]) => { correoVisible = e.isIntersecting; }).observe(document.querySelector(".correo")); // descansa fuera de pantalla
+const giros = [...document.querySelectorAll(".giro")]; let angulo = 0;      // baldosas y ángulo
+if (!matchMedia("(prefers-reduced-motion: reduce)").matches) setInterval(() => { if (!correoVisible || document.hidden) return; angulo += 90; giros.forEach((g) => { g.style.transform = `rotate(${angulo}deg)`; }); }, 3600); // una ola de giros cada 3,6 s
+document.getElementById("logo").innerHTML = ENTZUN.logo({ color: "#0E0E0E" }); // el logo pequeño, en negro
+document.getElementById("reserva").href = "../web/reservar.html";                  // enlace a reservas
+document.querySelectorAll(".t-logo").forEach(ENTZUN.rotula);               // los títulos, con la letra de la marca
+</script>
+</body>
+</html>

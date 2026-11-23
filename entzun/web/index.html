@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"> <!-- acentos -->
+<meta name="viewport" content="width=device-width, initial-scale=1"> <!-- adaptable al móvil -->
+<meta name="robots" content="noindex">
+<title>ENTZUN · Sin música de fondo · Bilbao</title> <!-- título de la pestaña -->
+<meta name="description" content="Sin música de fondo. Un espacio para escuchar en Bilbao La Vieja: cada noche, dos álbumes completos que dialogan entre sí."> <!-- buscadores -->
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet"> <!-- letra de apoyo -->
+<link rel="stylesheet" href="web.css?v=20261123z">                <!-- estilos comunes -->
+<script src="../shared/entzun-logo.js?v=20261123z"></script>      <!-- el logo -->
+<script src="../shared/entzun-sistema.js?v=20261123z"></script>   <!-- los glifos -->
+<script src="web.js?v=20261123z"></script>                        <!-- datos y piezas comunes -->
+<style>
+  /* ---------- Portada: el claim arriba, mucho silencio y la noche como línea abajo ---------- */
+  .prox { padding-block: clamp(44px, 6vw, 84px); }                         /* la próxima sesión, justo tras la portada */
+  .proxima-cab { display: flex; justify-content: space-between; align-items: baseline; gap: 12px 28px; flex-wrap: wrap; margin-bottom: 18px; } /* datos de la próxima sesión */
+  .proxima-cab .titulo-ses { font-size: var(--t-xl); letter-spacing: -.015em; line-height: 1.2; }
+  .proxima-cab .acciones { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
+  .prox .gl svg > g { transform-origin: 50px 50px; animation: gira 16s cubic-bezier(.7, 0, .2, 1) infinite; } /* gira un cuarto, para, y otro cuarto */
+  .prox .tramo:last-child .gl svg > g { animation-delay: -8s; }          /* el disco B va a destiempo */
+  @keyframes gira { 0%, 18% { transform: rotate(0); } 25%, 43% { transform: rotate(90deg); } 50%, 68% { transform: rotate(180deg); } 75%, 93% { transform: rotate(270deg); } 100% { transform: rotate(360deg); } }
+
+  /* ---------- Manifiesto: centrado ---------- */
+  .manif { text-align: center; }
+  .manifiesto { max-width: 800px; margin: 26px auto 0; font-size: var(--t-xl); line-height: 1.36; letter-spacing: -.015em; text-wrap: balance; }
+  .manifiesto p { text-wrap: balance; } .manifiesto p + p { margin-top: .8em; } .manifiesto .apagado { color: var(--gris); }
+
+  /* ---------- Una noche: a todo el ancho ---------- */
+  .noche-intro { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px clamp(18px, 2.4vw, 34px); align-items: start; margin-top: 20px; } /* misma línea; el texto arranca en la 3.ª columna de los momentos */
+  .noche-titulo { display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; padding-right: clamp(0px, 2vw, 28px); } /* título y frase, uno al lado del otro */
+  .titulo-noche { flex: none; width: 9.2em; margin-bottom: 0; }              /* el ancho justo de «DOS DISCOS.»: siempre dos líneas */
+  .ritmo { flex: none; white-space: nowrap; }                               /* la frase no se parte */
+  @media (max-width: 1000px) { .noche-titulo { flex-direction: column; } }  /* si no caben, uno debajo del otro */
+  .noche-intro .entradilla { margin-top: 0; }
+  .ritmo { font-size: var(--t-l); line-height: 1.32; letter-spacing: -.01em; margin-top: -.22em; } /* alinea su primera línea con el título */
+  .ritual { list-style: none; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px clamp(18px, 2.4vw, 34px); margin-top: clamp(40px, 5vw, 68px); } /* los cuatro momentos, en línea */
+  .ritual li { border-top: 1px solid var(--blanco); padding-top: 14px; }
+  .ritual b { display: block; font-size: var(--t-l); line-height: 1.2; font-weight: 400; letter-spacing: -.015em; margin: 18px 0 10px; }
+  .ritual p { color: var(--gris); font-size: var(--t-s); line-height: 1.6; }
+  .nota { margin-top: clamp(32px, 4vw, 48px); max-width: 680px; color: var(--gris); font-size: var(--t-s); } .nota b { color: var(--blanco); font-weight: 400; }
+  @media (max-width: 860px) { .noche-intro { grid-template-columns: minmax(0, 1fr); } .ritual { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 480px) { .ritual { grid-template-columns: minmax(0, 1fr); } }
+
+  /* ---------- Esta semana: título fijo a un lado ---------- */
+  .semana { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: 32px clamp(32px, 5vw, 80px); align-items: start; }
+  .semana-lado { position: sticky; top: 96px; } .semana-lado .t-logo { margin-top: 2px; }
+  .semana-lado .entradilla { margin-top: 12px; font-size: var(--t-s); }
+  .enlace { display: inline-block; margin-top: 22px; }
+  #semana { border-top: 1px solid var(--linea); }
+  @media (max-width: 860px) { .semana { grid-template-columns: minmax(0, 1fr); } .semana-lado { position: static; } }
+
+  /* ---------- El espacio: losas con iconos ---------- */
+  #espacio { padding-block: clamp(52px, 6vw, 88px); }
+  .espacio-cab { display: flex; justify-content: space-between; align-items: end; gap: 16px 48px; flex-wrap: wrap; }
+  .espacio-cab .t-logo { margin: 2px 0 0; } .espacio-cab .entradilla { margin: 0; max-width: 400px; font-size: var(--t-s); }
+  .normas { list-style: none; display: flex; gap: 6px; margin-top: clamp(28px, 3.4vw, 44px); } /* cuatro losas que se turnan, como pasos de un secuenciador */
+  .normas li { position: relative; flex: 1 1 0; min-width: 0; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; gap: 36px; height: clamp(250px, 23vw, 320px); padding: clamp(18px, 2vw, 28px); background: #0E0E0E; color: #D4D5D6; font-size: var(--t-m); line-height: 1.3; transition: flex-grow .8s cubic-bezier(.6, 0, .2, 1); }
+  .normas li span { white-space: nowrap; }
+  .normas li::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: #D4D5D6; transform: scaleX(0); transform-origin: left; } /* la aguja: cuánto le queda a este paso */
+  .icono { width: clamp(72px, 7.4vw, 104px); height: auto; overflow: visible; transform-origin: 0 0; transition: transform .8s cubic-bezier(.6, 0, .2, 1), opacity .5s; }
+  .normas.viva li:not(.activa) .icono { opacity: .42; }                      /* las que no suenan, en segundo plano */
+  .normas li.activa { flex-grow: 1.8; }                                      /* la que suena se abre */
+  .normas li.activa .icono { transform: scale(1.22); }
+  .normas li.activa::before { animation: aguja 3.2s linear both; }
+  .voz-b { stroke: #0E0E0E; stroke-width: 10; paint-order: stroke; }         /* un corte limpio entre los dos bocadillos */
+  .cono, .voz-a, .voz-b { transform-box: fill-box; }                         /* cada pieza gira y crece desde sí misma */
+  .cono { transform-origin: center; } .voz-a { transform-origin: 0 100%; } .voz-b { transform-origin: 100% 100%; }
+  .activa .cono { animation: latido 1.6s cubic-bezier(.3, 0, .2, 1) 2; }     /* el altavoz da golpes de bajo */
+  .activa .movil { animation: guardar 3.2s cubic-bezier(.7, 0, .2, 1) both; } /* el móvil baja al bolsillo */
+  .activa .voz-a { animation: voz-a 3.2s cubic-bezier(.3, 1.3, .5, 1) both; } /* uno habla… */
+  .activa .voz-b { animation: voz-b 3.2s cubic-bezier(.3, 1.3, .5, 1) both; } /* …y el otro responde */
+  .activa .punto { animation: sitio 3.2s ease-out both; animation-delay: calc(var(--i) * 55ms); } /* los sitios se van ocupando */
+  @keyframes aguja { to { transform: scaleX(1); } }
+  @keyframes latido { 0%, 100% { transform: scale(1); } 14% { transform: scale(1.34); } 38% { transform: scale(1); } 52% { transform: scale(1.22); } 76% { transform: scale(1); } } /* el cono empuja sin salirse del altavoz */
+  @keyframes guardar { 0%, 8% { transform: translateY(0); } 42%, 78% { transform: translateY(40px); } 100% { transform: translateY(0); } } /* desaparece dentro del bolsillo */
+  @keyframes voz-a { 0% { transform: scale(0); } 14%, 100% { transform: scale(1); } }
+  @keyframes voz-b { 0%, 32% { transform: scale(0); } 46%, 100% { transform: scale(1); } }
+  @keyframes sitio { 0% { opacity: .16; } 7%, 100% { opacity: 1; } }
+  @media (max-width: 760px) {
+    .normas { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }  /* en móvil, 2 × 2: se turnan sin cambiar de tamaño */
+    .normas li { height: 190px; font-size: var(--t-s); } .normas li.activa .icono { transform: none; }
+  }
+
+  /* ---------- Reservar: una franja ---------- */
+  .cierre-fila { display: flex; justify-content: space-between; align-items: end; gap: 24px 48px; flex-wrap: wrap; }
+  .cierre-fila .entradilla { margin-top: 6px; }
+</style>
+</head>
+<body>
+<main id="contenido">
+  <section class="eco-hero" id="ecoHero">
+    <svg aria-hidden="true"><defs><clipPath id="ecoForma"><path clip-rule="nonzero"/></clipPath></defs>
+      <image href="img/hero.jpg" preserveAspectRatio="xMidYMid slice" clip-path="url(#ecoForma)"/></svg> <!-- la sala, vista a través del eco -->
+    <div class="eco-titulo"><h1><span class="oculto">Sin música de fondo.</span><span id="lema"></span></h1>
+      <a class="eco-cta k" id="ecoCta" href="reservar.html"><span aria-hidden="true">→</span>Reservar</a></div>
+    <div class="eco-pie"><div class="wrap">
+      <p class="k">Bilbao La Vieja</p>
+      <a class="k" href="#proxima">Próxima sesión ↓</a>
+    </div></div>
+  </section>
+  <section class="wrap prox"><div id="proxima"></div></section>
+
+  <!-- Manifiesto: centrado, para leerlo despacio -->
+  <section class="bloque"><div class="wrap manif">
+    <p class="k gris">Un espacio para escuchar</p>
+    <div class="manifiesto">
+      <p>Cada encuentro reúne dos álbumes completos que comparten algo: una voz, una atmósfera, una época o una manera de entender la música. <span class="apagado">Discos de ayer y de hoy, elegidos para escucharlos de principio a fin.</span></p>
+      <p>La luz baja, los móviles se guardan y la música ocupa su lugar. <span class="apagado">Entre disco y disco, una pausa para hablar, pedir algo y dejar que la noche continúe.</span></p>
+      <p>No hace falta saber de música. <span class="apagado">Solo venir con curiosidad.</span></p>
+    </div>
+  </div></section>
+
+  <!-- Una noche: título a todo el ancho y los cuatro momentos en línea -->
+  <section class="bloque"><div class="wrap">
+    <p class="k gris">Una noche en ENTZUN</p>
+    <div class="noche-intro">
+      <div class="noche-titulo"><h2 class="t-logo con-salto titulo-noche">Dos discos. Una noche.</h2>
+        <p class="ritmo">Baja la luz.<br>Empieza el disco.<br>El resto puede esperar.</p></div>
+      <div class="entradilla">
+        <p>No son canciones sueltas ni una lista que suena de fondo. Cada sesión está construida alrededor de dos álbumes completos que dialogan entre sí.</p>
+        <p>Una conexión entre artistas, épocas y sonidos que quizá no habías pensado escuchar juntos.</p>
+      </div>
+    </div>
+    <ol class="ritual">
+      <li><span class="k gris">01 · Llegada</span><b>20:30</b><p>Abrimos la barra. Llega con tiempo, pide algo y descubre los dos discos que hemos elegido para la noche.</p></li>
+      <li><span class="k gris">02 · Disco A</span><b>21:00</b><p>Baja la luz. Empieza el primer álbum. Lo escuchamos entero, de principio a fin, sin interrupciones.</p></li>
+      <li><span class="k gris">03 · Descanso</span><b>20 minutos</b><p>Se enciende la luz. Un rato para conversar, pedir otra bebida y comentar lo que acabamos de escuchar.</p></li>
+      <li><span class="k gris">04 · Disco B</span><b>Después de la pausa</b><p>El segundo álbum toma el relevo. Otra perspectiva, otra época, otra forma de entender la música.</p></li>
+    </ol>
+    <p class="nota"><b>Una noche completa o un solo disco.</b> Puedes reservar para los dos álbumes o venir únicamente a uno de ellos. La entrada y salida entre sesiones se realiza durante el descanso.</p>
+  </div></section>
+
+  <div id="descanso"></div>
+
+  <div class="plata">
+  <!-- Esta semana: el título se queda fijo y la lista pasa a su lado -->
+  <section class="bloque"><div class="wrap semana">
+    <div class="semana-lado">
+      <p class="k gris">19 — 26 nov</p>
+      <h2 class="t-logo">Esta semana.</h2>
+      <p class="entradilla">Una selección que cruza épocas, estilos y maneras de hacer música. Del jazz y el soul a la electrónica atmosférica, el folk y el rock más introspectivo.</p>
+      <a class="k enlace" href="programacion.html">Toda la programación →</a>
+    </div>
+    <div id="semana"></div>
+  </div></section>
+
+  <!-- El espacio: cuatro losas negras con sus iconos -->
+  <section class="bloque" id="espacio"><div class="wrap">
+    <div class="espacio-cab">
+      <div><p class="k gris">El espacio</p><h2 class="t-logo">Aquí se escucha.</h2></div>
+      <p class="entradilla">Un bajo de Bilbao La Vieja con treinta sitios, un equipo de sonido a la vista y una barra pequeña.</p>
+    </div>
+    <ul class="normas" id="normas" aria-label="Cómo funciona">
+      <li><svg class="icono" viewBox="10 0 100 100" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M10 0H90V100H10ZM50 9a8 8 0 1 0 0 16a8 8 0 1 0 0-16ZM50 32a31 31 0 1 0 0 62a31 31 0 1 0 0-62Z"/><path class="cono" fill-rule="evenodd" d="M50 42a21 21 0 1 0 0 42a21 21 0 1 0 0-42ZM50 55a8 8 0 1 1 0 16a8 8 0 1 1 0-16Z"/></svg><span>La música,<br>en primer plano</span></li>
+      <li><svg class="icono" viewBox="8 0 100 100" fill="currentColor" aria-hidden="true"><defs><clipPath id="dentroBolsillo"><path d="M0 -10H110V36H0Z"/></clipPath></defs><g clip-path="url(#dentroBolsillo)"><path class="movil" fill-rule="evenodd" d="M29 0H71V100H29ZM36 9V100H64V9Z"/></g><path d="M8 41H92V58A42 42 0 0 1 8 58Z"/></svg><span>Los móviles,<br>guardados</span></li>
+      <li><svg class="icono" viewBox="0 0 100 100" fill="currentColor" aria-hidden="true"><path class="voz-a" fill-rule="evenodd" d="M34 0A34 34 0 0 1 34 68H0V34A34 34 0 0 1 34 0ZM20 30a4.2 4.2 0 1 0 0 8.4a4.2 4.2 0 1 0 0-8.4ZM34 30a4.2 4.2 0 1 0 0 8.4a4.2 4.2 0 1 0 0-8.4ZM48 30a4.2 4.2 0 1 0 0 8.4a4.2 4.2 0 1 0 0-8.4Z"/><path class="voz-b" d="M70 40A30 30 0 0 1 100 70V100H70A30 30 0 0 1 70 40Z"/></svg><span>En la pausa,<br>se habla</span></li>
+      <li><svg class="icono" viewBox="-4.6 20.4 109.2 109.2" fill="currentColor" aria-hidden="true"><circle class="punto" style="--i:0" cx="26.00" cy="75.00" r="4.5"/><circle class="punto" style="--i:1" cx="29.22" cy="63.00" r="4.5"/><circle class="punto" style="--i:2" cx="38.00" cy="54.22" r="4.5"/><circle class="punto" style="--i:3" cx="50.00" cy="51.00" r="4.5"/><circle class="punto" style="--i:4" cx="62.00" cy="54.22" r="4.5"/><circle class="punto" style="--i:5" cx="70.78" cy="63.00" r="4.5"/><circle class="punto" style="--i:6" cx="74.00" cy="75.00" r="4.5"/><circle class="punto" style="--i:7" cx="13.00" cy="75.00" r="4.5"/><circle class="punto" style="--i:8" cx="15.23" cy="62.35" r="4.5"/><circle class="punto" style="--i:9" cx="21.66" cy="51.22" r="4.5"/><circle class="punto" style="--i:10" cx="31.50" cy="42.96" r="4.5"/><circle class="punto" style="--i:11" cx="43.58" cy="38.56" r="4.5"/><circle class="punto" style="--i:12" cx="56.42" cy="38.56" r="4.5"/><circle class="punto" style="--i:13" cx="68.50" cy="42.96" r="4.5"/><circle class="punto" style="--i:14" cx="78.34" cy="51.22" r="4.5"/><circle class="punto" style="--i:15" cx="84.77" cy="62.35" r="4.5"/><circle class="punto" style="--i:16" cx="87.00" cy="75.00" r="4.5"/><circle class="punto" style="--i:17" cx="0.00" cy="75.00" r="4.5"/><circle class="punto" style="--i:18" cx="1.70" cy="62.06" r="4.5"/><circle class="punto" style="--i:19" cx="6.70" cy="50.00" r="4.5"/><circle class="punto" style="--i:20" cx="14.64" cy="39.64" r="4.5"/><circle class="punto" style="--i:21" cx="25.00" cy="31.70" r="4.5"/><circle class="punto" style="--i:22" cx="37.06" cy="26.70" r="4.5"/><circle class="punto" style="--i:23" cx="50.00" cy="25.00" r="4.5"/><circle class="punto" style="--i:24" cx="62.94" cy="26.70" r="4.5"/><circle class="punto" style="--i:25" cx="75.00" cy="31.70" r="4.5"/><circle class="punto" style="--i:26" cx="85.36" cy="39.64" r="4.5"/><circle class="punto" style="--i:27" cx="93.30" cy="50.00" r="4.5"/><circle class="punto" style="--i:28" cx="98.30" cy="62.06" r="4.5"/><circle class="punto" style="--i:29" cx="100.00" cy="75.00" r="4.5"/><path d="M38 88A12 12 0 0 1 62 88Z"/></svg><span>Treinta sitios,<br>mejor con reserva</span></li>
+    </ul>
+  </div></section>
+
+  <!-- Reservar: una sola franja, título a un lado y botón al otro -->
+  <section class="bloque cierre"><div class="wrap cierre-fila">
+    <div><h2 class="t-logo">Tu sitio te espera.</h2>
+      <p class="entradilla">Elige la sesión y reserva para la noche completa o para uno de los dos álbumes.</p></div>
+    <a class="btn k" id="reservaCierre" href="reservar.html">Reservar sitio →</a>
+  </div></section>
+  </div>
+  <section class="eco-marca" aria-hidden="true"><div class="wrap"><div class="eco-lienzo" id="ecoMarca"></div></div></section> <!-- el logo final, en eco -->
+</main>
+
+<script>
+cabecera("index.html"); pie();                                            // cabecera y pie comunes
+const p = PROGRAMA.find((s) => s[7] > 0 || s[8] > 0), e = estado(libresCompleta(p)); // la próxima sesión con sitio
+document.getElementById("lema").innerHTML = ENTZUN.lema({ color: PLATA });  // el claim con la letra de ENTZUN
+document.getElementById("proxima").innerHTML = `<div class="proxima-cab">
+  <div><p class="k gris">Próxima sesión · Nº ${nn(p[0])} · ${fechaLarga(p[1])}</p><p class="titulo-ses">${p[3]}</p></div>
+  <div class="acciones"><span class="k plazas ${e.cls}">${e.txt}</span><a class="k" href="sesion.html?n=${p[0]}">Ver la sesión →</a><a class="btn k" href="reservar.html?n=${p[0]}">Reservar sitio</a></div>
+  </div>${nocheHTML(p)}`;                                                   // datos arriba y la noche como línea debajo
+document.getElementById("descanso").outerHTML = descansoHTML(p);             // el centro de la página
+descansoVivo(p);                                                            // al bajar, la franja pasa del disco A al disco B
+document.getElementById("ecoCta").href = `reservar.html?n=${p[0]}`;         // el botón de la portada lleva a la próxima sesión
+ecoHero(); ecoMarca();                                                      // la portada y el logo final, en eco
+(function () {                                                             // las losas de «Aquí se escucha» se turnan
+  const caja = document.getElementById("normas"), losas = [...caja.children]; // el bloque y sus cuatro losas
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;       // sin movimiento si se prefiere
+  let i = 0, reloj = null;                                                  // la losa activa y el temporizador
+  caja.classList.add("viva");                                               // activa el modo animado
+  const activa = (n) => { i = n; losas.forEach((l, k) => l.classList.toggle("activa", k === n)); }; // enciende una y apaga las demás
+  const para = () => { clearInterval(reloj); reloj = null; };               // detiene el turno
+  const sigue = () => { para(); reloj = setInterval(() => activa((i + 1) % losas.length), 3200); }; // pasa a la siguiente cada 3,2 s
+  losas.forEach((l, k) => l.addEventListener("pointerenter", () => { para(); activa(k); })); // al pasar por encima, suena esa
+  caja.addEventListener("pointerleave", sigue);                             // al salir, sigue el turno
+  new IntersectionObserver(([e]) => { if (e.isIntersecting) { activa(i); sigue(); } else para(); }, { threshold: .35 }).observe(caja); // solo se mueve si se ve
+})();
+document.getElementById("reservaCierre").href = `reservar.html?n=${p[0]}`;   // el botón final lleva a la próxima sesión con sitio
+document.getElementById("semana").innerHTML = PROGRAMA.slice(0, 6).map(sesionFila).join(""); // las seis próximas sesiones
+</script>
+</body>
+</html>

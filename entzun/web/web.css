@@ -1,0 +1,131 @@
+/* web.css · estilos compartidos de la web de ENTZUN (blanco y negro, letra Space Grotesk, móvil primero) */
+:root {
+  --negro: #0E0E0E; --gris2: #2A2927; --gris: #85878B; --blanco: #D4D5D6;   /* negro, gris frío y gris metalizado */
+  --linea: #ffffff17;                                                      /* filetes finos sobre negro */
+  --t-xs: 12px;                                                            /* etiquetas en mayúsculas */
+  --t-s: 14px;                                                             /* datos y notas */
+  --t-m: 16px;                                                             /* texto corrido */
+  --t-l: clamp(19px, 1.5vw, 22px);                                         /* nombres de sesión y de artista */
+  --t-xl: clamp(22px, 2vw, 28px);                                          /* frases destacadas */
+  --t-titulo: clamp(24px, 2.4vw, 34px);                                    /* títulos con la letra del logo */
+  --t-grande: clamp(30px, 3.4vw, 48px);                                    /* el título principal de cada página */
+  --pad: clamp(18px, 5vw, 64px);                                           /* margen lateral */
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 88px; }                 /* los anclajes no quedan bajo el menú */
+body { background: var(--negro); color: var(--blanco); font: 400 var(--t-m)/1.65 "Space Grotesk", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+a { color: inherit; }
+img, svg { display: block; max-width: 100%; }
+.k { font-size: var(--t-xs); font-weight: 400; letter-spacing: .14em; text-transform: uppercase; } /* textos pequeños en mayúsculas */
+.gris { color: var(--gris); }
+.wrap { max-width: 1280px; margin: 0 auto; padding: 0 var(--pad); }
+:focus-visible { outline: 2px solid var(--blanco); outline-offset: 3px; }   /* foco visible con teclado */
+.salta { position: absolute; left: -9999px; } .salta:focus { left: 12px; top: 12px; background: var(--blanco); color: var(--negro); padding: 8px 12px; z-index: 50; } /* saltar al contenido */
+
+/* ---------- Cabecera ---------- */
+.cab { position: sticky; top: 0; z-index: 20; background: var(--negro); border-bottom: 1px solid var(--linea); } /* menú siempre visible, fondo sólido */
+.cab .wrap { display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 64px; } /* una línea baja y limpia */
+.cab .marca { width: 84px; display: block; }                                /* logo discreto: el protagonista es el claim */
+.cab nav { display: flex; align-items: center; gap: clamp(20px, 3vw, 40px); }
+.cab nav a { text-decoration: none; font-size: var(--t-s); font-weight: 400; letter-spacing: 0; text-transform: none; color: var(--gris); transition: color .25s; } /* enlaces en minúscula, finos */
+.cab nav a:hover { color: var(--blanco); }
+.cab nav a[aria-current="page"] { color: var(--blanco); }                    /* la página actual, solo más clara */
+.btn { display: inline-flex; align-items: center; gap: 10px; background: none; color: var(--blanco); text-decoration: none; padding: 14px 26px; border: 0; border-radius: 0; box-shadow: inset 0 0 0 1px #D4D5D666; cursor: pointer; font: inherit; transition: background .3s, color .3s, box-shadow .3s; } /* botón de filete fino */
+.btn:hover { background: var(--blanco); color: var(--negro); box-shadow: inset 0 0 0 1px var(--blanco); } /* se rellena al pasar */
+.btn.linea { box-shadow: none; padding-inline: 4px; text-decoration: underline; text-underline-offset: 6px; } .btn.linea:hover { background: none; color: var(--gris); box-shadow: none; } /* acción secundaria: solo texto */
+.btn[disabled] { opacity: .35; cursor: not-allowed; }
+@media (max-width: 640px) { .cab nav .solo-escritorio { display: none; } .cab .marca { width: 100px; } }
+
+/* ---------- Bloques ---------- */
+.bloque { border-top: 1px solid var(--linea); padding: clamp(64px, 9vw, 136px) 0; } /* más silencio entre secciones */
+.titulo { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: clamp(24px, 4vw, 44px); }
+h1, h2, h3 { font-weight: 400; letter-spacing: -.03em; line-height: 1.06; text-wrap: balance; } /* titulares finos: la fuerza la pone el claim */
+p { text-wrap: pretty; }                                                     /* evita palabras sueltas al final */
+.oculto { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); } /* solo para lectores de pantalla */
+h2 { font-size: var(--t-titulo); }
+
+/* ---------- Disponibilidad ---------- */
+.plazas { display: inline-flex; align-items: center; gap: 8px; }
+.plazas::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: currentColor; } /* punto de estado */
+.plazas.pocas { color: var(--blanco); } .plazas.completo { color: var(--gris); text-decoration: line-through; } /* pocas plazas · completo */
+
+/* ---------- Fila de sesión (programación y portada) ---------- */
+.sesion { display: grid; grid-template-columns: 100px 64px minmax(0, 1fr) auto; gap: 16px 24px; align-items: center; padding: 24px 0; border-bottom: 1px solid var(--linea); text-decoration: none; }
+.par { display: grid; grid-template-columns: 1fr 1fr; gap: 16%; }           /* dos glifos con un hueco en medio: la pausa */
+.par svg { display: block; width: 100%; overflow: visible; transition: transform .6s cubic-bezier(.6, 0, .2, 1); }
+.sesion:hover .par svg { transform: rotate(90deg); }                         /* los glifos giran, el gesto de la marca */
+.sesion:hover .par-b svg { transition-delay: .12s; }                         /* el disco B gira un poco después */
+.sesion .gl { width: 84px; }                                                /* dos glifos: disco A y disco B */
+.sesion .art { font-weight: 400; letter-spacing: -.01em; font-size: var(--t-l); } .sesion .alb { color: var(--gris); }
+@media (max-width: 640px) { .sesion { grid-template-columns: 80px minmax(0, 1fr); } .sesion .gl { width: 76px; grid-row: span 2; } .sesion .hora { display: none; } .sesion .der { grid-column: 2; } }
+
+/* ---------- Pie ---------- */
+.pie { border-top: 1px solid var(--linea); padding: 72px 0 48px; }
+.pie-lema { width: min(100%, 190px); margin-bottom: 18px; }                  /* el claim, con la letra de la marca */
+.pie .wrap { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px; }
+.pie p { color: var(--gris); font-size: var(--t-s); } .pie .blanco { color: var(--blanco); } .pie .enlaces { margin-top: 12px; } .pie .enlaces a { color: var(--blanco); } .pie b { display: block; font-weight: 400; color: var(--gris); margin-bottom: 10px; }
+@media (max-width: 760px) { .pie .wrap { grid-template-columns: 1fr 1fr; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; } }
+
+/* ---------- Retícula editorial: el rótulo siempre en la misma columna, el contenido en la otra ---------- */
+.sec { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 9fr); gap: 24px clamp(24px, 4vw, 64px); align-items: start; }
+.rotulo { position: sticky; top: 96px; color: var(--gris); }                 /* el rótulo acompaña al leer la sección */
+.entradilla { color: var(--gris); max-width: 620px; margin-top: 22px; font-size: var(--t-m); line-height: 1.7; }
+.entradilla p + p { margin-top: 14px; }
+@media (max-width: 860px) { .sec { grid-template-columns: minmax(0, 1fr); } .rotulo { position: static; } }
+
+/* ---------- La noche como línea: disco A, silencio, disco B ---------- */
+.noche-linea { display: grid; grid-template-columns: var(--tramos); gap: clamp(12px, 1.6vw, 24px); }
+.tramo { border-top: 2px solid var(--blanco); padding-top: 22px; min-width: 0; } /* la línea: lo que suena */
+.tramo.pausa { border-top: 1px dashed #D4D5D655; }                           /* el descanso: la línea se apaga */
+.tramo .gl { display: block; width: clamp(64px, 6.4vw, 92px); margin-bottom: 22px; }
+.tramo .gl svg { overflow: visible; }
+.tramo .quien { font-size: var(--t-l); line-height: 1.2; letter-spacing: -.015em; margin-top: 8px; }
+.tramo.pausa .quien { color: var(--gris); }
+@media (max-width: 760px) {
+  .noche-linea { grid-template-columns: minmax(0, 1fr); gap: 0; }             /* en el móvil la noche se lee hacia abajo */
+  .tramo { display: grid; grid-template-columns: 72px minmax(0, 1fr); column-gap: 18px; padding: 18px 0 22px; }
+  .tramo .gl { width: 64px; margin: 0; grid-row: span 3; } .tramo > p { grid-column: 2; }
+  .tramo.pausa { display: flex; justify-content: space-between; align-items: baseline; } .tramo.pausa .quien { margin: 0; font-size: var(--t-m); }
+}
+
+/* ---------- Personalidad: la página es un disco con dos caras ---------- */
+.cab { position: sticky; }
+.aguja { position: absolute; left: 0; right: 0; bottom: -1px; height: 1px; background: var(--blanco); transform: scaleX(0); transform-origin: left; } /* avanza al bajar */
+.plata { --negro: #D4D5D6; --blanco: #0E0E0E; --gris: #55575B; --linea: #0E0E0E2B; background: var(--negro); color: var(--blanco); } /* cara B: se invierte la paleta */
+.plata > .bloque:first-child { border-top: 0; }
+.plata .btn { box-shadow: inset 0 0 0 1px #0E0E0E; }
+.plata .btn:hover { background: #0E0E0E; color: #D4D5D6; }
+.descanso { background: #0E0E0E; }       /* la pausa entre la cara negra y la plateada */
+.franja { position: relative; overflow: hidden; isolation: isolate; background: #0E0E0E; } /* solo dos filas de losas */
+.losas { position: absolute; inset: 0; display: grid; justify-content: center; align-content: start; }
+.losa { position: relative; transform-style: preserve-3d; }                  /* cada losa tiene dos caras */
+.cara { position: absolute; inset: 0; display: block; background: #0E0E0E; color: #D4D5D6; backface-visibility: hidden; -webkit-backface-visibility: hidden; } /* cara A */
+.cara.atras { background: #D4D5D6; color: #0E0E0E; transform: rotateY(180deg); } /* cara B */
+.cara svg { width: 100%; height: 100%; }
+
+/* ---------- Títulos con la letra del logo: cortos y potentes ---------- */
+.t-logo { display: flex; flex-wrap: wrap; gap: .1em .5em; font-size: var(--t-titulo); line-height: 0; margin-top: -.3em; margin-bottom: .35em; padding: 0; max-width: none; letter-spacing: 0; color: var(--blanco); } /* el tamaño es el alto de las mayúsculas */
+.t-logo .palabra { display: block; max-width: 100%; }
+.t-logo svg { height: 1.3em; width: auto; max-width: 100%; overflow: visible; }  /* 1.3: la letra más el sitio de la tilde */
+h1.t-logo.grande { font-size: var(--t-grande); max-width: none; }
+
+/* ---------- El eco: la portada y el logo final ---------- */
+.eco-hero { position: relative; height: calc(100svh - 65px); min-height: 560px; max-height: 980px; background: #0E0E0E; overflow: hidden; } /* portada a pantalla completa */
+.eco-hero > svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.eco-hero image { filter: brightness(1.12) contrast(1.04); }                 /* la sala, encendida */
+.eco-titulo { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: 22px; pointer-events: none; padding-inline: 18px; } /* el claim y el botón, en el centro */
+.eco-titulo h1 { width: min(78vw, 480px); } .eco-titulo svg { width: 100%; }
+.eco-cta { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; pointer-events: auto; font-size: var(--t-xs); } /* reservar, junto al claim */
+.eco-cta span { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--blanco); color: var(--negro); font-size: 16px; letter-spacing: 0; transition: transform .35s cubic-bezier(.6, 0, .2, 1); } /* el círculo de la marca */
+.eco-cta:hover span { transform: rotate(90deg); }                            /* el gesto de los glifos */
+.eco-pie { position: absolute; left: 0; right: 0; bottom: 22px; }
+.eco-pie .wrap { display: flex; justify-content: space-between; align-items: end; gap: 16px; } /* dos datos, a cada lado */
+.eco-pie a { justify-self: end; white-space: nowrap; }
+.eco-marca { background: #0E0E0E; padding: clamp(48px, 7vw, 104px) 0; overflow: hidden; } /* el logo a todo el ancho */
+.eco-lienzo { position: relative; isolation: isolate; background: #0E0E0E; }
+.copia { position: absolute; inset: 0; mix-blend-mode: difference; will-change: transform; } /* donde dos copias se pisan, se recorta */
+.copia:first-child { position: relative; }
+.copia svg { width: 100%; }
+
+.t-logo .salto { flex-basis: 100%; height: 0; }                              /* frase nueva, línea nueva */

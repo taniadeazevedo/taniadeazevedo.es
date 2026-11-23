@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"> <!-- acentos -->
+<meta name="viewport" content="width=device-width, initial-scale=1"> <!-- adaptable al móvil -->
+<meta name="robots" content="noindex">
+<title>ENTZUN · Redes</title> <!-- título de la pestaña -->
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet"> <!-- letra de apoyo -->
+<script src="../shared/entzun-logo.js"></script>     <!-- el logo y su alfabeto -->
+<script src="../shared/entzun-sistema.js"></script>  <!-- glifos, patrones y discos -->
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }                     /* punto de partida limpio */
+  body { background: #202122; color: #D4D5D6; font: 400 16px/1.6 "Space Grotesk", sans-serif; padding: clamp(28px, 5vw, 72px) clamp(16px, 5vw, 72px); } /* tablero */
+  svg { display: block; width: 100%; height: auto; }                       /* cada pieza se adapta a su hueco */
+  .k { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: #85878B; } /* etiquetas del tablero */
+  section { max-width: 1280px; margin: 0 auto clamp(56px, 8vw, 110px); display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 10fr); gap: 18px 32px; } /* rótulo y contenido */
+  .feed { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 5px; }  /* la cuadrícula de Instagram */
+  .carrusel { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(190px, 1fr); gap: 5px; overflow-x: auto; } /* se desliza en el móvil */
+  @media (max-width: 860px) { section { grid-template-columns: minmax(0, 1fr); } }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+</style>
+</head>
+<body>
+<section><p class="k">Feed</p><div class="feed" id="feed"></div></section>
+<section><p class="k">Carrusel<br>Una noche</p><div class="carrusel" id="carrusel"></div></section>
+<script>
+// ================= Utilidades =================
+const N = "#0E0E0E", P = "#D4D5D6", G = "#85878B", W = 1080, H = 1350, HS = 1920; // colores y formatos
+const d = (id) => DISCOS.find((x) => x[0] === id);                         // un disco por su id
+const anima = [];                                                          // lo que se mueve: cada pieza apunta aquí su función
+let uid = 0; const nuevo = () => "p" + (uid++);                            // nombres únicos dentro de la página
+const T = (x, y, txt, s, col, ancla = "start") => `<text x="${x}" y="${y}" font-family="Space Grotesk" font-size="${s}" fill="${col}" text-anchor="${ancla}">${txt}</text>`; // texto de apoyo
+const K = (x, y, txt, col, ancla = "start") => `<text x="${x}" y="${y}" font-family="Space Grotesk" font-size="26" letter-spacing="3.6" fill="${col}" text-anchor="${ancla}">${txt.toUpperCase()}</text>`; // etiqueta
+function L(x, y, k, lineas, col) {                                          // título con la letra del logo; k = tamaño (1 = 100 de alto)
+  const s = ENTZUN.lema({ color: col, lineas }), [, , , a, h] = s.match(/viewBox="(\S+) (\S+) (\S+) (\S+)"/).map(Number); // su medida real
+  return s.replace("<svg ", `<svg x="${x}" y="${y}" width="${a * k}" height="${h * k}" style="width:${a * k}px;height:${h * k}px" `); // colocado y a escala
+}
+const firma = (col, y = H - 58) => { const p = ENTZUN.palabra(col); return `<g transform="translate(60 ${y - 28}) scale(${150 / p.ancho})">${p.g}</g>`; }; // logo pequeño
+const pieza = (fondo, dentro, alto = H) => `<svg viewBox="0 0 ${W} ${alto}" role="img"><rect width="${W}" height="${alto}" fill="${fondo}"/>${dentro}</svg>`; // el lienzo
+
+// ================= El eco de la portada =================
+const CENTROS = [0, .874, 1.395, 1.769, 1.769], CORTES = [0, .899, 1.853, 2.496, 2.773]; // el recorrido de cada onda
+const tramo = (l, q) => { const i = Math.min(Math.floor(q), l.length - 2); return l[i] + (l[i + 1] - l[i]) * (q - i); }; // posición a velocidad constante
+function ecoD(R, cx, cy, vertical, fase) {                                  // el trazo: círculo fijo y cuatro ondas
+  const P2 = (a, b) => vertical ? `${cx + b} ${cy + a}` : `${cx + a} ${cy + b}`; // en vertical las ondas bajan
+  let t = `M${cx - R} ${cy}a${R} ${R} 0 1 1 ${2 * R} 0a${R} ${R} 0 1 1 ${-2 * R} 0Z`; // el círculo
+  for (let k = 0; k < 4; k++) { const q = k + fase, m = tramo(CENTROS, q) * R, u = tramo(CORTES, q) * R, dx = u - m; if (dx >= R) continue; // cada onda
+    const v = Math.sqrt(R * R - dx * dx), g = dx < 0 ? 1 : 0;               // alto del corte y arco
+    t += vertical ? `M${P2(u, v)}A${R} ${R} 0 ${g} 1 ${P2(u, -v)}Z` : `M${P2(u, -v)}A${R} ${R} 0 ${g} 1 ${P2(u, v)}Z`; }
+  return t;
+}
+function eco(R, cx, cy, vertical, alto) {                                   // la sala vista a través del eco
+  const id = nuevo(); anima.push({ id, f: (el, t) => el.setAttribute("d", ecoD(R, cx, cy, vertical, (t % 1200) / 1200)) }); // se mueve en bucle de 1,2 s
+  return `<defs><clipPath id="c${id}"><path id="${id}" d="${ecoD(R, cx, cy, vertical, 0)}"/></clipPath></defs><image href="img/sala-ancha.jpg" width="${W}" height="${alto}" preserveAspectRatio="xMidYMid slice" clip-path="url(#c${id})"/>`; // la foto recortada
+}
+
+// ================= El eco en arco: mismo movimiento, las ondas suben =================
+function arcoD(R, cx, cy, base, fase) {                                     // un arco fijo y cuatro ondas que salen por arriba
+  let t = `M${cx - R} ${base}V${cy}A${R} ${R} 0 0 1 ${cx + R} ${cy}V${base}Z`; // el arco
+  for (let k = 0; k < 4; k++) { const q = k + fase, m = tramo(CENTROS, q) * R * .5, dx = tramo(CORTES, q) * R - tramo(CENTROS, q) * R; if (dx >= R) continue; // cada onda: se separa la mitad para caber en el post
+    const v = Math.sqrt(R * R - dx * dx), y = cy - m - dx;                  // ancho y altura del corte recto
+    t += `M${cx - v} ${y}A${R} ${R} 0 0 1 ${cx + v} ${y}Z`; }               // el casquete
+  return t;
+}
+function bloqueD(R, cx, cy, f, ancho) {                                     // Beth Gibbons: la forma de la E del logo, con ondas horizontales hacia la izquierda
+  let t = `M${ancho} ${cy + R}H${cx}A${R} ${R} 0 0 1 ${cx} ${cy - R}H${ancho}Z`; // semicírculo + bloque hasta el borde derecho
+  for (let k = 0; k < 4; k++) { const q = k + f, m = tramo(CENTROS, q) * R * .45, dx = (tramo(CORTES, q) - tramo(CENTROS, q)) * R; if (dx >= R) continue; // cada onda
+    const v = Math.sqrt(R * R - dx * dx), x = cx - m - dx;                  // alto y posición del corte recto
+    t += `M${x} ${cy + v}A${R} ${R} 0 0 1 ${x} ${cy - v}Z`; }               // la media luna
+  return t;
+}
+function forma(tipo, foto, alto) {                                          // la foto del artista vista a través de su forma
+  const id = nuevo(), traza = tipo === "arco" ? (f) => arcoD(350, W / 2, 730, alto, f) : (f) => bloqueD(430, 760, 590, f, W); // cada artista, su forma
+  anima.push({ id, f: (el, t) => el.setAttribute("d", traza((t % 1200) / 1200)) }); // bucle de 1,2 s
+  const tono = tipo === "arco" ? "grayscale(1) brightness(1.16) contrast(.9)" : "grayscale(1) contrast(1.1)"; // las dos fotos con el mismo blanco y negro
+  return `<defs><clipPath id="c${id}"><path id="${id}" d="${traza(0)}"/></clipPath></defs><g clip-path="url(#c${id})"><image style="filter:${tono}" href="${foto}" ${tipo === "arco" ? `width="${W}" height="${alto}" preserveAspectRatio="xMidYMin slice"` : `x="-46" y="-248" width="1226" height="1516"`}/></g>${tipo === "arco" ? `<rect y="${alto - 420}" width="${W}" height="420" fill="url(#sombra)"/>` : ""}`; // foto, ajuste y sombra para leer el nombre
+}
+const artista = (tipo, foto, letra, id2, lineas, yNombre) => pieza(N, `<defs><linearGradient id="sombra" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${N}" stop-opacity="0"/><stop offset="1" stop-color="${N}" stop-opacity=".92"/></linearGradient></defs>${forma(tipo, foto, H)}${K(60, 92, "Disco " + letra, P)}${K(1020, 92, d(id2)[2] + " · " + d(id2)[3], P, "end")}${L(60, yNombre, 1.02, lineas, P)}`); // el post del artista
+
+// ================= El eco del logo: copias que se abren y se juntan =================
+function copias(hacer, abre = 42) {                                         // cinco copias: donde se pisan, se recortan
+  const id = nuevo(), saltos = [-2, -1, 0, 1, 2];                           // nombre y posición de cada copia
+  anima.push({ id, f: (el, t) => { const s = Math.max(0, Math.cos(t / 3400 * Math.PI * 2)) ** 1.5; [...el.children].slice(1).forEach((c, i) => c.setAttribute("transform", `translate(${saltos[i] * s * abre} 0)`)); } }); // se abre y se junta
+  return `<g id="${id}" style="isolation:isolate"><rect width="${W * 3}" height="${H * 2}" fill="${N}"/>${saltos.map(() => `<g style="mix-blend-mode:difference">${hacer()}</g>`).join("")}</g>`; // las copias
+}
+
+// ================= El cambio de disco: losas que giran de A a B =================
+function losas(a, b, alto, cols = 6) {
+  const A = adn(a, d(a)[5]), B = adn(b, d(b)[5]), t = W / cols, filas = Math.ceil(alto / t), id = nuevo(); let g = ""; // formas y retícula
+  for (let f = 0; f < filas; f++) for (let c = 0; c < cols; c++) {         // losa a losa
+    const cara = (m, fo, ti) => `<g><rect width="50.5" height="50.5" fill="${fo}"/><g fill="${ti}" stroke="${ti}" stroke-width=".4">${celda(m.forma, (m.giro + c + f * 3) % 4)}</g></g>`; // una cara
+    g += `<g data-x="${c * t}" data-y="${f * t}" data-d="${(c + f) / (cols + filas - 2)}" transform="translate(${c * t} ${f * t}) scale(${t / 50})">${cara(A, N, P)}${cara(B, P, N)}</g>`; // la losa con sus dos caras
+  }
+  anima.push({ id, f: (el, t2) => { const u = (t2 % 6400) / 6400, p = u < .5 ? Math.min(1, u / .4) : Math.max(0, 1 - (u - .5) / .4); // va de A a B y vuelve
+    for (const l of el.children) { const k = Math.min(1, Math.max(0, (p - l.dataset.d * .6) / .4)), e = k * k * (3 - 2 * k), sx = Math.abs(Math.cos(e * Math.PI)); // cuánto ha girado
+      l.setAttribute("transform", `translate(${+l.dataset.x + (t / 2) * (1 - sx)} ${l.dataset.y}) scale(${(t / 50) * Math.max(sx, .01)} ${t / 50})`); // se estrecha como una tarjeta al girar
+      l.children[0].style.display = e < .5 ? "" : "none"; l.children[1].style.display = e < .5 ? "none" : ""; } } }); // enseña A o B
+  return `<rect width="${W}" height="${alto}" fill="${N}"/><g id="${id}">${g}</g>`;
+}
+// Un glifo que gira un cuarto, para, y otro cuarto
+function glifoVivo(id2, x, y, lado, col, retraso = 0) {
+  const id = nuevo(); anima.push({ id, f: (el, t) => { const u = ((t + retraso) % 2400) / 2400, e = u < .3 ? (u / .3) ** 2 * (3 - 2 * u / .3) : 1, n = Math.floor((t + retraso) / 2400); el.setAttribute("transform", `rotate(${(n + e) * 90} 50 50)`); } }); // el giro
+  return `<g transform="translate(${x} ${y}) scale(${lado / 100})" fill="${col}" stroke="${col}" stroke-width=".35"><g id="${id}">${glifo(id2, d(id2)[5])}</g></g>`;
+}
+
+const artistaDisco = (x, y, id, tinta) => `<text x="${x}" y="${y}" font-family="Space Grotesk" font-size="58" fill="${tinta}">${d(id)[1]}<tspan dx="18" font-size="27" fill="${tinta === P ? G : "#55575B"}">${d(id)[2]}</tspan></text>`; // el artista y, en pequeño, su disco
+// Una sesión: los dos glifos girando y su título
+const sesion = (n, a, b, lineas, fecha, fondo, tinta) => pieza(fondo, `${K(60, 92, "Nº " + n + " · " + fecha + " · 21:00", tinta)}${glifoVivo(a, 60, 150, 420, tinta)}${glifoVivo(b, 600, 150, 420, tinta, 1200)}${L(60, 650, .72, lineas, tinta)}${artistaDisco(60, 1120, a, tinta)}${artistaDisco(60, 1196, b, tinta)}${firma(tinta)}`);
+const logoCopia = (ancho, x, y) => () => { const p = ENTZUN.palabra(P); return `<g transform="translate(${x} ${y}) scale(${ancho / p.ancho})">${p.g}</g>`; }; // una copia del logo
+
+// ================= Feed =================
+const tresPosts = (i) => pieza(N, `<g transform="translate(${-i * W} 0)">${copias(logoCopia(2840, 200, 402), 100)}</g>`); // el logo repartido en tres posts: cada uno enseña su tercio
+document.getElementById("feed").innerHTML = [
+  tresPosts(0), tresPosts(1), tresPosts(2),                                 // primera fila: ENTZUN de lado a lado
+  artista("arco", "img/artista-portishead.jpg", "A", 24, ["PORTISHEAD"], 1140),     // segunda fila: disco A…
+  pieza(N, losas(24, 29, H)),                                               // …el cambio de disco…
+  artista("bloque", "img/artista-beth-2.jpg", "B", 29, ["BETH", "GIBBONS"], 1030),      // …y disco B
+  sesion("025", 25, 28, ["CALOR", "LENTO"], "20.11", N, P),
+  pieza(N, `<image href="img/sala-vertical.jpg" width="${W}" height="${H}" preserveAspectRatio="xMidYMid slice"/><defs><linearGradient id="sombraSala" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${N}" stop-opacity="0"/><stop offset="1" stop-color="${N}" stop-opacity=".8"/></linearGradient></defs><rect y="${H - 220}" width="${W}" height="220" fill="url(#sombraSala)"/>${K(60, H - 58, "Calle San Francisco 31 · Bilbao La Vieja", P)}`), // la sala, solo la foto y su ubicación en pequeño
+  sesion("026", 26, 36, ["DOS", "VOCES"], "21.11", P, N),
+].map((x) => `<div>${x}</div>`).join("");
+
+// ================= Carrusel: la noche, deslizando =================
+const discoP = (letra, id, hora, fondo, tinta) => pieza(fondo, `${K(60, 92, "Disco " + letra + " · " + hora, tinta)}${glifoVivo(id, 60, 150, 960, tinta)}${T(60, 1212, d(id)[1], 58, tinta)}${T(60, 1272, d(id)[2] + " · " + d(id)[3], 34, tinta === P ? G : "#55575B")}`);
+document.getElementById("carrusel").innerHTML = [
+  discoP("A", 30, "21:00", N, P),                                           // Mazzy Star
+  pieza(N, losas(30, 27, H)),
+  discoP("B", 27, "22:10", P, N),                                           // Ethel Cain
+  pieza(P, `${L(60, 66, 1.02, ["TU SITIO", "TE ESPERA."], N)}${T(60, 1120, "Sesión completa o un solo disco.", 42, N)}${T(60, 1176, "Treinta sitios. Quedan 3.", 42, "#55575B")}${firma(N)}${K(1020, H - 58, "entzun.eus", N, "end")}`),
+].map((x) => `<div>${x}</div>`).join("");
+
+// ================= Un solo reloj para todo lo que se mueve =================
+if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {              // sin movimiento si se prefiere
+  const vivos = anima.map((a) => { const el = document.getElementById(a.id); const obj = { el, f: a.f, visible: true }; new IntersectionObserver(([e]) => { obj.visible = e.isIntersecting; }).observe(el.closest("svg")); return obj; }); // solo trabajan las piezas en pantalla
+  const bucle = (t) => { for (const v of vivos) if (v.visible) v.f(v.el, t); requestAnimationFrame(bucle); }; // un fotograma
+  requestAnimationFrame(bucle);                                             // arranca
+}
+</script>
+<script>
+// Modo pieza: dentro del caso de estudio, esta página enseña solo los bloques que se le piden (?solo=feed,carrusel)
+(function () {
+  const solo = new URLSearchParams(location.search).get("solo"); if (!solo) return; // sin parámetro, la página normal
+  const css = document.createElement("style");                              // quita mesa, márgenes y rótulos
+  css.textContent = "html,body{background:transparent!important;padding:0!important;margin:0!important;overflow:hidden}section{display:block!important;margin:0!important;max-width:none!important}section>.k{display:none}.fila{max-width:none!important}";
+  document.head.appendChild(css);
+  const ids = solo.split(",");                                              // los bloques pedidos
+  document.querySelectorAll("section").forEach((s) => { if (!ids.some((id) => s.querySelector("#" + id))) s.style.setProperty("display", "none", "important"); }); // el resto se oculta
+})();
+</script>
+</body>
+</html>

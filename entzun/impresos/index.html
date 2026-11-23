@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"> <!-- acentos -->
+<meta name="viewport" content="width=device-width, initial-scale=1"> <!-- adaptable al móvil -->
+<meta name="robots" content="noindex">
+<title>ENTZUN · Impresos</title> <!-- título de la pestaña -->
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet"> <!-- letra de apoyo -->
+<script src="../shared/entzun-logo.js"></script>    <!-- el logo y su alfabeto -->
+<script src="../shared/entzun-sistema.js"></script> <!-- glifos, patrones y discos -->
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }                     /* punto de partida limpio */
+  body { background: #202122; color: #D4D5D6; font: 400 16px/1.6 "Space Grotesk", sans-serif; padding: clamp(28px, 5vw, 72px) clamp(16px, 5vw, 72px); } /* la mesa */
+  svg { display: block; width: 100%; height: auto; }                       /* cada pieza se adapta a su hueco */
+  .k { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: #85878B; } /* etiquetas del tablero */
+  section { max-width: 1280px; margin: 0 auto clamp(56px, 8vw, 110px); display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 10fr); gap: 18px 32px; } /* rótulo y contenido */
+  .fila { display: grid; gap: clamp(10px, 1.6vw, 22px); align-items: start; } /* las piezas, separadas como sobre una mesa */
+  .f3 { grid-template-columns: repeat(3, minmax(0, 1fr)); } .f4 { grid-template-columns: repeat(4, minmax(0, 1fr)); } .f2 { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 800px; }
+  .entradas { grid-template-columns: repeat(2, minmax(0, 280px)); justify-content: center; }  /* formato alto, centradas en el ancho */
+  @media (max-width: 860px) { section { grid-template-columns: minmax(0, 1fr); } .f4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 560px) { .f3 { grid-template-columns: minmax(0, 1fr); } }
+</style>
+</head>
+<body>
+<section><p class="k">Carteles<br>50 × 70 cm</p><div class="fila f2" id="carteles"></div></section>
+<section><p class="k">Entradas<br>7 × 18 cm</p><div class="fila entradas" id="entradas"></div></section>
+<section><p class="k">Fichas de disco<br>10 × 14 cm</p><div class="fila f3" id="fichas"></div></section>
+<section><p class="k">Carta<br>Doble cara</p><div class="fila f2" id="carta"></div></section>
+<section><p class="k">Posavasos<br>10 × 10 cm</p><div class="fila f4" id="posavasos"></div></section>
+<script>
+// ================= Utilidades =================
+const N = "#0E0E0E", P = "#D4D5D6", G = "#85878B", G2 = "#55575B";          // negro, plata y grises
+const d = (id) => DISCOS.find((x) => x[0] === id);                         // un disco por su id
+const pinta = (id, piezas) => { document.getElementById(id).innerHTML = piezas.map((x) => `<div>${x}</div>`).join(""); }; // coloca las piezas
+const lienzo = (w, h, fondo, dentro) => `<svg viewBox="0 0 ${w} ${h}" role="img"><rect width="${w}" height="${h}" fill="${fondo}"/>${dentro}</svg>`; // una pieza
+const T = (x, y, txt, s, col, ancla = "start") => `<text x="${x}" y="${y}" font-family="Space Grotesk" font-size="${s}" fill="${col}" text-anchor="${ancla}">${txt}</text>`; // texto
+const K = (x, y, txt, s, col, ancla = "start") => `<text x="${x}" y="${y}" font-family="Space Grotesk" font-size="${s}" letter-spacing="${(s * .14).toFixed(1)}" fill="${col}" text-anchor="${ancla}">${txt.toUpperCase()}</text>`; // etiqueta
+function L(x, y, k, lineas, col) {                                          // título con la letra del logo
+  const s = ENTZUN.lema({ color: col, lineas }), [, , , a, h] = s.match(/viewBox="(\S+) (\S+) (\S+) (\S+)"/).map(Number); // su medida real
+  return s.replace("<svg ", `<svg x="${x}" y="${y}" width="${a * k}" height="${h * k}" style="width:${a * k}px;height:${h * k}px" `);
+}
+const logo = (x, y, ancho, col) => { const p = ENTZUN.palabra(col); return `<g transform="translate(${x} ${y}) scale(${ancho / p.ancho})">${p.g}</g>`; }; // el logo
+const GL = (id, x, y, lado, col) => `<g transform="translate(${x} ${y}) scale(${lado / 100})" fill="${col}" stroke="${col}" stroke-width=".35">${glifo(id, d(id)[5])}</g>`; // un glifo
+const ROSETAS = [28, 26, 30, 34, 32];                                       // glifos que giran sobre sí mismos: siempre encajan
+function campo(cols, filas, tam, col) {                                     // rosetas en simetría, como en el vídeo
+  let g = ""; for (let f = 0; f < filas; f++) for (let c = 0; c < cols; c++) g += GL(ROSETAS[Math.round(Math.abs(c - (cols - 1) / 2) + Math.abs(f - (filas - 1) / 2)) % 5], c * tam, f * tam, tam, col); // cada bloque
+  return g;
+}
+
+// ================= Carteles =================
+const copias = (hacer, salto) => `<g style="isolation:isolate"><rect width="1000" height="1400" fill="${N}"/>${[-1, 0, 1].map((k) => `<g style="mix-blend-mode:difference" transform="translate(${k * salto} 0)">${hacer()}</g>`).join("")}</g>`; // tres copias muy juntas: se nota el eco y el nombre se lee
+pinta("carteles", [
+  lienzo(1000, 1400, N, `${campo(4, 5, 250, P)}${logo(50, 1302, 250, P)}${K(950, 1345, "Sin música de fondo", 24, P, "end")}`), // el patrón a sangre
+  lienzo(1000, 1400, N, `${copias(() => `<g transform="translate(620 1290) rotate(-90) scale(${1180 / ENTZUN.palabra(P).ancho})">${ENTZUN.palabra(P).g}</g>`, 17)}${L(50, 1210, .36, ["SIN MÚSICA", "DE FONDO."], P)}`), // el logo en eco, en vertical
+]);
+
+// ================= Entradas =================
+function entrada(id, titulo, modo, hora, fondo, tinta) {
+  const barras = Array.from({ length: 44 }, (_, i) => { const a = azar(id * 9 + i)(); return `<rect x="${24 + i * 5.9}" y="792" width="${a > .6 ? 3.4 : 1.6}" height="40"/>`; }).join(""); // código de barras
+  const muesca = fondo === N ? "#202122" : "#202122";                       // el troquel deja ver la mesa
+  return lienzo(308, 860, fondo, `<g fill="${tinta}" stroke="${tinta}" stroke-width=".4" transform="translate(4 4)">${patron(id, d(id)[5], 6, 8, 50)}</g>${L(24, 412, .27, titulo, tinta)}${K(24, 540, modo, 11, tinta)}${T(24, 590, "19.11", 26, tinta)}${T(284, 590, hora, 26, tinta, "end")}${K(24, 620, "Nº 024 · Bilbao La Vieja", 10, tinta)}<line x1="14" x2="294" y1="656" y2="656" stroke="${tinta}" stroke-dasharray="2 6"/><circle cx="0" cy="656" r="11" fill="${muesca}"/><circle cx="308" cy="656" r="11" fill="${muesca}"/>${logo(24, 692, 130, tinta)}${K(284, 720, "entzun.eus", 10, tinta, "end")}<g fill="${tinta}">${barras}</g>`);
+}
+pinta("entradas", [entrada(24, ["LA VOZ", "DE BRISTOL"], "Sesión completa", "21:00", N, P), entrada(29, ["LA VOZ", "DE BRISTOL"], "Solo disco B", "22:09", P, N)]);
+
+// ================= Fichas de disco =================
+const CANC = ["Mysterons", "Sour Times", "Strangers", "It Could Be Sweet", "Wandering Star", "It's a Fire", "Numb", "Roads", "Pedestal", "Biscuit", "Glory Box"]; // las canciones de Dummy
+const fichaFrente = (id, cod, fondo, tinta) => lienzo(600, 840, fondo, `${K(40, 62, "Nº " + cod, 17, tinta)}${K(560, 62, d(id)[3] + " · " + d(id)[4] + " min", 17, tinta, "end")}${GL(id, 60, 110, 480, tinta)}${T(40, 710, d(id)[1], 46, tinta)}${T(40, 760, d(id)[2], 26, tinta === P ? G : G2)}${logo(40, 786, 86, tinta)}`);
+pinta("fichas", [
+  fichaFrente(24, "024 A", N, P),
+  lienzo(600, 840, P, `${K(40, 62, "Dummy · 1994", 17, N)}${K(560, 62, "Nº 024 A", 17, N, "end")}<line x1="40" x2="560" y1="92" y2="92" stroke="${N}"/>${CANC.map((c, i) => `${T(40, 150 + i * 50, String(i + 1).padStart(2, "0"), 20, G2)}${T(110, 150 + i * 50, c, 28, N)}`).join("")}${logo(40, 786, 86, N)}${K(560, 806, "Escuchado en ENTZUN", 12, N, "end")}`),
+  fichaFrente(29, "024 B", P, N),
+]);
+
+// ================= Carta =================
+function carta(fondo, tinta, lineas, euskera, secciones) {
+  let y = 380, h = "";                                                      // dónde empieza la lista
+  secciones.forEach(([nombre, platos]) => { h += K(48, y, nombre, 13, tinta === P ? G : G2); y += 13; h += `<line x1="48" x2="552" y1="${y}" y2="${y}" stroke="${tinta}" stroke-opacity=".25"/>`; y += 32; platos.forEach(([p, e]) => { h += T(48, y, p, 19, tinta) + T(552, y, e, 19, tinta, "end"); y += 31; }); y += 22; });
+  return lienzo(600, 1040, fondo, `<g>${campo(4, 1, 150, tinta)}</g>${L(48, 186, .42, lineas, tinta)}${K(552, 346, euskera, 13, tinta === P ? G : G2, "end")}${h}${logo(48, 984, 110, tinta)}${K(552, 1000, "IVA incluido", 11, tinta === P ? G : G2, "end")}`);
+}
+pinta("carta", [
+  carta(P, N, ["PARA", "BEBER."], "Edariak", [["Vinos", [["Txakoli de Bizkaia", "3,50"], ["Rioja Alavesa, tinto", "3,80"], ["Vino naranja", "4,50"]]], ["Vermut y cervezas", [["Vermut rojo de grifo", "3,50"], ["Cerveza de barril", "3,00"], ["IPA de Bilbao", "4,50"]]], ["Combinados", [["Negroni", "9,00"], ["Spritz", "7,00"]]], ["Sin alcohol", [["Kombucha", "3,50"], ["Mosto de uva", "2,50"]]]]),
+  carta(N, P, ["PARA", "PICAR."], "Jatekoak", [["Conservas", [["Bonito con piparras", "7,00"], ["Anchoas del Cantábrico", "9,00"], ["Mejillones en escabeche", "6,00"]]], ["Quesos", [["Idiazabal", "6,00"], ["Queso de cabra curado", "6,00"]]], ["Encurtidos", [["Gildas (3)", "4,50"], ["Piparras de Ibarra", "4,00"]]], ["Para compartir", [["Pan y aceite", "2,50"]]]]),
+]);
+
+// ================= Posavasos: solo identidad, una serie de cuatro =================
+const logoEco = () => { const p = ENTZUN.palabra(P); return `<g transform="translate(36 166) scale(${328 / p.ancho})">${p.g}</g>`; }; // el logo, para el eco
+pinta("posavasos", [
+  lienzo(400, 400, N, GL(26, 50, 50, 300, P)),                              // el glifo
+  lienzo(400, 400, P, campo(2, 2, 200, N)),                                 // el patrón a sangre
+  lienzo(400, 400, N, copias(logoEco, 3.5)),                                // el logo en eco
+  lienzo(400, 400, P, `<g transform="translate(59 40) scale(3.2)">${ENTZUN.letraE(0, N)}</g>`), // la E, el gesto propio de la marca
+]);
+</script>
+<script>
+// Modo pieza: dentro del caso de estudio, esta página enseña solo los bloques que se le piden (?solo=feed,carrusel)
+(function () {
+  const pz = new URLSearchParams(location.search).get("pieza");            // exportar una sola pieza a pantalla completa
+  if (pz) { const [id, i] = pz.split(":"), c = document.getElementById(id).children[+i].querySelector("svg"); document.body.replaceChildren(c); const e = document.createElement("style"); e.textContent = "html,body{margin:0!important;padding:0!important;background:#0E0E0E!important;overflow:hidden}svg{display:block;width:100vw!important;height:100vh!important}"; document.head.appendChild(e); return; }
+  const solo = new URLSearchParams(location.search).get("solo"); if (!solo) return; // sin parámetro, la página normal
+  const css = document.createElement("style");                              // quita mesa, márgenes y rótulos
+  css.textContent = "html,body{background:transparent!important;padding:0!important;margin:0!important;overflow:hidden}section{display:block!important;margin:0!important;max-width:none!important}section>.k{display:none}.fila{max-width:none!important}";
+  document.head.appendChild(css);
+  const ids = solo.split(",");                                              // los bloques pedidos
+  document.querySelectorAll("section").forEach((s) => { if (!ids.some((id) => s.querySelector("#" + id))) s.style.setProperty("display", "none", "important"); }); // el resto se oculta
+})();
+</script>
+</body>
+</html>

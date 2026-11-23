@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html data-t="lila" lang="es" data-theme="dark" data-root="../">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon.ico" sizes="48x48" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <title>ENTZUN – Proyecto · Tania de Azevedo</title>
+  <meta name="description" content="ENTZUN: identidad de un bar de escucha en Bilbao La Vieja. Dos discos enteros cada noche, sin música de fondo." />
+  <link rel="canonical" href="https://taniadeazevedo.es/entzun/" />
+  <meta property="og:title" content="ENTZUN – Tania de Azevedo" />
+  <meta property="og:description" content="Identidad de un bar de escucha en Bilbao La Vieja. Sin música de fondo." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://taniadeazevedo.es/entzun/" />
+  <meta property="og:image" content="https://taniadeazevedo.es/entzun/video/entzun-film-poster.jpg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f6f2fd" />
+  <meta name="color-scheme" content="light" />
+  <script>document.documentElement.setAttribute("data-theme","dark");</script>
+  <link rel="preload" as="font" type="font/woff2" href="../fonts/strichpunkt/strichpunkt-sans-latin-wght-normal.woff2" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/v2.css" />
+  <link rel="stylesheet" href="../css/v2-case.css" />
+  <link rel="stylesheet" href="../css/v2-lila.css" />
+  <style>
+    /* ---------- Caso de ENTZUN: filas de la galería ---------- */
+    .ez-row { max-width: 1228px; box-sizing: border-box; margin: 0 auto; padding: 0 clamp(18px, 3vw, 24px); }  /* mismo ancho que el resto del caso */
+    .ez-gap { margin-top: clamp(56px, 8vw, 110px); }                      /* mucho aire entre bloques */
+    .ez-tag { padding-bottom: 12px; margin-bottom: clamp(14px, 1.6vw, 20px); }
+    .ez-tag b { display: block; padding-bottom: 12px; border-bottom: 1px solid #1d153014; font: 600 clamp(17px, 1.4vw, 20px)/1.2 var(--v2-display, Inter, sans-serif); color: var(--v2-ink, #1d1530); }
+    .ez-marco { border-radius: clamp(18px, 2vw, 28px); overflow: hidden; background: #0E0E0E; } /* esquinas como el resto del portfolio */
+    .v2-cs-hero video { max-height: none; aspect-ratio: 16 / 9; object-fit: contain; background: #0E0E0E; }
+    /* Identidad */
+    .ez-id { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(8px, 1vw, 14px); }
+    .ez-logo { display: grid; place-items: center; aspect-ratio: 16 / 10; padding: 9%; }
+    .ez-logo > div { position: relative; width: 100%; isolation: isolate; background: #0E0E0E; }
+    .ez-logo .copia { position: absolute; inset: 0; mix-blend-mode: difference; } .ez-logo .copia:first-child { position: relative; }
+    .ez-logo svg { display: block; width: 100%; height: auto; }
+    .ez-patron { background: #D4D5D6; } .ez-patron svg { display: block; width: 100%; height: 100%; }
+    /* La web, dentro de una ventana que se puede recorrer */
+    .ez-web { position: relative; aspect-ratio: 16 / 10; }
+    .ez-web iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; pointer-events: none; }
+    .ez-web.activa iframe { pointer-events: auto; }
+    .ez-web button { position: absolute; left: 50%; bottom: 22px; translate: -50% 0; padding: 12px 20px; border: 0; border-radius: 99px; background: #D4D5D6; color: #0E0E0E; font: 500 14px/1 Inter, sans-serif; cursor: pointer; }
+    .ez-web.activa button, .ez-web.activa .v2-pill-int { display: none; }  /* al explorar la web, desaparecen */
+    .ez-pieza { display: block; width: 100%; border: 0; background: transparent; color-scheme: normal; }  /* piezas vivas: su alto se ajusta solo */
+    .ez-news { padding: clamp(0px, 4vw, 56px) 0; background: #202122; }
+    .ez-mas { margin-top: clamp(8px, 1vw, 14px); }
+    /* Mockups de las piezas impresas */
+    .ez-foto { display: block; width: 100%; height: auto; border-radius: clamp(18px, 2vw, 28px); }  /* mismas esquinas que el resto */
+    .ez-grid { --hueco: clamp(8px, 1vw, 14px); display: grid; grid-template-columns: minmax(0, 1.07fr) minmax(0, 1fr); gap: var(--hueco); }  /* dos columnas que acaban a la misma altura */
+    .ez-par { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--hueco); }  /* dos piezas a la par */
+    .ez-lado { display: flex; flex-direction: column; gap: var(--hueco); }  /* cartas arriba, posavasos abajo */
+    .ez-grid img { display: block; width: 100%; height: auto; border-radius: clamp(10px, 1.2vw, 16px); }  /* mismas esquinas en todo el grid */
+    .ez-grid .ez-posavasos { flex: 1 1 0; height: 0; min-height: 0; object-fit: cover; object-position: 50% 59%; }  /* rellena lo que queda de la columna */
+    @media (max-width: 760px) {
+      .ez-grid { grid-template-columns: minmax(0, 1fr); }  /* en móvil, un bloque debajo de otro */
+      .ez-grid .ez-posavasos { flex: none; height: auto; aspect-ratio: 3 / 2; }  /* los posavasos recuperan su proporción */
+    }
+    /* ---------- Afinado: ritmo, aparición y gestos ---------- */
+    .ez-gap { margin-top: clamp(72px, 10vw, 148px); }                     /* más silencio entre bloques */
+    .ez-t { transition: transform 1.1s cubic-bezier(.76, 0, .24, 1); transform-origin: 50px 50px; }  /* cada baldosa gira sobre su centro */
+    .ez-news { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(14px, 2vw, 28px); padding: clamp(20px, 4vw, 56px); background: #F0F0F1; }  /* dos correos a la par sobre un fondo muy claro */
+    .ez-web button { display: inline-flex; align-items: center; gap: 10px; padding: 14px 22px; transition: gap .45s cubic-bezier(.16, 1, .3, 1), background .3s; }  /* botón más fino */
+    .ez-web button::after { content: "→"; }                               /* flecha que se separa al pasar */
+    @media (hover: hover) {
+      .ez-web button:hover { gap: 16px; background: #fff; }
+    }
+    @media (max-width: 760px) { .ez-news { grid-template-columns: minmax(0, 1fr); padding: 0; } }  /* en móvil, un correo debajo del otro */
+    @media (prefers-reduced-motion: reduce) { .ez-t, .ez-c { transition: none; } }  /* sin movimiento si se prefiere */
+    /* ---------- Identidad: del disco al glifo, construcción, color y letra ---------- */
+    .ez-k { margin: 0; font: 500 11px/1.3 Inter, sans-serif; letter-spacing: .12em; text-transform: uppercase; }  /* etiqueta pequeña */
+    .ez-sistema { position: relative; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }  /* glifo grande y datos */
+    .ez-lienzo { display: grid; place-items: center; aspect-ratio: 1; padding: 11%; background: #D4D5D6; }  /* el escenario del glifo */
+    .ez-lienzo svg { display: block; width: 100%; height: auto; overflow: visible; }  /* el glifo llena su sitio */
+    .ez-c { opacity: 0; transform: rotate(-90deg) scale(.72); transform-origin: 25px 25px; transition: opacity .35s ease, transform .7s cubic-bezier(.76, 0, .24, 1); }  /* cada celda antes de colocarse */
+    .ez-montado .ez-c { opacity: 1; transform: none; }                    /* la celda ya en su sitio */
+    .ez-datos-panel { display: flex; flex-direction: column; justify-content: space-between; gap: 24px; min-width: 0; padding: clamp(22px, 3.4vw, 44px); color: #D4D5D6; }  /* columna de datos */
+    .ez-disco { margin: 14px 0 0 !important; font: 500 clamp(24px, 3vw, 38px)/1.05 var(--v2-display, Inter, sans-serif); letter-spacing: -.025em; color: #D4D5D6; }  /* el artista */
+    .ez-album { margin: 6px 0 0 !important; font-size: clamp(14px, 1.2vw, 16px); line-height: 1.3; color: #85878B; }  /* álbum y año */
+    .ez-dl { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin: 0; padding: 14px 0; border-top: 1px solid #D4D5D62E; border-bottom: 1px solid #D4D5D62E; }  /* los datos que forman el glifo */
+    .ez-dl dt { font: 500 10px/1.3 Inter, sans-serif; letter-spacing: .1em; text-transform: uppercase; color: #85878B; }  /* nombre del dato */
+    .ez-dl dd { margin: 5px 0 0; font-size: clamp(13px, 1.1vw, 15px); line-height: 1.25; color: #D4D5D6; }  /* su valor */
+    .ez-lista { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: clamp(8px, 1.2vw, 16px); }  /* los doce discos */
+    .ez-lista button { padding: 0; border: 0; background: none; cursor: pointer; opacity: .34; transition: opacity .25s; }  /* cada botón */
+    .ez-lista button[aria-pressed="true"] { opacity: 1; }                 /* el elegido */
+    .ez-lista button:focus-visible { outline: 1px solid #D4D5D6; outline-offset: 3px; }  /* foco con teclado */
+    .ez-lista svg { display: block; width: 100%; height: auto; }          /* su glifo */
+    .ez-tres { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(8px, 1vw, 14px); }  /* construcción, color y letra */
+    .ez-cons { display: flex; flex-direction: column; justify-content: space-between; gap: 22px; margin: 0; padding: clamp(20px, 2.8vw, 36px); color: #D4D5D6; }  /* panel de construcción */
+    .ez-cons svg { display: block; width: 100%; height: auto; isolation: isolate; }  /* el logo con sus guías */
+    .ez-traza { fill: none; stroke: #fff; stroke-width: 1; vector-effect: non-scaling-stroke; mix-blend-mode: difference; }  /* guías que se invierten sobre el logo */
+    .ez-leyenda { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 18px; margin: 0; padding: 0; list-style: none; font-size: 12px; line-height: 1.3; color: #85878B; }  /* medidas */
+    .ez-color { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: auto 1fr; }  /* color arriba, letra abajo */
+    .ez-tinta { display: flex; flex-direction: column; justify-content: space-between; gap: clamp(36px, 5vw, 64px); padding: clamp(16px, 1.8vw, 22px); }  /* cada color */
+    .ez-tinta span { font-size: 12px; line-height: 1.3; }                 /* su código */
+    .ez-tinta.negra { color: #D4D5D6; } .ez-tinta.gris { background: #D4D5D6; color: #0E0E0E; }  /* negro y gris claro */
+    .ez-alfa { grid-column: 1 / -1; display: flex; flex-direction: column; justify-content: space-between; gap: 16px; padding: clamp(16px, 1.8vw, 22px); border-top: 1px solid #D4D5D62E; color: #D4D5D6; }  /* el alfabeto */
+    .ez-alfa svg { display: block; width: 100%; height: auto; }           /* letras de la marca */
+    @media (max-width: 760px) {
+      .ez-sistema, .ez-tres { grid-template-columns: minmax(0, 1fr); }    /* en móvil, una pieza debajo de otra */
+      .ez-dl { grid-template-columns: repeat(2, minmax(0, 1fr)); }        /* datos en dos columnas */
+      .ez-leyenda { justify-content: flex-start; }                        /* medidas alineadas */
+    }
+    html[data-t="lila"] #resultado .v2-cs-body-end { margin: 0 auto; max-width: 44em; text-align: center; }
+    html[data-t="lila"] #resultado .v2-cs-body-end p { font-size: clamp(16px, 1.3vw, 19px); line-height: 1.65; margin-left: auto; margin-right: auto; }
+    @media (max-width: 760px) { .ez-id { grid-template-columns: minmax(0, 1fr); } .ez-web { aspect-ratio: 3 / 4; } }
+  </style>
+</head>
+
+<body class="v2-page v2-case">
+  <a class="v2-skip" href="#contenido">Saltar al contenido</a>
+
+  <header class="v2-nav" id="v2-nav">
+    <div class="v2-nav-in">
+      <div class="v2-brand">
+        <a class="v2-logo" href="../" aria-label="Tania de Azevedo, ir al inicio">
+          <span class="v2-logo-mark" aria-hidden="true"></span>
+          <span class="v2-logo-word">T<span class="v2-logo-rest">ania</span><sup>®</sup></span>
+        </a>
+        <span class="v2-nav-sep" aria-hidden="true"></span>
+        <a class="v2-nav-label" href="../proyectos/">Proyectos</a>
+      </div>
+      <nav class="v2-links" aria-label="Navegación principal">
+        <a href="../#experience">Experiencia</a>
+        <a href="../#contact">Contacto</a>
+      </nav>
+      <a class="v2-nav-cta" href="../files/CV-Tania-de-Azevedo-Ribeiro.pdf" target="_blank" rel="noopener noreferrer" download>Descargar CV <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5v8M4.8 7.6L8 10.8l3.2-3.2M3 13h10"/></svg></a>
+      <button class="v2-burger" id="v2-burger" type="button" aria-expanded="false" aria-controls="v2-menu" aria-label="Abrir menú"><span></span></button>
+    </div>
+  </header>
+
+  <div class="v2-menu" id="v2-menu" aria-hidden="true">
+    <nav aria-label="Menú móvil">
+      <a href="../proyectos/">Proyectos</a>
+      <a href="../#experience">Experiencia</a>
+      <a href="../#contact">Contacto</a>
+    </nav>
+    <div class="v2-menu-foot"><a class="v2-menu-cv" href="../files/CV-Tania-de-Azevedo-Ribeiro.pdf" target="_blank" rel="noopener noreferrer" download>Descargar CV <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5v8M4.8 7.6L8 10.8l3.2-3.2M3 13h10"/></svg></a><small>Bizkaia · taniadeazevedoribeiro@gmail.com</small></div>
+  </div>
+
+  <main id="contenido">
+    <!-- PORTADA -->
+    <section class="v2-cs-cover">
+      <div class="v2-cs-wrap">
+        <p class="v2-cs-crumb"><a href="../proyectos/">Proyectos</a><span aria-hidden="true">/</span><span>ENTZUN</span></p>
+        <div class="v2-cs-head">
+          <div>
+            <p class="v2-cs-kicker">Identidad visual</p>
+            <h1 class="v2-cs-title">ENTZUN</h1>
+          </div>
+          <p class="v2-cs-lede">ENTZUN significa «escuchar» en euskera. Es un bar de escucha en Bilbao La Vieja donde cada noche suenan dos discos enteros, con un descanso en medio. <strong>Sin música de fondo.</strong></p>
+        </div>
+        <figure class="v2-cs-hero">
+          <video controls playsinline preload="metadata" poster="video/entzun-film-poster.jpg?v=8" width="1920" height="1080" aria-label="Vídeo de marca de ENTZUN: los glifos se construyen, se transforman y terminan en el logotipo"><source src="video/entzun-film.mp4?v=8" type="video/mp4" /></video>
+        </figure>
+      </div>
+    </section>
+
+    <section class="v2-cs-sec" id="contexto">
+      <div class="v2-cs-wrap">
+        <div class="v2-cs-row v2-cs-row--ctx">
+          <div class="v2-cs-label"><span class="v2-cs-num">01</span><h2 class="v2-cs-h2">Contexto y objetivos</h2></div>
+          <div class="v2-cs-body v2-cs-ctx">
+            <div class="v2-cs-col">
+              <p class="v2-cs-goals-title">Contexto</p>
+              <p>En casi todos los bares la música acompaña. Aquí es el plan: luz baja, móviles guardados y dos álbumes elegidos para escucharse juntos, de principio a fin.</p>
+              <p class="v2-cs-poem">Baja la luz. Empieza el disco.</p>
+            </div>
+            <div class="v2-cs-col">
+              <p class="v2-cs-goals-title">Objetivos</p>
+              <ul class="v2-cs-goals">
+                <li><p>Explicar de forma sencilla un formato poco conocido.</p></li>
+                <li><p>Crear un sistema que funcione con cualquier disco.</p></li>
+                <li><p>Un guiño vasco muy sutil, sin caer en el tópico.</p></li>
+              </ul>
+            </div>
+          </div>
+          <div class="v2-cs-papel">
+            <div class="v2-cs-papel-in">
+              <div class="v2-cs-papel-main">
+                <p class="v2-cs-goals-title">Mi papel</p>
+                <ul class="v2-cs-roles">
+                <li>Dirección de arte</li>
+                <li>Identidad visual</li>
+                <li>Diseño y desarrollo web</li>
+                </ul>
+              </div>
+              <div class="v2-cs-papel-side">
+                <p class="v2-cs-role">Concepto, estrategia e identidad completa: logotipo, sistema de glifos, web con reservas, redes, newsletter, vídeo de marca y piezas impresas.</p>
+                <div class="v2-cs-links">
+                  <a class="v2-btn v2-btn-ghost" href="web/" target="_blank" rel="noopener noreferrer">Ver la web <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5l7-7M5.5 4.5h6v6"/></svg></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-cs-sec" id="galeria">
+      <div class="v2-cs-wrap">
+        <div class="v2-cs-row"><div class="v2-cs-label"><span class="v2-cs-num">02</span><h2 class="v2-cs-h2">Galería</h2></div></div>
+      </div>
+      <div class="v2-cs-gal">
+        <div class="ez-row ez-tag"><b>Identidad</b></div>
+        <div class="ez-row">
+          <div class="ez-id">
+            <div class="ez-marco ez-logo" role="img" aria-label="Logotipo de ENTZUN con su efecto de eco"><div id="ezLogo"></div></div>
+            <div class="ez-marco ez-patron" id="ezPatron" role="img" aria-label="Patrón de rosetas creado con los glifos"></div>
+          </div>
+          <!-- Del disco al glifo: se elige un disco y su forma se construye celda a celda -->
+          <section class="ez-marco ez-sistema ez-mas" aria-label="Del disco al glifo">
+            <span class="v2-pill-int"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M6.2 5l6.3 2.9-2.8 1-1 2.9z"/><circle cx="3.4" cy="3.4" r=".75"/><circle cx="2.4" cy="6.6" r=".6"/><circle cx="6.4" cy="2.2" r=".6"/></svg>Interactivo</span>
+            <div class="ez-lienzo"><svg id="ezGrande" viewBox="0 0 100 100" role="img" aria-live="polite"></svg></div>
+            <div class="ez-datos-panel">
+              <div><p class="ez-k">Del disco al glifo</p><p class="ez-disco" id="ezArtista"></p><p class="ez-album" id="ezAlbum"></p></div>
+              <dl class="ez-dl"><div><dt>Sesión</dt><dd id="ezSesion"></dd></div><div><dt>Canciones</dt><dd id="ezCanciones"></dd></div><div><dt>Forma</dt><dd id="ezForma"></dd></div><div><dt>Giro</dt><dd id="ezGiro"></dd></div></dl>
+              <div class="ez-lista" id="ezGlifos" role="group" aria-label="Elige un disco"></div>
+            </div>
+          </section>
+          <!-- Construcción del logo, color y letra -->
+          <div class="ez-tres ez-mas">
+            <figure class="ez-marco ez-cons">
+              <p class="ez-k">Construcción</p>
+              <div id="ezConstruccion" role="img" aria-label="Logotipo de ENTZUN sobre sus líneas de construcción"></div>
+              <ul class="ez-leyenda"><li>Alto 100</li><li>Radio de la E 50</li><li>Cortes 9</li><li>Paso 7</li><li>Pie en cuña 5 × 9</li></ul>
+            </figure>
+            <div class="ez-marco ez-color">
+              <div class="ez-tinta negra"><p class="ez-k">Negro</p><span>#0E0E0E</span></div>
+              <div class="ez-tinta gris"><p class="ez-k">Gris claro</p><span>#D4D5D6</span></div>
+              <div class="ez-alfa"><p class="ez-k">Letra propia</p><div id="ezAlfabeto" role="img" aria-label="Alfabeto propio de ENTZUN"></div></div>
+            </div>
+          </div>
+          <!-- Carteles: la identidad ya aplicada en el local -->
+          <img class="ez-foto ez-mas" src="mockups/carteles.jpg" width="1264" height="848" alt="Dos carteles de ENTZUN enmarcados en la pared del bar" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-cs-sec" id="proceso">
+      <div class="v2-cs-wrap">
+        <div class="v2-cs-row">
+          <div class="v2-cs-label"><span class="v2-cs-num">03</span><h2 class="v2-cs-h2">Proceso creativo</h2></div>
+          <div class="v2-cs-body">
+            <p>El logotipo es una letra maciza con un guiño casi invisible a las estelas vascas: <strong>los pies de las letras se abren en una pequeña cuña</strong>.</p>
+            <p>Cada disco genera su propio glifo a partir de sus datos, con una retícula de cuatro celdas y unas pocas formas. Así <strong>el sistema crece con cada sesión</strong> sin empezar de cero.</p>
+            <p>La noche tiene dos partes y la marca también: negro y gris claro, un disco y otro, y un cambio en el que las piezas de uno se transforman en el siguiente.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-cs-sec v2-cs-sec--cont" id="galeria-2">
+      <div class="v2-cs-gal">
+        <div class="ez-row ez-tag"><b>Redes</b></div>
+        <div class="ez-row"><iframe class="ez-pieza" data-alto src="redes/?v=3&solo=feed" title="Feed de Instagram de ENTZUN" loading="lazy" scrolling="no"></iframe></div>
+        <div class="ez-row ez-gap ez-tag"><b>Web</b></div>
+        <div class="ez-row"><div class="ez-marco ez-web" id="ezWeb"><span class="v2-pill-int v2-pill-int--centro"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M6.2 5l6.3 2.9-2.8 1-1 2.9z"/><circle cx="3.4" cy="3.4" r=".75"/><circle cx="2.4" cy="6.6" r=".6"/><circle cx="6.4" cy="2.2" r=".6"/></svg>Interactivo</span><iframe src="web/" title="Web de ENTZUN" loading="lazy"></iframe><button type="button">Explorar la web</button></div></div>
+        <div class="ez-row ez-gap ez-tag"><b>Newsletter</b></div>
+        <div class="ez-row"><div class="ez-marco ez-news"><iframe class="ez-pieza" data-alto src="newsletter/?v=7" title="Newsletter de ENTZUN, número 012" loading="lazy" scrolling="no"></iframe><iframe class="ez-pieza" data-alto src="newsletter/013.html?v=6" title="Newsletter de ENTZUN, número 013" loading="lazy" scrolling="no"></iframe></div></div>
+        <!-- Impresos: un solo grid con entradas, cartas y posavasos -->
+        <div class="ez-row ez-gap ez-tag"><b>Impresos</b></div>
+        <div class="ez-row">
+          <div class="ez-grid">
+            <!-- Columna izquierda: las dos entradas -->
+            <div class="ez-par">
+              <img src="mockups/entrada-1.jpg" width="924" height="2580" alt="Entrada negra de ENTZUN" loading="lazy">
+              <img src="mockups/entrada-2.jpg" width="924" height="2580" alt="Entrada gris claro de ENTZUN" loading="lazy">
+            </div>
+            <!-- Columna derecha: las dos cartas y, debajo, los posavasos -->
+            <div class="ez-lado">
+              <div class="ez-par">
+                <img src="mockups/carta-1.jpg" width="1200" height="2080" alt="Carta de bebidas de ENTZUN" loading="lazy">
+                <img src="mockups/carta-2.jpg" width="1200" height="2080" alt="Carta para picar de ENTZUN" loading="lazy">
+              </div>
+              <img class="ez-posavasos" src="mockups/posavasos.jpg" width="1024" height="1024" alt="Cuatro posavasos de ENTZUN sobre una mesa de madera" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-cs-sec" id="resultado">
+      <div class="v2-cs-wrap">
+        <div class="v2-cs-row"><div class="v2-cs-label"><span class="v2-cs-num">04</span><h2 class="v2-cs-h2">Resultado final</h2></div></div>
+      </div>
+      <div class="v2-cs-result">
+        <div class="v2-cs-wrap"><div class="v2-cs-body v2-cs-body-end">
+          <p>Una identidad en negro y gris claro que nace de una idea sencilla: <strong>dos discos, una noche</strong>. El sistema se aplica a una web con reservas, redes, newsletter, vídeo de marca y piezas impresas, y cada nueva sesión genera sus propias formas.</p>
+        </div></div>
+      </div>
+    </section>
+
+    <!-- MÁS PROYECTOS -->
+    <section class="v2-cs-related" aria-label="Más proyectos">
+      <div class="v2-cs-wrap">
+        <div class="v2-rel-head">
+          <h2 class="v2-rel-h2">Más proyectos</h2>
+          <a class="v2-projects-all" href="../proyectos/">Ver todos<span class="v2-more-txt"> los proyectos</span> <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5l7-7M5.5 4.5h6v6"/></svg></a>
+        </div>
+        <ul class="v2-rel-grid" id="v2-related" data-current="entzun/"></ul>
+        <noscript><p class="v2-rel-nojs"><a href="../proyectos/">Ver todos los proyectos</a></p></noscript>
+      </div>
+    </section>
+  </main>
+
+  <footer class="v2-foot" aria-label="Pie de página">
+    <div class="v2-foot-in">
+      <p class="v2-foot-copy">© Tania de Azevedo · 2026</p>
+      <nav class="v2-foot-icons" aria-label="Contacto">
+          <a href="mailto:taniadeazevedoribeiro@gmail.com" aria-label="Escríbeme un email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M4 7.5l8 6 8-6"/></svg></a>
+          <a href="https://www.linkedin.com/in/tania-de-azevedo-ribeiro" target="_blank" rel="noreferrer" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+        </nav>
+    </div>
+  </footer>
+
+  <script src="shared/entzun-logo.js"></script>
+  <script src="shared/entzun-sistema.js"></script>
+  <script>
+    (function () {
+      const P = "#D4D5D6", N = "#0E0E0E", tranquilo = matchMedia("(prefers-reduced-motion: reduce)").matches; // colores y preferencia de movimiento
+      const disco0 = (id) => DISCOS.find((d) => d[0] === id);              // busca un disco por su número
+      const dibujo = (id, col) => `<g fill="${col}" stroke="${col}" stroke-width=".35">${glifo(id, DISCOS.find((d) => d[0] === id)[5])}</g>`; // un glifo
+      // El logo en eco: tres copias que se abren y se juntan
+      const eco = document.getElementById("ezLogo"), saltos = [-1, 0, 1];
+      eco.innerHTML = saltos.map(() => `<div class="copia">${ENTZUN.logo({ color: P })}</div>`).join("");
+      const enPantalla = (el) => { const o = { si: false }; new IntersectionObserver(([e]) => { o.si = e.isIntersecting; }).observe(el); return o; }; // avisa si una pieza se está viendo
+      const vistaEco = enPantalla(eco);                                    // el eco solo se mueve cuando se ve
+      if (!tranquilo) { const copias = [...eco.children]; copias.forEach((c) => { c.style.willChange = "transform"; }); (function va(t) { if (vistaEco.si) { const k = Math.max(0, Math.cos(t / 3400 * Math.PI * 2)) ** 1.5; copias.forEach((c, i) => { c.style.transform = `translate3d(${saltos[i] * k * 3.4}%, 0, 0)`; }); } requestAnimationFrame(va); })(0); }
+      // El patrón de rosetas, en simetría: cada baldosa va recortada a su celda
+      const R = [28, 26, 30, 34, 32]; let g = ""; for (let f = 0; f < 4; f++) for (let c = 0; c < 4; c++) { const dist = Math.abs(c - 1.5) + Math.abs(f - 1.5); g += `<g transform="translate(${c * 100} ${f * 100})" clip-path="url(#ezCelda)"><g class="ez-t" data-giro="0" style="transition-delay:${Math.round((dist - 1) * 130)}ms">${dibujo(R[Math.round(dist) % 5], N)}</g></g>`; }
+      const patron = document.getElementById("ezPatron");                  // la caja del patrón
+      patron.innerHTML = `<svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><clipPath id="ezCelda"><rect x="-.3" y="-.3" width="100.6" height="100.6"/></clipPath></defs>${g}</svg>`;
+      // Una ola de giros desde el centro: las rosetas tienen simetría de 90°, así que el patrón siempre vuelve a encajar
+      const vistaPatron = enPantalla(patron), baldosas = [...patron.querySelectorAll(".ez-t")]; // visibilidad y baldosas
+      if (!tranquilo) setInterval(() => { if (!vistaPatron.si || document.hidden) return; baldosas.forEach((b) => { b.dataset.giro = +b.dataset.giro + 90; b.style.transform = `rotate(${b.dataset.giro}deg)`; }); }, 4600); // cada 4,6 s
+      // Del disco al glifo: cada disco genera sus cuatro celdas a partir de sus datos
+      const ids = [24, 29, 25, 28, 26, 36, 32, 34, 30, 27, 33, 35];        // los doce discos de la semana
+      const NOMBRES = ["", "Cuarto", "Semicírculo", "Círculo", "Triángulo", "Pétalo", "Reloj"]; // nombre de cada forma
+      const caja = document.getElementById("ezGlifos"), grande = document.getElementById("ezGrande"); // lista y glifo grande
+      const ponTexto = (id, txt) => { document.getElementById(id).textContent = txt; }; // escribe un dato
+      const trozos = (id, d) => id % 2 === 0                               // las cuatro celdas, en orden de reloj
+        ? [0, 1, 2, 3].map((k) => [`rotate(${k * 90} 50 50)`, celda(d.forma, d.giro)]) // pares: una celda que gira
+        : [["", celda(d.forma, d.giro)], ["translate(100 0) scale(-1 1)", celda(d.forma, d.giro)], ["translate(100 50) scale(-1 1)", celda(d.otra, d.giro2)], ["translate(0 50)", celda(d.otra, d.giro2)]]; // impares: dos mitades en espejo
+      caja.innerHTML = ids.map((id) => { const x = disco0(id); return `<button type="button" aria-pressed="false" aria-label="${x[1]}, ${x[2]}"><svg viewBox="0 0 100 100" aria-hidden="true">${dibujo(id, P)}</svg></button>`; }).join(""); // un botón por disco
+      const botones = [...caja.children];                                  // los doce botones
+      function elige(i) {                                                  // muestra un disco y construye su glifo
+        const id = ids[i], x = disco0(id), d = adn(id, x[5]);              // datos del disco
+        botones.forEach((b, n) => b.setAttribute("aria-pressed", n === i ? "true" : "false")); // marca el elegido
+        ponTexto("ezArtista", x[1]); ponTexto("ezAlbum", `${x[2]} · ${x[3]}`); ponTexto("ezSesion", codigo(id)); ponTexto("ezCanciones", x[5]); // textos
+        ponTexto("ezForma", id % 2 === 0 ? NOMBRES[d.forma] : `${NOMBRES[d.forma]} + ${NOMBRES[d.otra]}`); ponTexto("ezGiro", id % 2 === 0 ? `${d.giro * 90}°` : `${d.giro * 90}° / ${d.giro2 * 90}°`); // forma y giro
+        grande.setAttribute("aria-label", `Glifo de ${x[1]}, ${x[2]}`);    // descripción accesible
+        grande.classList.remove("ez-montado");                             // vuelve al estado inicial
+        grande.innerHTML = `<g fill="${N}" stroke="${N}" stroke-width=".3">${trozos(id, d).map(([tr, c], k) => `<g transform="${tr}"><g class="ez-c" style="transition-delay:${k * 110}ms">${c}</g></g>`).join("")}</g>`; // dibuja las celdas
+        if (tranquilo) grande.classList.add("ez-montado"); else requestAnimationFrame(() => requestAnimationFrame(() => grande.classList.add("ez-montado"))); // y las coloca una a una
+      }
+      let actual = 0, manual = false;                                      // disco elegido y si ya ha tocado la lista
+      botones.forEach((b, i) => b.addEventListener("click", () => { manual = true; actual = i; elige(i); })); // al pulsar, se queda en ese disco
+      elige(0);                                                            // arranca con Portishead
+      const vistaSistema = enPantalla(grande);                             // solo avanza si se ve
+      if (!tranquilo) setInterval(() => { if (manual || !vistaSistema.si || document.hidden) return; actual = (actual + 1) % ids.length; elige(actual); }, 3800); // recorre los discos hasta que se elige uno
+      // Construcción del logo: guías exactas sobre sus letras
+      const INICIOS = [0, 95, 182, 267, 350, 441], FINES = [88, 175, 260, 343, 434, 521]; // dónde empieza y acaba cada letra
+      const verticales = [...INICIOS, ...FINES].map((x) => `M${x} -22V122`).join(""); // límites de las letras
+      const logoG = ENTZUN.logo({ color: P }).replace("<svg", '<svg x="0" y="0" width="521" height="100"'); // el logo original, sin tocar
+      document.getElementById("ezConstruccion").innerHTML = `<svg viewBox="-26 -26 573 152" aria-hidden="true">${logoG}<path class="ez-traza" stroke-opacity=".42" d="M-26 0H547M-26 100H547M0 31H88M0 40H88M0 60H88M0 69H88${verticales}"/><circle class="ez-traza" cx="50" cy="50" r="50"/><circle class="ez-traza" cx="95" cy="100" r="11"/><circle class="ez-traza" cx="206" cy="100" r="11"/><circle class="ez-traza" cx="350" cy="0" r="11"/></svg>`; // logo, guías, radio y cuñas
+      // El alfabeto propio de la marca
+      document.getElementById("ezAlfabeto").innerHTML = ENTZUN.lema({ color: P, lineas: ["ABCDEFGHI", "JKLMNOPQR", "STUVWXYZ."] }); // tres líneas de letras
+      // La web: se recorre solo después de pulsar, para no atrapar el scroll de la página
+      const web = document.getElementById("ezWeb"); web.querySelector("button").addEventListener("click", () => web.classList.add("activa"));
+      // Las piezas vivas ajustan su alto a lo que miden por dentro
+      const ajusta = (m) => { try { m.style.height = m.contentDocument.documentElement.scrollHeight + "px"; } catch (e) {} };
+      const marcos = [...document.querySelectorAll("iframe[data-alto]")];
+      let pendiente = 0;                                                   // medición de altura en espera
+      const sinMesa = (m) => { if (!m.src.includes("newsletter")) return; const d = m.contentDocument; d.documentElement.style.background = "transparent"; d.body.style.background = "transparent"; d.body.style.padding = "0"; d.head.insertAdjacentHTML("beforeend", "<style>.correo{width:100%;min-height:100vh;display:flex;flex-direction:column}.plata,.siguiente{flex:1}</style>"); d.fonts.ready.then(() => iguala()); const c = d.querySelector(".correo"), estirable = c.querySelector(".plata, .siguiente"), ro = new m.contentWindow.ResizeObserver(() => { cancelAnimationFrame(pendiente); pendiente = requestAnimationFrame(iguala); }); [...c.children].forEach((h) => { if (h !== estirable) ro.observe(h); }); [...estirable.children].forEach((h) => ro.observe(h)); }; // al cargar la letra, vuelve a igualar // dentro del caso, el correo se apoya en el gris de la marca
+      const correos = marcos.filter((m) => m.src.includes("newsletter"));  // las dos newsletters
+      const iguala = () => { if (!matchMedia("(min-width: 761px)").matches) { correos.forEach((m) => { try { m.style.height = "1px"; ajusta(m); } catch (e) {} }); return; } const altos = correos.map((m) => { try { m.style.height = "1px"; return m.contentDocument.documentElement.scrollHeight; } catch (e) { return 0; } }); const alto = Math.max(...altos); correos.forEach((m) => { m.style.height = alto + "px"; }); }; // en escritorio, ambas con la altura de la más alta
+      marcos.forEach((m) => m.addEventListener("load", () => { sinMesa(m); m.style.height = "1px"; ajusta(m); iguala(); setTimeout(() => { m.style.height = "1px"; ajusta(m); iguala(); }, 700); }));
+      addEventListener("resize", () => marcos.forEach((m) => { if (m.contentDocument && m.contentDocument.body) { m.style.height = "1px"; ajusta(m); } }) || iguala());
+    })();
+  </script>
+  <script src="../js/v2.js" defer></script>
+  <script src="../js/projects-data.js?v=9" defer></script>
+  <script src="../js/related.js" defer></script>
+</body>
+</html>

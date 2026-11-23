@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"> <!-- acentos -->
+<meta name="viewport" content="width=device-width, initial-scale=1"> <!-- adaptable al móvil -->
+<meta name="robots" content="noindex">
+<title>ENTZUN · Newsletter</title> <!-- título de la pestaña -->
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet"> <!-- letra de apoyo -->
+<link rel="stylesheet" href="../web/web.css?v=20261123z">      <!-- colores, tamaños, títulos y franja de la web -->
+<script src="../shared/entzun-logo.js"></script>      <!-- el logo y su alfabeto -->
+<script src="../shared/entzun-sistema.js"></script>   <!-- glifos y discos -->
+<script src="../web/web.js?v=20261123za"></script>              <!-- la programación -->
+<style>
+  body { background: #202122; padding: clamp(0px, 4vw, 56px) 0; }           /* la mesa sobre la que se ve el correo */
+  .correo { width: min(100%, 640px); margin: 0 auto; background: var(--negro); overflow: hidden; } /* el ancho habitual de un email */
+  .aire { padding: clamp(32px, 7vw, 52px) clamp(20px, 6vw, 44px); }         /* margen interior de cada bloque */
+  .cabeza { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 22px clamp(20px, 6vw, 44px); border-bottom: 1px solid var(--linea); }
+  .cabeza svg { width: 76px; }                                              /* el logo pequeño */
+  .mancheta { padding: clamp(40px, 9vw, 64px) clamp(20px, 6vw, 44px) clamp(28px, 6vw, 40px); } /* el nombre de la newsletter */
+  .eco-lienzo { position: relative; isolation: isolate; background: #0E0E0E; }
+  .tema .t-logo { --t-titulo: clamp(26px, 5.4vw, 36px); margin-top: 10px; } /* el título del número */
+  .entrada { font-size: var(--t-l); line-height: 1.35; letter-spacing: -.01em; margin-top: 8px; }
+  .duo { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; } /* los dos discos, frente a frente */
+  .duo figcaption { padding: 16px clamp(14px, 3vw, 22px) 26px; }
+  .duo h3 { font-size: var(--t-l); font-weight: 400; letter-spacing: -.015em; margin: 6px 0 2px; }
+  .duo p { font-size: var(--t-s); color: var(--gris); line-height: 1.5; } .duo .desc { margin-top: 10px; }
+  .fila { display: grid; grid-template-columns: 62px minmax(0, 1fr) auto; gap: 16px; align-items: center; padding: 15px 0; border-top: 1px solid var(--linea); text-decoration: none; } /* una sesión */
+  .fila .par { width: 62px; gap: 10%; }
+  .fila b { display: block; font-weight: 400; font-size: var(--t-m); line-height: 1.25; } .fila small { color: var(--gris); font-size: var(--t-s); }
+  .fila .dcha { text-align: right; white-space: nowrap; }
+  .lista { margin-top: 22px; border-bottom: 1px solid var(--linea); }
+  .boton { margin-top: 26px; }
+  .pregunta { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 18px 24px; align-items: end; }
+  .pregunta p { color: var(--gris); margin-top: 4px; }
+  .pie-correo { padding: 26px clamp(20px, 6vw, 44px) 32px; border-top: 1px solid var(--linea); color: var(--gris); font-size: var(--t-s); line-height: 1.6; }
+  .pie-correo a { color: inherit; }
+  @media (max-width: 480px) { .pregunta { grid-template-columns: minmax(0, 1fr); } .fila .dcha .plazas { display: none; } }
+</style>
+</head>
+<body>
+<article class="correo">
+  <header class="cabeza"><span id="logo"></span><span class="k gris">Nº 012</span></header>
+
+  <!-- El logo en eco, como cabecera del correo -->
+  <div class="mancheta"><div class="eco-lienzo" id="ecoMarca" aria-label="ENTZUN" role="img"></div></div>
+
+  <!-- El tema del número -->
+  <section class="aire tema" style="padding-top:0">
+    <p class="k gris">Esta semana · 19 — 26 nov</p>
+    <h1 class="t-logo">La voz de Bristol.</h1>
+    <p class="entrada">Treinta años separan estos dos discos. La voz es la misma.</p>
+  </section>
+
+  <!-- Los dos discos, con sus formas -->
+  <section class="duo" id="duo"></section>
+
+  <!-- La franja: del disco A al disco B -->
+  <div id="descanso"></div>
+
+  <!-- La programación -->
+  <div class="plata">
+    <section class="aire">
+      <h2 class="t-logo">Y además.</h2>
+      <div class="lista" id="lista"></div>
+      <a class="btn k boton" id="reserva" href="../web/reservar.html">Reservar sitio →</a>
+    </section>
+    <section class="aire pregunta" style="border-top:1px solid var(--linea)">
+      <div><h2 class="t-logo">Tu turno.</h2><p>¿Qué disco pondrías después de Dummy?</p></div>
+      <a class="k" href="#">Responde a este correo →</a>
+    </section>
+  </div>
+
+  <footer class="pie-correo">
+    <p>ENTZUN · Calle San Francisco 31, bajo · Bilbao La Vieja</p>
+    <p>Recibes esto porque te apuntaste en entzun.eus. <a href="#">Darse de baja</a></p>
+  </footer>
+</article>
+
+<script>
+const W2 = 1080, H2 = 1200;                                                // tamaño de las dos fotos
+const CENTROS = [0, .874, 1.395, 1.769, 1.769], CORTES = [0, .899, 1.853, 2.496, 2.773]; // el recorrido de las ondas
+const paso = (l, q) => { const i = Math.min(Math.floor(q), l.length - 2); return l[i] + (l[i + 1] - l[i]) * (q - i); }; // posición a velocidad constante
+function arcoD(R, cx, cy, base, f) {                                       // Portishead: un arco con ondas hacia arriba
+  let t = `M${cx - R} ${base}V${cy}A${R} ${R} 0 0 1 ${cx + R} ${cy}V${base}Z`; // el arco
+  for (let k = 0; k < 4; k++) { const q = k + f, m = paso(CENTROS, q) * R * .5, dx = (paso(CORTES, q) - paso(CENTROS, q)) * R; if (dx >= R) continue; // cada onda
+    const v = Math.sqrt(R * R - dx * dx), y = cy - m - dx; t += `M${cx - v} ${y}A${R} ${R} 0 0 1 ${cx + v} ${y}Z`; } // su casquete
+  return t;
+}
+function bloqueD(R, cx, cy, f, ancho) {                                     // Beth Gibbons: la forma de la E del logo, con ondas horizontales hacia la izquierda
+  let t = `M${ancho} ${cy + R}H${cx}A${R} ${R} 0 0 1 ${cx} ${cy - R}H${ancho}Z`; // semicírculo + bloque hasta el borde derecho
+  for (let k = 0; k < 4; k++) { const q = k + f, m = paso(CENTROS, q) * R * .45, dx = (paso(CORTES, q) - paso(CENTROS, q)) * R; if (dx >= R) continue; // cada onda
+    const v = Math.sqrt(R * R - dx * dx), x = cx - m - dx;                  // alto y posición del corte recto
+    t += `M${x} ${cy + v}A${R} ${R} 0 0 1 ${x} ${cy - v}Z`; }               // la media luna
+  return t;
+}
+const s = sesion(24), a = disco(s[5]), b = disco(s[6]), h = horario(s);    // la sesión del número
+const foto = (id, img, extra) => `<svg viewBox="0 0 ${W2} ${H2}" aria-hidden="true"><rect width="${W2}" height="${H2}" fill="#0E0E0E"/><defs><clipPath id="${id}"><path/></clipPath></defs><g clip-path="url(#${id})">${img}${extra}</g></svg>`; // una foto recortada por su forma
+const ficha = (letra, d2, ini, fin, svg) => `<figure>${svg}<figcaption><p class="k">Disco ${letra} · ${ini}–${fin}</p><h3>${d2[1]}</h3><p>${d2[2]} · ${d2[3]}</p><p class="desc">${TEXTOS[d2[0]]}</p></figcaption></figure>`; // foto y datos
+document.getElementById("duo").innerHTML =
+  ficha("A", a, h.iniA, h.finA, foto("formaA", `<image style="filter:grayscale(1) brightness(1.16) contrast(.9)" href="../redes/img/artista-portishead.jpg" width="${W2}" height="${H2}" preserveAspectRatio="xMidYMin slice"/>`, "")) +
+  ficha("B", b, h.iniB, h.finB, foto("formaB", `<image style="filter:grayscale(1) contrast(1.1)" href="../redes/img/artista-beth-2.jpg" x="55" y="-97" width="1254" height="1551"/>`, ""));
+const pA = document.querySelector("#formaA path"), pB = document.querySelector("#formaB path"); // los dos recortes
+const pinta = (f) => { pA.setAttribute("d", arcoD(370, W2 / 2, 720, H2, f)); pB.setAttribute("d", bloqueD(440, 880, 760, f, 990)); }; // los dibuja, Beth con margen a ambos lados y la misma base que Portishead
+pinta(.3);                                                                  // pose inicial
+let correoVisible = true; new IntersectionObserver(([e]) => { correoVisible = e.isIntersecting; }).observe(document.querySelector(".correo")); // las animaciones descansan fuera de pantalla
+if (!matchMedia("(prefers-reduced-motion: reduce)").matches) { const bucle = (t) => { if (correoVisible) pinta((t % 1200) / 1200); requestAnimationFrame(bucle); }; requestAnimationFrame(bucle); } // en bucle de 1,2 s
+
+document.getElementById("logo").innerHTML = ENTZUN.logo({ color: "#D4D5D6" }); // el logo pequeño
+document.getElementById("descanso").outerHTML = descansoHTML(s);            // la franja de la web
+descansoVivo(s, true);                                                            // gira al bajar
+// El logo en eco: cinco copias que se abren y se juntan
+const eco = document.getElementById("ecoMarca"), saltos = [-2, -1, 0, 1, 2];
+eco.innerHTML = saltos.map(() => `<div class="copia">${ENTZUN.logo({ color: "#D4D5D6" })}</div>`).join("");
+const copiasEco = [...eco.children];
+if (!matchMedia("(prefers-reduced-motion: reduce)").matches) { const va = (t) => { if (correoVisible) { const k = Math.max(0, Math.cos(t / 3400 * Math.PI * 2)) ** 1.5; copiasEco.forEach((c, i) => { c.style.transform = `translate3d(${saltos[i] * k * 3.2}%, 0, 0)`; }); } requestAnimationFrame(va); }; requestAnimationFrame(va); }
+
+// El resto de sesiones de la semana
+document.getElementById("lista").innerHTML = PROGRAMA.slice(1).map((p) => { const e = estado(libresCompleta(p)), x = disco(p[5]), y = disco(p[6]); return `<a class="fila" href="../web/sesion.html?n=${p[0]}"><span class="par">${parSVG(p)}</span><span><b>${p[3]}</b><small>${x[1]} · ${y[1]}</small></span><span class="dcha k">${fechaCorta(p[1])}<br><span class="plazas ${e.cls}">${e.txt}</span></span></a>`; }).join("");
+document.getElementById("reserva").href = `../web/reservar.html?n=${s[0]}`; // reserva la sesión del número
+document.querySelectorAll(".t-logo").forEach(ENTZUN.rotula);               // los títulos, con la letra de la marca
+</script>
+</body>
+</html>

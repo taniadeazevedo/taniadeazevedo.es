@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"> <!-- acentos -->
+<meta name="viewport" content="width=device-width, initial-scale=1"> <!-- adaptable al móvil -->
+<title>Reservar · ENTZUN</title> <!-- título de la pestaña -->
+<meta name="robots" content="noindex"> <!-- página de reserva: no hace falta en buscadores -->
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="web.css?v=20261123w">
+<script src="../shared/entzun-logo.js?v=20261123w"></script><script src="../shared/entzun-sistema.js?v=20261123w"></script><script src="web.js?v=20261123w"></script>
+<style>
+  .res { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: clamp(28px, 5vw, 80px); padding-block: clamp(36px, 6vw, 80px); align-items: start; }  /* los lados los pone .wrap */
+  .resumen { border-top: 2px solid var(--blanco); padding: 22px 0 0; position: sticky; top: 96px; }
+  .resumen .par { width: 150px; gap: 12%; margin-bottom: 18px; } .resumen h2 { font-size: var(--t-xl); margin: 6px 0 12px; }
+  .resumen .discos { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 6px 10px; color: var(--gris); } .resumen .discos b { color: var(--blanco); font-weight: 400; }
+  .pasos { display: flex; gap: 22px; margin-bottom: 30px; list-style: none; }
+  .pasos li { color: var(--gris); } .pasos li[aria-current="step"] { color: var(--blanco); text-decoration: underline; text-underline-offset: 6px; }
+  h1 { margin-bottom: 28px; }
+  fieldset { border: 0; } legend { margin-bottom: 14px; }
+  .modos { display: grid; gap: 10px; }                                      /* sesión completa, solo A o solo B */
+  .modos label { position: relative; }
+  .modos input { position: absolute; opacity: 0; }
+  .modos .op { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 16px; padding: 16px 18px; border: 1px solid var(--linea); cursor: pointer; }
+  .modos .op b { font-weight: 400; font-size: var(--t-l); } .modos .op small { color: var(--gris); font-size: var(--t-s); grid-column: 1; }
+  .modos .op .plazas { grid-row: 1 / span 2; grid-column: 2; align-self: center; }
+  .modos input:checked + .op { border-color: var(--blanco); box-shadow: inset 0 0 0 1px var(--blanco); }
+  .modos input:focus-visible + .op { outline: 2px solid var(--blanco); outline-offset: 3px; }
+  .modos input:disabled + .op { opacity: .3; cursor: not-allowed; }
+  .personas { display: flex; gap: 10px; flex-wrap: wrap; }
+  .personas label { position: relative; }
+  .personas input { position: absolute; opacity: 0; }                       /* el botón real, invisible pero accesible */
+  .personas span { display: grid; place-items: center; width: 60px; height: 56px; border: 1px solid var(--linea); font-size: var(--t-l); cursor: pointer; }
+  .personas input:checked + span { background: var(--blanco); color: var(--negro); }
+  .personas input:focus-visible + span { outline: 2px solid var(--blanco); outline-offset: 3px; }
+  .personas input:disabled + span { opacity: .25; cursor: not-allowed; text-decoration: line-through; }
+  .campo { display: grid; gap: 8px; margin-bottom: 18px; }
+  .campo input[type=text], .campo input[type=email], .campo input[type=tel] { background: none; border: 0; border-bottom: 1px solid var(--gris); color: var(--blanco); font: inherit; font-size: var(--t-m); padding: 10px 0; }
+  .campo input:focus { outline: none; border-bottom-color: var(--blanco); }
+  .error { color: #E9C46A; font-size: var(--t-s); min-height: 1.3em; }
+  .check { display: flex; gap: 12px; align-items: flex-start; color: var(--gris); margin: 6px 0 26px; } .check input { margin-top: 5px; accent-color: #F7F5F0; }
+  .acciones { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; margin-top: 28px; }
+  .entrada { width: min(300px, 80%); margin: 10px 0 26px; }
+  .aviso { color: var(--gris); font-size: var(--t-s); margin-top: 18px; }
+  @media (max-width: 760px) { .res { grid-template-columns: 1fr; } .resumen { position: static; } }
+</style>
+</head>
+<body>
+<main id="contenido" class="wrap res">
+  <aside class="resumen" id="resumen" aria-label="Tu sesión"></aside>
+  <section>
+    <ol class="pasos k" id="pasos"><li>1 · Sesión</li><li>2 · Tus datos</li><li>3 · Hecho</li></ol>
+    <div id="paso" aria-live="polite"></div>
+  </section>
+</main>
+<script>
+cabecera(""); pie();
+const n = +new URLSearchParams(location.search).get("n") || 24;           // qué sesión se reserva
+const p = sesion(n) || PROGRAMA[0], a = disco(p[5]), b = disco(p[6]), h = horario(p);
+const MODOS = {                                                            // las tres formas de venir: [nombre, horario, sitios libres]
+  completa: ["Sesión completa", `Los dos discos · ${h.iniA}–${h.finB}`, libresCompleta(p)],
+  a: ["Solo disco A", `${a[1]} · ${h.iniA}–${h.finA}`, p[7]],
+  b: ["Solo disco B", `${b[1]} · llega en el descanso · ${h.iniB}–${h.finB}`, p[8]],
+};
+const reserva = { modo: "", personas: 0, nombre: "", email: "", tel: "" };  // lo que va eligiendo la persona
+const pide = new URLSearchParams(location.search).get("modo");            // viene de «Reservar sesión completa» o «Reservar un solo disco»
+if (pide === "completa" && MODOS.completa[2] > 0) reserva.modo = "completa"; // la completa ya queda marcada; con «uno» se elige A o B
+document.getElementById("resumen").innerHTML = `<div class="par">${parSVG(p)}</div><p class="k gris">Sesión Nº ${nn(p[0])}</p><h2>${p[3]}</h2>
+  <div class="discos"><span class="k">A</span><span><b>${a[1]}</b> · ${a[2]}</span><span class="k">B</span><span><b>${b[1]}</b> · ${b[2]}</span></div>
+  <p class="k" style="margin-top:16px">${fechaLarga(p[1])} · ${h.iniA}–${h.finB}</p>`;
+
+function marcaPaso(i) { document.querySelectorAll("#pasos li").forEach((li, k) => { li.removeAttribute("aria-current"); if (k === i) li.setAttribute("aria-current", "step"); }); } // marca el paso actual
+const caja = document.getElementById("paso");
+
+// ---------- Paso 1 · cómo vienes (completa o media) y cuántas personas (1 a 4, sin pasar de los sitios libres) ----------
+function paso1() {
+  marcaPaso(0);
+  if (p[7] === 0 && p[8] === 0) { caja.innerHTML = `<h1 class="t-logo grande">Sesión completa.</h1><p class="gris">Mira otras noches en la <a href="programacion.html">programación</a>.</p>`; return; }
+  caja.innerHTML = `<h1 class="t-logo grande">Tu sitio.</h1><form id="f1">
+    <fieldset><legend class="k gris">Sesión completa o media</legend><div class="modos">
+    ${Object.entries(MODOS).map(([k, [nom, sub, lib]]) => { const e = estado(lib); return `<label><input type="radio" name="modo" value="${k}" ${lib === 0 ? "disabled" : ""} ${reserva.modo === k ? "checked" : ""}>
+      <span class="op"><b>${nom}</b><small>${sub}</small><span class="k plazas ${e.cls}">${e.txt}</span></span></label>`; }).join("")}</div></fieldset>
+    <fieldset style="margin-top:30px"><legend class="k gris">Personas · máximo 4 por reserva</legend><div class="personas" id="personas"></div></fieldset>
+    <p class="error" id="e1" role="alert"></p><div class="acciones"><button class="btn k" type="submit">Continuar</button><a class="k" href="sesion.html?n=${p[0]}">Volver a la sesión</a></div></form>`;
+  const pintaPersonas = () => {                                            // los botones de personas dependen de los sitios libres del modo elegido
+    const lib = reserva.modo ? MODOS[reserva.modo][2] : 4;
+    if (reserva.personas > lib) reserva.personas = 0;                      // si ya no caben, se deshace la elección
+    document.getElementById("personas").innerHTML = [1, 2, 3, 4].map((k) => `<label><input type="radio" name="personas" value="${k}" ${k > lib ? "disabled" : ""} ${reserva.personas === k ? "checked" : ""}><span>${k}</span></label>`).join("");
+  };
+  pintaPersonas();
+  const f = document.getElementById("f1");
+  f.addEventListener("change", (ev) => {                                   // guarda cada elección al momento
+    if (ev.target.name === "modo") { reserva.modo = ev.target.value; pintaPersonas(); }
+    if (ev.target.name === "personas") reserva.personas = +ev.target.value;
+  });
+  f.addEventListener("submit", (ev) => {
+    ev.preventDefault();
+    const e1 = document.getElementById("e1");
+    if (!reserva.modo) { e1.textContent = "Elige si venís a la sesión completa o solo a un disco."; return; }
+    if (!reserva.personas) { e1.textContent = "Elige cuántas personas venís."; return; }
+    paso2();
+  });
+}
+
+// ---------- Paso 2 · los datos (nombre y email obligatorios; teléfono opcional) ----------
+function paso2() {
+  marcaPaso(1);
+  caja.innerHTML = `<h1 class="t-logo grande">Tus datos.</h1><form id="f2" novalidate>
+    <div class="campo"><label class="k gris" for="nombre">Nombre</label><input type="text" id="nombre" autocomplete="name" value="${reserva.nombre}" required><span class="error" id="en"></span></div>
+    <div class="campo"><label class="k gris" for="email">Email</label><input type="email" id="email" autocomplete="email" value="${reserva.email}" required><span class="error" id="ee"></span></div>
+    <div class="campo"><label class="k gris" for="tel">Teléfono (opcional)</label><input type="tel" id="tel" autocomplete="tel" value="${reserva.tel}"></div>
+    <label class="check"><input type="checkbox" id="normas" required><span>Sé que durante la escucha no se habla ni se usa el móvil, y que la sesión empieza puntual.</span></label>
+    <p class="error" id="ec" role="alert"></p>
+    <div class="acciones"><button class="btn k" type="submit">Confirmar · ${MODOS[reserva.modo][0].toLowerCase()} · ${reserva.personas} ${reserva.personas > 1 ? "personas" : "persona"}</button><button class="btn linea k" type="button" id="atras">Atrás</button></div></form>`;
+  document.getElementById("atras").onclick = paso1;
+  document.getElementById("f2").addEventListener("submit", (ev) => {
+    ev.preventDefault();
+    const nom = document.getElementById("nombre").value.trim(), em = document.getElementById("email").value.trim();
+    let ok = true;
+    document.getElementById("en").textContent = nom ? "" : (ok = false, "Escribe tu nombre.");
+    document.getElementById("ee").textContent = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em) ? "" : (ok = false, "Revisa el email: así no podemos enviarte la entrada.");
+    document.getElementById("ec").textContent = document.getElementById("normas").checked ? "" : (ok = false, "Acepta las normas de escucha para reservar.");
+    if (!ok) { caja.querySelector(".error:not(:empty)")?.previousElementSibling?.focus(); return; }
+    Object.assign(reserva, { nombre: nom, email: em, tel: document.getElementById("tel").value.trim() });
+    paso3();
+  });
+}
+
+// ---------- Paso 3 · hecho: la entrada, con el patrón del disco (o de los dos, si es la sesión completa) ----------
+function paso3() {
+  marcaPaso(2);
+  const C = { negro: "#0E0E0E", blanco: "#D4D5D6", gris: "#85878B" }, P = ENTZUN.palabra(C.negro);
+  const T = (x, y, txt, s, extra = "") => `<text x="${x}" y="${y}" font-family="Space Grotesk" font-weight="500" font-size="${s}" letter-spacing="${(s * .08).toFixed(1)}" fill="${C.negro}" ${extra}>${txt}</text>`;
+  const m = reserva.modo, [nom, , ] = MODOS[m];
+  const fondo = m === "completa"                                           // completa: mitad de patrón de A y mitad de B; media: el patrón de su disco
+    ? `<g transform="translate(24 24)">${patron(a[0], a[5], 6, 3, 42)}</g><g transform="translate(24 150)">${patron(b[0], b[5], 6, 3, 42)}</g>`
+    : `<g transform="translate(24 24)">${patron(m === "a" ? a[0] : b[0], m === "a" ? a[5] : b[5], 6, 6, 42)}</g>`;
+  const linea2 = m === "completa" ? `${a[1]} + ${b[1]}` : (m === "a" ? `A · ${a[1]} · ${a[2]}` : `B · ${b[1]} · ${b[2]}`);
+  const hora = m === "b" ? h.iniB : h.iniA;
+  const entrada = `<svg viewBox="0 0 300 700"><rect width="300" height="700" rx="4" fill="${C.blanco}"/><g fill="${C.negro}">${fondo}</g>
+    ${T(24, 320, p[3].toUpperCase(), 21, 'font-weight="700"')}${T(24, 344, linea2.toUpperCase().slice(0, 40), 9)}
+    ${T(24, 400, fechaCorta(p[1]), 15)}${T(276, 400, hora, 15, 'text-anchor="end"')}${T(24, 422, "SESIÓN " + nn(p[0]) + " · " + nom.toUpperCase(), 10)}
+    ${T(24, 444, reserva.personas + (reserva.personas > 1 ? " PERSONAS · " : " PERSONA · ") + reserva.nombre.toUpperCase().slice(0, 20), 10)}
+    <line x1="10" x2="290" y1="480" y2="480" stroke="${C.negro}" stroke-dasharray="2 5"/>
+    <g transform="translate(24 510) scale(${150 / P.ancho})">${P.g}</g>${T(24, 600, "BILBAO LA VIEJA", 10)}${T(276, 600, "ENTZUN.EUS", 10, 'text-anchor="end"')}</svg>`;
+  const cuando = m === "b" ? `Llega en el descanso: el disco B empieza a las ${h.iniB}.` : `La sesión empieza a las ${h.iniA}: llega un poco antes.`;
+  caja.innerHTML = `<h1 class="t-logo grande">Reserva hecha.</h1><p class="gris">${reserva.nombre}, te esperamos el ${fechaLarga(p[1])}. ${cuando}</p>
+    <div class="entrada">${entrada}</div>
+    <div class="acciones"><a class="btn k" href="programacion.html">Ver más sesiones</a><a class="k" href="index.html">Volver al inicio</a></div>
+    <p class="aviso">Prototipo de portfolio: no se envía ni se guarda ningún dato.</p>`;
+  caja.querySelector("h1").setAttribute("tabindex", "-1"); caja.querySelector("h1").focus(); // el lector de pantalla anuncia que está hecho
+}
+new MutationObserver(() => caja.querySelectorAll(".t-logo").forEach(ENTZUN.rotula)).observe(caja, { childList: true }); // cada paso, con la letra de la marca
+paso1();
+</script>
+</body>
+</html>

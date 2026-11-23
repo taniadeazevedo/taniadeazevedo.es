@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"> <!-- acentos -->
+<meta name="viewport" content="width=device-width, initial-scale=1"> <!-- adaptable al móvil -->
+<meta name="robots" content="noindex">
+<title>Programación · ENTZUN</title> <!-- título de la pestaña -->
+<meta name="description" content="Las próximas sesiones de ENTZUN, dos discos por noche, y el archivo de sesiones escuchadas.">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="web.css?v=20261123w">
+<script src="../shared/entzun-logo.js?v=20261123w"></script><script src="../shared/entzun-sistema.js?v=20261123w"></script><script src="web.js?v=20261123w"></script>
+<style>
+  .intro { padding: clamp(56px, 8vw, 120px) 0; }
+  .dia { margin-top: clamp(28px, 4vw, 48px); }
+  .dia h2 { font-size: var(--t-xs); font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--gris); padding-bottom: 12px; border-bottom: 1px solid var(--blanco); }
+  /* Archivo: una cuadrícula de glifos numerados */
+  .archivo { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--linea); }
+  .archivo a { background: var(--negro); padding: 22px 18px; text-decoration: none; }
+  .archivo .par { width: 70%; margin: 0 auto 22px; }
+  .archivo a:hover .par svg { transform: rotate(90deg); }
+  .archivo p { font-size: var(--t-xs); color: var(--gris); } .archivo b { color: var(--blanco); font-weight: 500; }
+  @media (max-width: 760px) { .archivo { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<main id="contenido" class="wrap">
+  <section class="intro sec"><p class="k rotulo">Programación<br>Noviembre 2026</p>
+    <div><h1 class="t-logo grande">Dos discos cada noche.</h1>
+      <div class="entradilla"><p>Una selección, dos discos cada noche. Cada sesión tiene su propio hilo. A veces es una conexión evidente entre dos artistas; otras, una relación más inesperada entre sonidos, letras o formas de producir.</p>
+      <p>No hay un único género ni una época favorita. Nos interesan los discos que merecen escucharse enteros y las conexiones que aparecen cuando los ponemos uno al lado del otro.</p></div></div></section>
+  <section class="bloque sec" style="padding-bottom:0"><p class="k rotulo">Próximas sesiones</p>
+    <div><p class="entradilla" style="margin:0 0 12px">Consulta los álbumes, descubre la historia detrás de cada encuentro y reserva tu sitio.</p>
+  <div id="dias"></div></div></section>
+  <section class="bloque sec" style="margin-top:clamp(64px,9vw,136px)"><p class="k rotulo">Sesiones ya escuchadas</p>
+    <div><h2 class="t-logo" style="margin-bottom:36px">El archivo.</h2><div class="archivo" id="archivo"></div></div>
+  </section>
+</main>
+<script>
+cabecera("programacion.html"); pie();
+// Una sesión por noche, cada una con su fecha encima
+document.getElementById("dias").innerHTML = PROGRAMA.map((p) => `<section class="dia"><h2>${fechaLarga(p[1])}</h2>${sesionFila(p)}</section>`).join("");
+// El archivo, de la más reciente a la más antigua: cada sesión con sus dos discos
+document.getElementById("archivo").innerHTML = [...ARCHIVO].reverse().map(([n, titulo, ia, ib]) => {
+  const a = disco(ia), b = disco(ib);
+  return `<a href="#" aria-label="Sesión ${nn(n)}, ${titulo}: ${a[1]} y ${b[1]}"><span class="par">${parSVG([n, , , , , ia, ib])}</span>
+    <p class="k"><b>Nº ${nn(n)} · ${titulo}</b><br>A · ${a[1]}, ${a[2]}<br>B · ${b[1]}, ${b[2]}</p></a>`;
+}).join("");
+</script>
+</body>
+</html>
