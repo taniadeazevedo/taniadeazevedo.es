@@ -97,10 +97,10 @@ const s = sesion(24), a = disco(s[5]), b = disco(s[6]), h = horario(s);    // la
 const foto = (id, img, extra) => `<svg viewBox="0 0 ${W2} ${H2}" aria-hidden="true"><rect width="${W2}" height="${H2}" fill="#0E0E0E"/><defs><clipPath id="${id}"><path/></clipPath></defs><g clip-path="url(#${id})">${img}${extra}</g></svg>`; // una foto recortada por su forma
 const ficha = (letra, d2, ini, fin, svg) => `<figure>${svg}<figcaption><p class="k">Disco ${letra} · ${ini}–${fin}</p><h3>${d2[1]}</h3><p>${d2[2]} · ${d2[3]}</p><p class="desc">${TEXTOS[d2[0]]}</p></figcaption></figure>`; // foto y datos
 document.getElementById("duo").innerHTML =
-  ficha("A", a, h.iniA, h.finA, foto("formaA", `<image style="filter:grayscale(1) brightness(1.16) contrast(.9)" href="../redes/img/artista-portishead.jpg" width="${W2}" height="${H2}" preserveAspectRatio="xMidYMin slice"/>`, "")) +
-  ficha("B", b, h.iniB, h.finB, foto("formaB", `<image style="filter:grayscale(1) contrast(1.1)" href="../redes/img/artista-beth-2.jpg" x="55" y="-97" width="1254" height="1551"/>`, ""));
+  ficha("A", a, h.iniA, h.finA, foto("formaA", `<image style="filter:grayscale(1) brightness(1.16) contrast(.9)" href="../redes/img/artista-portishead.jpg" x="44" y="119" width="993" height="1233"/>`, "")) +
+  ficha("B", b, h.iniB, h.finB, foto("formaB", `<image style="filter:grayscale(1) contrast(1.1)" href="../redes/img/artista-beth-2.jpg" x="-48" y="-362" width="1510" height="1868"/>`, ""));
 const pA = document.querySelector("#formaA path"), pB = document.querySelector("#formaB path"); // los dos recortes
-const pinta = (f) => { pA.setAttribute("d", arcoD(370, W2 / 2, 720, H2, f)); pB.setAttribute("d", bloqueD(440, 880, 760, f, 990)); }; // los dibuja, Beth con margen a ambos lados y la misma base que Portishead
+const pinta = (f) => { pA.setAttribute("d", arcoD(476, W2 / 2, 1037, H2, f)); pB.setAttribute("d", bloqueD(530, 1016, 670, f, 1030)); }; // los dibuja: las dos formas con la misma altura y la misma base
 pinta(.3);                                                                  // pose inicial
 let correoVisible = true; new IntersectionObserver(([e]) => { correoVisible = e.isIntersecting; }).observe(document.querySelector(".correo")); // las animaciones descansan fuera de pantalla
 if (!matchMedia("(prefers-reduced-motion: reduce)").matches) { const bucle = (t) => { if (correoVisible) pinta((t % 1200) / 1200); requestAnimationFrame(bucle); }; requestAnimationFrame(bucle); } // en bucle de 1,2 s
