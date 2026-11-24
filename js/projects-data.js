@@ -25,17 +25,6 @@ window.PROJECT_FILTERS = [
 
 window.PROJECTS = [
   {
-    title: 'SUD CLUB',
-    cats: ['branding', 'grafico', 'web'],
-    label: 'Branding e identidad visual',
-    desc: 'Identidad para un club cultural del Mediterráneo que cambia con la temperatura: logotipo, iconografía, carteles, redes y evento.',
-    image: 'sud-club/imgs/portada.jpg?v=2',
-    video: 'sud-club/video/sud-home.mp4',            // si hay vídeo, la tarjeta lo reproduce (la imagen queda como respaldo)
-    poster: 'sud-club/video/sud-home-poster.jpg',     // imagen que se ve mientras carga el vídeo
-    alt: 'El logotipo de SUD CLUB sobre una foto de vermut en sombra',
-    url: 'sud-club/'
-  },
-  {
     title: 'Open House Madrid',
     cats: ['branding', 'grafico', 'campanas'],
     label: 'Branding, identidad y comunicación',
@@ -43,6 +32,15 @@ window.PROJECTS = [
     image: 'open-house-madrid/imgs/1.webp',
     alt: 'Voluntarias de Open House Madrid con la identidad del festival en tote bags y camisetas',
     url: 'open-house-madrid/'
+  },
+  {
+    title: 'SUD CLUB',
+    cats: ['branding', 'grafico', 'web'],
+    label: 'Branding e identidad visual',
+    desc: 'Identidad para un club cultural del Mediterráneo que cambia con la temperatura: logotipo, iconografía, carteles, redes y evento.',
+    image: 'sud-club/imgs/portada.jpg?v=2',
+    alt: 'El logotipo de SUD CLUB sobre una foto de vermut en sombra',
+    url: 'sud-club/'
   },
   {
     title: 'LIV Golf Valderrama',
