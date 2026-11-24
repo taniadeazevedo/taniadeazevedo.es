@@ -32,16 +32,13 @@
     }).join("");
   }
 
-  let uid = 0;                                                           // para que cada máscara tenga su propio nombre
-  // La E: un semicírculo (izquierda) unido a un bloque (derecha), con dos cortes horizontales desde la derecha
+  // La E: un semicírculo (izquierda) unido a un bloque (derecha), con dos cortes horizontales desde la derecha.
+  // Los cortes se restan del propio trazo (fill-rule evenodd) en vez de usar una máscara: Safari en iPhone no aplicaba la máscara.
   function letraE(x, color) {
-    const id = "ez-corte-" + (uid++);
     const forma = `M50 0H${E.w}V100H50A50 50 0 0 1 50 0Z`;              // semicírculo + bloque
     const c1 = 31, c2 = 100 - 31 - CORTE;                                // dónde empiezan los dos cortes
-    return `<mask id="${id}"><path d="${forma}" fill="#fff"/>` +
-      `<rect x="34" y="${c1}" width="${E.w}" height="${CORTE}" fill="#000"/>` +       // corte de arriba
-      `<rect x="34" y="${c2}" width="${E.w}" height="${CORTE}" fill="#000"/></mask>` + // corte de abajo
-      `<g transform="translate(${x} 0)"><path d="${forma}" fill="${color}" mask="url(#${id})"/></g>`;
+    const cortes = `M34 ${c1}H${E.w}V${c1 + CORTE}H34ZM34 ${c2}H${E.w}V${c2 + CORTE}H34Z`; // los dos cortes, abiertos por la derecha
+    return `<g transform="translate(${x} 0)"><path fill-rule="evenodd" d="${forma}${cortes}" fill="${color}"/></g>`; // E con sus cortes
   }
 
   // ---------- La palabra ----------
