@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html data-t="lila" lang="es" data-theme="dark" data-root="../">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon.ico" sizes="48x48" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <title>PLANAZO – Proyecto · Tania de Azevedo</title>
+  <meta name="description" content="PLANAZO: identidad de una plataforma de planes de ocio y cultura. Cuatro objetos de casa que se van de plan." />
+  <link rel="canonical" href="https://taniadeazevedo.es/planazo/" />
+  <meta property="og:title" content="PLANAZO – Tania de Azevedo" />
+  <meta property="og:description" content="Identidad de una plataforma de planes. Hay vida más allá del sofá." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://taniadeazevedo.es/planazo/" />
+  <meta property="og:image" content="https://taniadeazevedo.es/planazo/mockups/valla.jpg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f6f2fd" />
+  <meta name="color-scheme" content="light" />
+  <script>document.documentElement.setAttribute("data-theme","dark");</script>
+  <link rel="preload" as="font" type="font/woff2" href="../fonts/strichpunkt/strichpunkt-sans-latin-wght-normal.woff2" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Dela+Gothic+One&family=Familjen+Grotesk:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/v2.css" />
+  <link rel="stylesheet" href="../css/v2-case.css" />
+  <link rel="stylesheet" href="../css/v2-lila.css" />
+  <style>
+    /* ---------- Caso de PLANAZO: filas de la galería (mismo sistema que ENTZUN) ---------- */
+    .pl-row { max-width: 1228px; box-sizing: border-box; margin: 0 auto; padding: 0 clamp(18px, 3vw, 24px); }  /* mismo ancho que el resto del caso */
+    .pl-gap { margin-top: clamp(72px, 10vw, 148px); }                     /* aire entre bloques */
+    .pl-tag { padding-bottom: 12px; margin-bottom: clamp(14px, 1.6vw, 20px); }  /* título de cada bloque */
+    .pl-tag b { display: block; padding-bottom: 12px; border-bottom: 1px solid #1d153014; font: 600 clamp(17px, 1.4vw, 20px)/1.2 var(--v2-display, Inter, sans-serif); color: var(--v2-ink, #1d1530); }
+    .pl-marco { border-radius: clamp(18px, 2vw, 28px); overflow: hidden; }  /* esquinas como el resto del portfolio */
+    .pl-mas { margin-top: clamp(8px, 1vw, 14px); }                        /* separación dentro de un bloque */
+    .v2-cs-hero img { aspect-ratio: 4 / 3; }                              /* la valla, entera */
+    /* Identidad: logotipo y paleta */
+    .pl-id { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(8px, 1vw, 14px); }  /* logo grande y paleta */
+    .pl-logo { display: grid; place-items: center; aspect-ratio: 16 / 10; background: #FF4A1C; color: #1A1110; }  /* el logo sobre tomate */
+    .pl-logo span { display: inline-flex; align-items: baseline; font: 400 clamp(40px, 6.6vw, 92px)/.9 'Dela Gothic One', Impact, sans-serif; letter-spacing: -.045em; }  /* la palabra */
+    .pl-logo svg { width: .757em; height: .757em; margin-left: .04em; flex: none; translate: 0 .022em; }  /* la O con boca */
+    .pl-paleta { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(3, minmax(0, 1fr)); }  /* seis colores */
+    .pl-paleta div { display: flex; flex-direction: column; justify-content: flex-end; padding: clamp(12px, 1.4vw, 18px); font: 500 12px/1.35 Inter, sans-serif; }  /* cada color */
+    .pl-paleta b { display: block; font-weight: 600; font-size: 13px; }  /* nombre del color */
+    .pl-o { overflow: visible; transform-origin: 50% 50%; animation: pl-bote 2.8s ease-in-out infinite; }  /* la O se balancea y da botecitos al reírse */
+    .pl-boca { transform-box: fill-box; transform-origin: 50% 20%; animation: pl-risa 2.8s ease-in-out infinite; }  /* la boca crece un poco, sin cambiar de forma */
+    @keyframes pl-risa { 0%, 30%, 85%, 100% { scale: 1; } 38%, 54% { scale: 1.12; } 46%, 62% { scale: .97; } 70% { scale: 1.14; } }  /* se abre con cada «ja» */
+    @keyframes pl-bote { 0%, 30%, 85%, 100% { translate: 0 .022em; rotate: 0deg; } 38%, 54% { translate: 0 -.028em; rotate: -8deg; } 46%, 62% { translate: 0 .022em; rotate: 6deg; } 70% { translate: 0 -.038em; rotate: -6deg; } }  /* «ja, ja, ja»: salta y se balancea */
+    @media (prefers-reduced-motion: reduce) { .pl-o, .pl-boca { animation: none; } }  /* quieto si se prefiere menos movimiento */
+    /* Los Bocazas en movimiento */
+    .pl-cuatro { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(8px, 1vw, 14px); }  /* cuatro animaciones */
+    .pl-cuatro video { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: clamp(14px, 1.6vw, 22px); }  /* cada una, cuadrada */
+    /* Fotos de las aplicaciones */
+    .pl-foto { display: block; width: 100%; height: auto; border-radius: clamp(18px, 2vw, 28px); }  /* foto a todo el ancho */
+    .pl-apps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-areas: "a a b" "a a c" "d e e" "g e e"; gap: clamp(8px, 1vw, 14px); }  /* un solo grid, bordes alineados */
+    .pl-apps img { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: clamp(14px, 1.6vw, 22px); }  /* cada foto llena su celda */
+    .pl-apps .a { grid-area: a; } .pl-apps .b { grid-area: b; aspect-ratio: 1; } .pl-apps .c { grid-area: c; aspect-ratio: 1; }  /* caballete grande y dos piezas cuadradas */
+    .pl-apps .d { grid-area: d; aspect-ratio: 1; } .pl-apps .e { grid-area: e; } .pl-apps .g { grid-area: g; aspect-ratio: 1; }  /* abajo, al revés: llavero y gorra a la izquierda, caballete grande a la derecha */
+    /* ---------- Paleta interactiva: cada color esconde a su Bocaza ---------- */
+    .pl-paleta { position: relative; }                                     /* para colocar la píldora */
+    .pl-sw { position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; align-items: flex-start; padding: clamp(12px, 1.4vw, 18px); border: 0; margin: 0; font: 500 12px/1.35 Inter, sans-serif; text-align: left; cursor: pointer; }  /* cada color es un botón */
+    .pl-sw b { display: block; font-weight: 600; font-size: 13px; }       /* nombre del color */
+    .pl-sw i { font-style: normal; opacity: .7; }                         /* plan que acompaña */
+    .pl-sw > * { position: relative; z-index: 1; }                        /* el texto queda delante */
+    .pl-sw > .pl-asoma { position: absolute; z-index: 0; right: 6%; bottom: 0; width: 46%; height: 92%; translate: 0 118%; rotate: 8deg; transition: translate .45s cubic-bezier(.3, 1.6, .5, 1), rotate .45s cubic-bezier(.3, 1.6, .5, 1); pointer-events: none; }  /* el personaje espera escondido abajo */
+    .pl-asoma svg { display: block; width: 100%; height: 100%; overflow: visible; }
+    .pl-sw:hover > .pl-asoma, .pl-sw:focus-visible > .pl-asoma, .pl-sw.is-on > .pl-asoma { translate: 0 14%; rotate: -4deg; }  /* al pasar, se asoma y saluda */
+    .pl-sw:focus-visible { outline: 3px solid #1A1110; outline-offset: -3px; }
+    /* ---------- Tipografía en acción ---------- */
+    .pl-id2 { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(8px, 1vw, 14px); }  /* tipografía y combinador */
+    .pl-tipo { container-type: inline-size; display: flex; flex-direction: column; gap: clamp(14px, 2vw, 24px); padding: clamp(18px, 2.4vw, 32px); background: var(--f, #FF4A1C); color: var(--t, #1A1110); transition: background .5s, color .5s; }  /* el fondo cambia con cada frase */
+    .pl-tipo-top { display: flex; justify-content: space-between; gap: 12px; font: 600 clamp(11px, .95vw, 13px)/1.3 'Familjen Grotesk', Inter, sans-serif; letter-spacing: .01em; }  /* cabecera del bloque */
+    .pl-tipo-frase { flex: 1; display: flex; align-items: center; margin: 0; font: 400 10.4cqi/.96 'Dela Gothic One', Impact, sans-serif; letter-spacing: -.035em; }  /* la frase llena el ancho y el hueco central */
+    .pl-tipo-frase span { display: block; }
+    .pl-tipo-pie { display: grid; grid-template-columns: auto auto minmax(0, 1fr); align-items: end; gap: clamp(14px, 2.4vw, 32px); padding-top: clamp(12px, 1.4vw, 18px); border-top: 2px solid currentColor; }  /* las dos fuentes y un texto de ejemplo */
+    .pl-tipo-f { display: grid; gap: 4px; font: 600 clamp(10px, .9vw, 12px)/1.2 'Familjen Grotesk', Inter, sans-serif; }  /* muestra de cada fuente */
+    .pl-tipo-f b { font: 400 clamp(34px, 4.2vw, 56px)/.9 'Dela Gothic One', Impact, sans-serif; letter-spacing: -.03em; }  /* «Aa» en Dela */
+    .pl-tipo-f + .pl-tipo-f b { font: 600 clamp(36px, 4.4vw, 58px)/.9 'Familjen Grotesk', Inter, sans-serif; letter-spacing: -.02em; }  /* «Aa» en Familjen */
+    .pl-tipo-pie p { margin: 0; justify-self: end; max-width: 17em; font: 400 clamp(13px, 1.1vw, 15px)/1.35 'Familjen Grotesk', Inter, sans-serif; text-align: right; }  /* texto de ejemplo */
+    /* ---------- Combinador: eliges el plan y la marca se adapta ---------- */
+    .pl-comb { position: relative; display: flex; flex-direction: column; padding: clamp(16px, 2vw, 26px); background: var(--f, #FF93CF); color: var(--t, #1A1110); transition: background .4s, color .4s; }
+    .pl-comb-logo { align-self: flex-start; display: inline-flex; align-items: baseline; font: 400 clamp(15px, 1.4vw, 19px)/.9 'Dela Gothic One', Impact, sans-serif; letter-spacing: -.045em; }  /* logo pequeño, como en los carteles */
+    .pl-comb-logo svg { width: .757em; height: .757em; margin-left: .04em; translate: 0 .022em; }
+    .pl-comb-pj { flex: 1; min-height: 150px; display: flex; align-items: center; justify-content: center; padding: 10px 0; }  /* hueco del personaje */
+    .pl-comb-pj svg { display: block; width: 62%; height: auto; max-height: clamp(150px, 16vw, 220px); overflow: visible; }
+    .pl-comb-t { margin: 0; font: 400 clamp(30px, 3.6vw, 50px)/.95 'Dela Gothic One', Impact, sans-serif; letter-spacing: -.04em; }  /* nombre del plan */
+    .pl-comb-d { margin: 8px 0 0; padding-top: 8px; border-top: 2px solid currentColor; font: 600 clamp(12px, 1.05vw, 14px)/1.3 'Familjen Grotesk', Inter, sans-serif; }  /* día, hora y sitio */
+    .pl-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: clamp(12px, 1.4vw, 18px); }  /* los cuatro planes */
+    .pl-chips button { height: 30px; padding: 0 12px; border: 2px solid currentColor; border-radius: 999px; background: transparent; color: inherit; font: 600 12px/1 'Familjen Grotesk', Inter, sans-serif; cursor: pointer; transition: background .2s, color .2s; }
+    .pl-chips button[aria-pressed="true"] { background: var(--t); color: var(--f); }  /* el plan elegido, relleno */
+    .pl-sale { animation: pl-sale .5s cubic-bezier(.3, 1.5, .5, 1); }   /* el personaje entra de un salto */
+    @keyframes pl-sale { from { translate: 0 30%; scale: .6; opacity: 0; } }
+    /* ---------- Los Bocazas: fichas y clic que reacciona ---------- */
+    .pl-cuatro { position: relative; }                                     /* para la píldora */
+    .pl-bz { position: relative; margin: 0; }
+    .pl-bz-v { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: pointer; border-radius: clamp(14px, 1.6vw, 22px); }  /* el vídeo es un botón */
+    .pl-bz-v:focus-visible { outline: 3px solid #7c5cff; outline-offset: 3px; }
+    .pl-bz-v video { pointer-events: none; }
+    .pl-bocadillo { position: absolute; z-index: 2; top: 8%; left: 50%; translate: -50% 0; padding: 9px 15px 10px; border-radius: 999px; background: #FFF3DE; color: #1A1110; font: 400 clamp(12px, 1.2vw, 16px)/1 'Dela Gothic One', Impact, sans-serif; letter-spacing: -.02em; white-space: nowrap; opacity: 0; pointer-events: none; }  /* bocadillo, escondido */
+    .pl-bocadillo::after { content: ""; position: absolute; left: 50%; bottom: -6px; width: 13px; height: 13px; background: inherit; translate: -50% 0; rotate: 45deg; border-radius: 0 0 3px 0; }  /* piquito */
+    .pl-bz figcaption { display: grid; gap: 3px; padding: 12px 4px 0; font: 500 13px/1.4 Inter, sans-serif; color: var(--v2-ink, #1d1530); }  /* ficha del personaje */
+    .pl-bz figcaption b { font: 400 18px/1.1 'Dela Gothic One', Impact, sans-serif; letter-spacing: -.02em; }
+    .pl-bz figcaption span { display: flex; align-items: center; gap: 7px; opacity: .72; }
+    .pl-bz figcaption span::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--c); }  /* punto con su color */
+    .pl-bz figcaption q { font-style: italic; }
+    /* ---------- Expresiones: los cuatro se contagian la risa ---------- */
+    .pl-escena { position: relative; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }  /* cuatro personajes, uno al lado de otro */
+    .pl-actor { position: relative; display: grid; place-items: center; aspect-ratio: 4 / 5; padding: clamp(14px, 2.4vw, 36px) clamp(8px, 1.6vw, 24px); border: 0; margin: 0; background: var(--f); cursor: pointer; }  /* cada uno en el color de su plan; al pulsarlo cambia de cara */
+    .pl-actor:focus-visible { outline: 3px solid #1A1110; outline-offset: -6px; }
+    .pl-actor svg { display: block; width: 100%; height: 100%; overflow: visible; }
+    .pl-caras-bar { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: clamp(10px, 1.2vw, 16px); }  /* botones: todos a la vez */
+    .pl-caras-bar button { height: 34px; padding: 0 15px; border: 1.5px solid #1d153026; border-radius: 999px; background: transparent; color: var(--v2-ink, #1d1530); font: 600 13px/1 'Familjen Grotesk', Inter, sans-serif; cursor: pointer; transition: background .2s, color .2s; }
+    .pl-caras-bar button:hover { background: #1d15300d; }
+    .pl-caras-bar button[aria-pressed="true"] { background: var(--v2-ink, #1d1530); border-color: transparent; color: #fff; }
+    @media (max-width: 760px) { .pl-escena { grid-template-columns: repeat(2, minmax(0, 1fr)); } .pl-actor { aspect-ratio: 1; } }  /* en móvil, de dos en dos */
+    @media (prefers-reduced-motion: reduce) { .pl-sw > .pl-asoma, .pl-tipo, .pl-comb { transition: none; } .pl-sale { animation: none; } }
+    html[data-t="lila"] #resultado .v2-cs-body-end { margin: 0 auto; max-width: 44em; text-align: center; }
+    html[data-t="lila"] #resultado .v2-cs-body-end p { font-size: clamp(16px, 1.3vw, 19px); line-height: 1.65; margin-left: auto; margin-right: auto; }
+    @media (max-width: 760px) {
+      .pl-id { grid-template-columns: minmax(0, 1fr); }          /* en móvil, una pieza debajo de otra */
+      .pl-cuatro { grid-template-columns: repeat(2, minmax(0, 1fr)); }    /* animaciones de dos en dos */
+      .pl-apps { grid-template-columns: minmax(0, 1fr); grid-template-areas: "a" "b" "c" "e" "g" "d"; }  /* en móvil, una foto debajo de otra */
+      .pl-apps img { aspect-ratio: 1 !important; }                         /* todas cuadradas en móvil */
+      .pl-paleta { aspect-ratio: 4 / 3; }                                  /* la paleta conserva su alto */
+      .pl-id2 { grid-template-columns: minmax(0, 1fr); }                   /* tipografía y combinador, uno debajo de otro */
+      .pl-tipo { min-height: 0; } .pl-tipo-frase { font-size: 12cqi; min-height: 3.1em; }  /* en móvil, la frase un poco más grande */
+      .pl-tipo-pie { grid-template-columns: auto auto; } .pl-tipo-pie p { grid-column: 1 / -1; justify-self: start; text-align: left; }  /* el texto de ejemplo baja */
+      .pl-comb { aspect-ratio: 4 / 5; }                                    /* el combinador, como un cartel */
+      .pl-bz figcaption { font-size: 12px; } .pl-bz figcaption b { font-size: 16px; }
+    }
+  </style>
+</head>
+
+<body class="v2-page v2-case">
+  <a class="v2-skip" href="#contenido">Saltar al contenido</a>
+
+  <header class="v2-nav" id="v2-nav">
+    <div class="v2-nav-in">
+      <div class="v2-brand">
+        <a class="v2-logo" href="../" aria-label="Tania de Azevedo, ir al inicio">
+          <span class="v2-logo-mark" aria-hidden="true"></span>
+          <span class="v2-logo-word">T<span class="v2-logo-rest">ania</span><sup>®</sup></span>
+        </a>
+        <span class="v2-nav-sep" aria-hidden="true"></span>
+        <a class="v2-nav-label" href="../proyectos/">Proyectos</a>
+      </div>
+      <nav class="v2-links" aria-label="Navegación principal">
+        <a href="../#experience">Experiencia</a>
+        <a href="../#contact">Contacto</a>
+      </nav>
+      <a class="v2-nav-cta" href="../files/CV-Tania-de-Azevedo-Ribeiro.pdf" target="_blank" rel="noopener noreferrer" download>Descargar CV <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5v8M4.8 7.6L8 10.8l3.2-3.2M3 13h10"/></svg></a>
+      <button class="v2-burger" id="v2-burger" type="button" aria-expanded="false" aria-controls="v2-menu" aria-label="Abrir menú"><span></span></button>
+    </div>
+  </header>
+
+  <div class="v2-menu" id="v2-menu" aria-hidden="true">
+    <nav aria-label="Menú móvil">
+      <a href="../proyectos/">Proyectos</a>
+      <a href="../#experience">Experiencia</a>
+      <a href="../#contact">Contacto</a>
+    </nav>
+    <div class="v2-menu-foot"><a class="v2-menu-cv" href="../files/CV-Tania-de-Azevedo-Ribeiro.pdf" target="_blank" rel="noopener noreferrer" download>Descargar CV <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2.5v8M4.8 7.6L8 10.8l3.2-3.2M3 13h10"/></svg></a><small>Bizkaia · taniadeazevedoribeiro@gmail.com</small></div>
+  </div>
+
+  <main id="contenido">
+    <!-- PORTADA -->
+    <section class="v2-cs-cover">
+      <div class="v2-cs-wrap">
+        <p class="v2-cs-crumb"><a href="../proyectos/">Proyectos</a><span aria-hidden="true">/</span><span>PLANAZO</span></p>
+        <div class="v2-cs-head">
+          <div>
+            <p class="v2-cs-kicker">Identidad visual · Ilustración</p>
+            <h1 class="v2-cs-title">PLANAZO</h1>
+          </div>
+          <p class="v2-cs-lede">PLANAZO reúne planes para el tiempo libre: conciertos, mercados, paseos y exposiciones. Su idea es sencilla: <strong>hay vida más allá del sofá</strong>, y hasta los objetos de casa se han enterado.</p>
+        </div>
+        <figure class="v2-cs-hero">
+          <img src="mockups/valla.jpg" width="2000" height="1500" alt="Valla en una pared de ladrillo con la frase «Hay días que empiezan sin planes y acaban teniendo mil historias que contar» y los cuatro personajes de PLANAZO" />
+        </figure>
+      </div>
+    </section>
+
+    <section class="v2-cs-sec" id="contexto">
+      <div class="v2-cs-wrap">
+        <div class="v2-cs-row v2-cs-row--ctx">
+          <div class="v2-cs-label"><span class="v2-cs-num">01</span><h2 class="v2-cs-h2">Contexto y objetivos</h2></div>
+          <div class="v2-cs-body v2-cs-ctx">
+            <div class="v2-cs-col">
+              <p class="v2-cs-goals-title">Contexto</p>
+              <p>Muchas tardes acaban en el sofá por pura inercia. PLANAZO propone lo contrario: una agenda de planes cerca de casa, contada con humor y sin tono de folleto.</p>
+              <p class="v2-cs-poem">Hay vida más allá del sofá.</p>
+            </div>
+            <div class="v2-cs-col">
+              <p class="v2-cs-goals-title">Objetivos</p>
+              <ul class="v2-cs-goals">
+                <li><p>Una marca alegre y cercana, para adultos, sin caer en lo infantil.</p></li>
+                <li><p>Personajes que funcionen solos, juntos y en movimiento.</p></li>
+                <li><p>Un sistema fácil de aplicar a carteles, merch y redes.</p></li>
+              </ul>
+            </div>
+          </div>
+          <div class="v2-cs-papel">
+            <div class="v2-cs-papel-in">
+              <div class="v2-cs-papel-main">
+                <p class="v2-cs-goals-title">Mi papel</p>
+                <ul class="v2-cs-roles">
+                <li>Dirección de arte</li>
+                <li>Identidad visual</li>
+                <li>Ilustración y motion</li>
+                </ul>
+              </div>
+              <div class="v2-cs-papel-side">
+                <p class="v2-cs-role">Concepto, logotipo, paleta, personajes, animaciones, carteles, merch y textos de la marca.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-cs-sec" id="galeria">
+      <div class="v2-cs-wrap">
+        <div class="v2-cs-row"><div class="v2-cs-label"><span class="v2-cs-num">02</span><h2 class="v2-cs-h2">Galería</h2></div></div>
+      </div>
+      <div class="v2-cs-gal">
+        <div class="pl-row pl-tag"><b>Identidad</b></div>
+        <div class="pl-row">
+          <div class="pl-id">
+            <div class="pl-marco pl-logo" role="img" aria-label="Logotipo de PLANAZO: la O es una boca con dos paletas que se ríe">
+              <span aria-hidden="true">PLANAZ<svg class="pl-o" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="currentColor"/><g class="pl-boca"><path d="M20 35H80a6 6 0 0 1 6 7C84 65 69 81 50 81S16 65 14 42a6 6 0 0 1 6-7Z" fill="#FF4A1C"/><rect x="37" y="30" width="12" height="20" rx="3.5" fill="currentColor"/><rect x="51" y="30" width="12" height="17" rx="3.5" fill="currentColor"/></g></svg></span>
+            </div>
+            <div class="pl-marco pl-paleta" role="group" aria-label="Paleta de PLANAZO. Pulsa un color para copiar su código">
+              <span class="v2-pill-int"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M6.2 5l6.3 2.9-2.8 1-1 2.9z"/><circle cx="3.4" cy="3.4" r=".75"/><circle cx="2.4" cy="6.6" r=".6"/><circle cx="6.4" cy="2.2" r=".6"/></svg>Interactivo</span>
+              <button type="button" class="pl-sw" data-hex="#FF4A1C" style="background:#FF4A1C;color:#1A1110"><span class="pl-asoma" data-pj="mando" aria-hidden="true"></span><b>Tomate</b><span class="pl-hex">#FF4A1C</span><i>Aire libre</i></button>
+              <button type="button" class="pl-sw" data-hex="#FFC400" style="background:#FFC400;color:#1A1110"><span class="pl-asoma" data-pj="flexo" aria-hidden="true"></span><b>Yema</b><span class="pl-hex">#FFC400</span><i>Expos</i></button>
+              <button type="button" class="pl-sw" data-hex="#FF93CF" style="background:#FF93CF;color:#1A1110"><span class="pl-asoma" data-pj="sofa" aria-hidden="true"></span><b>Chicle</b><span class="pl-hex">#FF93CF</span><i>Conciertos</i></button>
+              <button type="button" class="pl-sw" data-hex="#2337E8" style="background:#2337E8;color:#FFF3DE"><span class="pl-asoma" data-pj="tostadora" aria-hidden="true"></span><b>Klein</b><span class="pl-hex">#2337E8</span><i>Mercados</i></button>
+              <button type="button" class="pl-sw" data-hex="#1A1110" style="background:#1A1110;color:#FFF3DE"><span class="pl-asoma" data-pj="o" aria-hidden="true"></span><b>Tinta</b><span class="pl-hex">#1A1110</span><i>Textos y logo</i></button>
+              <button type="button" class="pl-sw" data-hex="#FFF3DE" style="background:#FFF3DE;color:#1A1110"><span class="pl-asoma" data-pj="o" aria-hidden="true"></span><b>Nata</b><span class="pl-hex">#FFF3DE</span><i>Fondos</i></button>
+            </div>
+          </div>
+          <div class="pl-id2 pl-mas">
+            <div class="pl-marco pl-tipo" id="pl-tipo">
+              <div class="pl-tipo-top"><span>Tipografía</span><span class="pl-tipo-n">01 / 04</span></div>
+              <p class="pl-tipo-frase"><span>Hoy no hay sofá que valga.</span></p>
+              <div class="pl-tipo-pie">
+                <span class="pl-tipo-f"><b aria-hidden="true">Aa</b>Dela Gothic One · Titulares</span>
+                <span class="pl-tipo-f"><b aria-hidden="true">Aa</b>Familjen Grotesk · Textos</span>
+                <p>Planes cerca de casa, contados con humor y sin tono de folleto.</p>
+              </div>
+            </div>
+            <div class="pl-marco pl-comb" id="pl-comb">
+              <span class="v2-pill-int"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M6.2 5l6.3 2.9-2.8 1-1 2.9z"/><circle cx="3.4" cy="3.4" r=".75"/><circle cx="2.4" cy="6.6" r=".6"/><circle cx="6.4" cy="2.2" r=".6"/></svg>Interactivo</span>
+              <span class="pl-comb-logo" aria-label="PLANAZO">PLANAZ<svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="50" style="fill:currentColor"/><path d="M20 35H80a6 6 0 0 1 6 7C84 65 69 81 50 81S16 65 14 42a6 6 0 0 1 6-7Z" style="fill:var(--f)"/><rect x="37" y="30" width="12" height="20" rx="3.5" style="fill:currentColor"/><rect x="51" y="30" width="12" height="17" rx="3.5" style="fill:currentColor"/></svg></span>
+              <div class="pl-comb-pj" aria-hidden="true"></div>
+              <p class="pl-comb-t" aria-live="polite">Conciertazo</p>
+              <p class="pl-comb-d">Vie 12 · 21:00 · La Nave</p>
+              <div class="pl-chips" role="group" aria-label="Elige un tipo de plan">
+                <button type="button" data-plan="sofa" aria-pressed="true">Conciertos</button>
+                <button type="button" data-plan="tostadora" aria-pressed="false">Mercados</button>
+                <button type="button" data-plan="mando" aria-pressed="false">Aire libre</button>
+                <button type="button" data-plan="flexo" aria-pressed="false">Expos</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="pl-row pl-gap pl-tag"><b>Los Bocazas</b></div>
+        <div class="pl-row">
+          <div class="pl-cuatro" id="pl-bocazas">
+            <figure class="pl-bz" data-frases="¡Otra, otra!|¡Ja, ja, ja!|¡Que suba el volumen!" style="--c:#FF93CF">
+              <button type="button" class="pl-bz-v" aria-label="Haz reír al Sofá"><video src="video/sofa.mp4" autoplay muted loop playsinline aria-label="El Sofá anda en el sitio y da saltitos"></video></button>
+              <span class="pl-bocadillo" aria-live="polite"></span>
+              <figcaption><b>Sofá</b><span>Conciertos</span><q>Uno más y nos vamos.</q></figcaption>
+            </figure>
+            <figure class="pl-bz" data-frases="¡Ja, ja, ja!|¡Al mercado!|¡Tostada va!" style="--c:#2337E8">
+              <button type="button" class="pl-bz-v" aria-label="Haz reír al Tostadora"><video src="video/tostadora.mp4" autoplay muted loop playsinline aria-label="La Tostadora bota y la tostada sale y vuelve a la ranura"></video></button>
+              <span class="pl-bocadillo" aria-live="polite"></span>
+              <figcaption><b>Tostadora</b><span>Mercados</span><q>Iba a por pan y vuelvo con un cactus.</q></figcaption>
+            </figure>
+            <figure class="pl-bz" data-frases="¡Ja, ja, ja!|¡Al parque!|¡A que no me pillas!" style="--c:#FF4A1C">
+              <button type="button" class="pl-bz-v" aria-label="Haz reír al Mando"><video src="video/mando.mp4" autoplay muted loop playsinline aria-label="El Mando corre en el sitio"></video></button>
+              <span class="pl-bocadillo" aria-live="polite"></span>
+              <figcaption><b>Mando</b><span>Aire libre</span><q>El último en llegar al parque paga los helados.</q></figcaption>
+            </figure>
+            <figure class="pl-bz" data-frases="¡Ja, ja, ja!|¡Qué bonito!|¡Mira eso!" style="--c:#FFC400">
+              <button type="button" class="pl-bz-v" aria-label="Haz reír al Flexo"><video src="video/flexo.mp4" autoplay muted loop playsinline aria-label="El Flexo estira el brazo y mira a un lado y a otro"></video></button>
+              <span class="pl-bocadillo" aria-live="polite"></span>
+              <figcaption><b>Flexo</b><span>Expos</span><q>Yo solo he venido a mirar.</q></figcaption>
+            </figure>
+          </div>
+        </div>
+        <div class="pl-row pl-gap pl-tag"><b>Expresiones</b></div>
+        <div class="pl-row">
+          <div class="pl-marco pl-escena" id="pl-caras" aria-label="Los cuatro Bocazas cambian de expresión y se contagian la risa. Pulsa uno para cambiarle la cara">
+            <span class="v2-pill-int"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M6.2 5l6.3 2.9-2.8 1-1 2.9z"/><circle cx="3.4" cy="3.4" r=".75"/><circle cx="2.4" cy="6.6" r=".6"/><circle cx="6.4" cy="2.2" r=".6"/></svg>Interactivo</span>
+          </div>
+          <div class="pl-caras-bar" role="group" aria-label="Elige una expresión para los cuatro">
+            <button type="button" data-cara="" aria-pressed="false">Sonrisa</button>
+            <button type="button" data-cara="carcajada" aria-pressed="false">Carcajada</button>
+            <button type="button" data-cara="oh" aria-pressed="false">¡Oh!</button>
+            <button type="button" data-cara="pillado" aria-pressed="false">Pillado</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-cs-sec" id="proceso">
+      <div class="v2-cs-wrap">
+        <div class="v2-cs-row">
+          <div class="v2-cs-label"><span class="v2-cs-num">03</span><h2 class="v2-cs-h2">Proceso creativo</h2></div>
+          <div class="v2-cs-body">
+            <p>La idea parte de una imagen: los objetos de casa, hartos de vernos tirados, se van de plan sin nosotros. Así nacen <strong>los Bocazas</strong>: un sofá, una tostadora, un mando y un flexo.</p>
+            <p>Cada uno tiene su tipo de plan y su color, y todos comparten el mismo gesto: <strong>una boca con dos paletas</strong>. Ese gesto pasa también al logotipo, donde la O sonríe.</p>
+            <p>Las ilustraciones son planas, con pocas formas y piernas finas de dibujo animado, para que se entiendan de lejos y se puedan bordar, imprimir o animar.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-cs-sec v2-cs-sec--cont" id="galeria-2">
+      <div class="v2-cs-gal">
+        <div class="pl-row pl-tag"><b>Aplicaciones</b></div>
+        <div class="pl-row">
+          <div class="pl-apps"><!-- grid: caballete grande, merch a la derecha y fila de abajo -->
+            <img class="e" src="mockups/caballete-mercadazo.jpg" width="1800" height="1800" alt="Caballete azul en la acera anunciando el Mercadazo con la Tostadora" loading="lazy" />
+            <img class="b" src="mockups/calcetines.jpg" width="1090" height="1200" alt="Calcetines azules con la Tostadora bordada y su cartón amarillo" loading="lazy" />
+            <img class="d" src="mockups/pin.jpg" width="1090" height="1200" alt="Pin esmaltado de la Tostadora en la solapa de una chaqueta vaquera" loading="lazy" />
+            <img class="g" src="mockups/llavero.jpg" width="1090" height="1200" alt="Llavero de goma del Sofá con unas llaves sobre fondo rosa" loading="lazy" />
+            <img class="a" src="mockups/caballete-expazo.jpg" width="2000" height="1500" alt="Caballete amarillo frente a una cafetería anunciando el Expazo con el Flexo" loading="lazy" />
+            <img class="c" src="mockups/gorra.jpg" width="1024" height="1024" alt="Gorra naranja con el Mando bordado sobre un bloque de hormigón al sol" loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="v2-cs-sec" id="resultado">
+      <div class="v2-cs-wrap">
+        <div class="v2-cs-row"><div class="v2-cs-label"><span class="v2-cs-num">04</span><h2 class="v2-cs-h2">Resultado final</h2></div></div>
+      </div>
+      <div class="v2-cs-result">
+        <div class="v2-cs-wrap"><div class="v2-cs-body v2-cs-body-end">
+          <p>Una identidad de colores vivos que se apoya en cuatro personajes. <strong>Cada uno representa un tipo de plan</strong> y todos funcionan en carteles, merch, redes y animación.</p>
+        </div></div>
+      </div>
+    </section>
+
+    <!-- MÁS PROYECTOS -->
+    <section class="v2-cs-related" aria-label="Más proyectos">
+      <div class="v2-cs-wrap">
+        <div class="v2-rel-head">
+          <h2 class="v2-rel-h2">Más proyectos</h2>
+          <a class="v2-projects-all" href="../proyectos/">Ver todos<span class="v2-more-txt"> los proyectos</span> <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 11.5l7-7M5.5 4.5h6v6"/></svg></a>
+        </div>
+        <ul class="v2-rel-grid" id="v2-related" data-current="planazo/"></ul>
+        <noscript><p class="v2-rel-nojs"><a href="../proyectos/">Ver todos los proyectos</a></p></noscript>
+      </div>
+    </section>
+  </main>
+
+  <footer class="v2-foot" aria-label="Pie de página">
+    <div class="v2-foot-in">
+      <p class="v2-foot-copy">© Tania de Azevedo · 2026</p>
+      <nav class="v2-foot-icons" aria-label="Contacto">
+          <a href="mailto:taniadeazevedoribeiro@gmail.com" aria-label="Escríbeme un email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M4 7.5l8 6 8-6"/></svg></a>
+          <a href="https://www.linkedin.com/in/tania-de-azevedo-ribeiro" target="_blank" rel="noreferrer" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+        </nav>
+    </div>
+  </footer>
+
+  <!-- Dibujos de los Bocazas (ocultos): el script los copia donde hacen falta -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+<symbol id="boca" viewBox="0 0 200 110">
+      <path d="M0 0H200A100 104 0 0 1 0 0Z" fill="#1A1110"/>
+      <rect x="64" width="34" height="36" fill="#FFF3DE"/>
+      <rect x="102" width="34" height="36" fill="#FFF3DE"/>
+    </symbol>
+    <symbol id="o-boca" viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="50" fill="currentColor"/>
+      <path d="M20 35H80a6 6 0 0 1 6 7C84 65 69 81 50 81S16 65 14 42a6 6 0 0 1 6-7Z" fill="var(--dentro,#FFF3DE)"/>
+      <rect x="37" y="30" width="12" height="20" rx="3.5" fill="currentColor"/>
+      <rect x="51" y="30" width="12" height="17" rx="3.5" fill="currentColor"/>
+    </symbol>
+    <path id="zapato" d="M4 40C-4 18 12 2 32 4c14 1 20 12 36 16 16 4 24 10 22 20Z" fill="var(--zapato,#FFC400)"/>
+    <symbol id="sofa" viewBox="335 -11 720 792" preserveAspectRatio="xMidYMid meet">
+      <g class="pierna pierna-a"><path d="M662 496C630 525 610 570 598 612" fill="none" stroke="var(--pierna,#1A1110)" stroke-width="10" stroke-linecap="round"/><path d="M580 615C565 600 535 602 528 622 525 645 555 660 590 664 605 664 612 650 610 635L617 625 605 612 590 612Z" fill="var(--zapato,#FF4A1C)"/></g>
+      <g class="pierna pierna-b"><path d="M726 504C705 545 725 575 800 596" fill="none" stroke="var(--pierna,#1A1110)" stroke-width="10" stroke-linecap="round"/><path d="M798 598 815 580 825 588C845 595 855 610 842 630 830 650 815 665 795 665 775 660 772 640 790 628L805 620C795 612 792 605 798 598Z" fill="var(--zapato,#FF4A1C)"/></g>
+      <path d="M443 255C470 165 580 105 695 105 850 105 985 195 992 310L925 522 440 470Z" fill="var(--c1,#2337E8)"/>
+      <path d="M443 255C470 165 580 105 695 105 850 105 985 195 992 310L925 522 440 470Z" fill="#1A1110" opacity=".2"/>
+      <path d="M480 352C520 325 640 325 682 365 692 376 697 385 698 397 700 380 712 365 740 358 790 347 890 360 918 398L912 460 473 415Z" fill="var(--c2,#FF93CF)"/>
+      <path d="M360 300C365 270 395 253 425 254 462 257 487 285 484 322L468 476 344 464Z" fill="var(--c1,#2337E8)"/>
+      <path d="M921 352C926 325 955 307 988 308 1025 311 1050 340 1045 372L1029 534 905 520Z" fill="var(--c1,#2337E8)"/>
+      <path class="boca" d="M597 184 840 209C825 270 770 313 710 313 640 310 590 250 597 184Z" fill="#1A1110"/>
+      <path class="boca" d="M667 193 712 197 708 239 665 235ZM725 198 769 203 765 245 722 241Z" fill="#FFF3DE" stroke="#FFF3DE" stroke-width="5" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="tostadora" viewBox="-15 215 791 870" preserveAspectRatio="xMidYMid meet">
+      <g class="pierna pierna-a"><path d="M280 812C235 845 222 880 240 912 258 940 285 950 310 960" fill="none" stroke="var(--pierna,#1A1110)" stroke-width="13" stroke-linecap="round"/><path id="zapato-tostadora" d="M305 950C315 938 330 943 335 952L355 958C372 965 372 985 362 1005 350 1035 330 1055 312 1050 295 1042 290 1020 298 1005 305 995 315 990 310 985 298 978 295 962 305 950Z" fill="var(--zapato,#2337E8)"/></g>
+      <g class="pierna pierna-b"><path d="M414 843C385 880 372 915 395 945 420 970 450 978 482 985" fill="none" stroke="var(--pierna,#1A1110)" stroke-width="13" stroke-linecap="round"/><use href="#zapato-tostadora" x="176" y="25"/></g>
+      <path d="M205 505 300 478 580 541 495 557Z" fill="var(--c1,#FF4A1C)"/>
+      <path d="M205 505 300 478 580 541 495 557Z" fill="#FFF3DE" opacity=".14"/>
+      <path d="M288 497 320 490 530 540 490 552Z" fill="#1A1110"/>
+      <g class="tostada"><path transform="translate(16 2)" d="M341 463C320 440 340 412 380 410 430 408 490 440 497 470 498 490 490 498 478 500L466 545 330 512Z" fill="#E9B26E"/><path d="M341 463C320 440 340 412 380 410 430 408 490 440 497 470 498 490 490 498 478 500L466 545 330 512Z" fill="var(--c2,#FFF3DE)"/></g>
+      <path d="M495 555 580 541C630 555 660 600 650 655L602 866C585 880 545 877 520 868Z" fill="var(--c1,#FF4A1C)"/>
+      <path d="M495 555 580 541C630 555 660 600 650 655L602 866C585 880 545 877 520 868Z" fill="#1A1110" opacity=".14"/>
+      <path d="M110 773 157 570C168 530 205 500 250 500L490 556C545 570 575 625 565 672L520 868Z" fill="var(--c1,#FF4A1C)"/>
+      <path d="M560 797 590 792 618 798C635 802 638 822 620 826L578 818 574 842H564L570 815 558 813Z" fill="#1A1110"/>
+      <path class="boca" d="M233 593 485 653C470 715 410 755 340 750 265 740 220 670 233 593Z" fill="#1A1110"/>
+      <path class="boca" d="M315 612 353 621 342 662 304 654ZM366 625 406 634 395 675 358 667Z" fill="#FFF3DE" stroke="#FFF3DE" stroke-width="3" stroke-linejoin="round"/>
+      <g class="tostada"><path transform="translate(15 5)" d="M457 265C450 240 470 225 500 227 540 230 590 265 603 305 605 330 590 342 574 343L527 418C522 425 515 423 510 418L412 352C408 348 408 343 411 340Z" fill="#E9B26E"/><path d="M457 265C450 240 470 225 500 227 540 230 590 265 603 305 605 330 590 342 574 343L527 418C522 425 515 423 510 418L412 352C408 348 408 343 411 340Z" fill="var(--c2,#FFF3DE)"/></g>
+    </symbol>
+    <symbol id="mando" viewBox="408 75 564 620" preserveAspectRatio="xMidYMid meet">
+      <g class="pierna pierna-a"><path d="M640 525C625 580 575 615 505 568" fill="none" stroke="var(--pierna,#1A1110)" stroke-width="14" stroke-linecap="round"/><path d="M503 545C490 535 470 538 462 555 450 575 440 600 443 615 450 627 470 622 482 610 492 600 490 585 500 580 512 575 512 555 503 545Z" fill="var(--zapato,#FF4A1C)"/></g>
+      <g class="pierna pierna-b"><path d="M768 506C815 520 848 565 868 638" fill="none" stroke="var(--pierna,#1A1110)" stroke-width="14" stroke-linecap="round"/><path d="M851 645 878 630C895 622 925 622 936 640 944 655 925 670 900 677 880 683 860 682 855 670 850 660 848 652 851 645Z" fill="var(--zapato,#FF4A1C)"/></g>
+      <rect x="634" y="97.5" width="180" height="437" rx="38" transform="rotate(14.5 724 316)" fill="var(--c1,#2337E8)"/>
+      <circle cx="725" cy="140" r="24" fill="var(--zapato,#FF4A1C)"/>
+      <path d="M725 128v11M716 133a13 13 0 1 0 18 0" fill="none" stroke="#1A1110" stroke-opacity=".35" stroke-width="3" stroke-linecap="round"/>
+      <path class="boca" d="M674 226 808 260C795 300 745 318 705 300 680 288 668 256 674 226Z" fill="#1A1110"/>
+      <path class="boca" d="M713 235 740 242 733 270 706 263ZM743 243 772 250 765 277 738 270Z" fill="#FFF3DE" stroke="#FFF3DE" stroke-width="2" stroke-linejoin="round"/>
+      <g fill="var(--c2,#FFC400)"><circle cx="665" cy="349" r="17.5"/><circle cx="711" cy="361" r="17.5"/><circle cx="757" cy="372" r="17.5"/><circle cx="653" cy="395" r="17.5"/><circle cx="699" cy="406" r="17.5"/><circle cx="745" cy="417" r="17.5"/><circle cx="642" cy="440" r="17.5"/><circle cx="688" cy="452" r="17.5"/><circle cx="734" cy="463" r="17.5"/></g>
+    </symbol>
+    <symbol id="flexo" viewBox="393 0 700 770" preserveAspectRatio="xMidYMid meet">
+      <path d="M398 673C410 590 490 527 578 527 665 527 742 590 755 673Z" fill="var(--c1,#FFC400)"/>
+      <path d="M575 535 505 294 815 178" fill="none" stroke="var(--c3,#2337E8)" stroke-width="40"/>
+      <circle cx="503" cy="294" r="43" fill="#1A1110"/>
+      <g class="cabeza">
+        <circle cx="965" cy="310" r="59" fill="#FFF3DE"/>
+        <path d="M805 160C800 120 830 95 868 94 895 94 918 110 926 134L1088 238 835 376 818 200C810 185 805 175 805 160Z" fill="var(--c1,#FFC400)"/>
+        <path class="boca" d="M875 238 985 178C1005 215 995 250 960 268 925 280 890 270 875 238Z" fill="#1A1110"/>
+        <path class="boca" d="M912 218 933 207 943 232 920 243ZM940 203 958 194 972 221 950 232Z" fill="#FFF3DE" stroke="#FFF3DE" stroke-width="2" stroke-linejoin="round"/>
+      </g>
+    <g class="pierna pierna-a"><path d="M592 538C625 515 675 510 690 535 695 560 670 585 655 607" fill="none" stroke="var(--pierna,#1A1110)" stroke-width="9" stroke-linecap="round"/><path d="M632 607 675 605 680 622C705 615 738 630 741 655 742 672 725 675 700 675H640C620 670 618 640 625 625Z" fill="var(--zapato,#FFF3DE)"/></g>
+      <g class="pierna pierna-b"><path d="M592 538C650 490 710 460 745 462 775 470 790 510 800 535" fill="none" stroke="var(--pierna,#1A1110)" stroke-width="9" stroke-linecap="round"/><path d="M778 547 815 530 825 540C845 510 880 510 895 530 903 545 895 552 880 560L805 605C790 610 785 590 785 575Z" fill="var(--zapato,#FFF3DE)"/></g>
+    </symbol>
+  </defs></svg>
+  <script>
+  // PLANAZO · interacciones del caso
+  (() => {
+    const NS = 'http://www.w3.org/2000/svg'; // espacio de nombres del SVG
+    const quieto = matchMedia('(prefers-reduced-motion: reduce)').matches; // si se prefiere menos movimiento
+    // Colores de cada Bocaza y de su plan (los mismos que en los carteles)
+    const PJ = {
+      sofa: { c: { '--c1': '#2337E8', '--c2': '#FFC400', '--zapato': '#FF4A1C' }, f: '#FF93CF', t: '#1A1110', plan: 'Conciertazo', d: 'Vie 12 · 21:00 · La Nave', rot: -6 },
+      tostadora: { c: { '--c1': '#FF4A1C', '--c2': '#FFF3DE', '--zapato': '#FFC400', '--pierna': '#FFF3DE' }, f: '#2337E8', t: '#FFF3DE', plan: 'Mercadazo', d: 'Dom 14 · 11:00 · Plaza Nueva' },
+      mando: { c: { '--c1': '#FF93CF', '--c2': '#2337E8', '--zapato': '#2337E8' }, f: '#FF4A1C', t: '#1A1110', plan: 'Paseazo', d: 'Sáb 20 · 09:30 · Funicular' },
+      flexo: { c: { '--c1': '#FF4A1C', '--c3': '#2337E8', '--zapato': '#FFF3DE' }, f: '#FFC400', t: '#1A1110', plan: 'Expazo', d: 'Jue 25 · 19:00 · Sala Grito' },
+    };
+    // Dónde está la boca de cada uno: esquina, giro y ancho (para dibujar otras expresiones encima)
+    const BOCA = { sofa: [597, 184, 5.9, 244], tostadora: [233, 593, 13.4, 259], mando: [674, 226, 14.2, 138], flexo: [875, 238, -28.6, 125] };
+    // Otras bocas, dibujadas en una caja de 100 de ancho (y = 0 es el borde de arriba)
+    const CARAS = {
+      carcajada: '<path d="M-3 -4H103C103 40 80 64 50 64S-3 40 -3 -4Z" fill="#1A1110"/><path d="M28 44C38 36 62 36 72 44 68 58 59 63 50 63S32 58 28 44Z" fill="#FF93CF"/><path d="M33 -4H48V15H33ZM52 -4H67V15H52Z" fill="#FFF3DE"/>',
+      oh: '<ellipse cx="50" cy="27" rx="23" ry="29" fill="#1A1110"/><path d="M38.5 4.5H49V19H38.5ZM51 4.5H61.5V19H51Z" fill="#FFF3DE"/>',
+      pillado: '<rect x="8" y="2" width="84" height="15" rx="7.5" fill="#1A1110"/><path d="M36 2H48V23H36ZM52 2H64V23H52Z" fill="#FFF3DE"/>',
+    };
+
+    // Dibuja un Bocaza en un SVG nuevo (copia sus formas: así Safari repinta bien los colores)
+    function dibuja(nombre, colores, cara) {
+      const svg = document.createElementNS(NS, 'svg'); // lienzo nuevo
+      const s = document.getElementById(nombre); // dibujo original
+      svg.setAttribute('viewBox', s.getAttribute('viewBox')); // mismo encuadre
+      svg.setAttribute('aria-hidden', 'true'); // es decorativo
+      svg.innerHTML = s.innerHTML; // copia las formas
+      Object.entries(colores || {}).forEach(([k, v]) => svg.style.setProperty(k, v)); // sus colores
+      if (cara && CARAS[cara]) { // otra expresión
+        const bocas = svg.querySelectorAll('.boca'); // boca y paletas originales
+        const [x, y, giro, ancho] = BOCA[nombre]; // dónde va la boca
+        const g = document.createElementNS(NS, 'g'); // grupo de la nueva boca
+        g.setAttribute('transform', `translate(${x} ${y}) rotate(${giro}) scale(${ancho / 100})`); // la coloca en su sitio
+        g.innerHTML = CARAS[cara]; // la dibuja
+        bocas[0].parentNode.appendChild(g); // dentro del mismo grupo (el flexo la lleva en la cabeza)
+        bocas.forEach((b) => b.remove()); // quita la sonrisa de siempre
+      }
+      return svg;
+    }
+    // La O del logo, sola
+    function oBoca(tinta, dentro) {
+      const svg = document.createElementNS(NS, 'svg');
+      svg.setAttribute('viewBox', '0 0 100 100');
+      svg.innerHTML = `<circle cx="50" cy="50" r="50" fill="${tinta}"/><path d="M20 35H80a6 6 0 0 1 6 7C84 65 69 81 50 81S16 65 14 42a6 6 0 0 1 6-7Z" fill="${dentro}"/><rect x="37" y="30" width="12" height="20" rx="3.5" fill="${tinta}"/><rect x="51" y="30" width="12" height="17" rx="3.5" fill="${tinta}"/>`;
+      return svg;
+    }
+
+    // 1 · PALETA: cada color esconde a su Bocaza; al pulsar, copia el código
+    document.querySelectorAll('.pl-sw').forEach((b) => {
+      const hueco = b.querySelector('.pl-asoma'); // donde se esconde
+      const pj = hueco.dataset.pj; // quién
+      const hex = b.dataset.hex; // su color
+      hueco.appendChild(pj === 'o' ? oBoca(hex === '#1A1110' ? '#FFF3DE' : '#1A1110', hex) : dibuja(pj, PJ[pj].c)); // lo dibuja
+      const txt = b.querySelector('.pl-hex'); // el código del color
+      b.addEventListener('click', () => {
+        document.querySelectorAll('.pl-sw.is-on').forEach((o) => o !== b && o.classList.remove('is-on')); // en móvil, solo uno asomado
+        b.classList.add('is-on'); // se asoma (también al tocar en el móvil)
+        if (!navigator.clipboard) return;
+        navigator.clipboard.writeText(hex).then(() => { // copia el código
+          txt.textContent = '¡Copiado!'; // avisa
+          setTimeout(() => (txt.textContent = hex), 1200); // y vuelve
+        }).catch(() => {});
+      });
+    });
+
+    // 2 · TIPOGRAFÍA: la frase y el color cambian cada pocos segundos
+    const tipo = document.getElementById('pl-tipo');
+    if (tipo) {
+      const FRASES = [['Hoy no hay sofá que valga.', '#FF4A1C', '#1A1110'], ['Sal, que hace bueno.', '#2337E8', '#FFF3DE'], ['Planazo a la vista.', '#FF93CF', '#1A1110'], ['¿Y si hoy salimos?', '#FFC400', '#1A1110']];
+      const span = tipo.querySelector('.pl-tipo-frase span'); // donde va la frase
+      let i = 0; // frase actual
+      const num = tipo.querySelector('.pl-tipo-n'); // contador de frases
+      const pon = () => { const [t, f, c] = FRASES[i]; tipo.style.setProperty('--f', f); tipo.style.setProperty('--t', c); span.textContent = t; num.textContent = `0${i + 1} / 0${FRASES.length}`; };
+      pon(); // la primera
+      setInterval(() => {
+        if (document.hidden) return; // no cambia si no se ve la pestaña
+        i = (i + 1) % FRASES.length; // la siguiente
+        if (quieto) return pon(); // sin animación
+        span.animate([{ transform: 'translateY(0)', opacity: 1 }, { transform: 'translateY(-40%)', opacity: 0 }], { duration: 260, easing: 'ease-in' }).onfinish = () => { // sale hacia arriba
+          pon(); // cambia
+          span.animate([{ transform: 'translateY(40%)', opacity: 0 }, { transform: 'translateY(0)', opacity: 1 }], { duration: 420, easing: 'cubic-bezier(.3,1.4,.5,1)' }); // entra desde abajo
+        };
+      }, 2800);
+    }
+
+    // 3 · COMBINADOR: eliges el plan y cambian el color, el personaje y el cartel
+    const comb = document.getElementById('pl-comb');
+    if (comb) {
+      const hueco = comb.querySelector('.pl-comb-pj');
+      const elige = (pj, anima) => {
+        const p = PJ[pj];
+        comb.style.setProperty('--f', p.f); comb.style.setProperty('--t', p.t); // colores del plan
+        comb.querySelector('.pl-comb-t').textContent = p.plan; // nombre del plan
+        comb.querySelector('.pl-comb-d').textContent = p.d; // cuándo y dónde
+        const svg = dibuja(pj, p.c); // el personaje
+        if (p.rot) svg.style.rotate = p.rot + 'deg'; // el sofá, recto
+        if (anima && !quieto) svg.classList.add('pl-sale'); // entra de un salto
+        hueco.replaceChildren(svg);
+        comb.querySelectorAll('.pl-chips button').forEach((b) => b.setAttribute('aria-pressed', b.dataset.plan === pj)); // marca el elegido
+      };
+      comb.querySelectorAll('.pl-chips button').forEach((b) => b.addEventListener('click', () => elige(b.dataset.plan, true)));
+      elige('sofa', false); // empieza con los conciertos
+    }
+
+    // 5 · LOS BOCAZAS: al pulsar, saltan, se aceleran y dicen algo
+    document.querySelectorAll('.pl-bz').forEach((fig) => {
+      const boton = fig.querySelector('.pl-bz-v'), video = fig.querySelector('video'), globo = fig.querySelector('.pl-bocadillo');
+      const frases = fig.dataset.frases.split('|'); // lo que puede decir
+      let n = 0, reloj; // frase siguiente y temporizador
+      boton.addEventListener('click', () => {
+        globo.textContent = frases[n++ % frases.length]; // elige frase
+        globo.animate([{ opacity: 0, transform: 'scale(.4)' }, { opacity: 1, transform: 'scale(1.08)', offset: .2 }, { opacity: 1, transform: 'scale(1)', offset: .3 }, { opacity: 1, transform: 'scale(1)', offset: .85 }, { opacity: 0, transform: 'scale(.9)' }], { duration: 1600, easing: 'ease-out' }); // aparece y se va
+        if (quieto) return;
+        boton.animate([{ transform: 'none' }, { transform: 'translateY(-7%) scale(1.03, .97)', offset: .3 }, { transform: 'translateY(0) scale(.97, 1.03)', offset: .6 }, { transform: 'none' }], { duration: 480, easing: 'ease-out' }); // salto con estirón
+        video.playbackRate = 2.2; // se emociona
+        clearTimeout(reloj); reloj = setTimeout(() => (video.playbackRate = 1), 1300); // y se calma
+      });
+    });
+
+    // 6 · EXPRESIONES: los cuatro se contagian la risa; al pulsar, cambian de cara
+    const escena = document.getElementById('pl-caras');
+    if (escena) {
+      const ORDEN = ['sofa', 'tostadora', 'mando', 'flexo']; // de izquierda a derecha
+      const NOMBRE = { '': 'Sonrisa', carcajada: 'Carcajada', oh: '¡Oh!', pillado: 'Pillado' }; // rótulo de cada cara
+      const CICLO = ['', 'carcajada', 'oh', 'pillado']; // orden al pulsar un personaje
+      const actores = {}; // botón de cada personaje
+      const pon = (pj, cara, salta = true) => { // cambia la cara de uno
+        const a = actores[pj];
+        if (a.dataset.cara === cara) return;
+        a.dataset.cara = cara;
+        const svg = dibuja(pj, PJ[pj].c, cara || null); // lo dibuja con su nueva boca
+        if (PJ[pj].rot) svg.style.rotate = PJ[pj].rot + 'deg';
+        a.querySelector('svg').replaceWith(svg);
+        if (salta && !quieto) svg.animate( // brinca al cambiar de cara
+          cara === 'carcajada' ? [{ transform: 'none' }, { transform: 'translateY(-6%) rotate(-4deg)' }, { transform: 'translateY(0) rotate(3deg)' }, { transform: 'translateY(-4%) rotate(-2deg)' }, { transform: 'none' }]
+          : cara === 'oh' ? [{ transform: 'none' }, { transform: 'translateY(-9%) scale(.94, 1.08)' }, { transform: 'none' }]
+          : cara === 'pillado' ? [{ transform: 'none' }, { transform: 'translateX(-4%) scale(1.04, .94)' }, { transform: 'translateX(3%)' }, { transform: 'none' }]
+          : [{ transform: 'none' }, { transform: 'translateY(-4%)' }, { transform: 'none' }],
+          { duration: cara === 'carcajada' ? 700 : 420, easing: 'ease-out' });
+      };
+      ORDEN.forEach((pj) => { // crea los cuatro
+        const a = document.createElement('button');
+        a.type = 'button'; a.className = 'pl-actor';
+        a.style.setProperty('--f', PJ[pj].f); a.style.setProperty('--t', PJ[pj].t);
+        a.setAttribute('aria-label', 'Cambiar la cara de ' + { sofa: 'el Sofá', tostadora: 'la Tostadora', mando: 'el Mando', flexo: 'el Flexo' }[pj]);
+        a.dataset.cara = 'x';
+        a.innerHTML = '<svg></svg>';
+        actores[pj] = a; escena.appendChild(a);
+        pon(pj, '', false);
+        a.addEventListener('click', () => { para(); pon(pj, CICLO[(CICLO.indexOf(a.dataset.cara) + 1) % CICLO.length]); }); // siguiente cara
+      });
+      // La escena en bucle: uno se sorprende, los demás se ríen en cadena, alguien queda pillado y vuelven a sonreír
+      const GUION = [['sofa', 'oh'], ['tostadora', 'carcajada'], ['mando', 'carcajada'], ['flexo', 'pillado'], ['sofa', 'carcajada'], ['flexo', 'carcajada'], ['*', ''], ['mando', 'oh'], ['flexo', 'oh'], ['tostadora', 'pillado'], ['sofa', 'carcajada'], ['mando', 'carcajada'], ['*', '']];
+      let paso = 0, reloj = null, pausa = null;
+      const sigue = () => {
+        if (document.hidden) return;
+        const [pj, cara] = GUION[paso++ % GUION.length];
+        if (pj === '*') ORDEN.forEach((k, i) => setTimeout(() => pon(k, cara), i * 90)); // todos a la vez, en ola
+        else pon(pj, cara);
+      };
+      const arranca = () => { if (!quieto && !reloj) reloj = setInterval(sigue, 1100); };
+      const para = () => { clearInterval(reloj); reloj = null; clearTimeout(pausa); pausa = setTimeout(arranca, 6000); }; // al tocar, la escena espera un poco
+      document.querySelectorAll('.pl-caras-bar button').forEach((b) => b.addEventListener('click', () => {
+        para();
+        ORDEN.forEach((k, i) => setTimeout(() => pon(k, b.dataset.cara), i * 90)); // los cuatro, en ola
+        document.querySelectorAll('.pl-caras-bar button').forEach((o) => o.setAttribute('aria-pressed', o === b));
+        clearTimeout(b._t); b._t = setTimeout(() => b.setAttribute('aria-pressed', 'false'), 6000);
+      }));
+      new IntersectionObserver(([e]) => (e.isIntersecting ? arranca() : (clearInterval(reloj), (reloj = null)))).observe(escena); // solo se anima cuando se ve
+    }
+  })();
+  </script>
+  <script src="../js/v2.js" defer></script>
+  <script src="../js/projects-data.js?v=10" defer></script>
+  <script src="../js/related.js" defer></script>
+</body>
+</html>

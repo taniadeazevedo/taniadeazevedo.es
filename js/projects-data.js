@@ -25,6 +25,15 @@ window.PROJECT_FILTERS = [
 
 window.PROJECTS = [
   {
+    title: 'PLANAZO',
+    cats: ['branding', 'grafico'],
+    label: 'Identidad visual e ilustración',
+    desc: 'Identidad de una plataforma de planes de ocio: cuatro objetos de casa que se van de plan, en carteles, merch y animación.',
+    image: 'planazo/mockups/caballete-mercadazo.jpg',
+    alt: 'Caballete azul en la acera con la Tostadora de PLANAZO anunciando el Mercadazo',
+    url: 'planazo/'
+  },
+  {
     title: 'SUD CLUB',
     cats: ['branding', 'grafico', 'web'],
     label: 'Branding e identidad visual',
