@@ -12,7 +12,7 @@
   <meta property="og:description" content="Identidad de una plataforma de planes. Hay vida más allá del sofá." />
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://taniadeazevedo.es/planazo/" />
-  <meta property="og:image" content="https://taniadeazevedo.es/planazo/mockups/valla.jpg" />
+  <meta property="og:image" content="https://taniadeazevedo.es/planazo/mockups/caballete-mercadazo.jpg" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#f6f2fd" />
   <meta name="color-scheme" content="light" />
@@ -32,10 +32,15 @@
     .pl-tag b { display: block; padding-bottom: 12px; border-bottom: 1px solid #1d153014; font: 600 clamp(17px, 1.4vw, 20px)/1.2 var(--v2-display, Inter, sans-serif); color: var(--v2-ink, #1d1530); }
     .pl-marco { border-radius: clamp(18px, 2vw, 28px); overflow: hidden; }  /* esquinas como el resto del portfolio */
     .pl-mas { margin-top: clamp(8px, 1vw, 14px); }                        /* separación dentro de un bloque */
-    .v2-cs-hero img { aspect-ratio: 4 / 3; }                              /* la valla, entera */
+    /* Portada: la frase de la marca con los Bocazas entre las palabras (en código, no en foto) */
+    html[data-t="lila"] .v2-cs-hero.pl-valla { container-type: inline-size; display: flex; align-items: center; aspect-ratio: 16 / 9; padding: 0 8cqi; background: #E7E2D8; color: #1A1110; }  /* fondo arena */
+    .pl-valla p { margin: 0; font: 400 9.4cqi/1.06 'Familjen Grotesk', Inter, sans-serif; letter-spacing: -.045em; white-space: nowrap; }  /* tres líneas que llenan el ancho */
+    .pl-palabra { display: inline-block; width: 1.05em; height: 1.155em; margin: 0 .04em; vertical-align: -.22em; }  /* cada Bocaza ocupa lo que una palabra */
+    .pl-palabra svg { display: block; width: 100%; height: 100%; overflow: visible; }
     /* Identidad: logotipo y paleta */
     .pl-id { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(8px, 1vw, 14px); }  /* logo grande y paleta */
-    .pl-logo { display: grid; place-items: center; aspect-ratio: 16 / 10; background: #FF4A1C; color: #1A1110; }  /* el logo sobre tomate */
+    .pl-logo { display: grid; place-items: center; aspect-ratio: 16 / 10; background: var(--f, #FF4A1C); color: var(--t, #1A1110); transition: background .3s, color .3s; }  /* el logo sobre el color elegido en la paleta (tomate al empezar) */
+    .pl-sw[aria-pressed="true"] b::after { content: " ●"; }  /* marca el color que está puesto */
     .pl-logo span { display: inline-flex; align-items: baseline; font: 400 clamp(40px, 6.6vw, 92px)/.9 'Dela Gothic One', Impact, sans-serif; letter-spacing: -.045em; }  /* la palabra */
     .pl-logo svg { width: .757em; height: .757em; margin-left: .04em; flex: none; translate: 0 .022em; }  /* la O con boca */
     .pl-paleta { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(3, minmax(0, 1fr)); }  /* seis colores */
@@ -60,14 +65,10 @@
     .pl-sw { position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; align-items: flex-start; padding: clamp(12px, 1.4vw, 18px); border: 0; margin: 0; font: 500 12px/1.35 Inter, sans-serif; text-align: left; cursor: pointer; }  /* cada color es un botón */
     .pl-sw b { display: block; font-weight: 600; font-size: 13px; }       /* nombre del color */
     .pl-sw i { font-style: normal; opacity: .7; }                         /* plan que acompaña */
-    .pl-sw > * { position: relative; z-index: 1; }                        /* el texto queda delante */
-    .pl-sw > .pl-asoma { position: absolute; z-index: 0; right: 6%; bottom: 0; width: 46%; height: 92%; translate: 0 118%; rotate: 8deg; transition: translate .45s cubic-bezier(.3, 1.6, .5, 1), rotate .45s cubic-bezier(.3, 1.6, .5, 1); pointer-events: none; }  /* el personaje espera escondido abajo */
-    .pl-asoma svg { display: block; width: 100%; height: 100%; overflow: visible; }
-    .pl-sw:hover > .pl-asoma, .pl-sw:focus-visible > .pl-asoma, .pl-sw.is-on > .pl-asoma { translate: 0 14%; rotate: -4deg; }  /* al pasar, se asoma y saluda */
     .pl-sw:focus-visible { outline: 3px solid #1A1110; outline-offset: -3px; }
     /* ---------- Tipografía en acción ---------- */
     .pl-id2 { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(8px, 1vw, 14px); }  /* tipografía y combinador */
-    .pl-tipo { container-type: inline-size; display: flex; flex-direction: column; gap: clamp(14px, 2vw, 24px); padding: clamp(18px, 2.4vw, 32px); background: var(--f, #FF4A1C); color: var(--t, #1A1110); transition: background .5s, color .5s; }  /* el fondo cambia con cada frase */
+    .pl-tipo { container-type: inline-size; display: flex; flex-direction: column; gap: clamp(14px, 2vw, 24px); padding: clamp(18px, 2.4vw, 32px); background: #FF4A1C; color: #1A1110; }  /* sobre tomate */
     .pl-tipo-top { display: flex; justify-content: space-between; gap: 12px; font: 600 clamp(11px, .95vw, 13px)/1.3 'Familjen Grotesk', Inter, sans-serif; letter-spacing: .01em; }  /* cabecera del bloque */
     .pl-tipo-frase { flex: 1; display: flex; align-items: center; margin: 0; font: 400 10.4cqi/.96 'Dela Gothic One', Impact, sans-serif; letter-spacing: -.035em; }  /* la frase llena el ancho y el hueco central */
     .pl-tipo-frase span { display: block; }
@@ -95,24 +96,13 @@
     .pl-bz-v { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: pointer; border-radius: clamp(14px, 1.6vw, 22px); }  /* el vídeo es un botón */
     .pl-bz-v:focus-visible { outline: 3px solid #7c5cff; outline-offset: 3px; }
     .pl-bz-v video { pointer-events: none; }
-    .pl-bocadillo { position: absolute; z-index: 2; top: 8%; left: 50%; translate: -50% 0; padding: 9px 15px 10px; border-radius: 999px; background: #FFF3DE; color: #1A1110; font: 400 clamp(12px, 1.2vw, 16px)/1 'Dela Gothic One', Impact, sans-serif; letter-spacing: -.02em; white-space: nowrap; opacity: 0; pointer-events: none; }  /* bocadillo, escondido */
-    .pl-bocadillo::after { content: ""; position: absolute; left: 50%; bottom: -6px; width: 13px; height: 13px; background: inherit; translate: -50% 0; rotate: 45deg; border-radius: 0 0 3px 0; }  /* piquito */
     .pl-bz figcaption { display: grid; gap: 3px; padding: 12px 4px 0; font: 500 13px/1.4 Inter, sans-serif; color: var(--v2-ink, #1d1530); }  /* ficha del personaje */
     .pl-bz figcaption b { font: 400 18px/1.1 'Dela Gothic One', Impact, sans-serif; letter-spacing: -.02em; }
+    .pl-bz figcaption em { margin-top: -1px; font: 600 13px/1.2 'Familjen Grotesk', Inter, sans-serif; font-style: normal; }  /* su personalidad, bajo el nombre */
     .pl-bz figcaption span { display: flex; align-items: center; gap: 7px; opacity: .72; }
     .pl-bz figcaption span::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--c); }  /* punto con su color */
     .pl-bz figcaption q { font-style: italic; }
-    /* ---------- Expresiones: los cuatro se contagian la risa ---------- */
-    .pl-escena { position: relative; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }  /* cuatro personajes, uno al lado de otro */
-    .pl-actor { position: relative; display: grid; place-items: center; aspect-ratio: 4 / 5; padding: clamp(14px, 2.4vw, 36px) clamp(8px, 1.6vw, 24px); border: 0; margin: 0; background: var(--f); cursor: pointer; }  /* cada uno en el color de su plan; al pulsarlo cambia de cara */
-    .pl-actor:focus-visible { outline: 3px solid #1A1110; outline-offset: -6px; }
-    .pl-actor svg { display: block; width: 100%; height: 100%; overflow: visible; }
-    .pl-caras-bar { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: clamp(10px, 1.2vw, 16px); }  /* botones: todos a la vez */
-    .pl-caras-bar button { height: 34px; padding: 0 15px; border: 1.5px solid #1d153026; border-radius: 999px; background: transparent; color: var(--v2-ink, #1d1530); font: 600 13px/1 'Familjen Grotesk', Inter, sans-serif; cursor: pointer; transition: background .2s, color .2s; }
-    .pl-caras-bar button:hover { background: #1d15300d; }
-    .pl-caras-bar button[aria-pressed="true"] { background: var(--v2-ink, #1d1530); border-color: transparent; color: #fff; }
-    @media (max-width: 760px) { .pl-escena { grid-template-columns: repeat(2, minmax(0, 1fr)); } .pl-actor { aspect-ratio: 1; } }  /* en móvil, de dos en dos */
-    @media (prefers-reduced-motion: reduce) { .pl-sw > .pl-asoma, .pl-tipo, .pl-comb { transition: none; } .pl-sale { animation: none; } }
+    @media (prefers-reduced-motion: reduce) { .pl-comb { transition: none; } .pl-sale { animation: none; } }
     html[data-t="lila"] #resultado .v2-cs-body-end { margin: 0 auto; max-width: 44em; text-align: center; }
     html[data-t="lila"] #resultado .v2-cs-body-end p { font-size: clamp(16px, 1.3vw, 19px); line-height: 1.65; margin-left: auto; margin-right: auto; }
     @media (max-width: 760px) {
@@ -171,10 +161,10 @@
             <p class="v2-cs-kicker">Identidad visual · Ilustración</p>
             <h1 class="v2-cs-title">PLANAZO</h1>
           </div>
-          <p class="v2-cs-lede">PLANAZO reúne planes para el tiempo libre: conciertos, mercados, paseos y exposiciones. Su idea es sencilla: <strong>hay vida más allá del sofá</strong>, y hasta los objetos de casa se han enterado.</p>
+          <p class="v2-cs-lede">PLANAZO reúne planes para el tiempo libre: conciertos, mercados, paseos y exposiciones. Su idea es sencilla: <strong>los objetos de casa ya salen más que tú</strong>.</p>
         </div>
-        <figure class="v2-cs-hero">
-          <img src="mockups/valla.jpg" width="2000" height="1500" alt="Valla en una pared de ladrillo con la frase «Hay días que empiezan sin planes y acaban teniendo mil historias que contar» y los cuatro personajes de PLANAZO" />
+        <figure class="v2-cs-hero pl-valla" role="img" aria-label="Íbamos a salir un rato. La vuelta se nos ha ido de las manos. Con el Sofá, la Tostadora, el Mando y el Flexo entre las palabras">
+          <p aria-hidden="true">Íbamos a salir un rato. <span class="pl-palabra" data-pj="sofa"></span><br>La vuelta <span class="pl-palabra" data-pj="tostadora"></span> se nos ha ido <span class="pl-palabra" data-pj="mando"></span><br>de las manos. <span class="pl-palabra" data-pj="flexo"></span></p>
         </figure>
       </div>
     </section>
@@ -187,7 +177,7 @@
             <div class="v2-cs-col">
               <p class="v2-cs-goals-title">Contexto</p>
               <p>Muchas tardes acaban en el sofá por pura inercia. PLANAZO propone lo contrario: una agenda de planes cerca de casa, contada con humor y sin tono de folleto.</p>
-              <p class="v2-cs-poem">Hay vida más allá del sofá.</p>
+              <p class="v2-cs-poem">Hasta tu sofá sale más que tú.</p>
             </div>
             <div class="v2-cs-col">
               <p class="v2-cs-goals-title">Objetivos</p>
@@ -226,30 +216,28 @@
         <div class="pl-row">
           <div class="pl-id">
             <div class="pl-marco pl-logo" role="img" aria-label="Logotipo de PLANAZO: la O es una boca con dos paletas que se ríe">
-              <span aria-hidden="true">PLANAZ<svg class="pl-o" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="currentColor"/><g class="pl-boca"><path d="M20 35H80a6 6 0 0 1 6 7C84 65 69 81 50 81S16 65 14 42a6 6 0 0 1 6-7Z" fill="#FF4A1C"/><rect x="37" y="30" width="12" height="20" rx="3.5" fill="currentColor"/><rect x="51" y="30" width="12" height="17" rx="3.5" fill="currentColor"/></g></svg></span>
+              <span aria-hidden="true">PLANAZ<svg class="pl-o" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="currentColor"/><g class="pl-boca"><path d="M20 35H80a6 6 0 0 1 6 7C84 65 69 81 50 81S16 65 14 42a6 6 0 0 1 6-7Z" style="fill:var(--f, #FF4A1C)"/><rect x="37" y="30" width="12" height="20" rx="3.5" fill="currentColor"/><rect x="51" y="30" width="12" height="17" rx="3.5" fill="currentColor"/></g></svg></span>
             </div>
-            <div class="pl-marco pl-paleta" role="group" aria-label="Paleta de PLANAZO. Pulsa un color para copiar su código">
-              <span class="v2-pill-int"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M6.2 5l6.3 2.9-2.8 1-1 2.9z"/><circle cx="3.4" cy="3.4" r=".75"/><circle cx="2.4" cy="6.6" r=".6"/><circle cx="6.4" cy="2.2" r=".6"/></svg>Interactivo</span>
-              <button type="button" class="pl-sw" data-hex="#FF4A1C" style="background:#FF4A1C;color:#1A1110"><span class="pl-asoma" data-pj="mando" aria-hidden="true"></span><b>Tomate</b><span class="pl-hex">#FF4A1C</span><i>Aire libre</i></button>
-              <button type="button" class="pl-sw" data-hex="#FFC400" style="background:#FFC400;color:#1A1110"><span class="pl-asoma" data-pj="flexo" aria-hidden="true"></span><b>Yema</b><span class="pl-hex">#FFC400</span><i>Expos</i></button>
-              <button type="button" class="pl-sw" data-hex="#FF93CF" style="background:#FF93CF;color:#1A1110"><span class="pl-asoma" data-pj="sofa" aria-hidden="true"></span><b>Chicle</b><span class="pl-hex">#FF93CF</span><i>Conciertos</i></button>
-              <button type="button" class="pl-sw" data-hex="#2337E8" style="background:#2337E8;color:#FFF3DE"><span class="pl-asoma" data-pj="tostadora" aria-hidden="true"></span><b>Klein</b><span class="pl-hex">#2337E8</span><i>Mercados</i></button>
-              <button type="button" class="pl-sw" data-hex="#1A1110" style="background:#1A1110;color:#FFF3DE"><span class="pl-asoma" data-pj="o" aria-hidden="true"></span><b>Tinta</b><span class="pl-hex">#1A1110</span><i>Textos y logo</i></button>
-              <button type="button" class="pl-sw" data-hex="#FFF3DE" style="background:#FFF3DE;color:#1A1110"><span class="pl-asoma" data-pj="o" aria-hidden="true"></span><b>Nata</b><span class="pl-hex">#FFF3DE</span><i>Fondos</i></button>
+            <div class="pl-marco pl-paleta" role="group" aria-label="Paleta de PLANAZO. Pulsa un color para ponerlo de fondo del logo">
+              <button type="button" class="pl-sw" data-hex="#FF4A1C" aria-pressed="true" style="background:#FF4A1C;color:#1A1110"><b>Tomate</b><span class="pl-hex">#FF4A1C</span><i>Aire libre</i></button>
+              <button type="button" class="pl-sw" data-hex="#FFC400" aria-pressed="false" style="background:#FFC400;color:#1A1110"><b>Yema</b><span class="pl-hex">#FFC400</span><i>Expos</i></button>
+              <button type="button" class="pl-sw" data-hex="#FF93CF" aria-pressed="false" style="background:#FF93CF;color:#1A1110"><b>Chicle</b><span class="pl-hex">#FF93CF</span><i>Conciertos</i></button>
+              <button type="button" class="pl-sw" data-hex="#2337E8" aria-pressed="false" style="background:#2337E8;color:#FFF3DE"><b>Klein</b><span class="pl-hex">#2337E8</span><i>Mercados</i></button>
+              <button type="button" class="pl-sw" data-hex="#1A1110" aria-pressed="false" style="background:#1A1110;color:#FFF3DE"><b>Tinta</b><span class="pl-hex">#1A1110</span><i>Textos y logo</i></button>
+              <button type="button" class="pl-sw" data-hex="#FFF3DE" aria-pressed="false" style="background:#FFF3DE;color:#1A1110"><b>Nata</b><span class="pl-hex">#FFF3DE</span><i>Fondos</i></button>
             </div>
           </div>
           <div class="pl-id2 pl-mas">
             <div class="pl-marco pl-tipo" id="pl-tipo">
-              <div class="pl-tipo-top"><span>Tipografía</span><span class="pl-tipo-n">01 / 04</span></div>
-              <p class="pl-tipo-frase"><span>Hoy no hay sofá que valga.</span></p>
+              <div class="pl-tipo-top"><span>Tipografía</span><span>Dos fuentes, un tono</span></div>
+              <p class="pl-tipo-frase"><span>Lo de quedarse en casa ya lo has probado.</span></p>
               <div class="pl-tipo-pie">
                 <span class="pl-tipo-f"><b aria-hidden="true">Aa</b>Dela Gothic One · Titulares</span>
                 <span class="pl-tipo-f"><b aria-hidden="true">Aa</b>Familjen Grotesk · Textos</span>
-                <p>Planes cerca de casa, contados con humor y sin tono de folleto.</p>
+                <p>Planes cerca de casa para quienes nunca saben decir que no a otro plan.</p>
               </div>
             </div>
             <div class="pl-marco pl-comb" id="pl-comb">
-              <span class="v2-pill-int"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M6.2 5l6.3 2.9-2.8 1-1 2.9z"/><circle cx="3.4" cy="3.4" r=".75"/><circle cx="2.4" cy="6.6" r=".6"/><circle cx="6.4" cy="2.2" r=".6"/></svg>Interactivo</span>
               <span class="pl-comb-logo" aria-label="PLANAZO">PLANAZ<svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="50" style="fill:currentColor"/><path d="M20 35H80a6 6 0 0 1 6 7C84 65 69 81 50 81S16 65 14 42a6 6 0 0 1 6-7Z" style="fill:var(--f)"/><rect x="37" y="30" width="12" height="20" rx="3.5" style="fill:currentColor"/><rect x="51" y="30" width="12" height="17" rx="3.5" style="fill:currentColor"/></svg></span>
               <div class="pl-comb-pj" aria-hidden="true"></div>
               <p class="pl-comb-t" aria-live="polite">Conciertazo</p>
@@ -266,38 +254,22 @@
         <div class="pl-row pl-gap pl-tag"><b>Los Bocazas</b></div>
         <div class="pl-row">
           <div class="pl-cuatro" id="pl-bocazas">
-            <figure class="pl-bz" data-frases="¡Otra, otra!|¡Ja, ja, ja!|¡Que suba el volumen!" style="--c:#FF93CF">
-              <button type="button" class="pl-bz-v" aria-label="Haz reír al Sofá"><video src="video/sofa.mp4" autoplay muted loop playsinline aria-label="El Sofá anda en el sitio y da saltitos"></video></button>
-              <span class="pl-bocadillo" aria-live="polite"></span>
-              <figcaption><b>Sofá</b><span>Conciertos</span><q>Uno más y nos vamos.</q></figcaption>
+            <figure class="pl-bz" style="--c:#FF93CF">
+              <button type="button" class="pl-bz-v" aria-label="Haz saltar al Sofá"><video src="video/sofa.mp4" autoplay muted loop playsinline aria-label="El Sofá anda en el sitio y da saltitos"></video></button>
+              <figcaption><b>Sofá</b><em>El fiestero</em><span>Conciertos</span><q>Una más. Esta sí que es la última.</q></figcaption>
             </figure>
-            <figure class="pl-bz" data-frases="¡Ja, ja, ja!|¡Al mercado!|¡Tostada va!" style="--c:#2337E8">
-              <button type="button" class="pl-bz-v" aria-label="Haz reír al Tostadora"><video src="video/tostadora.mp4" autoplay muted loop playsinline aria-label="La Tostadora bota y la tostada sale y vuelve a la ranura"></video></button>
-              <span class="pl-bocadillo" aria-live="polite"></span>
-              <figcaption><b>Tostadora</b><span>Mercados</span><q>Iba a por pan y vuelvo con un cactus.</q></figcaption>
+            <figure class="pl-bz" style="--c:#2337E8">
+              <button type="button" class="pl-bz-v" aria-label="Haz saltar al Tostadora"><video src="video/tostadora.mp4" autoplay muted loop playsinline aria-label="La Tostadora bota y la tostada sale y vuelve a la ranura"></video></button>
+              <figcaption><b>Tostadora</b><em>La impulsiva</em><span>Mercados</span><q>Venía a por pan.</q></figcaption>
             </figure>
-            <figure class="pl-bz" data-frases="¡Ja, ja, ja!|¡Al parque!|¡A que no me pillas!" style="--c:#FF4A1C">
-              <button type="button" class="pl-bz-v" aria-label="Haz reír al Mando"><video src="video/mando.mp4" autoplay muted loop playsinline aria-label="El Mando corre en el sitio"></video></button>
-              <span class="pl-bocadillo" aria-live="polite"></span>
-              <figcaption><b>Mando</b><span>Aire libre</span><q>El último en llegar al parque paga los helados.</q></figcaption>
+            <figure class="pl-bz" style="--c:#FF4A1C">
+              <button type="button" class="pl-bz-v" aria-label="Haz saltar al Mando"><video src="video/mando.mp4" autoplay muted loop playsinline aria-label="El Mando corre en el sitio"></video></button>
+              <figcaption><b>Mando</b><em>El aventurero</em><span>Aire libre</span><q>Era un paseo corto, dijeron.</q></figcaption>
             </figure>
-            <figure class="pl-bz" data-frases="¡Ja, ja, ja!|¡Qué bonito!|¡Mira eso!" style="--c:#FFC400">
-              <button type="button" class="pl-bz-v" aria-label="Haz reír al Flexo"><video src="video/flexo.mp4" autoplay muted loop playsinline aria-label="El Flexo estira el brazo y mira a un lado y a otro"></video></button>
-              <span class="pl-bocadillo" aria-live="polite"></span>
-              <figcaption><b>Flexo</b><span>Expos</span><q>Yo solo he venido a mirar.</q></figcaption>
+            <figure class="pl-bz" style="--c:#FFC400">
+              <button type="button" class="pl-bz-v" aria-label="Haz saltar al Flexo"><video src="video/flexo.mp4" autoplay muted loop playsinline aria-label="El Flexo estira el brazo y mira a un lado y a otro"></video></button>
+              <figcaption><b>Flexo</b><em>El cultureta irónico</em><span>Expos</span><q>No lo entiendo, pero me gusta.</q></figcaption>
             </figure>
-          </div>
-        </div>
-        <div class="pl-row pl-gap pl-tag"><b>Expresiones</b></div>
-        <div class="pl-row">
-          <div class="pl-marco pl-escena" id="pl-caras" aria-label="Los cuatro Bocazas cambian de expresión y se contagian la risa. Pulsa uno para cambiarle la cara">
-            <span class="v2-pill-int"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M6.2 5l6.3 2.9-2.8 1-1 2.9z"/><circle cx="3.4" cy="3.4" r=".75"/><circle cx="2.4" cy="6.6" r=".6"/><circle cx="6.4" cy="2.2" r=".6"/></svg>Interactivo</span>
-          </div>
-          <div class="pl-caras-bar" role="group" aria-label="Elige una expresión para los cuatro">
-            <button type="button" data-cara="" aria-pressed="false">Sonrisa</button>
-            <button type="button" data-cara="carcajada" aria-pressed="false">Carcajada</button>
-            <button type="button" data-cara="oh" aria-pressed="false">¡Oh!</button>
-            <button type="button" data-cara="pillado" aria-pressed="false">Pillado</button>
           </div>
         </div>
       </div>
@@ -311,6 +283,7 @@
             <p>La idea parte de una imagen: los objetos de casa, hartos de vernos tirados, se van de plan sin nosotros. Así nacen <strong>los Bocazas</strong>: un sofá, una tostadora, un mando y un flexo.</p>
             <p>Cada uno tiene su tipo de plan y su color, y todos comparten el mismo gesto: <strong>una boca con dos paletas</strong>. Ese gesto pasa también al logotipo, donde la O sonríe.</p>
             <p>Las ilustraciones son planas, con pocas formas y piernas finas de dibujo animado, para que se entiendan de lejos y se puedan bordar, imprimir o animar.</p>
+            <p>Además de su plan y su color, cada uno tiene su manera de hablar: <strong>el Sofá siempre quiere una más, la Tostadora compra sin lista, el Mando convierte un paseo en una expedición y el Flexo opina de todo</strong>.</p>
           </div>
         </div>
       </div>
@@ -338,7 +311,7 @@
       </div>
       <div class="v2-cs-result">
         <div class="v2-cs-wrap"><div class="v2-cs-body v2-cs-body-end">
-          <p>Una identidad de colores vivos que se apoya en cuatro personajes. <strong>Cada uno representa un tipo de plan</strong> y todos funcionan en carteles, merch, redes y animación.</p>
+          <p>Una identidad de colores vivos que se apoya en cuatro personajes. <strong>Cada uno representa un tipo de plan</strong> y todos funcionan en carteles, merch, redes y animación. <strong>Y una forma de hablar que se reconoce sin ver el logo.</strong></p>
         </div></div>
       </div>
     </section>
@@ -442,79 +415,33 @@
       mando: { c: { '--c1': '#FF93CF', '--c2': '#2337E8', '--zapato': '#2337E8' }, f: '#FF4A1C', t: '#1A1110', plan: 'Paseazo', d: 'Sáb 20 · 09:30 · Funicular' },
       flexo: { c: { '--c1': '#FF4A1C', '--c3': '#2337E8', '--zapato': '#FFF3DE' }, f: '#FFC400', t: '#1A1110', plan: 'Expazo', d: 'Jue 25 · 19:00 · Sala Grito' },
     };
-    // Dónde está la boca de cada uno: esquina, giro y ancho (para dibujar otras expresiones encima)
-    const BOCA = { sofa: [597, 184, 5.9, 244], tostadora: [233, 593, 13.4, 259], mando: [674, 226, 14.2, 138], flexo: [875, 238, -28.6, 125] };
-    // Otras bocas, dibujadas en una caja de 100 de ancho (y = 0 es el borde de arriba)
-    const CARAS = {
-      carcajada: '<path d="M-3 -4H103C103 40 80 64 50 64S-3 40 -3 -4Z" fill="#1A1110"/><path d="M28 44C38 36 62 36 72 44 68 58 59 63 50 63S32 58 28 44Z" fill="#FF93CF"/><path d="M33 -4H48V15H33ZM52 -4H67V15H52Z" fill="#FFF3DE"/>',
-      oh: '<ellipse cx="50" cy="27" rx="23" ry="29" fill="#1A1110"/><path d="M38.5 4.5H49V19H38.5ZM51 4.5H61.5V19H51Z" fill="#FFF3DE"/>',
-      pillado: '<rect x="8" y="2" width="84" height="15" rx="7.5" fill="#1A1110"/><path d="M36 2H48V23H36ZM52 2H64V23H52Z" fill="#FFF3DE"/>',
-    };
 
     // Dibuja un Bocaza en un SVG nuevo (copia sus formas: así Safari repinta bien los colores)
-    function dibuja(nombre, colores, cara) {
+    function dibuja(nombre, colores) {
       const svg = document.createElementNS(NS, 'svg'); // lienzo nuevo
       const s = document.getElementById(nombre); // dibujo original
       svg.setAttribute('viewBox', s.getAttribute('viewBox')); // mismo encuadre
       svg.setAttribute('aria-hidden', 'true'); // es decorativo
       svg.innerHTML = s.innerHTML; // copia las formas
       Object.entries(colores || {}).forEach(([k, v]) => svg.style.setProperty(k, v)); // sus colores
-      if (cara && CARAS[cara]) { // otra expresión
-        const bocas = svg.querySelectorAll('.boca'); // boca y paletas originales
-        const [x, y, giro, ancho] = BOCA[nombre]; // dónde va la boca
-        const g = document.createElementNS(NS, 'g'); // grupo de la nueva boca
-        g.setAttribute('transform', `translate(${x} ${y}) rotate(${giro}) scale(${ancho / 100})`); // la coloca en su sitio
-        g.innerHTML = CARAS[cara]; // la dibuja
-        bocas[0].parentNode.appendChild(g); // dentro del mismo grupo (el flexo la lleva en la cabeza)
-        bocas.forEach((b) => b.remove()); // quita la sonrisa de siempre
-      }
-      return svg;
-    }
-    // La O del logo, sola
-    function oBoca(tinta, dentro) {
-      const svg = document.createElementNS(NS, 'svg');
-      svg.setAttribute('viewBox', '0 0 100 100');
-      svg.innerHTML = `<circle cx="50" cy="50" r="50" fill="${tinta}"/><path d="M20 35H80a6 6 0 0 1 6 7C84 65 69 81 50 81S16 65 14 42a6 6 0 0 1 6-7Z" fill="${dentro}"/><rect x="37" y="30" width="12" height="20" rx="3.5" fill="${tinta}"/><rect x="51" y="30" width="12" height="17" rx="3.5" fill="${tinta}"/>`;
       return svg;
     }
 
-    // 1 · PALETA: cada color esconde a su Bocaza; al pulsar, copia el código
+    // 0 · PORTADA: los Bocazas entre las palabras, con los colores de la frase de marca
+    const EN_FRASE = { sofa: { '--c1': '#2337E8', '--c2': '#FF93CF', '--zapato': '#FF4A1C' }, tostadora: { '--c1': '#FF4A1C', '--c2': '#FFF3DE', '--zapato': '#2337E8' }, mando: { '--c1': '#FF93CF', '--c2': '#2337E8', '--zapato': '#2337E8' }, flexo: { '--c1': '#FFC400', '--c3': '#2337E8', '--zapato': '#FF4A1C' } };
+    document.querySelectorAll('.pl-palabra').forEach((h) => { const svg = dibuja(h.dataset.pj, EN_FRASE[h.dataset.pj]); if (h.dataset.pj === 'sofa') svg.style.rotate = '-6deg'; h.appendChild(svg); });
+
+    // 1 · PALETA: al pulsar un color, el bloque del logo se pone de ese color
+    const logo = document.querySelector('.pl-logo');
+    const OSCUROS = ['#2337E8', '#1A1110']; // sobre estos, el logo va en nata
     document.querySelectorAll('.pl-sw').forEach((b) => {
-      const hueco = b.querySelector('.pl-asoma'); // donde se esconde
-      const pj = hueco.dataset.pj; // quién
-      const hex = b.dataset.hex; // su color
-      hueco.appendChild(pj === 'o' ? oBoca(hex === '#1A1110' ? '#FFF3DE' : '#1A1110', hex) : dibuja(pj, PJ[pj].c)); // lo dibuja
-      const txt = b.querySelector('.pl-hex'); // el código del color
       b.addEventListener('click', () => {
-        document.querySelectorAll('.pl-sw.is-on').forEach((o) => o !== b && o.classList.remove('is-on')); // en móvil, solo uno asomado
-        b.classList.add('is-on'); // se asoma (también al tocar en el móvil)
-        if (!navigator.clipboard) return;
-        navigator.clipboard.writeText(hex).then(() => { // copia el código
-          txt.textContent = '¡Copiado!'; // avisa
-          setTimeout(() => (txt.textContent = hex), 1200); // y vuelve
-        }).catch(() => {});
+        const hex = b.dataset.hex; // el color pulsado
+        logo.style.setProperty('--f', hex); // fondo del logo
+        logo.style.setProperty('--t', OSCUROS.includes(hex) ? '#FFF3DE' : '#1A1110'); // letras que se lean
+        document.querySelectorAll('.pl-sw').forEach((o) => o.setAttribute('aria-pressed', o === b)); // marca el elegido
       });
     });
-
-    // 2 · TIPOGRAFÍA: la frase y el color cambian cada pocos segundos
-    const tipo = document.getElementById('pl-tipo');
-    if (tipo) {
-      const FRASES = [['Hoy no hay sofá que valga.', '#FF4A1C', '#1A1110'], ['Sal, que hace bueno.', '#2337E8', '#FFF3DE'], ['Planazo a la vista.', '#FF93CF', '#1A1110'], ['¿Y si hoy salimos?', '#FFC400', '#1A1110']];
-      const span = tipo.querySelector('.pl-tipo-frase span'); // donde va la frase
-      let i = 0; // frase actual
-      const num = tipo.querySelector('.pl-tipo-n'); // contador de frases
-      const pon = () => { const [t, f, c] = FRASES[i]; tipo.style.setProperty('--f', f); tipo.style.setProperty('--t', c); span.textContent = t; num.textContent = `0${i + 1} / 0${FRASES.length}`; };
-      pon(); // la primera
-      setInterval(() => {
-        if (document.hidden) return; // no cambia si no se ve la pestaña
-        i = (i + 1) % FRASES.length; // la siguiente
-        if (quieto) return pon(); // sin animación
-        span.animate([{ transform: 'translateY(0)', opacity: 1 }, { transform: 'translateY(-40%)', opacity: 0 }], { duration: 260, easing: 'ease-in' }).onfinish = () => { // sale hacia arriba
-          pon(); // cambia
-          span.animate([{ transform: 'translateY(40%)', opacity: 0 }, { transform: 'translateY(0)', opacity: 1 }], { duration: 420, easing: 'cubic-bezier(.3,1.4,.5,1)' }); // entra desde abajo
-        };
-      }, 2800);
-    }
 
     // 3 · COMBINADOR: eliges el plan y cambian el color, el personaje y el cartel
     const comb = document.getElementById('pl-comb');
@@ -535,14 +462,11 @@
       elige('sofa', false); // empieza con los conciertos
     }
 
-    // 5 · LOS BOCAZAS: al pulsar, saltan, se aceleran y dicen algo
+    // 5 · LOS BOCAZAS: al pulsar, dan un salto y se aceleran un momento
     document.querySelectorAll('.pl-bz').forEach((fig) => {
-      const boton = fig.querySelector('.pl-bz-v'), video = fig.querySelector('video'), globo = fig.querySelector('.pl-bocadillo');
-      const frases = fig.dataset.frases.split('|'); // lo que puede decir
-      let n = 0, reloj; // frase siguiente y temporizador
+      const boton = fig.querySelector('.pl-bz-v'), video = fig.querySelector('video');
+      let reloj; // temporizador para calmarse
       boton.addEventListener('click', () => {
-        globo.textContent = frases[n++ % frases.length]; // elige frase
-        globo.animate([{ opacity: 0, transform: 'scale(.4)' }, { opacity: 1, transform: 'scale(1.08)', offset: .2 }, { opacity: 1, transform: 'scale(1)', offset: .3 }, { opacity: 1, transform: 'scale(1)', offset: .85 }, { opacity: 0, transform: 'scale(.9)' }], { duration: 1600, easing: 'ease-out' }); // aparece y se va
         if (quieto) return;
         boton.animate([{ transform: 'none' }, { transform: 'translateY(-7%) scale(1.03, .97)', offset: .3 }, { transform: 'translateY(0) scale(.97, 1.03)', offset: .6 }, { transform: 'none' }], { duration: 480, easing: 'ease-out' }); // salto con estirón
         video.playbackRate = 2.2; // se emociona
@@ -550,57 +474,6 @@
       });
     });
 
-    // 6 · EXPRESIONES: los cuatro se contagian la risa; al pulsar, cambian de cara
-    const escena = document.getElementById('pl-caras');
-    if (escena) {
-      const ORDEN = ['sofa', 'tostadora', 'mando', 'flexo']; // de izquierda a derecha
-      const NOMBRE = { '': 'Sonrisa', carcajada: 'Carcajada', oh: '¡Oh!', pillado: 'Pillado' }; // rótulo de cada cara
-      const CICLO = ['', 'carcajada', 'oh', 'pillado']; // orden al pulsar un personaje
-      const actores = {}; // botón de cada personaje
-      const pon = (pj, cara, salta = true) => { // cambia la cara de uno
-        const a = actores[pj];
-        if (a.dataset.cara === cara) return;
-        a.dataset.cara = cara;
-        const svg = dibuja(pj, PJ[pj].c, cara || null); // lo dibuja con su nueva boca
-        if (PJ[pj].rot) svg.style.rotate = PJ[pj].rot + 'deg';
-        a.querySelector('svg').replaceWith(svg);
-        if (salta && !quieto) svg.animate( // brinca al cambiar de cara
-          cara === 'carcajada' ? [{ transform: 'none' }, { transform: 'translateY(-6%) rotate(-4deg)' }, { transform: 'translateY(0) rotate(3deg)' }, { transform: 'translateY(-4%) rotate(-2deg)' }, { transform: 'none' }]
-          : cara === 'oh' ? [{ transform: 'none' }, { transform: 'translateY(-9%) scale(.94, 1.08)' }, { transform: 'none' }]
-          : cara === 'pillado' ? [{ transform: 'none' }, { transform: 'translateX(-4%) scale(1.04, .94)' }, { transform: 'translateX(3%)' }, { transform: 'none' }]
-          : [{ transform: 'none' }, { transform: 'translateY(-4%)' }, { transform: 'none' }],
-          { duration: cara === 'carcajada' ? 700 : 420, easing: 'ease-out' });
-      };
-      ORDEN.forEach((pj) => { // crea los cuatro
-        const a = document.createElement('button');
-        a.type = 'button'; a.className = 'pl-actor';
-        a.style.setProperty('--f', PJ[pj].f); a.style.setProperty('--t', PJ[pj].t);
-        a.setAttribute('aria-label', 'Cambiar la cara de ' + { sofa: 'el Sofá', tostadora: 'la Tostadora', mando: 'el Mando', flexo: 'el Flexo' }[pj]);
-        a.dataset.cara = 'x';
-        a.innerHTML = '<svg></svg>';
-        actores[pj] = a; escena.appendChild(a);
-        pon(pj, '', false);
-        a.addEventListener('click', () => { para(); pon(pj, CICLO[(CICLO.indexOf(a.dataset.cara) + 1) % CICLO.length]); }); // siguiente cara
-      });
-      // La escena en bucle: uno se sorprende, los demás se ríen en cadena, alguien queda pillado y vuelven a sonreír
-      const GUION = [['sofa', 'oh'], ['tostadora', 'carcajada'], ['mando', 'carcajada'], ['flexo', 'pillado'], ['sofa', 'carcajada'], ['flexo', 'carcajada'], ['*', ''], ['mando', 'oh'], ['flexo', 'oh'], ['tostadora', 'pillado'], ['sofa', 'carcajada'], ['mando', 'carcajada'], ['*', '']];
-      let paso = 0, reloj = null, pausa = null;
-      const sigue = () => {
-        if (document.hidden) return;
-        const [pj, cara] = GUION[paso++ % GUION.length];
-        if (pj === '*') ORDEN.forEach((k, i) => setTimeout(() => pon(k, cara), i * 90)); // todos a la vez, en ola
-        else pon(pj, cara);
-      };
-      const arranca = () => { if (!quieto && !reloj) reloj = setInterval(sigue, 1100); };
-      const para = () => { clearInterval(reloj); reloj = null; clearTimeout(pausa); pausa = setTimeout(arranca, 6000); }; // al tocar, la escena espera un poco
-      document.querySelectorAll('.pl-caras-bar button').forEach((b) => b.addEventListener('click', () => {
-        para();
-        ORDEN.forEach((k, i) => setTimeout(() => pon(k, b.dataset.cara), i * 90)); // los cuatro, en ola
-        document.querySelectorAll('.pl-caras-bar button').forEach((o) => o.setAttribute('aria-pressed', o === b));
-        clearTimeout(b._t); b._t = setTimeout(() => b.setAttribute('aria-pressed', 'false'), 6000);
-      }));
-      new IntersectionObserver(([e]) => (e.isIntersecting ? arranca() : (clearInterval(reloj), (reloj = null)))).observe(escena); // solo se anima cuando se ve
-    }
   })();
   </script>
   <script src="../js/v2.js" defer></script>
