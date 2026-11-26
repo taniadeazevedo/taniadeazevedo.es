@@ -33,6 +33,11 @@
     .envoltorio { max-width: var(--ancho); margin: 0 auto; padding: 0 var(--gutter); }  /* columna central, como en las guías */
     .solo-lector { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
 
+    /* ---------- Letra un punto más fina ---------- */
+    /* Lilita solo tiene un grosor: un trazo del color del fondo «come» el borde de las letras */
+    body { --fondo: var(--nata); } .destacado { --fondo: var(--tinta); } .bocaza { --fondo: var(--c); } .news { --fondo: var(--klein); }  /* qué hay detrás en cada sitio */
+    .logo, .intro h1, .destacado-txt h2, .agenda h2, .quien h2, .bocaza b, .ficha h2, .news h2, .gracias { -webkit-text-stroke: .028em var(--fondo); }
+
     /* ---------- Logo: PLANAZ + la O con boca ---------- */
     .logo { display: inline-flex; align-items: baseline; font: 400 26px/.9 'Lilita One', Impact, sans-serif; letter-spacing: -.01em; text-decoration: none; }
     .logo svg { width: .7em; height: .7em; width: 1cap; height: 1cap; margin-left: .04em; flex: none; }

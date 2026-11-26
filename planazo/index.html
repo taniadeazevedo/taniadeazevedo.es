@@ -32,6 +32,9 @@
     .pl-tag b { display: block; padding-bottom: 12px; border-bottom: 1px solid #1d153014; font: 600 clamp(17px, 1.4vw, 20px)/1.2 var(--v2-display, Inter, sans-serif); color: var(--v2-ink, #1d1530); }
     .pl-web { position: relative; aspect-ratio: 16 / 10; background: #FFF3DE; }  /* la landing, viva dentro del caso */
     .pl-web iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }  /* en ordenador, se puede deslizar y usar directamente */
+    /* Letra un punto más fina: un trazo del color del fondo «come» el borde de Lilita (como en la portada) */
+    .pl-logo { --fondo: var(--f, #FF4A1C); } .pl-tipo { --fondo: #FF4A1C; } .pl-comb { --fondo: var(--f, #FF93CF); } .pl-bz figcaption { --fondo: var(--v2-bg, #f6f2fd); }  /* qué hay detrás en cada sitio */
+    .pl-logo span, .pl-tipo-frase, .pl-tipo-f b, .pl-comb-logo, .pl-comb-t, .pl-bz figcaption b { -webkit-text-stroke: .028em var(--fondo); }
     .pl-web, .pl-movil { border: 1px solid #1A1110; }                     /* contorno muy fino en tinta: separa el crema de la landing del lila de la web */
     .pl-ver { display: inline-block; margin-top: 14px; font: 600 15px/1.3 var(--v2-display, Inter, sans-serif); color: var(--v2-ink, #1d1530); }  /* enlace «Explorar la landing», debajo */
     .pl-web-par { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .289fr); gap: clamp(8px, 1vw, 14px); }  /* escritorio y móvil, del mismo alto */
@@ -40,8 +43,8 @@
     .pl-marco { border-radius: clamp(18px, 2vw, 28px); overflow: hidden; }  /* esquinas como el resto del portfolio */
     .pl-mas { margin-top: clamp(8px, 1vw, 14px); }                        /* separación dentro de un bloque */
     /* Portada: la frase de la marca con los Bocazas entre las palabras (en código, no en foto) */
-    html[data-t="lila"] .v2-cs-hero.pl-valla { container-type: inline-size; overflow: visible; padding: 1.5cqi 0; border: 0; border-radius: 0; background: none; color: #1A1110; }  /* sin recuadro: la frase va directa sobre la página */
-    .pl-valla p { margin: 0; font: 400 7.35cqi/1.08 'Familjen Grotesk', Inter, sans-serif; letter-spacing: -.045em; white-space: nowrap; }  /* dos líneas que llenan el ancho */
+    html[data-t="lila"] .v2-cs-hero.pl-valla { container-type: inline-size; overflow: visible; padding: 5cqi 6cqi; border: 0; background: #FFC400; color: #1A1110; --fondo: #FFC400; }  /* la frase sobre un bloque yema */
+    .pl-valla p { margin: 0; font: 400 6.88cqi/1.04 'Lilita One', Impact, sans-serif; letter-spacing: -.005em; white-space: nowrap; -webkit-text-stroke: .028em var(--fondo); }  /* el trazo del color del fondo «come» el borde: letra un punto más fina */  /* dos líneas que llenan el ancho */
     .pl-br { display: none; }  /* saltos de línea que solo se usan en móvil */
     .pl-palabra { display: inline-block; width: 1.05em; height: 1.155em; margin: 0 .04em; vertical-align: -.22em; }  /* cada Bocaza ocupa lo que una palabra */
     .pl-palabra svg { display: block; width: 100%; height: 100%; overflow: visible; }
@@ -79,7 +82,7 @@
     .pl-id2 { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(8px, 1vw, 14px); }  /* tipografía y combinador */
     .pl-tipo { container-type: inline-size; display: flex; flex-direction: column; gap: clamp(14px, 2vw, 24px); padding: clamp(18px, 2.4vw, 32px); background: #FF4A1C; color: #1A1110; }  /* sobre tomate */
     .pl-tipo-top { display: flex; justify-content: space-between; gap: 12px; font: 600 clamp(11px, .95vw, 13px)/1.3 'Familjen Grotesk', Inter, sans-serif; letter-spacing: .01em; }  /* cabecera del bloque */
-    .pl-tipo-frase { flex: 1; display: flex; align-items: center; margin: 0; font: 400 11.3cqi/.96 'Lilita One', Impact, sans-serif; letter-spacing: -.01em; }  /* la frase llena el ancho y el hueco central */
+    .pl-tipo-frase { flex: 1; display: flex; align-items: center; margin: 0; font: 400 10.4cqi/.96 'Lilita One', Impact, sans-serif; letter-spacing: -.01em; }  /* la frase llena el ancho y el hueco central */
     .pl-tipo-frase span { display: block; }
     .pl-tipo-pie { display: grid; grid-template-columns: auto auto minmax(0, 1fr); align-items: end; gap: clamp(14px, 2.4vw, 32px); padding-top: clamp(12px, 1.4vw, 18px); border-top: 2px solid currentColor; }  /* las dos fuentes y un texto de ejemplo */
     .pl-tipo-f { display: grid; gap: 4px; font: 600 clamp(10px, .9vw, 12px)/1.2 'Familjen Grotesk', Inter, sans-serif; }  /* muestra de cada fuente */
@@ -128,7 +131,7 @@
       .pl-tipo-pie { grid-template-columns: auto auto; } .pl-tipo-pie p { grid-column: 1 / -1; justify-self: start; text-align: left; }  /* el texto de ejemplo baja */
       .pl-comb { aspect-ratio: 4 / 5; }                                    /* el combinador, como un cartel */
       .pl-bz figcaption { font-size: 12px; } .pl-bz figcaption b { font-size: 16px; }
-      .pl-valla p { font-size: 14cqi; line-height: 1.1; }               /* letra mayor, en cuatro líneas */
+      .pl-valla p { font-size: 12.9cqi; line-height: 1.06; }               /* letra mayor, en cuatro líneas */
       .pl-br { display: inline; }                                          /* activa los saltos de móvil */
     }
   </style>
@@ -451,7 +454,7 @@
     }
 
     // 0 · PORTADA: los Bocazas entre las palabras, con los colores de la frase de marca
-    const EN_FRASE = { sofa: { '--c1': '#2337E8', '--c2': '#FF93CF', '--zapato': '#FF4A1C' }, tostadora: { '--c1': '#FF4A1C', '--c2': '#FFF3DE', '--zapato': '#2337E8' }, mando: { '--c1': '#FF93CF', '--c2': '#2337E8', '--zapato': '#2337E8' }, flexo: { '--c1': '#FFC400', '--c3': '#2337E8', '--zapato': '#FF4A1C' } };
+    const EN_FRASE = { sofa: { '--c1': '#2337E8', '--c2': '#FF93CF', '--zapato': '#FF4A1C' }, tostadora: { '--c1': '#FF4A1C', '--c2': '#FFF3DE', '--zapato': '#2337E8' }, mando: { '--c1': '#FF93CF', '--c2': '#2337E8', '--zapato': '#2337E8' }, flexo: { '--c1': '#FF4A1C', '--c3': '#2337E8', '--zapato': '#FFF3DE' } };  // el Flexo con sus colores de siempre, que sobre yema se ve
     document.querySelectorAll('.pl-palabra').forEach((h) => { const svg = dibuja(h.dataset.pj, EN_FRASE[h.dataset.pj]); if (h.dataset.pj === 'sofa') svg.style.rotate = '-6deg'; h.appendChild(svg); });
 
     // 1 · PALETA: al pulsar un color, el bloque del logo se pone de ese color
