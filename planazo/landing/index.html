@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PLANAZO · Planes de esta semana</title>
+  <meta name="description" content="Once planes cerca de casa esta semana: conciertos, mercados, aire libre y expos. Landing conceptual de PLANAZO, por Tania de Azevedo." />
+  <meta name="robots" content="noindex" /><!-- es una pieza del portfolio, no una web real -->
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <!-- Tipografías de la marca: Dela Gothic One (titulares) y Familjen Grotesk (textos) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Familjen+Grotesk:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ---------- Colores de la marca ---------- */
+    :root {
+      --tomate: #FF4A1C; --yema: #FFC400; --chicle: #FF93CF; --klein: #2337E8;  /* una por categoría */
+      --tinta: #1A1110; --nata: #FFF3DE;                                      /* textos y fondo */
+      --linea: rgb(26 17 16 / .14);                                           /* líneas finas */
+      --ancho: 1280px;                                                        /* ancho máximo del contenido */
+      --gutter: clamp(16px, 3vw, 40px);                                       /* margen a los lados */
+      --radio: 20px;                                                          /* esquinas de las tarjetas */
+    }
+
+    /* ---------- Base ---------- */
+    [hidden] { display: none !important; }
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin: 0; background: var(--nata); color: var(--tinta); font: 400 17px/1.45 'Familjen Grotesk', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; }
+    h1, h2, h3, p { margin: 0; }
+    button { font: inherit; color: inherit; }
+    .envoltorio { max-width: var(--ancho); margin: 0 auto; padding: 0 var(--gutter); }  /* columna central, como en las guías */
+    .solo-lector { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+
+    /* ---------- Logo: PLANAZ + la O con boca ---------- */
+    .logo { display: inline-flex; align-items: baseline; font: 400 26px/.9 'Dela Gothic One', Impact, sans-serif; letter-spacing: -.045em; text-decoration: none; }
+    .logo svg { width: .757em; height: .757em; margin-left: .04em; flex: none; translate: 0 .022em; }
+
+    /* ---------- Cabecera ---------- */
+    .cabecera { position: sticky; top: 0; z-index: 5; background: var(--nata); border-bottom: 1px solid var(--linea); }  /* se queda arriba al bajar */
+    .cabecera .envoltorio { display: flex; align-items: center; gap: clamp(16px, 3vw, 40px); height: 68px; }
+    .cabecera nav { display: flex; gap: clamp(14px, 2vw, 28px); font-weight: 600; font-size: 15px; }
+    .cabecera nav a { text-decoration: none; }
+    .cabecera nav a:hover { text-decoration: underline; text-underline-offset: 5px; }
+    .cabecera .boton { margin-left: auto; height: 40px; padding: 0 18px; font-size: 15px; }  /* «Newsletter» a la derecha */
+
+    /* ---------- Botones ---------- */
+    .boton { display: inline-flex; align-items: center; gap: 8px; height: 50px; padding: 0 24px; border: 0; border-radius: 999px; background: var(--tinta); color: var(--nata); font: 600 16px/1 'Familjen Grotesk', sans-serif; text-decoration: none; cursor: pointer; white-space: nowrap; }
+    .boton:focus-visible, .chip:focus-visible, .tarjeta a:focus-visible { outline: 3px solid var(--klein); outline-offset: 3px; }
+
+    /* ---------- Título de la página ---------- */
+    .intro { padding: clamp(36px, 6vw, 80px) 0 clamp(24px, 3vw, 40px); }
+    .antetitulo { font-weight: 600; font-size: 15px; }                      /* «Semana del 12 al 15» */
+    .intro h1 { max-width: 14em; margin-top: 10px; font: 400 clamp(40px, 6.4vw, 92px)/.92 'Dela Gothic One', Impact, sans-serif; letter-spacing: -.045em; }
+
+    /* ---------- Plan destacado ---------- */
+    .destacado { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); border-radius: var(--radio); overflow: hidden; background: var(--tinta); color: var(--nata); }
+    .destacado .imagen { aspect-ratio: auto; min-height: 100%; border-radius: 0; }  /* la foto ocupa todo el alto del destacado */
+    .destacado-txt { display: flex; flex-direction: column; justify-content: center; gap: 14px; padding: clamp(24px, 4vw, 56px); }
+    .destacado-txt h2 { font: 400 clamp(30px, 3.6vw, 52px)/.98 'Dela Gothic One', Impact, sans-serif; letter-spacing: -.04em; }
+    .destacado-txt .resumen { font-size: clamp(17px, 1.4vw, 20px); opacity: .85; }
+    .destacado .boton { align-self: flex-start; margin-top: 8px; background: var(--yema); color: var(--tinta); }
+
+    /* ---------- Filtros por categoría ---------- */
+    .agenda { scroll-margin-top: 68px; padding: clamp(48px, 7vw, 96px) 0 clamp(56px, 8vw, 110px); }  /* al saltar aquí, la cabecera no tapa el título */
+    .agenda-top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 18px; margin-bottom: 26px; }
+    .agenda h2 { font: 400 clamp(30px, 3.6vw, 48px)/1 'Dela Gothic One', Impact, sans-serif; letter-spacing: -.04em; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip { display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 16px 0 10px; border: 1.5px solid var(--tinta); border-radius: 999px; background: transparent; font-weight: 600; font-size: 15px; cursor: pointer; transition: background .2s, color .2s; }
+    .chip i { width: 18px; height: 18px; border-radius: 50%; background: var(--c, var(--tinta)); }  /* punto de color de la categoría */
+    .chip[aria-pressed="true"] { background: var(--c, var(--tinta)); color: var(--ct, var(--nata)); border-color: var(--c, var(--tinta)); }  /* la elegida, rellena */
+    .chip[aria-pressed="true"] i { background: currentColor; }
+    .cuantos { margin-bottom: 18px; font-size: 15px; opacity: .7; }        /* «12 planes» */
+
+    /* ---------- Tarjetas de planes ---------- */
+    .rejilla { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(20px, 2.4vw, 32px) clamp(14px, 1.6vw, 24px); list-style: none; margin: 0; padding: 0; }
+    .tarjeta a { display: block; text-decoration: none; }
+    .imagen { position: relative; display: block; overflow: hidden; aspect-ratio: 3 / 2; border-radius: var(--radio); background: var(--c); }  /* foto del plan */
+    .imagen img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: scale .5s; }  /* la foto llena el hueco */
+    .tarjeta a:hover .imagen img { scale: 1.03; }                          /* se acerca un poco al pasar */
+    .etiqueta { position: absolute; z-index: 1; top: 12px; left: 12px; padding: 5px 11px; border-radius: 999px; background: var(--c); color: var(--ct); font-weight: 600; font-size: 13px; }  /* categoría */
+    .precio { left: auto; right: 12px; background: var(--tinta); color: var(--nata); }  /* gratis o precio */
+    .tarjeta-txt { display: grid; gap: 4px; padding: 14px 2px 0; }
+    .tarjeta .cuando { font-weight: 600; font-size: 14px; }
+    .tarjeta h3 { font: 600 clamp(20px, 1.6vw, 23px)/1.15 'Familjen Grotesk', sans-serif; letter-spacing: -.01em; }
+    .tarjeta a:hover h3 { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 2px; }
+    .tarjeta .resumen { font-size: 16px; opacity: .75; }
+    .tarjeta .donde { font-size: 14px; opacity: .6; }
+
+    /* ---------- Newsletter ---------- */
+    .news { background: var(--klein); color: var(--nata); }
+    .news .envoltorio { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(24px, 5vw, 72px); align-items: center; padding-top: clamp(48px, 7vw, 96px); padding-bottom: clamp(48px, 7vw, 96px); }
+    .news h2 { font: 400 clamp(36px, 5vw, 72px)/.95 'Dela Gothic One', Impact, sans-serif; letter-spacing: -.045em; }
+    .news-txt { margin-top: 14px; font-size: clamp(17px, 1.4vw, 20px); }
+    .form { display: grid; gap: 12px; }
+    .form-fila { display: flex; gap: 8px; }
+    .form input[type="email"] { flex: 1; min-width: 0; height: 54px; padding: 0 22px; border: 2px solid var(--nata); border-radius: 999px; background: transparent; color: var(--nata); font: 400 17px/1 'Familjen Grotesk', sans-serif; }
+    .form input[type="email"]::placeholder { color: var(--nata); opacity: .6; }
+    .form input:focus-visible { outline: 3px solid var(--yema); outline-offset: 3px; }
+    .form .boton { height: 54px; background: var(--yema); color: var(--tinta); }
+    .acepto { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; line-height: 1.35; }
+    .acepto input { width: 18px; height: 18px; margin: 0; accent-color: var(--yema); flex: none; }
+    .sin-spam { font-size: 14px; opacity: .75; }
+    .gracias { font: 400 clamp(24px, 2.4vw, 34px)/1.1 'Dela Gothic One', Impact, sans-serif; color: var(--yema); }
+
+    /* ---------- Pie ---------- */
+    .pie { padding: clamp(40px, 5vw, 64px) 0 32px; }
+    .pie-cols { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 28px; padding-bottom: 32px; border-bottom: 1px solid var(--linea); }
+    .pie-cols p { max-width: 22em; margin-top: 12px; font-size: 15px; opacity: .75; }
+    .pie-cols b { display: block; margin-bottom: 10px; font-size: 14px; }
+    .pie-cols ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; font-size: 15px; }
+    .pie-cols a { text-decoration: none; }
+    .pie-cols a:hover { text-decoration: underline; }
+    .pie small { display: block; margin-top: 20px; font-size: 13px; opacity: .65; }
+
+    @media (prefers-reduced-motion: reduce) { .imagen img, .chip { transition: none; } }
+
+    /* ---------- Tablet y móvil ---------- */
+    @media (max-width: 960px) {
+      .rejilla { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .cabecera nav { display: none; }                                      /* en pantallas pequeñas, las categorías van en los filtros */
+    }
+    @media (max-width: 640px) {
+      .destacado, .news .envoltorio { grid-template-columns: minmax(0, 1fr); }
+      .destacado .imagen { aspect-ratio: 3 / 2; }                          /* en móvil, la foto del destacado con su propio alto */
+      .rejilla { grid-template-columns: minmax(0, 1fr); }
+      .chips { flex-wrap: nowrap; overflow-x: auto; margin: 0 calc(-1 * var(--gutter)); padding: 2px var(--gutter); scrollbar-width: none; }  /* filtros en una fila que se desliza */
+      .chip { flex: none; }
+      .form-fila { flex-direction: column; }
+      .pie-cols { grid-template-columns: 1fr 1fr; } .pie-cols > div:first-child { grid-column: 1 / -1; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Cabecera -->
+  <header class="cabecera">
+    <div class="envoltorio">
+      <a class="logo" href="#" aria-label="PLANAZO, inicio" style="--dentro: var(--nata)">PLANAZ<svg viewBox="0 0 100 100" aria-hidden="true"><use href="#o-boca"/></svg></a>
+      <nav aria-label="Categorías">
+        <a href="#agenda" data-ir="conciertos">Conciertazos</a>
+        <a href="#agenda" data-ir="mercados">Mercadazos</a>
+        <a href="#agenda" data-ir="aire">Paseazos</a>
+        <a href="#agenda" data-ir="expos">Expazos</a>
+      </nav>
+      <a class="boton" href="#newsletter">Newsletter</a>
+    </div>
+  </header>
+
+  <main class="envoltorio">
+    <!-- Título -->
+    <section class="intro" aria-labelledby="titular">
+      <p class="antetitulo">Semana del 12 al 15</p>
+      <h1 id="titular">Esta semana hay once planes. Y tú mirando el móvil.</h1>
+    </section>
+
+    <!-- Plan destacado -->
+    <article class="destacado" aria-labelledby="dest-t">
+      <span class="imagen" id="dest-img" aria-hidden="true"></span>
+      <div class="destacado-txt">
+        <p class="antetitulo">El plan de la semana · Conciertazos</p>
+        <h2 id="dest-t">Verbena con orquesta en la plaza</h2>
+        <p class="resumen">Orquesta de las de antes, churros a la una y nadie se va antes del último pasodoble.</p>
+        <p class="antetitulo">Sáb 14 · 22:00 · Plaza Nueva · Gratis</p>
+        <a class="boton" href="#agenda" data-ir="conciertos">Más conciertazos</a>
+      </div>
+    </article>
+
+    <!-- Agenda con filtros -->
+    <section class="agenda" id="agenda" aria-labelledby="t-agenda">
+      <div class="agenda-top">
+        <h2 id="t-agenda">Todos los planes</h2>
+        <div class="chips" role="group" aria-label="Filtrar por categoría">
+          <button type="button" class="chip" data-cat="todos" aria-pressed="true"><i></i>Todos</button>
+          <button type="button" class="chip" data-cat="conciertos" aria-pressed="false" style="--c: var(--chicle); --ct: var(--tinta)"><i></i>Conciertazos</button>
+          <button type="button" class="chip" data-cat="mercados" aria-pressed="false" style="--c: var(--klein); --ct: var(--nata)"><i></i>Mercadazos</button>
+          <button type="button" class="chip" data-cat="aire" aria-pressed="false" style="--c: var(--tomate); --ct: var(--tinta)"><i></i>Paseazos</button>
+          <button type="button" class="chip" data-cat="expos" aria-pressed="false" style="--c: var(--yema); --ct: var(--tinta)"><i></i>Expazos</button>
+        </div>
+      </div>
+      <p class="cuantos" id="cuantos" aria-live="polite">11 planes</p>
+      <ul class="rejilla" id="rejilla"></ul>
+    </section>
+  </main>
+
+  <!-- Newsletter -->
+  <section class="news" id="newsletter" aria-labelledby="t-news">
+    <div class="envoltorio">
+      <div>
+        <h2 id="t-news">Un plan cada jueves.</h2>
+        <p class="news-txt">Te escribimos una vez a la semana. Si no sales, al menos te enteras.</p>
+      </div>
+      <form class="form" id="form" novalidate>
+        <div class="form-fila">
+          <label class="solo-lector" for="email">Tu email</label>
+          <input id="email" type="email" placeholder="Tu email" autocomplete="email" required />
+          <button class="boton" type="submit">Apúntame</button>
+        </div>
+        <label class="acepto"><input type="checkbox" required /> <span>He leído la <a href="#privacidad">política de privacidad</a> y quiero recibir la newsletter.</span></label>
+        <p class="sin-spam">Sin spam. Sin «experiencias».</p>
+        <p class="gracias" id="gracias" aria-live="polite" hidden></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- Pie -->
+  <footer class="pie">
+    <div class="envoltorio">
+      <div class="pie-cols">
+        <div>
+          <span class="logo" aria-label="PLANAZO" style="--dentro: var(--nata)">PLANAZ<svg viewBox="0 0 100 100" aria-hidden="true"><use href="#o-boca"/></svg></span>
+          <p>Planes cerca de casa para quienes nunca saben decir que no a otro plan.</p>
+        </div>
+        <div><b>Categorías</b><ul><li><a href="#agenda" data-ir="conciertos">Conciertazos</a></li><li><a href="#agenda" data-ir="mercados">Mercadazos</a></li><li><a href="#agenda" data-ir="aire">Paseazos</a></li><li><a href="#agenda" data-ir="expos">Expazos</a></li></ul></div>
+        <div><b>PLANAZO</b><ul><li><a href="#newsletter">Newsletter</a></li><li><a href="#privacidad">Privacidad</a></li></ul></div>
+      </div>
+      <small id="privacidad">Proyecto conceptual de <a href="https://taniadeazevedo.es/planazo/">Tania de Azevedo</a>. Los planes y los sitios son inventados y el formulario no guarda ningún dato.</small>
+    </div>
+  </footer>
+
+  <!-- Dibujos ocultos: la O del logo y los cuatro Bocazas -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+<symbol id="boca" viewBox="0 0 200 110">
+      <path d="M0 0H200A100 104 0 0 1 0 0Z" fill="#1A1110"/>
+      <rect x="64" width="34" height="36" fill="#FFF3DE"/>
+      <rect x="102" width="34" height="36" fill="#FFF3DE"/>
+    </symbol>
+    <symbol id="o-boca" viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="50" fill="currentColor"/>
+      <path d="M20 35H80a6 6 0 0 1 6 7C84 65 69 81 50 81S16 65 14 42a6 6 0 0 1 6-7Z" fill="var(--dentro,#FFF3DE)"/>
+      <rect x="37" y="30" width="12" height="20" rx="3.5" fill="currentColor"/>
+      <rect x="51" y="30" width="12" height="17" rx="3.5" fill="currentColor"/>
+    </symbol>
+    <path id="zapato" d="M4 40C-4 18 12 2 32 4c14 1 20 12 36 16 16 4 24 10 22 20Z" fill="var(--zapato,#FFC400)"/>
+    <symbol id="sofa" viewBox="335 -11 720 792" preserveAspectRatio="xMidYMid meet">
+      <g class="pierna pierna-a"><path d="M662 496C630 525 610 570 598 612" fill="none" stroke="var(--pierna,#1A1110)" stroke-width="10" stroke-linecap="round"/><path d="M580 615C565 600 535 602 528 622 525 645 555 660 590 664 605 664 612 650 610 635L617 625 605 612 590 612Z" fill="var(--zapato,#FF4A1C)"/></g>
+      <g class="pierna pierna-b"><path d="M726 504C705 545 725 575 800 596" fill="none" stroke="var(--pierna,#1A1110)" stroke-width="10" stroke-linecap="round"/><path d="M798 598 815 580 825 588C845 595 855 610 842 630 830 650 815 665 795 665 775 660 772 640 790 628L805 620C795 612 792 605 798 598Z" fill="var(--zapato,#FF4A1C)"/></g>
+      <path d="M443 255C470 165 580 105 695 105 850 105 985 195 992 310L925 522 440 470Z" fill="var(--c1,#2337E8)"/>
+      <path d="M443 255C470 165 580 105 695 105 850 105 985 195 992 310L925 522 440 470Z" fill="#1A1110" opacity=".2"/>
+      <path d="M480 352C520 325 640 325 682 365 692 376 697 385 698 397 700 380 712 365 740 358 790 347 890 360 918 398L912 460 473 415Z" fill="var(--c2,#FF93CF)"/>
+      <path d="M360 300C365 270 395 253 425 254 462 257 487 285 484 322L468 476 344 464Z" fill="var(--c1,#2337E8)"/>
+      <path d="M921 352C926 325 955 307 988 308 1025 311 1050 340 1045 372L1029 534 905 520Z" fill="var(--c1,#2337E8)"/>
+      <path class="boca" d="M597 184 840 209C825 270 770 313 710 313 640 310 590 250 597 184Z" fill="#1A1110"/>
+      <path class="boca" d="M667 193 712 197 708 239 665 235ZM725 198 769 203 765 245 722 241Z" fill="#FFF3DE" stroke="#FFF3DE" stroke-width="5" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="tostadora" viewBox="-15 215 791 870" preserveAspectRatio="xMidYMid meet">
+      <g class="pierna pierna-a"><path d="M280 812C235 845 222 880 240 912 258 940 285 950 310 960" fill="none" stroke="var(--pierna,#1A1110)" stroke-width="13" stroke-linecap="round"/><path id="zapato-tostadora" d="M305 950C315 938 330 943 335 952L355 958C372 965 372 985 362 1005 350 1035 330 1055 312 1050 295 1042 290 1020 298 1005 305 995 315 990 310 985 298 978 295 962 305 950Z" fill="var(--zapato,#2337E8)"/></g>
+      <g class="pierna pierna-b"><path d="M414 843C385 880 372 915 395 945 420 970 450 978 482 985" fill="none" stroke="var(--pierna,#1A1110)" stroke-width="13" stroke-linecap="round"/><use href="#zapato-tostadora" x="176" y="25"/></g>
+      <path d="M205 505 300 478 580 541 495 557Z" fill="var(--c1,#FF4A1C)"/>
+      <path d="M205 505 300 478 580 541 495 557Z" fill="#FFF3DE" opacity=".14"/>
+      <path d="M288 497 320 490 530 540 490 552Z" fill="#1A1110"/>
+      <g class="tostada"><path transform="translate(16 2)" d="M341 463C320 440 340 412 380 410 430 408 490 440 497 470 498 490 490 498 478 500L466 545 330 512Z" fill="#E9B26E"/><path d="M341 463C320 440 340 412 380 410 430 408 490 440 497 470 498 490 490 498 478 500L466 545 330 512Z" fill="var(--c2,#FFF3DE)"/></g>
+      <path d="M495 555 580 541C630 555 660 600 650 655L602 866C585 880 545 877 520 868Z" fill="var(--c1,#FF4A1C)"/>
+      <path d="M495 555 580 541C630 555 660 600 650 655L602 866C585 880 545 877 520 868Z" fill="#1A1110" opacity=".14"/>
+      <path d="M110 773 157 570C168 530 205 500 250 500L490 556C545 570 575 625 565 672L520 868Z" fill="var(--c1,#FF4A1C)"/>
+      <path d="M560 797 590 792 618 798C635 802 638 822 620 826L578 818 574 842H564L570 815 558 813Z" fill="#1A1110"/>
+      <path class="boca" d="M233 593 485 653C470 715 410 755 340 750 265 740 220 670 233 593Z" fill="#1A1110"/>
+      <path class="boca" d="M315 612 353 621 342 662 304 654ZM366 625 406 634 395 675 358 667Z" fill="#FFF3DE" stroke="#FFF3DE" stroke-width="3" stroke-linejoin="round"/>
+      <g class="tostada"><path transform="translate(15 5)" d="M457 265C450 240 470 225 500 227 540 230 590 265 603 305 605 330 590 342 574 343L527 418C522 425 515 423 510 418L412 352C408 348 408 343 411 340Z" fill="#E9B26E"/><path d="M457 265C450 240 470 225 500 227 540 230 590 265 603 305 605 330 590 342 574 343L527 418C522 425 515 423 510 418L412 352C408 348 408 343 411 340Z" fill="var(--c2,#FFF3DE)"/></g>
+    </symbol>
+    <symbol id="mando" viewBox="408 75 564 620" preserveAspectRatio="xMidYMid meet">
+      <g class="pierna pierna-a"><path d="M640 525C625 580 575 615 505 568" fill="none" stroke="var(--pierna,#1A1110)" stroke-width="14" stroke-linecap="round"/><path d="M503 545C490 535 470 538 462 555 450 575 440 600 443 615 450 627 470 622 482 610 492 600 490 585 500 580 512 575 512 555 503 545Z" fill="var(--zapato,#FF4A1C)"/></g>
+      <g class="pierna pierna-b"><path d="M768 506C815 520 848 565 868 638" fill="none" stroke="var(--pierna,#1A1110)" stroke-width="14" stroke-linecap="round"/><path d="M851 645 878 630C895 622 925 622 936 640 944 655 925 670 900 677 880 683 860 682 855 670 850 660 848 652 851 645Z" fill="var(--zapato,#FF4A1C)"/></g>
+      <rect x="634" y="97.5" width="180" height="437" rx="38" transform="rotate(14.5 724 316)" fill="var(--c1,#2337E8)"/>
+      <circle cx="725" cy="140" r="24" fill="var(--zapato,#FF4A1C)"/>
+      <path d="M725 128v11M716 133a13 13 0 1 0 18 0" fill="none" stroke="#1A1110" stroke-opacity=".35" stroke-width="3" stroke-linecap="round"/>
+      <path class="boca" d="M674 226 808 260C795 300 745 318 705 300 680 288 668 256 674 226Z" fill="#1A1110"/>
+      <path class="boca" d="M713 235 740 242 733 270 706 263ZM743 243 772 250 765 277 738 270Z" fill="#FFF3DE" stroke="#FFF3DE" stroke-width="2" stroke-linejoin="round"/>
+      <g fill="var(--c2,#FFC400)"><circle cx="665" cy="349" r="17.5"/><circle cx="711" cy="361" r="17.5"/><circle cx="757" cy="372" r="17.5"/><circle cx="653" cy="395" r="17.5"/><circle cx="699" cy="406" r="17.5"/><circle cx="745" cy="417" r="17.5"/><circle cx="642" cy="440" r="17.5"/><circle cx="688" cy="452" r="17.5"/><circle cx="734" cy="463" r="17.5"/></g>
+    </symbol>
+    <symbol id="flexo" viewBox="393 0 700 770" preserveAspectRatio="xMidYMid meet">
+      <path d="M398 673C410 590 490 527 578 527 665 527 742 590 755 673Z" fill="var(--c1,#FFC400)"/>
+      <path d="M575 535 505 294 815 178" fill="none" stroke="var(--c3,#2337E8)" stroke-width="40"/>
+      <circle cx="503" cy="294" r="43" fill="#1A1110"/>
+      <g class="cabeza">
+        <circle cx="965" cy="310" r="59" fill="#FFF3DE"/>
+        <path d="M805 160C800 120 830 95 868 94 895 94 918 110 926 134L1088 238 835 376 818 200C810 185 805 175 805 160Z" fill="var(--c1,#FFC400)"/>
+        <path class="boca" d="M875 238 985 178C1005 215 995 250 960 268 925 280 890 270 875 238Z" fill="#1A1110"/>
+        <path class="boca" d="M912 218 933 207 943 232 920 243ZM940 203 958 194 972 221 950 232Z" fill="#FFF3DE" stroke="#FFF3DE" stroke-width="2" stroke-linejoin="round"/>
+      </g>
+    <g class="pierna pierna-a"><path d="M592 538C625 515 675 510 690 535 695 560 670 585 655 607" fill="none" stroke="var(--pierna,#1A1110)" stroke-width="9" stroke-linecap="round"/><path d="M632 607 675 605 680 622C705 615 738 630 741 655 742 672 725 675 700 675H640C620 670 618 640 625 625Z" fill="var(--zapato,#FFF3DE)"/></g>
+      <g class="pierna pierna-b"><path d="M592 538C650 490 710 460 745 462 775 470 790 510 800 535" fill="none" stroke="var(--pierna,#1A1110)" stroke-width="9" stroke-linecap="round"/><path d="M778 547 815 530 825 540C845 510 880 510 895 530 903 545 895 552 880 560L805 605C790 610 785 590 785 575Z" fill="var(--zapato,#FFF3DE)"/></g>
+    </symbol>
+  </defs></svg>
+
+  <script>
+    (() => {
+      const NS = 'http://www.w3.org/2000/svg';
+
+      // Las cuatro categorías: su color, su Bocaza y los colores del Bocaza sobre ese fondo
+      const CAT = {
+        conciertos: { ct: '#1A1110', nombre: 'Conciertazos', c: '#FF93CF', pj: 'sofa', col: { '--c1': '#2337E8', '--c2': '#FFC400', '--zapato': '#FF4A1C' } },
+        mercados: { ct: '#FFF3DE', nombre: 'Mercadazos', c: '#2337E8', pj: 'tostadora', col: { '--c1': '#FF4A1C', '--c2': '#FFF3DE', '--zapato': '#FFC400', '--pierna': '#FFF3DE' } },
+        aire: { ct: '#1A1110', nombre: 'Paseazos', c: '#FF4A1C', pj: 'mando', col: { '--c1': '#FF93CF', '--c2': '#2337E8', '--zapato': '#2337E8' } },
+        expos: { ct: '#1A1110', nombre: 'Expazos', c: '#FFC400', pj: 'flexo', col: { '--c1': '#FF4A1C', '--c3': '#2337E8', '--zapato': '#FFF3DE' } },
+      };
+
+      // Los once planes, por día, cada uno con su foto (en fotos/)
+      const PLANES = [
+        { cat: 'expos', dia: 'Jue 12', hora: '19:00', titulo: 'Ilustración joven', donde: 'Sala Grito', precio: 'Gratis', resumen: 'Doce artistas de aquí y vino al final.', foto: 'ilustracion' },
+        { cat: 'conciertos', dia: 'Vie 13', hora: '21:00', titulo: 'Bandas locales en directo', donde: 'La Nave', precio: '8 €', resumen: 'Tres grupos de aquí. Uno acabará siendo tu favorito.', foto: 'bandas' },
+        { cat: 'mercados', dia: 'Sáb 14', hora: '10:00', titulo: 'Mercadillo de cerámica', donde: 'Plaza Nueva', precio: 'Gratis', resumen: 'Tazas, platos y jarrones que no caben en tu cocina.', foto: 'ceramica' },
+        { cat: 'aire', dia: 'Sáb 14', hora: '10:30', titulo: 'Subida al monte con vistas', donde: 'Salida desde el funicular', precio: 'Gratis', resumen: 'Una hora de cuesta y la ciudad entera a tus pies.', foto: 'monte' },
+        { cat: 'conciertos', dia: 'Sáb 14', hora: '20:00', titulo: 'Cuarteto de cuerda en la iglesia vieja', donde: 'San Antón', precio: '12 €', resumen: 'Bach con acústica de piedra. Se oye hasta el que tose.', foto: 'cuarteto' },
+        { cat: 'conciertos', dia: 'Sáb 14', hora: '22:00', titulo: 'Verbena con orquesta en la plaza', donde: 'Plaza Nueva', precio: 'Gratis', resumen: 'Orquesta de las de antes y churros a la una.', foto: 'verbena' },
+        { cat: 'mercados', dia: 'Dom 15', hora: '09:00', titulo: 'Mercado de productores', donde: 'Plaza del Ayuntamiento', precio: 'Gratis', resumen: 'Tomates que saben a tomate. Madruga si quieres queso.', foto: 'productores' },
+        { cat: 'mercados', dia: 'Dom 15', hora: '11:00', titulo: 'Feria del vinilo', donde: 'Antiguo matadero', precio: 'Gratis', resumen: 'Cajas y cajas de discos. Trae efectivo y paciencia.', foto: 'vinilo' },
+        { cat: 'expos', dia: 'Dom 15', hora: '12:00', titulo: 'Visita guiada con vermut', donde: 'Museo de la ría', precio: '6 €', resumen: 'Una hora de arte y otra de comentarlo.', foto: 'visita' },
+        { cat: 'conciertos', dia: 'Dom 15', hora: '13:00', titulo: 'Vermut con DJ', donde: 'Terraza del mercado', precio: 'Gratis', resumen: 'Empieza como un aperitivo. Ya sabes cómo acaba.', foto: 'vermut-dj' },
+        { cat: 'aire', dia: 'Dom 15', hora: '19:00', titulo: 'Cine al aire libre con picnic', donde: 'Parque de abajo', precio: 'Gratis', resumen: 'Trae manta. La peli la pone el parque.', foto: 'cine' },
+      ];
+
+      // Pinta las tarjetas
+      const rejilla = document.getElementById('rejilla');
+      PLANES.forEach((p, i) => {                                              // una tarjeta por plan
+        const c = CAT[p.cat];
+        const li = document.createElement('li');
+        li.className = 'tarjeta';
+        li.dataset.cat = p.cat;
+        li.innerHTML = `<a href="#agenda">
+            <span class="imagen" style="--c:${c.c}; --ct:${c.ct}"><img src="fotos/${p.foto}.jpg" alt="" loading="lazy" width="1408" height="768" /><span class="etiqueta">${c.nombre}</span><span class="etiqueta precio">${p.precio}</span></span>
+            <span class="tarjeta-txt">
+              <span class="cuando">${p.dia} · ${p.hora}</span>
+              <h3>${p.titulo}</h3>
+              <span class="resumen">${p.resumen}</span>
+              <span class="donde">${p.donde}</span>
+            </span></a>`;
+        rejilla.appendChild(li);
+      });
+
+      // El destacado: el Sofá enorme, cortado por abajo
+      const dest = document.getElementById('dest-img');
+      dest.style.setProperty('--c', CAT.conciertos.c);
+      dest.insertAdjacentHTML('afterbegin', '<img src="fotos/verbena.jpg" alt="" width="1408" height="768" />');  // la foto
+
+      // Filtros: enseñan solo los planes de una categoría
+      const chips = document.querySelectorAll('.chip');
+      const cuantos = document.getElementById('cuantos');
+      const titulo = document.getElementById('t-agenda');
+      function filtra(cat) {
+        let n = 0;
+        rejilla.querySelectorAll('.tarjeta').forEach((t) => { const ver = cat === 'todos' || t.dataset.cat === cat; t.hidden = !ver; if (ver) n++; });
+        chips.forEach((b) => b.setAttribute('aria-pressed', b.dataset.cat === cat));
+        titulo.textContent = cat === 'todos' ? 'Todos los planes' : CAT[cat].nombre;   // el título cambia
+        cuantos.textContent = n + (n === 1 ? ' plan' : ' planes');
+      }
+      chips.forEach((b) => b.addEventListener('click', () => filtra(b.dataset.cat)));
+      document.querySelectorAll('[data-ir]').forEach((a) => a.addEventListener('click', () => filtra(a.dataset.ir)));  // los enlaces del menú también filtran
+
+      // Newsletter: es un concepto, no envía nada
+      const form = document.getElementById('form');
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (!form.reportValidity()) return;
+        const ok = document.getElementById('gracias');
+        ok.textContent = 'Hecho. Nos vemos el jueves.';
+        ok.hidden = false;
+        form.querySelector('.form-fila').hidden = true;
+      });
+    })();
+  </script>
+</body>
+</html>

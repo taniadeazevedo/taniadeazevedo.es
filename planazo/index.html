@@ -30,11 +30,17 @@
     .pl-gap { margin-top: clamp(72px, 10vw, 148px); }                     /* aire entre bloques */
     .pl-tag { padding-bottom: 12px; margin-bottom: clamp(14px, 1.6vw, 20px); }  /* título de cada bloque */
     .pl-tag b { display: block; padding-bottom: 12px; border-bottom: 1px solid #1d153014; font: 600 clamp(17px, 1.4vw, 20px)/1.2 var(--v2-display, Inter, sans-serif); color: var(--v2-ink, #1d1530); }
+    .pl-web { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, .462fr); gap: clamp(8px, 1vw, 14px); }  /* escritorio y móvil, del mismo alto */
+    .pl-web a { display: block; border-radius: clamp(14px, 1.6vw, 22px); overflow: hidden; }  /* cada captura abre la landing */
+    .pl-web img { display: block; width: 100%; height: auto; transition: scale .4s; }
+    .pl-web a:hover img { scale: 1.015; }                                 /* se acerca un poco al pasar */
+    .pl-web a:focus-visible { outline: 3px solid #7c5cff; outline-offset: 3px; }
+    .pl-ver { display: inline-block; margin-top: 14px; font: 600 15px/1.3 var(--v2-display, Inter, sans-serif); color: var(--v2-ink, #1d1530); }  /* enlace «Ver la landing» */
     .pl-marco { border-radius: clamp(18px, 2vw, 28px); overflow: hidden; }  /* esquinas como el resto del portfolio */
     .pl-mas { margin-top: clamp(8px, 1vw, 14px); }                        /* separación dentro de un bloque */
     /* Portada: la frase de la marca con los Bocazas entre las palabras (en código, no en foto) */
-    html[data-t="lila"] .v2-cs-hero.pl-valla { container-type: inline-size; display: flex; align-items: center; aspect-ratio: 8 / 3; padding: 0 8cqi; background: #E7E2D8; color: #1A1110; }  /* fondo arena */
-    .pl-valla p { margin: 0; font: 400 7.4cqi/1.08 'Familjen Grotesk', Inter, sans-serif; letter-spacing: -.045em; white-space: nowrap; }  /* dos líneas que llenan el ancho */
+    html[data-t="lila"] .v2-cs-hero.pl-valla { container-type: inline-size; overflow: visible; padding: 1.5cqi 0; border: 0; border-radius: 0; background: none; color: #1A1110; }  /* sin recuadro: la frase va directa sobre la página */
+    .pl-valla p { margin: 0; font: 400 7.35cqi/1.08 'Familjen Grotesk', Inter, sans-serif; letter-spacing: -.045em; white-space: nowrap; }  /* dos líneas que llenan el ancho */
     .pl-br { display: none; }  /* saltos de línea que solo se usan en móvil */
     .pl-palabra { display: inline-block; width: 1.05em; height: 1.155em; margin: 0 .04em; vertical-align: -.22em; }  /* cada Bocaza ocupa lo que una palabra */
     .pl-palabra svg { display: block; width: 100%; height: 100%; overflow: visible; }
@@ -112,14 +118,14 @@
       .pl-cuatro { grid-template-columns: repeat(2, minmax(0, 1fr)); }    /* animaciones de dos en dos */
       .pl-apps { grid-template-columns: minmax(0, 1fr); grid-template-areas: "a" "b" "c" "e" "g" "d"; }  /* en móvil, una foto debajo de otra */
       .pl-apps img { aspect-ratio: 1 !important; }                         /* todas cuadradas en móvil */
+      .pl-web { grid-template-columns: minmax(0, 1fr); } .pl-web a:last-child { width: 62%; justify-self: center; }  /* landing: escritorio arriba, móvil debajo */
       .pl-paleta { aspect-ratio: 4 / 3; }                                  /* la paleta conserva su alto */
       .pl-id2 { grid-template-columns: minmax(0, 1fr); }                   /* tipografía y combinador, uno debajo de otro */
       .pl-tipo { min-height: 0; } .pl-tipo-frase { font-size: 12cqi; min-height: 3.1em; }  /* en móvil, la frase un poco más grande */
       .pl-tipo-pie { grid-template-columns: auto auto; } .pl-tipo-pie p { grid-column: 1 / -1; justify-self: start; text-align: left; }  /* el texto de ejemplo baja */
       .pl-comb { aspect-ratio: 4 / 5; }                                    /* el combinador, como un cartel */
       .pl-bz figcaption { font-size: 12px; } .pl-bz figcaption b { font-size: 16px; }
-      html[data-t="lila"] .v2-cs-hero.pl-valla { aspect-ratio: 4 / 5; }   /* portada en móvil: más alta */
-      .pl-valla p { font-size: 14.6cqi; line-height: 1.1; }               /* letra mayor, en cinco líneas */
+      .pl-valla p { font-size: 14cqi; line-height: 1.1; }               /* letra mayor, en cuatro líneas */
       .pl-br { display: inline; }                                          /* activa los saltos de móvil */
     }
   </style>
@@ -247,7 +253,7 @@
               <span class="pl-comb-logo" aria-label="PLANAZO">PLANAZ<svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="50" style="fill:currentColor"/><path d="M20 35H80a6 6 0 0 1 6 7C84 65 69 81 50 81S16 65 14 42a6 6 0 0 1 6-7Z" style="fill:var(--f)"/><rect x="37" y="30" width="12" height="20" rx="3.5" style="fill:currentColor"/><rect x="51" y="30" width="12" height="17" rx="3.5" style="fill:currentColor"/></svg></span>
               <div class="pl-comb-pj" aria-hidden="true"></div>
               <p class="pl-comb-t" aria-live="polite">Conciertazo</p>
-              <p class="pl-comb-d">Vie 12 · 21:00 · La Nave</p>
+              <p class="pl-comb-d">Vie 13 · 21:00 · La Nave</p>
               <div class="pl-chips" role="group" aria-label="Elige un tipo de plan">
                 <button type="button" data-plan="sofa" aria-pressed="true">Conciertos</button>
                 <button type="button" data-plan="tostadora" aria-pressed="false">Mercados</button>
@@ -307,6 +313,14 @@
             <img class="a" src="mockups/caballete-expazo.jpg" width="2000" height="1500" alt="Caballete amarillo frente a una cafetería anunciando el Expazo con el Flexo" loading="lazy" />
             <img class="c" src="mockups/gorra.jpg" width="1024" height="1024" alt="Gorra naranja con el Mando bordado sobre un bloque de hormigón al sol" loading="lazy" />
           </div>
+        </div>
+        <div class="pl-row pl-gap pl-tag"><b>Landing</b></div>
+        <div class="pl-row">
+          <div class="pl-web"><!-- capturas de la landing: escritorio y móvil -->
+            <a href="landing/" target="_blank" rel="noopener"><img src="mockups/landing-escritorio.jpg" width="2880" height="1800" alt="Landing de PLANAZO en escritorio, como una guía de ocio: el titular «Esta semana hay once planes. Y tú mirando el móvil.» y la verbena como plan de la semana" loading="lazy" /></a>
+            <a href="landing/" target="_blank" rel="noopener"><img src="mockups/landing-movil.jpg" width="780" height="1688" alt="Landing de PLANAZO en el móvil: filtros por Conciertazos, Mercadazos, Paseazos y Expazos y tarjetas de planes con foto" loading="lazy" /></a>
+          </div>
+          <a class="pl-ver" href="landing/" target="_blank" rel="noopener">Ver la landing <span aria-hidden="true">↗</span></a>
         </div>
       </div>
     </section>
@@ -416,10 +430,10 @@
     const quieto = matchMedia('(prefers-reduced-motion: reduce)').matches; // si se prefiere menos movimiento
     // Colores de cada Bocaza y de su plan (los mismos que en los carteles)
     const PJ = {
-      sofa: { c: { '--c1': '#2337E8', '--c2': '#FFC400', '--zapato': '#FF4A1C' }, f: '#FF93CF', t: '#1A1110', plan: 'Conciertazo', d: 'Vie 12 · 21:00 · La Nave', rot: -6 },
-      tostadora: { c: { '--c1': '#FF4A1C', '--c2': '#FFF3DE', '--zapato': '#FFC400', '--pierna': '#FFF3DE' }, f: '#2337E8', t: '#FFF3DE', plan: 'Mercadazo', d: 'Dom 14 · 11:00 · Plaza Nueva' },
-      mando: { c: { '--c1': '#FF93CF', '--c2': '#2337E8', '--zapato': '#2337E8' }, f: '#FF4A1C', t: '#1A1110', plan: 'Paseazo', d: 'Sáb 20 · 09:30 · Funicular' },
-      flexo: { c: { '--c1': '#FF4A1C', '--c3': '#2337E8', '--zapato': '#FFF3DE' }, f: '#FFC400', t: '#1A1110', plan: 'Expazo', d: 'Jue 25 · 19:00 · Sala Grito' },
+      sofa: { c: { '--c1': '#2337E8', '--c2': '#FFC400', '--zapato': '#FF4A1C' }, f: '#FF93CF', t: '#1A1110', plan: 'Conciertazo', d: 'Vie 13 · 21:00 · La Nave', rot: -6 },
+      tostadora: { c: { '--c1': '#FF4A1C', '--c2': '#FFF3DE', '--zapato': '#FFC400', '--pierna': '#FFF3DE' }, f: '#2337E8', t: '#FFF3DE', plan: 'Mercadazo', d: 'Dom 15 · 11:00 · Plaza Nueva' },
+      mando: { c: { '--c1': '#FF93CF', '--c2': '#2337E8', '--zapato': '#2337E8' }, f: '#FF4A1C', t: '#1A1110', plan: 'Paseazo', d: 'Sáb 14 · 09:30 · Funicular' },
+      flexo: { c: { '--c1': '#FF4A1C', '--c3': '#2337E8', '--zapato': '#FFF3DE' }, f: '#FFC400', t: '#1A1110', plan: 'Expazo', d: 'Jue 12 · 19:00 · Sala Grito' },
     };
 
     // Dibuja un Bocaza en un SVG nuevo (copia sus formas: así Safari repinta bien los colores)
