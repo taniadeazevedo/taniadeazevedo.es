@@ -116,10 +116,10 @@
     .quien { padding-bottom: clamp(56px, 8vw, 110px); }
     .quien h2 { margin-bottom: 22px; font: 400 clamp(30px, 3.6vw, 48px)/1 'Dela Gothic One', Impact, sans-serif; letter-spacing: -.04em; }
     .quien-rejilla { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(10px, 1.4vw, 20px); }
-    .bocaza { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; padding: 18px; border: 0; border-radius: var(--radio); background: var(--c); color: var(--ct); text-align: left; cursor: pointer; }  /* cada Bocaza, sobre su color */
-    .bocaza svg { align-self: center; width: 78%; height: auto; aspect-ratio: 1; margin: 6px 0 14px; overflow: visible; transform-origin: 50% 100%; }
+    .bocaza { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; padding: clamp(12px, 1.6vw, 18px); border: 0; border-radius: var(--radio); background: var(--c); color: var(--ct); text-align: left; cursor: pointer; }  /* cada Bocaza, sobre su color */
+    .bocaza svg { align-self: center; width: 70%; max-width: 200px; height: auto; aspect-ratio: 1; margin: 6px 0 14px; overflow: visible; transform-origin: 50% 100%; }
     .bocaza small { font-weight: 600; font-size: 14px; opacity: .8; }       /* «El Sofá» */
-    .bocaza b { font: 400 clamp(20px, 2vw, 28px)/1 'Dela Gothic One', Impact, sans-serif; letter-spacing: -.03em; }  /* «El fiestero» */
+    .bocaza b { font: 400 clamp(16px, 2vw, 28px)/1 'Dela Gothic One', Impact, sans-serif; letter-spacing: -.03em; }  /* «El fiestero» */
     .bocaza span { margin-top: 6px; font-weight: 600; font-size: 15px; }   /* «→ Conciertazos» */
     .bocaza:focus-visible { outline: 3px solid var(--tinta); outline-offset: 3px; }
     .salta { animation: salta .5s ease-out; }                               /* el salto de siempre */
@@ -155,7 +155,7 @@
 
     /* ---------- Tablet y móvil ---------- */
     @media (max-width: 960px) {
-      .rejilla, .quien-rejilla { grid-template-columns: repeat(2, minmax(0, 1fr)); }  /* de dos en dos */
+      .rejilla { grid-template-columns: repeat(2, minmax(0, 1fr)); }       /* tarjetas de dos en dos */
       .cabecera nav { display: none; }                                      /* en pantallas pequeñas, las categorías van en los filtros */
     }
     @media (max-width: 640px) {
@@ -166,6 +166,7 @@
       .chip { flex: none; }
       .form-fila { flex-direction: column; }
       .ficha { margin: auto auto 0; width: 100vw; max-width: none; border-radius: 24px 24px 0 0; }  /* en móvil, la ficha sube desde abajo */
+      .quien-rejilla { grid-template-columns: repeat(2, minmax(0, 1fr)); } /* los cuatro Bocazas, de dos en dos solo en el móvil */
       .pie-cols { grid-template-columns: 1fr 1fr; } .pie-cols > div:first-child { grid-column: 1 / -1; }
     }
   </style>
