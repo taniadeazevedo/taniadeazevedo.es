@@ -35,11 +35,13 @@
     /* Portada: la frase de la marca con los Bocazas entre las palabras (en código, no en foto) */
     html[data-t="lila"] .v2-cs-hero.pl-valla { container-type: inline-size; display: flex; align-items: center; aspect-ratio: 16 / 9; padding: 0 8cqi; background: #E7E2D8; color: #1A1110; }  /* fondo arena */
     .pl-valla p { margin: 0; font: 400 9.4cqi/1.06 'Familjen Grotesk', Inter, sans-serif; letter-spacing: -.045em; white-space: nowrap; }  /* tres líneas que llenan el ancho */
+    .pl-br { display: none; }  /* saltos de línea que solo se usan en móvil */
     .pl-palabra { display: inline-block; width: 1.05em; height: 1.155em; margin: 0 .04em; vertical-align: -.22em; }  /* cada Bocaza ocupa lo que una palabra */
     .pl-palabra svg { display: block; width: 100%; height: 100%; overflow: visible; }
     /* Identidad: logotipo y paleta */
     .pl-id { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(8px, 1vw, 14px); }  /* logo grande y paleta */
-    .pl-logo { display: grid; place-items: center; aspect-ratio: 16 / 10; background: var(--f, #FF4A1C); color: var(--t, #1A1110); transition: background .3s, color .3s; }  /* el logo sobre el color elegido en la paleta (tomate al empezar) */
+    .pl-logo { display: grid; place-items: center; aspect-ratio: 16 / 10; background: var(--f, #FF4A1C); color: var(--t, #1A1110); position: relative; transition: background .3s, color .3s; }  /* el logo sobre el color elegido en la paleta (tomate al empezar) */
+    .pl-logo .pl-pista { display: block; letter-spacing: 0; position: absolute; left: clamp(12px, 1.4vw, 18px); bottom: clamp(10px, 1.2vw, 16px); font: 600 clamp(12px, 1vw, 14px)/1 'Familjen Grotesk', Inter, sans-serif; }  /* aviso: la paleta se puede tocar */
     .pl-sw[aria-pressed="true"] b::after { content: " ●"; }  /* marca el color que está puesto */
     .pl-logo span { display: inline-flex; align-items: baseline; font: 400 clamp(40px, 6.6vw, 92px)/.9 'Dela Gothic One', Impact, sans-serif; letter-spacing: -.045em; }  /* la palabra */
     .pl-logo svg { width: .757em; height: .757em; margin-left: .04em; flex: none; translate: 0 .022em; }  /* la O con boca */
@@ -98,7 +100,7 @@
     .pl-bz-v video { pointer-events: none; }
     .pl-bz figcaption { display: grid; gap: 3px; padding: 12px 4px 0; font: 500 13px/1.4 Inter, sans-serif; color: var(--v2-ink, #1d1530); }  /* ficha del personaje */
     .pl-bz figcaption b { font: 400 18px/1.1 'Dela Gothic One', Impact, sans-serif; letter-spacing: -.02em; }
-    .pl-bz figcaption em { margin-top: -1px; font: 600 13px/1.2 'Familjen Grotesk', Inter, sans-serif; font-style: normal; }  /* su personalidad, bajo el nombre */
+    .pl-bz figcaption em { margin: 2px 0 4px; font: 600 13px/1.2 'Familjen Grotesk', Inter, sans-serif; font-style: normal; }  /* su personalidad, bajo el nombre */
     .pl-bz figcaption span { display: flex; align-items: center; gap: 7px; opacity: .72; }
     .pl-bz figcaption span::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--c); }  /* punto con su color */
     .pl-bz figcaption q { font-style: italic; }
@@ -116,6 +118,9 @@
       .pl-tipo-pie { grid-template-columns: auto auto; } .pl-tipo-pie p { grid-column: 1 / -1; justify-self: start; text-align: left; }  /* el texto de ejemplo baja */
       .pl-comb { aspect-ratio: 4 / 5; }                                    /* el combinador, como un cartel */
       .pl-bz figcaption { font-size: 12px; } .pl-bz figcaption b { font-size: 16px; }
+      html[data-t="lila"] .v2-cs-hero.pl-valla { aspect-ratio: 4 / 5; }   /* portada en móvil: más alta */
+      .pl-valla p { font-size: 14.6cqi; line-height: 1.1; }               /* letra mayor, en cinco líneas */
+      .pl-br { display: inline; }                                          /* activa los saltos de móvil */
     }
   </style>
 </head>
@@ -164,7 +169,7 @@
           <p class="v2-cs-lede">PLANAZO reúne planes para el tiempo libre: conciertos, mercados, paseos y exposiciones. Su idea es sencilla: <strong>los objetos de casa ya salen más que tú</strong>.</p>
         </div>
         <figure class="v2-cs-hero pl-valla" role="img" aria-label="Íbamos a salir un rato. La vuelta se nos ha ido de las manos. Con el Sofá, la Tostadora, el Mando y el Flexo entre las palabras">
-          <p aria-hidden="true">Íbamos a salir un rato. <span class="pl-palabra" data-pj="sofa"></span><br>La vuelta <span class="pl-palabra" data-pj="tostadora"></span> se nos ha ido <span class="pl-palabra" data-pj="mando"></span><br>de las manos. <span class="pl-palabra" data-pj="flexo"></span></p>
+          <p aria-hidden="true">Íbamos a salir <br class="pl-br">un rato. <span class="pl-palabra" data-pj="sofa"></span><br>La vuelta <span class="pl-palabra" data-pj="tostadora"></span> <br class="pl-br">se nos ha ido <span class="pl-palabra" data-pj="mando"></span><br>de las manos. <span class="pl-palabra" data-pj="flexo"></span></p>
         </figure>
       </div>
     </section>
@@ -217,6 +222,7 @@
           <div class="pl-id">
             <div class="pl-marco pl-logo" role="img" aria-label="Logotipo de PLANAZO: la O es una boca con dos paletas que se ríe">
               <span aria-hidden="true">PLANAZ<svg class="pl-o" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="currentColor"/><g class="pl-boca"><path d="M20 35H80a6 6 0 0 1 6 7C84 65 69 81 50 81S16 65 14 42a6 6 0 0 1 6-7Z" style="fill:var(--f, #FF4A1C)"/><rect x="37" y="30" width="12" height="20" rx="3.5" fill="currentColor"/><rect x="51" y="30" width="12" height="17" rx="3.5" fill="currentColor"/></g></svg></span>
+              <span class="pl-pista" aria-hidden="true">Prueba los colores</span>
             </div>
             <div class="pl-marco pl-paleta" role="group" aria-label="Paleta de PLANAZO. Pulsa un color para ponerlo de fondo del logo">
               <button type="button" class="pl-sw" data-hex="#FF4A1C" aria-pressed="true" style="background:#FF4A1C;color:#1A1110"><b>Tomate</b><span class="pl-hex">#FF4A1C</span><i>Aire libre</i></button>
@@ -311,7 +317,7 @@
       </div>
       <div class="v2-cs-result">
         <div class="v2-cs-wrap"><div class="v2-cs-body v2-cs-body-end">
-          <p>Una identidad de colores vivos que se apoya en cuatro personajes. <strong>Cada uno representa un tipo de plan</strong> y todos funcionan en carteles, merch, redes y animación. <strong>Y una forma de hablar que se reconoce sin ver el logo.</strong></p>
+          <p>Una identidad de colores vivos que se apoya en cuatro personajes. <strong>Cada uno representa un tipo de plan</strong> y todos funcionan en carteles, merch, redes y animación, con <strong>una forma de hablar propia que se reconoce incluso sin ver el logo</strong>.</p>
         </div></div>
       </div>
     </section>
