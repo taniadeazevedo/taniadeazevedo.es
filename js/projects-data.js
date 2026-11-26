@@ -52,6 +52,15 @@ window.PROJECTS = [
     url: 'liv-golf/'
   },
   {
+    title: 'PLANAZO',
+    cats: ['branding', 'grafico', 'web'],
+    label: 'Identidad visual e ilustración',
+    desc: 'Identidad de una plataforma de planes de ocio: cuatro objetos de casa que se van de plan, en carteles, merch, animación y una web tipo guía de ocio.',
+    image: 'planazo/mockups/banderolas-expazo.jpg',
+    alt: 'Dos banderolas de PLANAZO en farolas, una amarilla y otra azul, con el Flexo anunciando una expo',
+    url: 'planazo/'
+  },
+  {
     title: 'ENTZUN',
     cats: ['branding', 'grafico', 'web'],
     label: 'Branding e identidad visual',
