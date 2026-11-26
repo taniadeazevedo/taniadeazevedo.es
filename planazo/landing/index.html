@@ -7,10 +7,10 @@
   <meta name="description" content="Once planes cerca de casa esta semana: conciertos, mercados, aire libre y expos. Landing conceptual de PLANAZO, por Tania de Azevedo." />
   <meta name="robots" content="noindex" /><!-- es una pieza del portfolio, no una web real -->
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-  <!-- Tipografías de la marca: Dela Gothic One (titulares) y Familjen Grotesk (textos) -->
+  <!-- Tipografías de la marca: Lilita One (titulares) y Familjen Grotesk (textos) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Familjen+Grotesk:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Familjen+Grotesk:wght@400;600&display=swap" rel="stylesheet" />
   <style>
     /* ---------- Colores de la marca ---------- */
     :root {
@@ -34,8 +34,8 @@
     .solo-lector { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
 
     /* ---------- Logo: PLANAZ + la O con boca ---------- */
-    .logo { display: inline-flex; align-items: baseline; font: 400 26px/.9 'Dela Gothic One', Impact, sans-serif; letter-spacing: -.045em; text-decoration: none; }
-    .logo svg { width: .757em; height: .757em; margin-left: .04em; flex: none; translate: 0 .022em; }
+    .logo { display: inline-flex; align-items: baseline; font: 400 26px/.9 'Lilita One', Impact, sans-serif; letter-spacing: -.01em; text-decoration: none; }
+    .logo svg { width: .7em; height: .7em; width: 1cap; height: 1cap; margin-left: .04em; flex: none; }
 
     /* ---------- Cabecera ---------- */
     .cabecera { position: sticky; top: 0; z-index: 5; background: var(--nata); border-bottom: 1px solid var(--linea); }  /* se queda arriba al bajar */
@@ -52,13 +52,13 @@
     /* ---------- Título de la página ---------- */
     .intro { padding: clamp(36px, 6vw, 80px) 0 clamp(24px, 3vw, 40px); }
     .antetitulo { font-weight: 600; font-size: 15px; }                      /* «Semana del 12 al 15» */
-    .intro h1 { max-width: 14em; margin-top: 10px; font: 400 clamp(40px, 6.4vw, 92px)/.92 'Dela Gothic One', Impact, sans-serif; letter-spacing: -.045em; }
+    .intro h1 { max-width: 14em; margin-top: 10px; font: 400 clamp(40px, 6.4vw, 92px)/.92 'Lilita One', Impact, sans-serif; letter-spacing: -.01em; }
 
     /* ---------- Plan destacado ---------- */
     .destacado { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); border-radius: var(--radio); overflow: hidden; background: var(--tinta); color: var(--nata); }
     .destacado .imagen { aspect-ratio: auto; min-height: 100%; border-radius: 0; }  /* la foto ocupa todo el alto del destacado */
     .destacado-txt { display: flex; flex-direction: column; justify-content: center; gap: 14px; padding: clamp(24px, 4vw, 56px); }
-    .destacado-txt h2 { font: 400 clamp(30px, 3.6vw, 52px)/.98 'Dela Gothic One', Impact, sans-serif; letter-spacing: -.04em; }
+    .destacado-txt h2 { font: 400 clamp(30px, 3.6vw, 52px)/.98 'Lilita One', Impact, sans-serif; letter-spacing: -.01em; }
     .destacado-txt .resumen { font-size: clamp(17px, 1.4vw, 20px); opacity: .85; }
     .destacado-botones { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
     .destacado .boton { background: var(--yema); color: var(--tinta); }
@@ -67,7 +67,7 @@
     /* ---------- Filtros por categoría ---------- */
     .agenda { scroll-margin-top: 68px; padding: clamp(48px, 7vw, 96px) 0 clamp(56px, 8vw, 110px); }  /* al saltar aquí, la cabecera no tapa el título */
     .agenda-top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 18px; margin-bottom: 26px; }
-    .agenda h2 { font: 400 clamp(30px, 3.6vw, 48px)/1 'Dela Gothic One', Impact, sans-serif; letter-spacing: -.04em; }
+    .agenda h2 { font: 400 clamp(30px, 3.6vw, 48px)/1 'Lilita One', Impact, sans-serif; letter-spacing: -.01em; }
     .chips { display: flex; flex-wrap: wrap; gap: 8px; }
     .chip { display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 16px 0 10px; border: 1.5px solid var(--tinta); border-radius: 999px; background: transparent; font-weight: 600; font-size: 15px; cursor: pointer; transition: background .2s, color .2s; }
     .chip i { width: 18px; height: 18px; border-radius: 50%; background: var(--c, var(--tinta)); }  /* punto de color de la categoría */
@@ -102,7 +102,7 @@
     .ficha::backdrop { background: rgb(26 17 16 / .6); }                    /* la página se oscurece detrás */
     .ficha .imagen { aspect-ratio: 16 / 9; border-radius: 0; }
     .ficha-cuerpo { display: grid; gap: 12px; padding: clamp(22px, 4vw, 36px); }
-    .ficha h2 { font: 400 clamp(28px, 4vw, 42px)/1 'Dela Gothic One', Impact, sans-serif; letter-spacing: -.04em; }
+    .ficha h2 { font: 400 clamp(28px, 4vw, 42px)/1 'Lilita One', Impact, sans-serif; letter-spacing: -.01em; }
     .ficha-datos { display: flex; flex-wrap: wrap; gap: 6px 18px; padding: 12px 0; border-block: 1px solid var(--linea); font-weight: 600; font-size: 15px; }  /* día, sitio y precio */
     .ficha-desc { font-size: 17px; }
     .ficha-gusta { padding: 14px 18px; border-radius: 14px; background: var(--c); color: var(--ct); font-size: 17px; }  /* «Te gustará si eres de…», en el color de su categoría */
@@ -114,12 +114,12 @@
 
     /* ---------- ¿Qué plan eres? ---------- */
     .quien { padding-bottom: clamp(56px, 8vw, 110px); }
-    .quien h2 { margin-bottom: 22px; font: 400 clamp(30px, 3.6vw, 48px)/1 'Dela Gothic One', Impact, sans-serif; letter-spacing: -.04em; }
+    .quien h2 { margin-bottom: 22px; font: 400 clamp(30px, 3.6vw, 48px)/1 'Lilita One', Impact, sans-serif; letter-spacing: -.01em; }
     .quien-rejilla { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(10px, 1.4vw, 20px); }
     .bocaza { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; padding: clamp(12px, 1.6vw, 18px); border: 0; border-radius: var(--radio); background: var(--c); color: var(--ct); text-align: left; cursor: pointer; }  /* cada Bocaza, sobre su color */
     .bocaza svg { align-self: center; width: 70%; max-width: 200px; height: auto; aspect-ratio: 1; margin: 6px 0 14px; overflow: visible; transform-origin: 50% 100%; }
     .bocaza small { font-weight: 600; font-size: 14px; opacity: .8; }       /* «El Sofá» */
-    .bocaza b { font: 400 clamp(16px, 2vw, 28px)/1 'Dela Gothic One', Impact, sans-serif; letter-spacing: -.03em; }  /* «El fiestero» */
+    .bocaza b { font: 400 clamp(16px, 2vw, 28px)/1 'Lilita One', Impact, sans-serif; letter-spacing: -.01em; }  /* «El fiestero» */
     .bocaza span { margin-top: 6px; font-weight: 600; font-size: 15px; }   /* «→ Conciertazos» */
     .bocaza:focus-visible { outline: 3px solid var(--tinta); outline-offset: 3px; }
     .salta { animation: salta .5s ease-out; }                               /* el salto de siempre */
@@ -128,7 +128,7 @@
     /* ---------- Newsletter ---------- */
     .news { background: var(--klein); color: var(--nata); }
     .news .envoltorio { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(24px, 5vw, 72px); align-items: center; padding-top: clamp(48px, 7vw, 96px); padding-bottom: clamp(48px, 7vw, 96px); }
-    .news h2 { font: 400 clamp(36px, 5vw, 72px)/.95 'Dela Gothic One', Impact, sans-serif; letter-spacing: -.045em; }
+    .news h2 { font: 400 clamp(36px, 5vw, 72px)/.95 'Lilita One', Impact, sans-serif; letter-spacing: -.01em; }
     .news-txt { margin-top: 14px; font-size: clamp(17px, 1.4vw, 20px); }
     .form { display: grid; gap: 12px; }
     .form-fila { display: flex; gap: 8px; }
@@ -139,7 +139,7 @@
     .acepto { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; line-height: 1.35; }
     .acepto input { width: 18px; height: 18px; margin: 0; accent-color: var(--yema); flex: none; }
     .sin-spam { font-size: 14px; opacity: .75; }
-    .gracias { font: 400 clamp(24px, 2.4vw, 34px)/1.1 'Dela Gothic One', Impact, sans-serif; color: var(--yema); }
+    .gracias { font: 400 clamp(24px, 2.4vw, 34px)/1.1 'Lilita One', Impact, sans-serif; color: var(--yema); }
 
     /* ---------- Pie ---------- */
     .pie { padding: clamp(40px, 5vw, 64px) 0 32px; }
@@ -191,7 +191,7 @@
     <!-- Título -->
     <section class="intro" aria-labelledby="titular">
       <p class="antetitulo">Semana del 12 al 15</p>
-      <h1 id="titular">Esta semana hay once planes. Y tú mirando el móvil.</h1>
+      <h1 id="titular">Esta semana hay once planes.<br> Y tú mirando el móvil.</h1>
     </section>
 
     <!-- Plan destacado -->

@@ -20,7 +20,7 @@
   <link rel="preload" as="font" type="font/woff2" href="../fonts/strichpunkt/strichpunkt-sans-latin-wght-normal.woff2" crossorigin />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Dela+Gothic+One&family=Familjen+Grotesk:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lilita+One&family=Familjen+Grotesk:wght@400;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/v2.css" />
   <link rel="stylesheet" href="../css/v2-case.css" />
   <link rel="stylesheet" href="../css/v2-lila.css" />
@@ -50,8 +50,8 @@
     .pl-logo { display: grid; place-items: center; aspect-ratio: 16 / 10; background: var(--f, #FF4A1C); color: var(--t, #1A1110); position: relative; transition: background .3s, color .3s; }  /* el logo sobre el color elegido en la paleta (tomate al empezar) */
     .pl-logo .pl-pista { display: block; letter-spacing: 0; position: absolute; left: clamp(12px, 1.4vw, 18px); bottom: clamp(10px, 1.2vw, 16px); font: 600 clamp(12px, 1vw, 14px)/1 'Familjen Grotesk', Inter, sans-serif; }  /* aviso: la paleta se puede tocar */
     .pl-sw[aria-pressed="true"] b::after { content: " ●"; }  /* marca el color que está puesto */
-    .pl-logo span { display: inline-flex; align-items: baseline; font: 400 clamp(40px, 6.6vw, 92px)/.9 'Dela Gothic One', Impact, sans-serif; letter-spacing: -.045em; }  /* la palabra */
-    .pl-logo svg { width: .757em; height: .757em; margin-left: .04em; flex: none; translate: 0 .022em; }  /* la O con boca */
+    .pl-logo span { display: inline-flex; align-items: baseline; font: 400 clamp(40px, 6.6vw, 92px)/.9 'Lilita One', Impact, sans-serif; letter-spacing: -.01em; }  /* la palabra */
+    .pl-logo svg { width: .7em; height: .7em; width: 1cap; height: 1cap; margin-left: .04em; flex: none; }  /* la O con boca */
     .pl-paleta { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(3, minmax(0, 1fr)); }  /* seis colores */
     .pl-paleta div { display: flex; flex-direction: column; justify-content: flex-end; padding: clamp(12px, 1.4vw, 18px); font: 500 12px/1.35 Inter, sans-serif; }  /* cada color */
     .pl-paleta b { display: block; font-weight: 600; font-size: 13px; }  /* nombre del color */
@@ -79,20 +79,20 @@
     .pl-id2 { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(8px, 1vw, 14px); }  /* tipografía y combinador */
     .pl-tipo { container-type: inline-size; display: flex; flex-direction: column; gap: clamp(14px, 2vw, 24px); padding: clamp(18px, 2.4vw, 32px); background: #FF4A1C; color: #1A1110; }  /* sobre tomate */
     .pl-tipo-top { display: flex; justify-content: space-between; gap: 12px; font: 600 clamp(11px, .95vw, 13px)/1.3 'Familjen Grotesk', Inter, sans-serif; letter-spacing: .01em; }  /* cabecera del bloque */
-    .pl-tipo-frase { flex: 1; display: flex; align-items: center; margin: 0; font: 400 10.4cqi/.96 'Dela Gothic One', Impact, sans-serif; letter-spacing: -.035em; }  /* la frase llena el ancho y el hueco central */
+    .pl-tipo-frase { flex: 1; display: flex; align-items: center; margin: 0; font: 400 11.3cqi/.96 'Lilita One', Impact, sans-serif; letter-spacing: -.01em; }  /* la frase llena el ancho y el hueco central */
     .pl-tipo-frase span { display: block; }
     .pl-tipo-pie { display: grid; grid-template-columns: auto auto minmax(0, 1fr); align-items: end; gap: clamp(14px, 2.4vw, 32px); padding-top: clamp(12px, 1.4vw, 18px); border-top: 2px solid currentColor; }  /* las dos fuentes y un texto de ejemplo */
     .pl-tipo-f { display: grid; gap: 4px; font: 600 clamp(10px, .9vw, 12px)/1.2 'Familjen Grotesk', Inter, sans-serif; }  /* muestra de cada fuente */
-    .pl-tipo-f b { font: 400 clamp(34px, 4.2vw, 56px)/.9 'Dela Gothic One', Impact, sans-serif; letter-spacing: -.03em; }  /* «Aa» en Dela */
+    .pl-tipo-f b { font: 400 clamp(34px, 4.2vw, 56px)/.9 'Lilita One', Impact, sans-serif; letter-spacing: -.01em; }  /* «Aa» en Lilita */
     .pl-tipo-f + .pl-tipo-f b { font: 600 clamp(36px, 4.4vw, 58px)/.9 'Familjen Grotesk', Inter, sans-serif; letter-spacing: -.02em; }  /* «Aa» en Familjen */
     .pl-tipo-pie p { margin: 0; justify-self: end; max-width: 17em; font: 400 clamp(13px, 1.1vw, 15px)/1.35 'Familjen Grotesk', Inter, sans-serif; text-align: right; }  /* texto de ejemplo */
     /* ---------- Combinador: eliges el plan y la marca se adapta ---------- */
     .pl-comb { position: relative; display: flex; flex-direction: column; padding: clamp(16px, 2vw, 26px); background: var(--f, #FF93CF); color: var(--t, #1A1110); transition: background .4s, color .4s; }
-    .pl-comb-logo { align-self: flex-start; display: inline-flex; align-items: baseline; font: 400 clamp(15px, 1.4vw, 19px)/.9 'Dela Gothic One', Impact, sans-serif; letter-spacing: -.045em; }  /* logo pequeño, como en los carteles */
-    .pl-comb-logo svg { width: .757em; height: .757em; margin-left: .04em; translate: 0 .022em; }
+    .pl-comb-logo { align-self: flex-start; display: inline-flex; align-items: baseline; font: 400 clamp(15px, 1.4vw, 19px)/.9 'Lilita One', Impact, sans-serif; letter-spacing: -.01em; }  /* logo pequeño, como en los carteles */
+    .pl-comb-logo svg { width: .7em; height: .7em; width: 1cap; height: 1cap; margin-left: .04em; }
     .pl-comb-pj { flex: 1; min-height: 150px; display: flex; align-items: center; justify-content: center; padding: 10px 0; }  /* hueco del personaje */
     .pl-comb-pj svg { display: block; width: 62%; height: auto; max-height: clamp(150px, 16vw, 220px); overflow: visible; }
-    .pl-comb-t { margin: 0; font: 400 clamp(30px, 3.6vw, 50px)/.95 'Dela Gothic One', Impact, sans-serif; letter-spacing: -.04em; }  /* nombre del plan */
+    .pl-comb-t { margin: 0; font: 400 clamp(30px, 3.6vw, 50px)/.95 'Lilita One', Impact, sans-serif; letter-spacing: -.01em; }  /* nombre del plan */
     .pl-comb-d { margin: 8px 0 0; padding-top: 8px; border-top: 2px solid currentColor; font: 600 clamp(12px, 1.05vw, 14px)/1.3 'Familjen Grotesk', Inter, sans-serif; }  /* día, hora y sitio */
     .pl-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: clamp(12px, 1.4vw, 18px); }  /* los cuatro planes */
     .pl-chips button { height: 30px; padding: 0 12px; border: 2px solid currentColor; border-radius: 999px; background: transparent; color: inherit; font: 600 12px/1 'Familjen Grotesk', Inter, sans-serif; cursor: pointer; transition: background .2s, color .2s; }
@@ -106,7 +106,7 @@
     .pl-bz-v:focus-visible { outline: 3px solid #7c5cff; outline-offset: 3px; }
     .pl-bz-v video { pointer-events: none; }
     .pl-bz figcaption { display: grid; gap: 3px; padding: 12px 4px 0; font: 500 13px/1.4 Inter, sans-serif; color: var(--v2-ink, #1d1530); }  /* ficha del personaje */
-    .pl-bz figcaption b { font: 400 18px/1.1 'Dela Gothic One', Impact, sans-serif; letter-spacing: -.02em; }
+    .pl-bz figcaption b { font: 400 18px/1.1 'Lilita One', Impact, sans-serif; letter-spacing: -.01em; }
     .pl-bz figcaption em { margin: 2px 0 4px; font: 600 13px/1.2 'Familjen Grotesk', Inter, sans-serif; font-style: normal; }  /* su personalidad, bajo el nombre */
     .pl-bz figcaption span { display: flex; align-items: center; gap: 7px; opacity: .72; }
     .pl-bz figcaption span::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--c); }  /* punto con su color */
@@ -124,7 +124,7 @@
       .pl-web-par { grid-template-columns: minmax(0, 1fr); } .pl-movil { display: none; }  /* en el móvil ya se ve la versión móvil: sobra la vista de al lado */
       .pl-paleta { aspect-ratio: 4 / 3; }                                  /* la paleta conserva su alto */
       .pl-id2 { grid-template-columns: minmax(0, 1fr); }                   /* tipografía y combinador, uno debajo de otro */
-      .pl-tipo { min-height: 0; } .pl-tipo-frase { font-size: 12cqi; min-height: 3.1em; }  /* en móvil, la frase un poco más grande */
+      .pl-tipo { min-height: 0; } .pl-tipo-frase { font-size: 13cqi; min-height: 3.1em; }  /* en móvil, la frase un poco más grande */
       .pl-tipo-pie { grid-template-columns: auto auto; } .pl-tipo-pie p { grid-column: 1 / -1; justify-self: start; text-align: left; }  /* el texto de ejemplo baja */
       .pl-comb { aspect-ratio: 4 / 5; }                                    /* el combinador, como un cartel */
       .pl-bz figcaption { font-size: 12px; } .pl-bz figcaption b { font-size: 16px; }
@@ -247,7 +247,7 @@
               <div class="pl-tipo-top"><span>Tipografía</span><span>Dos fuentes, un tono</span></div>
               <p class="pl-tipo-frase"><span>Lo de quedarse en casa ya lo has probado.</span></p>
               <div class="pl-tipo-pie">
-                <span class="pl-tipo-f"><b aria-hidden="true">Aa</b>Dela Gothic One · Titulares</span>
+                <span class="pl-tipo-f"><b aria-hidden="true">Aa</b>Lilita One · Titulares</span>
                 <span class="pl-tipo-f"><b aria-hidden="true">Aa</b>Familjen Grotesk · Textos</span>
                 <p>Planes cerca de casa para quienes nunca saben decir que no a otro plan.</p>
               </div>
