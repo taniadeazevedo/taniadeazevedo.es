@@ -25,6 +25,7 @@
     /* ---------- Base ---------- */
     [hidden] { display: none !important; }
     *, *::before, *::after { box-sizing: border-box; }
+    html { overflow-anchor: none; }                                         /* al filtrar, el navegador no recoloca el scroll por su cuenta */
     body { margin: 0; background: var(--nata); color: var(--tinta); font: 400 17px/1.45 'Familjen Grotesk', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
     a { color: inherit; }
     h1, h2, h3, p { margin: 0; }
@@ -59,7 +60,9 @@
     .destacado-txt { display: flex; flex-direction: column; justify-content: center; gap: 14px; padding: clamp(24px, 4vw, 56px); }
     .destacado-txt h2 { font: 400 clamp(30px, 3.6vw, 52px)/.98 'Dela Gothic One', Impact, sans-serif; letter-spacing: -.04em; }
     .destacado-txt .resumen { font-size: clamp(17px, 1.4vw, 20px); opacity: .85; }
-    .destacado .boton { align-self: flex-start; margin-top: 8px; background: var(--yema); color: var(--tinta); }
+    .destacado-botones { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
+    .destacado .boton { background: var(--yema); color: var(--tinta); }
+    .destacado .claro-oscuro { background: transparent; color: var(--nata); box-shadow: inset 0 0 0 1.5px var(--nata); }  /* segundo botón, solo borde */
 
     /* ---------- Filtros por categoría ---------- */
     .agenda { scroll-margin-top: 68px; padding: clamp(48px, 7vw, 96px) 0 clamp(56px, 8vw, 110px); }  /* al saltar aquí, la cabecera no tapa el título */
@@ -82,10 +85,45 @@
     .precio { left: auto; right: 12px; background: var(--tinta); color: var(--nata); }  /* gratis o precio */
     .tarjeta-txt { display: grid; gap: 4px; padding: 14px 2px 0; }
     .tarjeta .cuando { font-weight: 600; font-size: 14px; }
-    .tarjeta h3 { font: 600 clamp(20px, 1.6vw, 23px)/1.15 'Familjen Grotesk', sans-serif; letter-spacing: -.01em; }
+    .tarjeta h3 { margin: 0; font: 600 clamp(20px, 1.6vw, 23px)/1.15 'Familjen Grotesk', sans-serif; letter-spacing: -.01em; }
     .tarjeta a:hover h3 { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 2px; }
     .tarjeta .resumen { font-size: 16px; opacity: .75; }
     .tarjeta .donde { font-size: 14px; opacity: .6; }
+
+    /* ---------- Tarjeta como botón (abre la ficha) ---------- */
+    .abrir { display: block; width: 100%; padding: 0; border: 0; background: none; text-align: left; cursor: pointer; }  /* toda la tarjeta se pulsa */
+    .abrir:hover .imagen img { scale: 1.03; }
+    .abrir:hover h3 { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 2px; }
+    .abrir:focus-visible { outline: 3px solid var(--klein); outline-offset: 4px; border-radius: var(--radio); }
+    .destacado .imagen { cursor: pointer; }                                 /* la foto del destacado también abre su ficha */
+
+    /* ---------- Ficha del plan (ventana) ---------- */
+    .ficha { width: min(640px, 100vw - 32px); max-height: calc(100svh - 32px); padding: 0; border: 0; border-radius: 24px; background: var(--nata); color: var(--tinta); overflow: auto; }
+    .ficha::backdrop { background: rgb(26 17 16 / .6); }                    /* la página se oscurece detrás */
+    .ficha .imagen { aspect-ratio: 16 / 9; border-radius: 0; }
+    .ficha-cuerpo { display: grid; gap: 12px; padding: clamp(22px, 4vw, 36px); }
+    .ficha h2 { font: 400 clamp(28px, 4vw, 42px)/1 'Dela Gothic One', Impact, sans-serif; letter-spacing: -.04em; }
+    .ficha-datos { display: flex; flex-wrap: wrap; gap: 6px 18px; padding: 12px 0; border-block: 1px solid var(--linea); font-weight: 600; font-size: 15px; }  /* día, sitio y precio */
+    .ficha-desc { font-size: 17px; }
+    .ficha-gusta { padding: 14px 18px; border-radius: 14px; background: var(--c); color: var(--ct); font-size: 17px; }  /* «Te gustará si eres de…», en el color de su categoría */
+    .ficha-gusta b { font-weight: 600; }
+    .ficha-botones { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 6px; }
+    .boton.claro { background: transparent; color: var(--tinta); box-shadow: inset 0 0 0 1.5px var(--tinta); }
+    .cerrar { position: absolute; z-index: 2; top: 12px; right: 12px; width: 42px; height: 42px; border: 0; border-radius: 50%; background: var(--nata); color: var(--tinta); font-size: 22px; line-height: 1; cursor: pointer; }  /* botón × sobre la foto */
+    .cerrar:focus-visible { outline: 3px solid var(--klein); outline-offset: 2px; }
+
+    /* ---------- ¿Qué plan eres? ---------- */
+    .quien { padding-bottom: clamp(56px, 8vw, 110px); }
+    .quien h2 { margin-bottom: 22px; font: 400 clamp(30px, 3.6vw, 48px)/1 'Dela Gothic One', Impact, sans-serif; letter-spacing: -.04em; }
+    .quien-rejilla { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(10px, 1.4vw, 20px); }
+    .bocaza { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; padding: 18px; border: 0; border-radius: var(--radio); background: var(--c); color: var(--ct); text-align: left; cursor: pointer; }  /* cada Bocaza, sobre su color */
+    .bocaza svg { align-self: center; width: 78%; height: auto; aspect-ratio: 1; margin: 6px 0 14px; overflow: visible; transform-origin: 50% 100%; }
+    .bocaza small { font-weight: 600; font-size: 14px; opacity: .8; }       /* «El Sofá» */
+    .bocaza b { font: 400 clamp(20px, 2vw, 28px)/1 'Dela Gothic One', Impact, sans-serif; letter-spacing: -.03em; }  /* «El fiestero» */
+    .bocaza span { margin-top: 6px; font-weight: 600; font-size: 15px; }   /* «→ Conciertazos» */
+    .bocaza:focus-visible { outline: 3px solid var(--tinta); outline-offset: 3px; }
+    .salta { animation: salta .5s ease-out; }                               /* el salto de siempre */
+    @keyframes salta { 30% { transform: translateY(-8%) scale(1.03, .97); } 60% { transform: translateY(0) scale(.97, 1.03); } }
 
     /* ---------- Newsletter ---------- */
     .news { background: var(--klein); color: var(--nata); }
@@ -113,11 +151,11 @@
     .pie-cols a:hover { text-decoration: underline; }
     .pie small { display: block; margin-top: 20px; font-size: 13px; opacity: .65; }
 
-    @media (prefers-reduced-motion: reduce) { .imagen img, .chip { transition: none; } }
+    @media (prefers-reduced-motion: reduce) { .imagen img, .chip { transition: none; } .salta { animation: none; } }
 
     /* ---------- Tablet y móvil ---------- */
     @media (max-width: 960px) {
-      .rejilla { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .rejilla, .quien-rejilla { grid-template-columns: repeat(2, minmax(0, 1fr)); }  /* de dos en dos */
       .cabecera nav { display: none; }                                      /* en pantallas pequeñas, las categorías van en los filtros */
     }
     @media (max-width: 640px) {
@@ -127,6 +165,7 @@
       .chips { flex-wrap: nowrap; overflow-x: auto; margin: 0 calc(-1 * var(--gutter)); padding: 2px var(--gutter); scrollbar-width: none; }  /* filtros en una fila que se desliza */
       .chip { flex: none; }
       .form-fila { flex-direction: column; }
+      .ficha { margin: auto auto 0; width: 100vw; max-width: none; border-radius: 24px 24px 0 0; }  /* en móvil, la ficha sube desde abajo */
       .pie-cols { grid-template-columns: 1fr 1fr; } .pie-cols > div:first-child { grid-column: 1 / -1; }
     }
   </style>
@@ -162,7 +201,7 @@
         <h2 id="dest-t">Verbena con orquesta en la plaza</h2>
         <p class="resumen">Orquesta de las de antes, churros a la una y nadie se va antes del último pasodoble.</p>
         <p class="antetitulo">Sáb 14 · 22:00 · Plaza Nueva · Gratis</p>
-        <a class="boton" href="#agenda" data-ir="conciertos">Más conciertazos</a>
+        <div class="destacado-botones"><button class="boton" type="button" id="dest-ver">Ver el plan</button><a class="boton claro-oscuro" href="#agenda" data-ir="conciertos">Más conciertazos</a></div>
       </div>
     </article>
 
@@ -181,7 +220,29 @@
       <p class="cuantos" id="cuantos" aria-live="polite">11 planes</p>
       <ul class="rejilla" id="rejilla"></ul>
     </section>
+
+    <!-- ¿Qué plan eres? Cada Bocaza lleva a su categoría -->
+    <section class="quien" aria-labelledby="t-quien">
+      <h2 id="t-quien">¿Qué plan eres?</h2>
+      <div class="quien-rejilla" id="quien"></div>
+    </section>
   </main>
+
+  <!-- Ficha del plan: una sola ventana que se rellena con el plan que se pulse -->
+  <dialog class="ficha" id="ficha" aria-labelledby="ficha-t">
+    <button class="cerrar" type="button" aria-label="Cerrar">×</button>
+    <span class="imagen" id="ficha-img"><img alt="" width="1408" height="768" /><span class="etiqueta"></span></span>
+    <div class="ficha-cuerpo">
+      <h2 id="ficha-t"></h2>
+      <p class="ficha-datos"></p>
+      <p class="ficha-desc"></p>
+      <p class="ficha-gusta"></p>
+      <div class="ficha-botones">
+        <button class="boton" type="button" id="apunto">Me apunto</button>
+        <button class="boton claro" type="button" id="ficha-cerrar">Seguir mirando</button>
+      </div>
+    </div>
+  </dialog>
 
   <!-- Newsletter -->
   <section class="news" id="newsletter" aria-labelledby="t-news">
@@ -297,17 +358,28 @@
 
       // Los once planes, por día, cada uno con su foto (en fotos/)
       const PLANES = [
-        { cat: 'expos', dia: 'Jue 12', hora: '19:00', titulo: 'Ilustración joven', donde: 'Sala Grito', precio: 'Gratis', resumen: 'Doce artistas de aquí y vino al final.', foto: 'ilustracion' },
-        { cat: 'conciertos', dia: 'Vie 13', hora: '21:00', titulo: 'Bandas locales en directo', donde: 'La Nave', precio: '8 €', resumen: 'Tres grupos de aquí. Uno acabará siendo tu favorito.', foto: 'bandas' },
-        { cat: 'mercados', dia: 'Sáb 14', hora: '10:00', titulo: 'Mercadillo de cerámica', donde: 'Plaza Nueva', precio: 'Gratis', resumen: 'Tazas, platos y jarrones que no caben en tu cocina.', foto: 'ceramica' },
-        { cat: 'aire', dia: 'Sáb 14', hora: '10:30', titulo: 'Subida al monte con vistas', donde: 'Salida desde el funicular', precio: 'Gratis', resumen: 'Una hora de cuesta y la ciudad entera a tus pies.', foto: 'monte' },
-        { cat: 'conciertos', dia: 'Sáb 14', hora: '20:00', titulo: 'Cuarteto de cuerda en la iglesia vieja', donde: 'San Antón', precio: '12 €', resumen: 'Bach con acústica de piedra. Se oye hasta el que tose.', foto: 'cuarteto' },
-        { cat: 'conciertos', dia: 'Sáb 14', hora: '22:00', titulo: 'Verbena con orquesta en la plaza', donde: 'Plaza Nueva', precio: 'Gratis', resumen: 'Orquesta de las de antes y churros a la una.', foto: 'verbena' },
-        { cat: 'mercados', dia: 'Dom 15', hora: '09:00', titulo: 'Mercado de productores', donde: 'Plaza del Ayuntamiento', precio: 'Gratis', resumen: 'Tomates que saben a tomate. Madruga si quieres queso.', foto: 'productores' },
-        { cat: 'mercados', dia: 'Dom 15', hora: '11:00', titulo: 'Feria del vinilo', donde: 'Antiguo matadero', precio: 'Gratis', resumen: 'Cajas y cajas de discos. Trae efectivo y paciencia.', foto: 'vinilo' },
-        { cat: 'expos', dia: 'Dom 15', hora: '12:00', titulo: 'Visita guiada con vermut', donde: 'Museo de la ría', precio: '6 €', resumen: 'Una hora de arte y otra de comentarlo.', foto: 'visita' },
-        { cat: 'conciertos', dia: 'Dom 15', hora: '13:00', titulo: 'Vermut con DJ', donde: 'Terraza del mercado', precio: 'Gratis', resumen: 'Empieza como un aperitivo. Ya sabes cómo acaba.', foto: 'vermut-dj' },
-        { cat: 'aire', dia: 'Dom 15', hora: '19:00', titulo: 'Cine al aire libre con picnic', donde: 'Parque de abajo', precio: 'Gratis', resumen: 'Trae manta. La peli la pone el parque.', foto: 'cine' },
+        { cat: 'expos', dia: 'Jue 12', hora: '19:00', titulo: 'Ilustración joven', donde: 'Sala Grito', precio: 'Gratis', resumen: 'Doce artistas de aquí y vino al final.', foto: 'ilustracion',
+          desc: 'Doce ilustradoras e ilustradores de la ciudad cuelgan juntos por primera vez. Hay láminas a la venta, una mesa de fanzines y vino al final para comentar lo que has visto como si supieras.', gusta: 'comprar láminas que nunca llegas a enmarcar.' },
+        { cat: 'conciertos', dia: 'Vie 13', hora: '21:00', titulo: 'Bandas locales en directo', donde: 'La Nave', precio: '8 €', resumen: 'Tres grupos de aquí. Uno acabará siendo tu favorito.', foto: 'bandas',
+          desc: 'Tres grupos de aquí en una sala pequeña: pop guitarrero, algo de punk y una cantautora que suele cerrar la noche. Puertas a las 20:30. Lleva tapones o no te quejes el lunes.', gusta: 'ir por el telonero y salir siendo su fan.' },
+        { cat: 'mercados', dia: 'Sáb 14', hora: '10:00', titulo: 'Mercadillo de cerámica', donde: 'Plaza Nueva', precio: 'Gratis', resumen: 'Tazas, platos y jarrones que no caben en tu cocina.', foto: 'ceramica',
+          desc: 'Veinte talleres de la ciudad venden tazas, platos, jarrones y piezas con taras a mitad de precio. Llévate bolsa: nadie viene a por una sola taza.', gusta: 'no tener sitio para más tazas y comprar otra.' },
+        { cat: 'aire', dia: 'Sáb 14', hora: '10:30', titulo: 'Subida al monte con vistas', donde: 'Salida desde el funicular', precio: 'Gratis', resumen: 'Una hora de cuesta y la ciudad entera a tus pies.', foto: 'monte',
+          desc: 'Ruta guiada de unos cinco kilómetros desde la parada de arriba del funicular. Hay cuesta, pero arriba está la ría entera. Calzado cómodo y agua; el bocadillo, a tu criterio.', gusta: 'alargar la ruta porque «total, ya estamos aquí».' },
+        { cat: 'conciertos', dia: 'Sáb 14', hora: '20:00', titulo: 'Cuarteto de cuerda en la iglesia vieja', donde: 'San Antón', precio: '12 €', resumen: 'Bach con acústica de piedra. Se oye hasta el que tose.', foto: 'cuarteto',
+          desc: 'Un cuarteto de cuerda toca Bach, Haydn y alguna sorpresa en la iglesia vieja, iluminada solo con velas. Dura una hora. La acústica es preciosa; la calefacción, no tanto.', gusta: 'cerrar los ojos en los conciertos, y no por sueño.' },
+        { cat: 'conciertos', dia: 'Sáb 14', hora: '22:00', titulo: 'Verbena con orquesta en la plaza', donde: 'Plaza Nueva', precio: 'Gratis', resumen: 'Orquesta de las de antes y churros a la una.', foto: 'verbena',
+          desc: 'La orquesta toca de todo, de pasodobles a éxitos de los noventa, desde las diez hasta que el cuerpo aguante. A la una sacan churros con chocolate. Se baila en pareja, en grupo o por tu cuenta, que aquí nadie mira.', gusta: 'saberte todas las canciones aunque digas que no.' },
+        { cat: 'mercados', dia: 'Dom 15', hora: '09:00', titulo: 'Mercado de productores', donde: 'Plaza del Ayuntamiento', precio: 'Gratis', resumen: 'Tomates que saben a tomate. Madruga si quieres queso.', foto: 'productores',
+          desc: 'Huertas y queserías de la comarca venden lo suyo en la plaza. Los tomates feos son los mejores y el queso se acaba antes de las once. Mejor en efectivo, que la cobertura va y viene.', gusta: 'madrugar un domingo solo por un queso.' },
+        { cat: 'mercados', dia: 'Dom 15', hora: '11:00', titulo: 'Feria del vinilo', donde: 'Antiguo matadero', precio: 'Gratis', resumen: 'Cajas y cajas de discos. Trae efectivo y paciencia.', foto: 'vinilo',
+          desc: 'Más de treinta puestos de discos nuevos y de segunda mano en el antiguo matadero: jazz, rock, soul y alguna rareza que no sabías que buscabas. Hay tocadiscos para escuchar antes de comprar.', gusta: 'comprar discos aunque no tengas tocadiscos.' },
+        { cat: 'expos', dia: 'Dom 15', hora: '12:00', titulo: 'Visita guiada con vermut', donde: 'Museo de la ría', precio: '6 €', resumen: 'Una hora de arte y otra de comentarlo.', foto: 'visita',
+          desc: 'Una hora de visita por la exposición de fotografía de barrio con quien la ha comisariado. Después, vermut en la misma sala para seguir hablando de lo que has visto. Plazas limitadas.', gusta: 'leerte todas las cartelas y opinar de todas.' },
+        { cat: 'conciertos', dia: 'Dom 15', hora: '13:00', titulo: 'Vermut con DJ', donde: 'Terraza del mercado', precio: 'Gratis', resumen: 'Empieza como un aperitivo. Ya sabes cómo acaba.', foto: 'vermut-dj',
+          desc: 'Sesión de vinilos en la terraza junto a la ría, del soul al funk y a lo que pida el ambiente. Vermut de grifo y aceitunas. Si llegas pronto, hay sitio para sentarse; si llegas tarde, también hay sitio, pero de pie.', gusta: 'aperitivos que acaban en cena.' },
+        { cat: 'aire', dia: 'Dom 15', hora: '19:00', titulo: 'Cine al aire libre con picnic', donde: 'Parque de abajo', precio: 'Gratis', resumen: 'Trae manta. La peli la pone el parque.', foto: 'cine',
+          desc: 'Cine clásico en versión original en el césped del parque, en cuanto se pone el sol. Trae manta, cena y algo de abrigo, que a las nueve refresca.', gusta: 'ver pelis con manta aunque sea julio.' },
       ];
 
       // Pinta las tarjetas
@@ -317,14 +389,14 @@
         const li = document.createElement('li');
         li.className = 'tarjeta';
         li.dataset.cat = p.cat;
-        li.innerHTML = `<a href="#agenda">
+        li.innerHTML = `<button type="button" class="abrir" data-plan="${i}">
             <span class="imagen" style="--c:${c.c}; --ct:${c.ct}"><img src="fotos/${p.foto}.jpg" alt="" loading="lazy" width="1408" height="768" /><span class="etiqueta">${c.nombre}</span><span class="etiqueta precio">${p.precio}</span></span>
             <span class="tarjeta-txt">
               <span class="cuando">${p.dia} · ${p.hora}</span>
               <h3>${p.titulo}</h3>
               <span class="resumen">${p.resumen}</span>
               <span class="donde">${p.donde}</span>
-            </span></a>`;
+            </span></button>`;
         rejilla.appendChild(li);
       });
 
@@ -332,6 +404,68 @@
       const dest = document.getElementById('dest-img');
       dest.style.setProperty('--c', CAT.conciertos.c);
       dest.insertAdjacentHTML('afterbegin', '<img src="fotos/verbena.jpg" alt="" width="1408" height="768" />');  // la foto
+
+      // Dibuja un Bocaza en un SVG nuevo (copia sus formas: así Safari repinta bien)
+      function dibuja(cat) {
+        const c = CAT[cat], s = document.getElementById(c.pj);
+        const svg = document.createElementNS(NS, 'svg');
+        svg.setAttribute('viewBox', s.getAttribute('viewBox'));
+        svg.setAttribute('aria-hidden', 'true');
+        svg.innerHTML = s.innerHTML;
+        Object.entries(c.col).forEach(([k, v]) => svg.style.setProperty(k, v));  // sus colores
+        return svg;
+      }
+
+      // ¿QUÉ PLAN ERES? Cuatro Bocazas; al pulsar uno, la agenda se filtra por su categoría
+      const PERSONAS = [['conciertos', 'El Sofá', 'El fiestero'], ['mercados', 'La Tostadora', 'La impulsiva'], ['aire', 'El Mando', 'El aventurero'], ['expos', 'El Flexo', 'El cultureta irónico']];
+      const quien = document.getElementById('quien');
+      PERSONAS.forEach(([cat, nombre, tipo]) => {
+        const c = CAT[cat];
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'bocaza';
+        b.style.setProperty('--c', c.c); b.style.setProperty('--ct', c.ct);   // su color
+        b.appendChild(dibuja(cat));                                            // su dibujo
+        b.insertAdjacentHTML('beforeend', `<small>${nombre}</small><b>${tipo}</b><span>→ ${c.nombre}</span>`);
+        b.addEventListener('mouseenter', () => salta(b.querySelector('svg')));  // al pasar, salta
+        b.addEventListener('click', () => { filtra(cat); requestAnimationFrame(() => document.getElementById('agenda').scrollIntoView({ behavior: quieto ? 'auto' : 'smooth' })); });  // filtra y, ya recolocada la página, sube a la agenda
+        quien.appendChild(b);
+      });
+      const quieto = matchMedia('(prefers-reduced-motion: reduce)').matches;  // ¿se prefiere menos movimiento?
+      function salta(el) {
+        if (quieto) return;
+        el.classList.remove('salta'); void el.getBoundingClientRect(); el.classList.add('salta');
+        el.addEventListener('animationend', () => el.classList.remove('salta'), { once: true });
+      }
+
+      // FICHA DEL PLAN: al pulsar una tarjeta (o el destacado) se abre con su descripción
+      const ficha = document.getElementById('ficha');
+      const apunto = document.getElementById('apunto');
+      const apuntados = new Set();                                          // planes a los que te has apuntado
+      let actual = null, vuelve = null;                                     // plan abierto y botón al que vuelve el foco
+      function abre(i) {
+        const p = PLANES[i], c = CAT[p.cat];
+        actual = i; vuelve = document.activeElement;
+        ficha.style.setProperty('--c', c.c); ficha.style.setProperty('--ct', c.ct);  // colores de su categoría
+        ficha.querySelector('img').src = `fotos/${p.foto}.jpg`;
+        ficha.querySelector('.etiqueta').textContent = c.nombre;
+        ficha.querySelector('h2').textContent = p.titulo;
+        ficha.querySelector('.ficha-datos').innerHTML = `<span>${p.dia} · ${p.hora}</span><span>${p.donde}</span><span>${p.precio}</span>`;
+        ficha.querySelector('.ficha-desc').textContent = p.desc;
+        ficha.querySelector('.ficha-gusta').innerHTML = `<b>Te gustará si eres de</b> ${p.gusta}`;
+        pintaApunto();
+        ficha.showModal();                                                  // se abre (Esc la cierra)
+      }
+      function pintaApunto() { apunto.textContent = apuntados.has(actual) ? 'Apuntado ✓' : 'Me apunto'; }
+      apunto.addEventListener('click', () => { apuntados.has(actual) ? apuntados.delete(actual) : apuntados.add(actual); pintaApunto(); });  // se apunta o se desapunta
+      ficha.querySelector('.cerrar').addEventListener('click', () => ficha.close());
+      document.getElementById('ficha-cerrar').addEventListener('click', () => ficha.close());
+      ficha.addEventListener('click', (e) => { if (e.target === ficha) ficha.close(); });  // tocar fuera la cierra
+      ficha.addEventListener('close', () => vuelve && vuelve.focus());      // el foco vuelve a la tarjeta
+      rejilla.addEventListener('click', (e) => { const b = e.target.closest('.abrir'); if (b) abre(+b.dataset.plan); });
+      const iVerbena = PLANES.findIndex((p) => p.foto === 'verbena');
+      dest.addEventListener('click', () => abre(iVerbena));                 // la foto del destacado
+      document.getElementById('dest-ver').addEventListener('click', () => abre(iVerbena));
 
       // Filtros: enseñan solo los planes de una categoría
       const chips = document.querySelectorAll('.chip');
