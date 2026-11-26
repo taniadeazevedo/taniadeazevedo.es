@@ -116,8 +116,8 @@
     .pl-bz figcaption span::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--c); }  /* punto con su color */
     .pl-bz figcaption q { font-style: italic; }
     @media (prefers-reduced-motion: reduce) { .pl-comb { transition: none; } .pl-sale { animation: none; } }
-    html[data-t="lila"] #resultado .v2-cs-body-end { margin: 0 auto; max-width: 44em; text-align: center; }
-    html[data-t="lila"] #resultado .v2-cs-body-end p { font-size: clamp(16px, 1.3vw, 19px); line-height: 1.65; margin-left: auto; margin-right: auto; }
+    html[data-t="lila"] #resultado .v2-cs-body-end { margin: 0 auto; max-width: 46em; text-align: center; }  /* un poco más ancho: el texto entra en tres líneas */
+    html[data-t="lila"] #resultado .v2-cs-body-end p { max-width: none; font-size: clamp(16px, 1.3vw, 19px); line-height: 1.65; margin-left: auto; margin-right: auto; }  /* el párrafo usa todo ese ancho */
     @media (max-width: 760px) {
       .pl-id { grid-template-columns: minmax(0, 1fr); }          /* en móvil, una pieza debajo de otra */
       .pl-cuatro { grid-template-columns: repeat(2, minmax(0, 1fr)); }    /* animaciones de dos en dos */
@@ -300,8 +300,7 @@
           <div class="v2-cs-label"><span class="v2-cs-num">03</span><h2 class="v2-cs-h2">Proceso creativo</h2></div>
           <div class="v2-cs-body">
             <p>La idea parte de una imagen: los objetos de casa, hartos de vernos tirados, se van de plan sin nosotros. Así nacen <strong>los Bocazas</strong>: un sofá, una tostadora, un mando y un flexo.</p>
-            <p>Cada uno tiene su tipo de plan y su color, pero todos comparten el mismo gesto: <strong>una boca con dos paletas</strong>. Ese gesto también se cuela en el logotipo, donde la O sonríe.</p>
-            <p>Las ilustraciones son planas, con pocas formas y piernas finas de dibujo animado. Están pensadas para reconocerse de lejos y funcionar igual de bien bordadas, impresas o animadas.</p>
+            <p>Cada personaje está construido forma a forma, buscando <strong>el mínimo de piezas que le da el máximo de carácter</strong>: siluetas rotundas, colores planos y piernas finas de dibujo animado. Esa síntesis es la que hace que se reconozcan de un vistazo y conserven su gracia bordados, impresos o animados.</p>
             <p>Pero los Bocazas no solo tienen aspecto propio: también tienen carácter. <strong>El Sofá nunca sabe cuándo irse a casa, la Tostadora sale sin lista y vuelve con media tienda, el Mando no conoce los paseos cortos y el Flexo siempre tiene algo que puntualizar</strong>.</p>
           </div>
         </div>
