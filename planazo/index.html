@@ -30,12 +30,13 @@
     .pl-gap { margin-top: clamp(72px, 10vw, 148px); }                     /* aire entre bloques */
     .pl-tag { padding-bottom: 12px; margin-bottom: clamp(14px, 1.6vw, 20px); }  /* título de cada bloque */
     .pl-tag b { display: block; padding-bottom: 12px; border-bottom: 1px solid #1d153014; font: 600 clamp(17px, 1.4vw, 20px)/1.2 var(--v2-display, Inter, sans-serif); color: var(--v2-ink, #1d1530); }
-    .pl-web { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, .462fr); gap: clamp(8px, 1vw, 14px); }  /* escritorio y móvil, del mismo alto */
-    .pl-web a { display: block; border-radius: clamp(14px, 1.6vw, 22px); overflow: hidden; }  /* cada captura abre la landing */
-    .pl-web img { display: block; width: 100%; height: auto; transition: scale .4s; }
-    .pl-web a:hover img { scale: 1.015; }                                 /* se acerca un poco al pasar */
-    .pl-web a:focus-visible { outline: 3px solid #7c5cff; outline-offset: 3px; }
-    .pl-ver { display: inline-block; margin-top: 14px; font: 600 15px/1.3 var(--v2-display, Inter, sans-serif); color: var(--v2-ink, #1d1530); }  /* enlace «Ver la landing» */
+    .pl-web { position: relative; aspect-ratio: 16 / 10; background: #FFF3DE; }  /* la landing, viva dentro del caso */
+    .pl-web iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }  /* en ordenador, se puede deslizar y usar directamente */
+    .pl-web, .pl-movil { border: 1px solid #1A1110; }                     /* contorno muy fino en tinta: separa el crema de la landing del lila de la web */
+    .pl-ver { display: inline-block; margin-top: 14px; font: 600 15px/1.3 var(--v2-display, Inter, sans-serif); color: var(--v2-ink, #1d1530); }  /* enlace «Explorar la landing», debajo */
+    .pl-web-par { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .289fr); gap: clamp(8px, 1vw, 14px); }  /* escritorio y móvil, del mismo alto */
+    .pl-movil { position: relative; aspect-ratio: 390 / 844; background: #FFF3DE; }  /* pantalla de móvil */
+    .pl-movil iframe { position: absolute; top: 0; left: 0; width: 390px; height: 844px; border: 0; transform-origin: 0 0; transform: scale(var(--k, 1)); }  /* la landing a tamaño móvil, encogida para caber (se puede deslizar) */
     .pl-marco { border-radius: clamp(18px, 2vw, 28px); overflow: hidden; }  /* esquinas como el resto del portfolio */
     .pl-mas { margin-top: clamp(8px, 1vw, 14px); }                        /* separación dentro de un bloque */
     /* Portada: la frase de la marca con los Bocazas entre las palabras (en código, no en foto) */
@@ -118,7 +119,9 @@
       .pl-cuatro { grid-template-columns: repeat(2, minmax(0, 1fr)); }    /* animaciones de dos en dos */
       .pl-apps { grid-template-columns: minmax(0, 1fr); grid-template-areas: "a" "b" "c" "e" "g" "d"; }  /* en móvil, una foto debajo de otra */
       .pl-apps img { aspect-ratio: 1 !important; }                         /* todas cuadradas en móvil */
-      .pl-web { grid-template-columns: minmax(0, 1fr); } .pl-web a:last-child { width: 62%; justify-self: center; }  /* landing: escritorio arriba, móvil debajo */
+      .pl-web { aspect-ratio: 3 / 4; }                                     /* la landing, en vertical en el móvil */
+      .pl-web iframe { pointer-events: none; }                             /* en el móvil, la vista es quieta (para que el dedo no se quede atrapado); se abre con el enlace de abajo */
+      .pl-web-par { grid-template-columns: minmax(0, 1fr); } .pl-movil { display: none; }  /* en el móvil ya se ve la versión móvil: sobra la vista de al lado */
       .pl-paleta { aspect-ratio: 4 / 3; }                                  /* la paleta conserva su alto */
       .pl-id2 { grid-template-columns: minmax(0, 1fr); }                   /* tipografía y combinador, uno debajo de otro */
       .pl-tipo { min-height: 0; } .pl-tipo-frase { font-size: 12cqi; min-height: 3.1em; }  /* en móvil, la frase un poco más grande */
@@ -316,11 +319,11 @@
         </div>
         <div class="pl-row pl-gap pl-tag"><b>Landing</b></div>
         <div class="pl-row">
-          <div class="pl-web"><!-- capturas de la landing: escritorio y móvil -->
-            <a href="landing/" target="_blank" rel="noopener"><img src="mockups/landing-escritorio.jpg" width="2880" height="1800" alt="Landing de PLANAZO en escritorio, como una guía de ocio: el titular «Esta semana hay once planes. Y tú mirando el móvil.» y la verbena como plan de la semana" loading="lazy" /></a>
-            <a href="landing/" target="_blank" rel="noopener"><img src="mockups/landing-movil.jpg" width="780" height="1688" alt="Landing de PLANAZO en el móvil: filtros por Conciertazos, Mercadazos, Paseazos y Expazos y tarjetas de planes con foto" loading="lazy" /></a>
+          <div class="pl-web-par"><!-- la landing en escritorio y, al lado, en móvil -->
+            <div class="pl-marco pl-web" id="pl-web"><iframe src="landing/" title="Landing de PLANAZO en escritorio" loading="lazy"></iframe></div>
+            <div class="pl-marco pl-movil" id="pl-movil"><iframe src="landing/" title="Landing de PLANAZO en el móvil (se puede deslizar)" loading="lazy" tabindex="0"></iframe></div>
           </div>
-          <a class="pl-ver" href="landing/" target="_blank" rel="noopener">Ver la landing <span aria-hidden="true">↗</span></a>
+          <a class="pl-ver" href="landing/" target="_blank" rel="noopener">Explorar la landing <span aria-hidden="true">↗</span></a>
         </div>
       </div>
     </section>
@@ -462,6 +465,10 @@
         document.querySelectorAll('.pl-sw').forEach((o) => o.setAttribute('aria-pressed', o === b)); // marca el elegido
       });
     });
+
+    // La vista de móvil: la landing se pinta a 390 px de ancho y se encoge hasta caber en su hueco
+    const movil = document.getElementById('pl-movil');
+    if (movil) new ResizeObserver(([e]) => movil.style.setProperty('--k', e.contentRect.width / 390)).observe(movil);  // escala = ancho del hueco / 390
 
     // 3 · COMBINADOR: eliges el plan y cambian el color, el personaje y el cartel
     const comb = document.getElementById('pl-comb');
